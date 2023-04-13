@@ -1,3 +1,90 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: azure;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(250, 150, 167);
+}
+
+a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-link {
+  color: pink;
+}
+
+.nav-link:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar-custom {
+  box-shadow: 0 0.5rem 0.8rem #00000080;
+}
+
+/* Header - Portada */
+.custom-header {
+  background: url("https://cdn.pixabay.com/photo/2019/10/27/07/31/screen-background-4580904_960_720.jpg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-attachment: fixed;
+  background-size: 100%;
+  min-height: 100vh;
+  background-size: cover;
+  background-blend-mode: overlay;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.button-custom {
+  margin: 2.5rem;
+}
+
+
+
+
+
+
+/* Pruebas */
+input[type="radio"] {
+	display: none;
+}
+
+label {
+	display: inline-block;
+	padding: 10px 20px;
+    margin: 0.2rem;
+	font-size: 16px;
+	font-weight: bold;
+	color: #ccc;
+	border: 2px solid #ccc;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s, border-color 0.3s, color 0.3s,
+		box-shadow 0.3s;
+}
+
+label:hover {
+	color: var(--color);
+	border-color: currentColor;
+	box-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+}
+
+canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
+
