@@ -8,5 +8,8 @@ import "../styles/index.css";
 //import your own components
 import Layout from "./layout";
 
+//import context
+import { AppProvider } from "../../front/js/store/AppContext.js";
+
 //render your react application
-ReactDOM.render(<Layout />, document.querySelector("#app"));
+ReactDOM.render(<AppProvider><Layout /></AppProvider>, document.querySelector("#app"));
