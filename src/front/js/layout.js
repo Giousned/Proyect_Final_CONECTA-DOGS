@@ -5,6 +5,7 @@ import ScrollToTop from "./component/scrollToTop";
 // import { Home } from "./pages/home";
 // import { Demo } from "./pages/demo";
 // import { Single } from "./pages/single";
+import { LoginSubmit } from "./pages/LoginSubmit.jsx";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/NavBar.jsx";
@@ -26,6 +27,9 @@ const Layout = () => {
       <BrowserRouter basename={basename}>
         <ScrollToTop>
           <Navbar />
+          <Routes>
+          <Route element={<LoginSubmit />} path="/LoginSubmit" />
+          </Routes>
           {/* <Routes>
             <Route element={<Home />} path="/" />
             <Route element={<Demo />} path="/demo" />

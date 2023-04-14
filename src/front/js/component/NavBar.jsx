@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { LoginSubmit } from "../pages/LoginSubmit.jsx";
+
 export const Navbar = () => {
   return (<>
     {/* <nav className="navbar navbar-light bg-light">
@@ -24,7 +26,7 @@ export const Navbar = () => {
         <button className="navbar-toggler" type="button"
           data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon bg-light"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -44,7 +46,7 @@ export const Navbar = () => {
               </a>
             </li>
             <li className="nav-item">
-              <Link to="/LoginSubmit" className="nav-link" href="#login-submit">
+              <Link to="/LoginSubmit" className="nav-link">
                 INICIAR SESIÓN | REGISTRARSE
               </Link>
             </li>
