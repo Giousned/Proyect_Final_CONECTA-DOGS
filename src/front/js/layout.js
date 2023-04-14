@@ -2,15 +2,18 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
-import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
+// import { Home } from "./pages/home";
+// import { Demo } from "./pages/demo";
+// import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
-import { Navbar } from "./component/navbar";
+import { Navbar } from "./component/NavBar.jsx";
 import { Header } from "./component/Header.jsx";
 import { AboutUs } from "./component/AboutUs.jsx";
-import { Footer } from "./component/footer";
+import { Reviews } from "./component/Reviews.jsx";
+import { Services } from "./component/Services.jsx";
+import { Blog } from "./component/Blog.jsx";
+import { Footer } from "./component/Footer.jsx";
 
 //create your first component
 const Layout = () => {
@@ -31,6 +34,9 @@ const Layout = () => {
           </Routes> */}
           <Header />
           <AboutUs />
+          <Reviews />
+          <Services />
+          <Blog />
           <Footer />
         </ScrollToTop>
       </BrowserRouter>

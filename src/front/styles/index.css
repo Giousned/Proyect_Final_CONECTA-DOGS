@@ -7,12 +7,13 @@
 }
 
 body {
-  background-color: azure;
+  background-color: white;
 }
 
+/* NavBar */
 a {
   text-decoration: none;
-  color: rgb(250, 150, 167);
+  color: #9fcbff;
 }
 
 a:hover {
@@ -21,7 +22,7 @@ a:hover {
 }
 
 .nav-link {
-  color: pink;
+  color: #9fcbff;
 }
 
 .nav-link:hover {
@@ -43,48 +44,81 @@ a:hover {
   min-height: 100vh;
   background-size: cover;
   background-blend-mode: overlay;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
   color: white;
 }
 
+/* Botones del Header */
 .button-custom {
   margin: 2.5rem;
 }
 
-
-
-
-
-
-/* Pruebas */
 input[type="radio"] {
-	display: none;
+  display: none;
 }
 
 label {
-	display: inline-block;
-	padding: 10px 20px;
-    margin: 0.2rem;
-	font-size: 16px;
-	font-weight: bold;
-	color: #ccc;
-	border: 2px solid #ccc;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background-color 0.3s, border-color 0.3s, color 0.3s,
-		box-shadow 0.3s;
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 0.2rem;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ccc;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s,
+    box-shadow 0.3s;
 }
 
 label:hover {
-	color: var(--color);
-	border-color: currentColor;
-	box-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+  color: var(--color);
+  border-color: currentColor;
+  box-shadow: 0 0 10px currentColor, 0 0 20px currentColor,
+    0 0 30px currentColor;
 }
 
-canvas {
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: -1;
+/* Nosotros - About Us */
+#about-us {
+  position: absolute;
+  top: -56px;
 }
 
+/* Opiniones - Reviews */
+#reviews {
+  position: absolute;
+  top: -56px;
+}
+.custom-reviews {
+  /* background: url("https://cdn.pixabay.com/photo/2017/12/27/14/02/friends-3042751_960_720.jpg"); */
+  background: url("https://cdn.pixabay.com/photo/2017/09/03/17/26/woman-2711279_960_720.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  min-height: 50vh;
+  background-size: cover;
+  color: white;
+}
+
+.stars-reviews {
+  color: #fff71a;
+}
+
+.review {
+  /* box-shadow: 7px 7px 13px white; */
+  border-style: double;
+  border-color: #b13e04;
+  background-color: #000000d7;
+}
+
+/* Servicios - Services */
+#services {
+  position: absolute;
+  top: -56px;
+}
+
+/* Contacto - Contact */
+#contact {
+  position: absolute;
+  top: -56px;
+}
