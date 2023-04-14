@@ -11,7 +11,7 @@ export const Footer = () => (
     <footer className="bg-dark text-center text-white">
       <section className="mb-4">
         <a
-          className="btn text-white btn-floating m-1"
+          className="btn btn-instagram text-white btn-floating m-1"
           href="#"
           target="_blank"
           role="button"
@@ -20,7 +20,7 @@ export const Footer = () => (
         </a>
 
         <a
-          className="btn text-white btn-floating m-1"
+          className="btn btn-mail text-white btn-floating m-1"
           href="mailto:conectadogs@gmail.com"
           role="button"
         >
@@ -28,7 +28,7 @@ export const Footer = () => (
         </a>
 
         <a
-          className="btn text-white btn-floating m-1"
+          className="btn btn-telf text-white btn-floating m-1"
           href="tel:+34123456789"
           role="button"
         >
@@ -36,7 +36,7 @@ export const Footer = () => (
         </a>
 
         <a
-          className="btn text-white btn-floating m-1"
+          className="btn btn-github text-white btn-floating m-1"
           href="#"
           target="_blank"
           role="button"
