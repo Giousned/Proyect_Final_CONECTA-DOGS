@@ -4,11 +4,11 @@ export const Reviews = () => {
   return (
     <section className="py-4 text-center custom-reviews">
       <div id="reviews"></div>
-      <div className="container">
+      <div className="container pb-4">
         <div className="row">
           <h2 className="p-4">Opiniones de nuestros usuarios</h2>
           <div className="col-12 col-md-4 p-2 review">
-            <h4>Sandra sobre "Penaut"</h4>
+            <h4>Sandra sobre "Pelusa"</h4>
             <i className="fas fa-star stars-reviews"></i>
             <i className="fas fa-star stars-reviews"></i>
             <i className="fas fa-star stars-reviews"></i>
@@ -28,7 +28,7 @@ export const Reviews = () => {
               Es responsable, cariñosa y se le nota desde el primer momento esa pasión por los animales."</p>
           </div>
           <div className="col-12 col-md-4 p-2 review">
-            <h4>Guillermo sobre "Penaut"</h4>
+            <h4>Guillermo sobre "Bimbo"</h4>
             <i className="fas fa-star stars-reviews"></i>
             <i className="fas fa-star stars-reviews"></i>
             <i className="fas fa-star stars-reviews"></i>

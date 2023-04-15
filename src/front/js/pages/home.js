@@ -8,9 +8,9 @@ import { AboutUs } from "../component/AboutUs.jsx";
 import { Reviews } from "../component/Reviews.jsx";
 import { Services } from "../component/Services.jsx";
 import { Blog } from "../component/Blog.jsx";
+// import TV from "../component/TV.jsx";
 
 export const Home = () => {
-
   return (
     <div className="text-center mt-5">
       <Header />
@@ -18,6 +18,7 @@ export const Home = () => {
       <Reviews />
       <Services />
       <Blog />
+      {/* <TV /> */}
     </div>
   );
 };

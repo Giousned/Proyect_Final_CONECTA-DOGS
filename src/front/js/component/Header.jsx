@@ -4,17 +4,11 @@ export const Header = () => {
   return (
     <header className="d-flex align-items-center custom-header" id="home">
       <div className="container text-white-custom text-shadow text-center">
-        <h1 className="mb-4">
-          Conecta-Dogs
-          <br />
-          {/* <small className="text-primary-custom">Conectamos Cuidadores con Propietarios de Perros</small> */}
-        </h1>
-
-        <input type="radio" name="option" id="cuidadores" />
-        <label>Buscar Cuidadores</label>
-
-        <input type="radio" name="option" id="login" />
-        <label>Iniciar Sesión | Registrarse</label>
+        <h1 className="mb-4">Conecta-Dogs</h1>
+        <h3>Conectamos Cuidadores con Propietarios de Perros</h3>
+        <br />
+        <button className="btn-home">Buscar Cuidadores</button>
+        <button className="btn-home">Iniciar Sesión</button>
       </div>
     </header>
   );
