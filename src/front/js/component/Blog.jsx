@@ -16,8 +16,7 @@ export const Blog = () => {
                             <div className="card-body">
                                 <h5 className="card-title">Vacunas para perros: cuáles poner y cuándo hacerlo</h5>
                                 <p className="card-text">Si estás leyendo esto es porque alguna vez te ha asaltado alguna
-                                    duda sobre las vacunas para perros. Cuándo ponerlas, cuándo administrar dosis de recuerdo,
-                                    si realmente hay alguna vacuna….</p>
+                                    duda sobre las vacunas para perros. Cuándo ponerlas, cuándo administrar dosis de recuerdo...</p>
                                 <a href="#" className="btn btn-primary">Leer más...</a>
                             </div>
                         </div>
@@ -30,7 +29,7 @@ export const Blog = () => {
                                 <h5 className="card-title">Primavera y alergia en perros: síntomas y cómo actuar</h5>
                                 <p className="card-text">La llegada de la primavera significa el inicio de las alergias y no
                                     solo en nosotros los humanos, sino que la alergia en perros, aunque menos conocida, es también
-                                    bastante…</p>
+                                    bastante...</p>
                                 <a href="#" className="btn btn-primary">Leer más...</a>
                             </div>
                         </div>
@@ -42,12 +41,12 @@ export const Blog = () => {
                             <div className="card-body">
                                 <h5 className="card-title">Cómo elegir el mejor cuidador de perros estas vacaciones</h5>
                                 <p className="card-text">¡Poooor fin empieza la cuenta atrás para las ansiadas vacaciones de Semana
-                                    Santa!, y en Gudog queremos echarte una mano a elegir el mejor cuidador de perros para tu compañero….</p>
+                                    Santa!, y en Conecta-Dogs queremos echarte una mano...</p>
                                 <a href="#" className="btn btn-primary">Leer más...</a>
                             </div>
                         </div>
                     </div>
-                    <div className="container text-center">
+                    <div className="container text-center m-3">
                         <button type="button" className="btn btn-primary">Ver todas las publicaciones</button>
                     </div>
                 </div>

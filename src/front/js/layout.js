@@ -6,7 +6,7 @@ import ScrollToTop from "./component/scrollToTop";
 // import { Demo } from "./pages/demo";
 // import { Single } from "./pages/single";
 import { LoginSubmit } from "./pages/LoginSubmit.jsx";
-import injectContext from "./store/appContext";
+
 
 import { Home } from "./pages/home";
 import { Navbar } from "./component/NavBar.jsx";
@@ -28,13 +28,10 @@ const Layout = () => {
             <Route element={<LoginSubmit />} path="/LoginSubmit" />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
-          {/* <Routes>
-            <Route element={<Home />} path="/" />
+          {/*
             <Route element={<Demo />} path="/demo" />
             <Route element={<Single />} path="/single/:theid" />
-            <Route element={<h1>Not found!</h1>} />
-          </Routes> */}
-
+           */}
           <Footer />
         </ScrollToTop>
       </BrowserRouter>
@@ -42,4 +39,4 @@ const Layout = () => {
   );
 };
 
-export default injectContext(Layout);
+export default Layout;
