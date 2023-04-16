@@ -1,0 +1,28 @@
+/* Opiniones | Reviews - Styles */
+
+#reviews {
+    position: absolute;
+    top: -56px;
+}
+
+.custom-reviews {
+    /* background: url("https://cdn.pixabay.com/photo/2017/12/27/14/02/friends-3042751_960_720.jpg"); */
+    background: url("https://cdn.pixabay.com/photo/2017/09/03/17/26/woman-2711279_960_720.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    min-height: 50vh;
+    background-size: cover;
+    color: white;
+}
+
+.stars-reviews {
+    color: #fff71a;
+}
+
+.review {
+    /* box-shadow: 7px 7px 13px white; */
+    border-style: double;
+    border-color: #b13e04;
+    background-color: #000000d7;
+}

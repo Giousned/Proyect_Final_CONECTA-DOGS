@@ -1,0 +1,24 @@
+/* Footer Styles */
+
+/* Contacto - Contact */
+
+#contact {
+    position: absolute;
+    top: -56px;
+}
+
+.btn-instagram {
+    background-color: red;
+}
+
+.btn-mail {
+    background-color: blue;
+}
+
+.btn-telf {
+    background-color: green;
+}
+
+.btn-github {
+    background-color: black;
+}

@@ -1,9 +1,10 @@
 import React from "react";
+import "../Blog/blog.css";
 
 export const Blog = () => {
     return (<>
         <div className="container col-12">
-            <h2>Blog de Gudog</h2>
+            <h2>Blog de Conecta-Dogs</h2>
         </div>
         <section className="blog custom-bg-blog">
             <div id="blog"></div>

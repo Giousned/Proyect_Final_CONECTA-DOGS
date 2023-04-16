@@ -6,11 +6,11 @@ import ScrollToTop from "./component/scrollToTop";
 // import { Demo } from "./pages/demo";
 // import { Single } from "./pages/single";
 import { LoginSubmit } from "./pages/LoginSubmit.jsx";
+import LogInForm from "../js/component/LogInForm/LogInForm.jsx";
 
-
-import { Home } from "./pages/home";
-import { Navbar } from "./component/NavBar.jsx";
-import { Footer } from "./component/Footer.jsx";
+import { Home } from "./pages/Home.jsx";
+import { NavBar } from "./component/NavBar/NavBar.jsx";
+import { Footer } from "./component/Footer/Footer.jsx";
 
 //create your first component
 const Layout = () => {
@@ -22,10 +22,11 @@ const Layout = () => {
     <div>
       <BrowserRouter basename={basename}>
         <ScrollToTop>
-          <Navbar />
+          <NavBar />
           <Routes>
             <Route element={<Home />} path="/" />
             <Route element={<LoginSubmit />} path="/LoginSubmit" />
+            <Route element={<LogInForm />} path="/LogInForm" />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
           {/*

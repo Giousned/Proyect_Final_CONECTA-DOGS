@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const LoginSubmit = () => {
   return (
-    <div className="container mt-5"> <h1 className="pt-5">HOLAAA CRISTIAN</h1>
+    <div className="container mt-5">
       <div className="section">
         <div className="container">
           <div className="row full-height justify-content-center">
@@ -49,11 +49,11 @@ export const LoginSubmit = () => {
                           <h4 className="mb-4 pb-3 text-white">Registrase</h4>
                           <div className="form-group glowing-register-wrapper">
                             <div className="glowing-register m-2">
-                              <input type="radio" id="propietario" name="perfil" value="propietario"/>
+                              <input type="radio" id="propietario" name="perfil" value="propietario" />
                               <label for="propietario">Propietario</label>
                             </div>
                             <div className="glowing-register m-2">
-                              <input type="radio" id="cuidador" name="perfil" value="cuidador"/>
+                              <input type="radio" id="cuidador" name="perfil" value="cuidador" />
                               <label for="cuidador">Cuidador</label>
                             </div>
                           </div>

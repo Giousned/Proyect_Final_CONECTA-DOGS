@@ -1,6 +1,7 @@
 import React from "react";
+import "../TV/tv.css"
 
-import videoConectaDogs from "../../video/video_conectadogs_2.mp4"
+import videoConectaDogs from "../../../video/video_conectadogs_1.mp4"
 
 const TV = () => {
     return (

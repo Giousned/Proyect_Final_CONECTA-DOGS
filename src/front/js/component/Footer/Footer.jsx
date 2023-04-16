@@ -1,4 +1,5 @@
 import React from "react";
+import "../Footer/footer.css";
 
 export const Footer = () => (
   <section className="contact bg-dark py-4">

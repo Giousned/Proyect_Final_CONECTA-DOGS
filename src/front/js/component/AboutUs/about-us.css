@@ -1,0 +1,14 @@
+/* Nosotros | About Us - Styles */
+
+#about-us {
+    position: absolute;
+    top: -56px;
+}
+
+.numbers {
+    color: #198754;
+}
+
+.custom-justify {
+    text-align: justify;
+}

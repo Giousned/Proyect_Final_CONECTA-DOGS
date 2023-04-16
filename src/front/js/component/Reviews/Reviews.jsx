@@ -1,4 +1,5 @@
 import React from "react";
+import "../Reviews/reviews.css";
 
 export const Reviews = () => {
   return (
