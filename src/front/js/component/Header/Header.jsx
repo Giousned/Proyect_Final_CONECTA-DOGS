@@ -10,11 +10,11 @@ export const Header = () => {
         <br />
         {/* <button className="btn-home">Buscar Cuidadores</button>
         <button className="btn-home">Iniciar Sesión</button> */}
-        <button class="button-home">
-          <span class="text">Iniciar Sesión</span>
+        <button className="button-home">
+          <span className="text">Iniciar Sesión</span>
         </button>
-        <button class="button-home">
-          <span class="text">Registrarse</span>
+        <button className="button-home">
+          <span className="text">Registrarse</span>
         </button>
       </div>
     </header>

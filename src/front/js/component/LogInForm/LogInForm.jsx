@@ -10,8 +10,8 @@ const LogInForm = () => {
                     {/* <div className="col-12 col-md-4"></div> */}
 
                     <div className="col-12 col-md-6">
-                        <div class="background">
-                            <form class="login-form">
+                        <div className="background">
+                            <form className="login-form">
                                 <h3>Iniciar Sesión</h3>
 
                                 <label for="username">Usuario</label>
@@ -24,23 +24,23 @@ const LogInForm = () => {
 
                                 <div className="p-2">
                                     <a href="">
-                                        <i class="far fa-question-circle"></i>
+                                        <i className="far fa-question-circle"></i>
                                         ¿Olvidaste tu contraseña?
                                     </a>
                                 </div>
 
 
-                                <div class="social">
-                                    <div class="go"><i class="fab fa-google"></i>  Google</div>
-                                    <div class="fb"><i class="fab fa-facebook-f"></i>  Facebook</div>
+                                <div className="social">
+                                    <div className="go"><i className="fab fa-google"></i>  Google</div>
+                                    <div className="fb"><i className="fab fa-facebook-f"></i>  Facebook</div>
                                 </div>
                             </form>
                         </div>
                     </div>
 
                     <div className="col-12 col-md-6">
-                        <div class="background">
-                            <form class="login-form">
+                        <div className="background">
+                            <form className="login-form">
                                 <h3>Registro de Usuario</h3>
 
                                 <div className="form-group glowing-register-wrapper">
@@ -68,9 +68,9 @@ const LogInForm = () => {
 
                                 <button>Registrarse</button>
 
-                                <div class="social">
-                                    <div class="go"><i class="fab fa-google"></i>  Google</div>
-                                    <div class="fb"><i class="fab fa-facebook-f"></i>  Facebook</div>
+                                <div className="social">
+                                    <div className="go"><i className="fab fa-google"></i>  Google</div>
+                                    <div className="fb"><i className="fab fa-facebook-f"></i>  Facebook</div>
                                 </div>
                             </form>
                         </div>

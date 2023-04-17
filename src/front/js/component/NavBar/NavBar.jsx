@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../NavBar/navbar.css";
 
-export const NavBar = () => {
+export const Navbar = () => {
   return (<>
     {/* <nav className="navbar navbar-light bg-light">
       <div className="container">
@@ -17,7 +16,7 @@ export const NavBar = () => {
       </div>
     </nav> */}
 
-    <nav className="navbar navbar-expand-lg bg-dark navbar-dark fixed-top navbar-custom">
+    <nav className="navbar navbar-expand-lg bg-dark fixed-top navbar-custom">
       <div className="container">
         <Link to="/" className="navbar-brand">
           <strong>CONECTA-DOGS</strong>
@@ -25,39 +24,39 @@ export const NavBar = () => {
         <button className="navbar-toggler" type="button"
           data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-end">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link to="#about-us" className="nav-link " aria-current="page">
+              <a className="nav-link " aria-current="page" href="#about-us">
                 NOSOTROS
-              </Link>
+              </a>
             </li>
             <li className="nav-item">
-              <Link to="#services" className="nav-link" aria-current="page">
+              <a className="nav-link" aria-current="page" href="#services">
                 SERVICIOS
-              </Link>
+              </a>
             </li>
             <li className="nav-item">
-              <Link to="#help" className="nav-link">
+              <a className="nav-link" href="#help">
                 AYUDA
-              </Link>
+              </a>
             </li>
             <li className="nav-item">
-              <Link to="/LogInForm" className="nav-link">
-                INICIAR SESIÓN
+              <Link to="/LoginSubmit" className="nav-link" href="#login-submit">
+                INICIAR SESIÓN | REGISTRARSE
               </Link>
             </li>
+            {/* <li className="nav-item">
+              <a className="nav-link" href="#login-submit">
+                INICIAR SESIÓN | REGISTRARSE
+              </a>
+            </li> */}
             <li className="nav-item">
-              <Link to="/LoginSubmit" className="nav-link">
-                REGISTRARSE
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="#contact" className="nav-link">
+              <a className="nav-link" href="#contact">
                 CONTACTO
-              </Link>
+              </a>
             </li>
           </ul>
         </div>
