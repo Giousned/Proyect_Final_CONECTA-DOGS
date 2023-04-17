@@ -7,6 +7,7 @@ import ScrollToTop from "./component/scrollToTop";
 // import { Single } from "./pages/single";
 import { LoginSubmit } from "./pages/LoginSubmit.jsx";
 import LogInForm from "../js/component/LogInForm/LogInForm.jsx";
+import LogInForm2 from "./component/LogInForm2/LogInForm2.jsx";
 
 import { Home } from "./pages/Home.jsx";
 import { NavBar } from "./component/NavBar/NavBar.jsx";
@@ -27,6 +28,7 @@ const Layout = () => {
             <Route element={<Home />} path="/" />
             <Route element={<LoginSubmit />} path="/LoginSubmit" />
             <Route element={<LogInForm />} path="/LogInForm" />
+            <Route element={<LogInForm2 />} path="/LogInForm2" />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
           {/*

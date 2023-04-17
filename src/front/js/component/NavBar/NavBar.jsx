@@ -40,7 +40,7 @@ export const NavBar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="#help" className="nav-link">
+              <Link to="/LogInForm2" className="nav-link">
                 AYUDA
               </Link>
             </li>
