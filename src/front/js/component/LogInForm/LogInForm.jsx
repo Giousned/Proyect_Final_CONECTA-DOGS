@@ -54,6 +54,12 @@ const LogInForm = () => {
                                     </div>
                                 </div>
 
+                                <label for="name">Nombre</label>
+                                <input type="text" placeholder="Nombre" id="username" />
+
+                                <label for="apellidos">Apellidos</label>
+                                <input type="text" placeholder="Apellidos" id="username" />
+
                                 <label for="username">Usuario</label>
                                 <input type="text" placeholder="Correo Electrónico" id="username" />
 
