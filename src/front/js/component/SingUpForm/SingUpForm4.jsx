@@ -1,15 +1,20 @@
 import React from "react";
+
 import { Link } from "react-router-dom";
+
+import useAppContext from "../../store/AppContext.js";
 
 import "../SingUpForm/singup-form.css";
 
 const SingUpForm4 = () => {
+
+    const {store, actions} = useAppContext();
+
   return (
     <>
       <section className="py-2 custom-login">
         <div className="container p-2 bg-light">
           <div className="row">
-            {/* <h2 className="text-center p-4">INGRESAR</h2> */}
 
             <div className="col-12 col-md-6 py-3">
               <img
@@ -41,10 +46,8 @@ const SingUpForm4 = () => {
                       className="form-control"
                       id="racion-comida"
                       aria-describedby="racion_comida"
+                      placeholder="En gramos (gr)"
                     />
-                    <div id="racion_comida" className="form-text">
-                      En gramos (gr)
-                    </div>
                   </div>
 
                   <div className="py-2">
@@ -181,10 +184,8 @@ const SingUpForm4 = () => {
                       htmlFor="FormControlTextarea2"
                       className="form-label"
                     >
-                      Escribe aquí lo que desees indicarle al cuidador. Por ej:
-                      si tu perro tiene alguna alergia, si toma alguna
-                      medicación, algo que deban saber antes de pasear a tu
-                      perro, etc.
+                      Escribe aquí lo que desees indicarle al cuidador. Por ej: si tu perro tiene alguna alergia, si toma alguna
+                      medicación, algo que deban saber antes de pasear a tu perro, etc.
                     </label>
                     <textarea
                       className="form-control"

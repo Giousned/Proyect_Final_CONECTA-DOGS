@@ -1,15 +1,20 @@
 import React from "react";
+
 import { Link } from "react-router-dom";
+
+import useAppContext from "../../store/AppContext.js";
 
 import "../SingUpForm/singup-form.css";
 
 const SingUpForm2 = () => {
+
+    const {store, actions} = useAppContext();
+
   return (
     <>
       <section className="py-2 custom-login">
         <div className="container p-2 bg-light">
           <div className="row">
-            {/* <h2 className="text-center p-4">INGRESAR</h2> */}
 
             <div className="col-12 col-md-6 py-3">
               <img
@@ -30,7 +35,7 @@ const SingUpForm2 = () => {
                   <label htmlFor="foto-perro" className="form-label">
                     Foto del perro
                   </label>
-                  <input className="form-control" type="file" id="foto-perro" />
+                  <input className="form-control" type="file" id="foto-perro" value={store.fotoPerro} />
 
                   <div className="py-2">
                     <label htmlFor="nombre-perro" className="form-label">
@@ -41,11 +46,11 @@ const SingUpForm2 = () => {
                       className="form-control"
                       id="nombre-perro"
                       aria-describedby="nombre_perro"
+                      placeholder="Nombre del perro"
+                      value={store.nombrePerro}
+                      onChange={(e) => actions.setNombrePerro(e.target.value)}
                       required
                     />
-                    <div id="nombre_perro" className="form-text">
-                      Nombre del perro
-                    </div>
                   </div>
 
                   <div className="py-2">
@@ -57,11 +62,11 @@ const SingUpForm2 = () => {
                       className="form-control"
                       id="raza-perro"
                       aria-describedby="raza_perro"
+                      placeholder="Raza del perro"
+                      value={store.razaPerro}
+                      onChange={(e) => actions.setRazaPerro(e.target.value)}
                       required
                     />
-                    <div id="raza_perro" className="form-text">
-                      Raza del perro
-                    </div>
                   </div>
 
                   <div className="py-2">
@@ -74,10 +79,12 @@ const SingUpForm2 = () => {
                       id="cumple-perro"
                       name="start"
                       min="2020-01"
+                      value={store.nacimientoPerro}
+                      onChange={(e) => actions.setNacimientoPerro(e.target.value)}
                       required
                     />
                     <div id="cumple-perro" className="form-text">
-                      Ejemplo: abril de 2023
+                      Ejemplo: 2023-04 (Abril de 2023)
                     </div>
                   </div>
 
@@ -87,8 +94,8 @@ const SingUpForm2 = () => {
                     </label>
                     <select className="form-select" aria-label="Sexo del perro">
                       <option defaultValue>Elige una opción</option>
-                      <option value="1">Hembra</option>
-                      <option value="2">Macho</option>
+                      <option value={store.sexoHembra}>Hembra</option>
+                      <option value={store.sexoMacho}>Macho</option>
                     </select>
                   </div>
 
@@ -103,7 +110,9 @@ const SingUpForm2 = () => {
                         type="radio"
                         name="inlineRadioOptions"
                         id="inlineRadio1"
-                        value="pequeño"
+                        value={store.tamañoPequeño}
+                        onChange={actions.handleCheckTamañoPequeño}
+                        checked={store.tamañoPequeño}
                       />
                       <label
                         className="form-check-label"
@@ -118,7 +127,9 @@ const SingUpForm2 = () => {
                         type="radio"
                         name="inlineRadioOptions"
                         id="inlineRadio2"
-                        value="mediano"
+                        value={store.tamañoMediano}
+                        onChange={actions.handleCheckTamañoMediano}
+                        checked={store.tamañoMediano}
                       />
                       <label
                         className="form-check-label"
@@ -133,7 +144,9 @@ const SingUpForm2 = () => {
                         type="radio"
                         name="inlineRadioOptions"
                         id="inlineRadio3"
-                        value="grande"
+                        value={store.tamañoGrande}
+                        onChange={actions.handleCheckTamañoGrande}
+                        checked={store.tamañoGrande}
                       />
                       <label
                         className="form-check-label"
@@ -148,7 +161,9 @@ const SingUpForm2 = () => {
                         type="radio"
                         name="inlineRadioOptions"
                         id="inlineRadio4"
-                        value="gigante"
+                        value={store.tamañoGigante}
+                        onChange={actions.handleCheckTamañoGigante}
+                        checked={store.tamañoGigante}
                       />
                       <label
                         className="form-check-label"
@@ -181,3 +196,16 @@ const SingUpForm2 = () => {
   );
 };
 export default SingUpForm2;
+
+
+// value={store.recordarme} onChange={actions.handleCheckRecordarme} checked={store.recordarme}
+// value={store.emailInicio}
+// onChange={(e) => actions.setEmailInicio(e.target.value)}
+
+
+
+// Checkbox.propTypes = {
+// 	value: PropTypes.bool,
+//   handleClick: PropTypes.func,
+//   label: PropTypes.string,
+// };

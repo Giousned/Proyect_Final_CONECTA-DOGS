@@ -1,9 +1,15 @@
 import React from "react";
+
 import { Link } from "react-router-dom";
+
+import useAppContext from "../../store/AppContext.js";
 
 import "../SingUpForm/singup-form.css";
 
 const SingUpForm = () => {
+
+    const {store, actions} = useAppContext();
+    
   return (
     <>
       <section className="py-2 custom-login">
@@ -32,7 +38,9 @@ const SingUpForm = () => {
                           type="radio"
                           id="propietario"
                           name="perfil"
-                          value="propietario"
+                          value={store.propietario}
+                          onChange={actions.handleCheckPropietario}
+                          checked={store.propietario}
                         />
                         <label htmlFor="propietario">Propietario</label>
                       </div>
@@ -45,28 +53,15 @@ const SingUpForm = () => {
                           type="radio"
                           id="cuidador"
                           name="perfil"
-                          value="cuidador"
+                          value={store.cuidador}
+                          onChange={actions.handleCheckCuidador}
+                          checked={store.cuidador}
                         />
                         <label htmlFor="cuidador">Cuidador</label>
                       </div>
                     </div>
                   </div>
                 </div>
-
-                {/* <div className="container d-flex">
-                                    <div className="col-md-6">
-                                        <div className="form-floating">
-                                            <input type="checkbox" className="btn-check" id="btn-check-2" checked autocomplete="off" />
-                                            <label className="btn btn-primary" htmlFor="btn-check-2">Propietario</label>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <div className="form-floating">
-                                            <input type="checkbox" className="btn-check" id="btn-check-3" checked autocomplete="off" />
-                                            <label className="btn btn-primary" htmlFor="btn-check-3">Cuidador</label>
-                                        </div>
-                                    </div>
-                                </div> */}
 
                 <div className="d-grid gap-2 d-md-flex justify-content-md-end py-3">
                   <Link to="/sign-up-form2">
@@ -86,49 +81,13 @@ const SingUpForm = () => {
 export default SingUpForm;
 
 
-// const Register = () => {
+// value={store.recordarme} onChange={actions.handleCheckRecordarme} checked={store.recordarme}
+// value={store.emailInicio}
+// onChange={(e) => actions.setEmailInicio(e.target.value)}
+ 
 
-//     const {store, actions} = useAppContext();
-  
-  
-  
-//     return (
-//       <form className="container">
-//         <h2>REGISTRO DEL USUARIO:</h2>
-//         <div className="mb-3">
-//           <label htmlFor="exampleInputEmail1" className="form-label">
-//             Email address
-//           </label>
-//           <input
-//             type="email"
-//             className="form-control"
-//             id="exampleInputEmail1"
-//             aria-describedby="emailHelp"
-//             placeholder="Introduzca el nuevo email"
-//             value={store.email}
-//             onChange={(e) => actions.setEmail(e.target.value)}
-//           />
-//           <div id="emailHelp" className="form-text fs-6 fst-italic">
-//             We'll never share your email with anyone else.
-//           </div>
-//         </div>
-//         <div className="mb-3">
-//           <label htmlFor="exampleInputPassword1" className="form-label">
-//             Password
-//           </label>
-//           <input
-//             type="password"
-//             className="form-control"
-//             id="exampleInputPassword1"
-//             placeholder="Introduzca la nueva contraseña"
-//             value={store.password}
-//             onChange={(e) => actions.setPassword(e.target.value)}
-//           />
-//         </div>
-//         <button type="submit" className="btn btn-primary" onClick={(e) => actions.handleSubmitRegister(e, store.email, store.password)}>
-//           Submit
-//         </button>
-//       </form>
-//     );
-//   };
-  
+// Checkbox.propTypes = {
+// 	value: PropTypes.bool,
+//   handleClick: PropTypes.func,
+//   label: PropTypes.string,
+// };

@@ -1,15 +1,20 @@
 import React from "react";
+
 import { Link } from "react-router-dom";
+
+import useAppContext from "../../store/AppContext.js";
 
 import "../SingUpForm/singup-form.css";
 
 const SingUpForm3 = () => {
+
+    const {store, actions} = useAppContext();
+
   return (
     <>
       <section className="py-2 custom-login">
         <div className="container p-2 bg-light">
           <div className="row">
-            {/* <h2 className="text-center p-4">INGRESAR</h2> */}
 
             <div className="col-12 col-md-6 py-3">
               <img
@@ -82,11 +87,9 @@ const SingUpForm3 = () => {
                       className="form-control"
                       id="microchip"
                       aria-describedby="micro-chip"
+                      placeholder="Microchip del perro"
                       required
                     />
-                    <div id="micro-chip" className="form-text">
-                      Microchip del perro
-                    </div>
                   </div>
 
                   <div className="py-2">
@@ -125,3 +128,8 @@ const SingUpForm3 = () => {
   );
 };
 export default SingUpForm3;
+
+
+// value={store.recordarme} onChange={actions.handleCheckRecordarme} checked={store.recordarme}
+// value={store.emailInicio}
+// onChange={(e) => actions.setEmailInicio(e.target.value)}

@@ -1,15 +1,20 @@
 import React from "react";
+
 import { Link } from "react-router-dom";
+
+import useAppContext from "../../store/AppContext.js";
 
 import "../SingUpForm/singup-form.css";
 
 const SingUpForm5 = () => {
+
+    const {store, actions} = useAppContext();
+
   return (
     <>
       <section className="py-2 custom-login">
         <div className="container p-2 bg-light">
           <div className="row">
-            {/* <h2 className="text-center p-4">INGRESAR</h2> */}
 
             <div className="col-12 col-md-6 py-3">
               <img
@@ -31,6 +36,7 @@ const SingUpForm5 = () => {
                     className="form-control"
                     type="file"
                     id="foto-usuario"
+                    value={store.fotoPropietario}
                   />
 
                   <div className="py-2">
@@ -42,11 +48,11 @@ const SingUpForm5 = () => {
                       className="form-control"
                       id="nombre-usuario"
                       aria-describedby="nombre_usuario"
+                      placeholder="Nombre del usuario"
+                      value={store.nombrePropietario}
+                      onChange={(e) => actions.setNombrePropietario(e.target.value)}
                       required
                     />
-                    <div id="nombre_usuario" className="form-text">
-                      Nombre del usuario
-                    </div>
                   </div>
 
                   <div className="py-2">
@@ -58,12 +64,37 @@ const SingUpForm5 = () => {
                       className="form-control"
                       id="apellidos-usuario"
                       aria-describedby="apellidos_usuario"
+                      placeholder="Apellidos del usuario"
+                      value={store.apellidosPropietario}
+                      onChange={(e) => actions.setApellidosPropietario(e.target.value)}
                       required
                     />
-                    <div id="apellidos_usuario" className="form-text">
-                      Apellidos del usuario
-                    </div>
                   </div>
+                  <div className="py-2">
+                    <label htmlFor="emailRegistroPropietario">Correo Electrónico</label>
+                    <input
+                        type="email"
+                        className="form-control"
+                        id="emailRegistroPropietario"
+                        placeholder="name@example.com"
+                        value={store.emailRegistroPropietario}
+                        onChange={(e) => actions.setEmailRegistroPropietario(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="py-2">
+                    <label htmlFor="passRegistroPropietario">Contraseña</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        id="passRegistroPropietario"
+                        placeholder="Password"
+                        value={store.passwordRegistroPropietario}
+                        onChange={(e) => actions.setPasswordRegistroPropietario(e.target.value)}
+                        required
+                    />
+                </div>
+
 
                   <div className="py-2">
                     <label htmlFor="provincia" className="form-label">
@@ -71,7 +102,7 @@ const SingUpForm5 = () => {
                     </label>
                     <select required name="provincia" className="form-control">
                       <option value="">Elige Provincia</option>
-                      <option value="Álava/Araba">Álava/Araba</option>
+                      <option value="Álava">Álava</option>
                       <option value="Albacete">Albacete</option>
                       <option value="Alicante">Alicante</option>
                       <option value="Almería">Almería</option>
@@ -89,29 +120,25 @@ const SingUpForm5 = () => {
                       <option value="Ciudad Real">Ciudad Real</option>
                       <option value="Córdoba">Córdoba</option>
                       <option value="Cuenca">Cuenca</option>
-                      <option value="Gerona/Girona">Gerona/Girona</option>
+                      <option value="Gerona">Gerona</option>
                       <option value="Granada">Granada</option>
                       <option value="Guadalajara">Guadalajara</option>
-                      <option value="Guipúzcoa/Gipuzkoa">
-                        Guipúzcoa/Gipuzkoa
-                      </option>
+                      <option value="Guipúzcoa">Guipúzcoa</option>
                       <option value="Huelva">Huelva</option>
                       <option value="Huesca">Huesca</option>
                       <option value="Jaén">Jaén</option>
-                      <option value="La Coruña/A Coruña">
-                        La Coruña/A Coruña
-                      </option>
+                      <option value="La Coruña">La Coruña</option>
                       <option value="La Rioja">La Rioja</option>
                       <option value="Las Palmas">Las Palmas</option>
                       <option value="León">León</option>
-                      <option value="Lérida/Lleida">Lérida/Lleida</option>
+                      <option value="Lérida">Lérida</option>
                       <option value="Lugo">Lugo</option>
                       <option value="Madrid">Madrid</option>
                       <option value="Málaga">Málaga</option>
                       <option value="Melilla">Melilla</option>
                       <option value="Murcia">Murcia</option>
                       <option value="Navarra">Navarra</option>
-                      <option value="Orense/Ourense">Orense/Ourense</option>
+                      <option value="Orense">Orense</option>
                       <option value="Palencia">Palencia</option>
                       <option value="Pontevedra">Pontevedra</option>
                       <option value="Salamanca">Salamanca</option>
@@ -124,7 +151,7 @@ const SingUpForm5 = () => {
                       <option value="Toledo">Toledo</option>
                       <option value="Valencia">Valencia</option>
                       <option value="Valladolid">Valladolid</option>
-                      <option value="Vizcaya/Bizkaia">Vizcaya/Bizkaia</option>
+                      <option value="Vizcaya">Vizcaya</option>
                       <option value="Zamora">Zamora</option>
                       <option value="Zaragoza">Zaragoza</option>
                     </select>
@@ -139,6 +166,7 @@ const SingUpForm5 = () => {
                       className="form-control"
                       id="telefono"
                       aria-describedby="telefono"
+                      placeholder="Teléfono 666123456"
                       required
                     />
                   </div>
@@ -151,7 +179,7 @@ const SingUpForm5 = () => {
                     </button>
                   </Link>
                   <Link to="/sign-up-form5">
-                    <button className="btn btn-primary m-2 w-100" type="submit">
+                    <button className="btn btn-primary m-2 w-100" type="submit" onClick={(e) => actions.handleSubmitRegisterPropietario(e)}>
                       Terminar
                     </button>
                   </Link>

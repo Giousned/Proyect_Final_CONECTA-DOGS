@@ -1,25 +1,14 @@
 import React from "react";
+
 import { Link } from "react-router-dom";
 
 import Logo from "../../../img/conectadogs-logo-white.png";
 import "../NavBar/navbar.css";
 
 export const NavBar = () => {
+
   return (
     <>
-      {/* <nav className="navbar navbar-light bg-light">
-      <div className="container">
-        <Link to="/">
-          <span className="navbar-brand mb-0 h1">React Boilerplate</span>
-        </Link>
-        <div className="ml-auto">
-          <Link to="/demo">
-            <button className="btn btn-primary">Check the Context in action</button>
-          </Link>
-        </div>
-      </div>
-    </nav> */}
-
       <nav className="navbar navbar-expand-lg bg-dark navbar-dark fixed-top navbar-custom">
         <div className="container">
           <Link to="/" className="navbar-brand">
