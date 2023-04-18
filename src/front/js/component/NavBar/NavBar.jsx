@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+import Logo from "../../../img/conectadogs-logo-white.png";
 import "../NavBar/navbar.css";
 
 export const NavBar = () => {
@@ -20,7 +22,7 @@ export const NavBar = () => {
     <nav className="navbar navbar-expand-lg bg-dark navbar-dark fixed-top navbar-custom">
       <div className="container">
         <Link to="/" className="navbar-brand">
-          <strong>CONECTA-DOGS</strong>
+          <strong><img src={Logo} className="logo" /></strong>
         </Link>
         <button className="navbar-toggler" type="button"
           data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

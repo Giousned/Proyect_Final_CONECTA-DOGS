@@ -10,7 +10,7 @@ const SingUpForm = () => {
             <section className="py-2 custom-login">
                 <div className="container p-2 bg-light">
                     <div className="row">
-                        <h2 className="text-center p-4">INGRESAR</h2>
+                        <h2 className="text-center p-4">REGISTRO DE USUARIOS</h2>
 
                         <div className="col-12 col-md-6 py-3">
                             <img src="https://cdn.pixabay.com/photo/2019/02/07/16/26/cocker-spaniel-3981587_1280.jpg" className="img-fluid" />

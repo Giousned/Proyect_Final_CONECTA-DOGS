@@ -3,3 +3,7 @@
 .navbar-custom {
     box-shadow: 0 0.5rem 0.8rem #00000080;
 }
+
+.logo {
+    width: 10rem;
+}
