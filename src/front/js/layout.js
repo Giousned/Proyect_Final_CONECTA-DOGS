@@ -29,12 +29,12 @@ const Layout = () => {
           <NavBar />
           <Routes>
             <Route element={<Home />} path="/" />
-            <Route element={<LogInForm />} path="/LogInForm" />
-            <Route element={<SingUpForm />} path="/SingUpForm" />
-            <Route element={<SingUpForm2 />} path="/SingUpForm2" />
-            <Route element={<SingUpForm3 />} path="/SingUpForm3" />
-            <Route element={<SingUpForm4 />} path="/SingUpForm4" />
-            <Route element={<SingUpForm5 />} path="/SingUpForm5" />
+            <Route element={<LogInForm />} path="/log-in-form" />
+            <Route element={<SingUpForm />} path="/sign-up-form" />
+            <Route element={<SingUpForm2 />} path="/sign-up-form2" />
+            <Route element={<SingUpForm3 />} path="/sign-up-form3" />
+            <Route element={<SingUpForm4 />} path="/sign-up-form4" />
+            <Route element={<SingUpForm5 />} path="/sign-up-form5" />
             {/* <Route element={<LogInForm2 />} path="/LogInForm2" /> */}
             <Route element={<h1>Not found!</h1>} />
           </Routes>
