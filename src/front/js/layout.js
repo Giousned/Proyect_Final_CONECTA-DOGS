@@ -5,9 +5,12 @@ import ScrollToTop from "./component/scrollToTop";
 // import { Home } from "./pages/home";
 // import { Demo } from "./pages/demo";
 // import { Single } from "./pages/single";
-import { LoginSubmit } from "./pages/LoginSubmit.jsx";
 import LogInForm from "../js/component/LogInForm/LogInForm.jsx";
-import LogInForm2 from "./component/LogInForm2/LogInForm2.jsx";
+import SingUpForm from "./component/SingUpForm/SingUpForm.jsx";
+import SingUpForm2 from "./component/SingUpForm/SingUpForm2.jsx";
+import SingUpForm3 from "./component/SingUpForm/SingUpForm3.jsx";
+import SingUpForm4 from "./component/SingUpForm/SingUpForm4.jsx";
+import SingUpForm5 from "./component/SingUpForm/SingUpForm5.jsx";
 
 import { Home } from "./pages/Home.jsx";
 import { NavBar } from "./component/NavBar/NavBar.jsx";
@@ -26,9 +29,13 @@ const Layout = () => {
           <NavBar />
           <Routes>
             <Route element={<Home />} path="/" />
-            <Route element={<LoginSubmit />} path="/LoginSubmit" />
             <Route element={<LogInForm />} path="/LogInForm" />
-            <Route element={<LogInForm2 />} path="/LogInForm2" />
+            <Route element={<SingUpForm />} path="/SingUpForm" />
+            <Route element={<SingUpForm2 />} path="/SingUpForm2" />
+            <Route element={<SingUpForm3 />} path="/SingUpForm3" />
+            <Route element={<SingUpForm4 />} path="/SingUpForm4" />
+            <Route element={<SingUpForm5 />} path="/SingUpForm5" />
+            {/* <Route element={<LogInForm2 />} path="/LogInForm2" /> */}
             <Route element={<h1>Not found!</h1>} />
           </Routes>
           {/*

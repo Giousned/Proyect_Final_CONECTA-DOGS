@@ -40,20 +40,20 @@ export const NavBar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/LogInForm2" className="nav-link">
-                AYUDA
+              <Link to="#blog" className="nav-link">
+                BLOG
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/LogInForm" className="nav-link">
-                INICIAR SESIÓN
+                INGRESAR
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/LoginSubmit" className="nav-link">
+            {/* <li className="nav-item">
+              <Link to="/SingUpForm" className="nav-link">
                 REGISTRARSE
               </Link>
-            </li>
+            </li> */}
             <li className="nav-item">
               <Link to="#contact" className="nav-link">
                 CONTACTO
