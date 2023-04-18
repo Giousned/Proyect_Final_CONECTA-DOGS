@@ -1,7 +1,9 @@
 
-export const login = async (mail, pass) => {
+const RUTA = "https://3001-4geeksacade-reactflaskh-buvlx6ws0oc.ws-eu94.gitpod.io"       // CAMBIAR CADA VEZ QUE SE LEVANTE EL SERVER DE BACK, YA QUE LA URL CAMBIA
+
+export const POSTLogin = async (mail, pass) => {
     const resp = await fetch(
-        `https://3001-4geeksacade-reactflaskh-buvlx6ws0oc.ws-eu94.gitpod.io/token`,
+        `${RUTA}+/token`,
         {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -27,9 +29,9 @@ export const login = async (mail, pass) => {
     return data;
   };
 
-export const register = async (mail, pass) => {
+export const POSTRegister = async (mail, pass) => {
     const resp = await fetch(
-        `https://3001-4geeksacade-reactflaskh-buvlx6ws0oc.ws-eu94.gitpod.io/signup`,
+        `${RUTA}+/signup`,
         {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -52,12 +54,12 @@ export const register = async (mail, pass) => {
 
 
 // asumiendo que "/protected" es un endpoint privado
-export const getMyTasks = async () => {
+export const GETToken = async () => {
     // retrieve token form sessionStorage
     const token = sessionStorage.getItem("jwt-token");
 
     const resp = await fetch(
-        `https://3001-4geeksacade-reactflaskh-buvlx6ws0oc.ws-eu94.gitpod.io/protected`,
+        `${RUTA}+/protected`,
         {
         method: "GET",
         headers: {

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { login, register } from "../services/Fetchs.js";
+import { POSTLogin, POSTRegister, GETToken } from "../services/Fetchs.js";
 
 import { createContext, useContext, useState } from "react";
 
@@ -11,7 +11,7 @@ export const AppProvider = ({children}) => {
     const [passwordInicio, setPasswordInicio] = useState("");
     const [emailRegistro, setEmailRegistro] = useState("");
     const [passwordRegistro, setPasswordRegistro] = useState("");
-    const [usuario, setUsuario] = useState("");
+    const [userLog, setUserLog] = useState(false);
     const [token, setToken] = useState("");
   
   
@@ -19,7 +19,7 @@ export const AppProvider = ({children}) => {
     const handleSubmitRegister = (e) => {
       e.preventDefault();
   
-      register(emailRegistro, passwordRegistro)
+      POSTRegister(emailRegistro, passwordRegistro)
         .then(() => {
             setEmailRegistro("");
             setPasswordRegistro("");
@@ -30,11 +30,12 @@ export const AppProvider = ({children}) => {
     const handleSubmitLogIn = (e) => {
       e.preventDefault();
   
-      login(emailInicio, passwordInicio)
+      POSTLogin(emailInicio, passwordInicio)
         .then((data) => {
             setToken(data.token)
             setEmailInicio("");
             setPasswordInicio("");
+            setUserLog(true);
         })
 
         // getMyTasks(email, password);
@@ -45,7 +46,7 @@ export const AppProvider = ({children}) => {
         passwordInicio,
         emailRegistro,
         passwordRegistro,
-        usuario,
+        userLog,
         token,
     };
   
@@ -54,7 +55,7 @@ export const AppProvider = ({children}) => {
         setPasswordInicio,
         setEmailRegistro,
         setPasswordRegistro,
-        setUsuario,
+        setUserLog,
         handleSubmitRegister,
         handleSubmitLogIn,
     };
