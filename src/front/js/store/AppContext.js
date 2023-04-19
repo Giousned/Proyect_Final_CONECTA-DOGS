@@ -47,8 +47,7 @@ export const AppProvider = ({children}) => {
     const [actividadMedia, setActividadMedia] = useState(false);
     const [actividadAlta, setActividadAlta] = useState(false);
     const [masInformacionPerros, setMasInformacionPerros] = useState("");
-
-    // Nº 5
+    // Nº 5 PROPIETARIO
     const [fotoPropietario, setFotoPropietario] = useState("");
     const [nombrePropietario, setNombrePropietario] = useState("");
     const [apellidosPropietario, setApellidosPropietario] = useState("");
@@ -59,12 +58,23 @@ export const AppProvider = ({children}) => {
     const [localidadPropietario, setLocalidadPropietario] = useState("");
     const [telefonoPropietario, setTelefonoPropietario] = useState(0);
 
+    // Nº 6 CUIDADOR
+    const [fotoCuidador, setFotoCuidador] = useState("");
+    const [nombreCuidador, setNombreCuidador] = useState("");
+    const [apellidosCuidador, setApellidosCuidador] = useState("");
+    const [emailRegistroCuidador, setEmailRegistroCuidador] = useState("");
+    const [passwordRegistroCuidador, setPasswordRegistroCuidador] = useState("");
+    const [direccionCuidador, setDireccionCuidador] = useState("");
+    const [codigoPostalCuidador, setCodigoPostalCuidador] = useState(0);
+    const [localidadCuidador, setLocalidadCuidador] = useState("");
+    const [telefonoCuidador, setTelefonoCuidador] = useState(0);
+
     
   
     const handleSubmitRegisterPropietario = (e) => {
       e.preventDefault();
   
-      POSTRegister(emailRegistro, passwordRegistro)
+      POSTRegister(emailRegistroPropietario, passwordRegistroPropietario)
         .then(() => {
             setEmailRegistro("");
             setPasswordRegistro("");
@@ -75,11 +85,11 @@ export const AppProvider = ({children}) => {
     const handleSubmitRegisterCuidador = (e) => {
         e.preventDefault();
     
-        // POSTRegister(emailRegistro, passwordRegistro)
-        //   .then(() => {
-        //       setEmailRegistro("");
-        //       setPasswordRegistro("");
-        //   })
+        POSTRegister(emailRegistroCuidador, passwordRegistroCuidador)
+          .then(() => {
+              setEmailRegistro("");
+              setPasswordRegistro("");
+          })
   
       };
   
@@ -146,6 +156,16 @@ export const AppProvider = ({children}) => {
         codigoPostalPropietario,
         localidadPropietario,
         telefonoPropietario,
+
+        fotoCuidador,
+        nombreCuidador,
+        apellidosCuidador,
+        emailRegistroCuidador,
+        passwordRegistroCuidador,
+        direccionCuidador,
+        codigoPostalCuidador,
+        localidadCuidador,
+        telefonoCuidador,
     };
   
     const actions = {    
@@ -197,6 +217,16 @@ export const AppProvider = ({children}) => {
         setCodigoPostalPropietario,
         setLocalidadPropietario,
         setTelefonoPropietario,
+
+        setFotoCuidador,
+        setNombreCuidador,
+        setApellidosCuidador,
+        setEmailRegistroCuidador,
+        setPasswordRegistroCuidador,
+        setDireccionCuidador,
+        setCodigoPostalCuidador,
+        setLocalidadCuidador,
+        setTelefonoCuidador,
 
 
         handleSubmitRegisterPropietario,

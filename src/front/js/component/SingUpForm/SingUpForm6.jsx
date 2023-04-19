@@ -6,11 +6,11 @@ import useAppContext from "../../store/AppContext.js";
 
 import "../SingUpForm/singup-form.css";
 
-const SingUpForm5 = () => {
+const SingUpForm6 = () => {
 
     const {store, actions} = useAppContext();
 
-    const handleChangeLocalidadPropietario = (event) => actions.setLocalidadPropietario(event.target.value);
+    const handleChangeLocalidadCuidador = (event) => actions.setLocalidadCuidador(event.target.value);
 
 
   return (
@@ -32,112 +32,112 @@ const SingUpForm5 = () => {
                 <p className="pb-2">Cuéntanos un poquito acerca de ti.</p>
 
                 <div className="d-grid gap-2">
-                  <label htmlFor="foto-usuario" className="form-label">
+                  <label htmlFor="foto-cuidador" className="form-label">
                     Foto de perfil
                   </label>
                   <input
                     className="form-control"
                     type="file"
-                    id="foto-usuario"
-                    value={store.fotoPropietario}
-                    onChange={(e) => actions.setFotoPropietario(e.target.value)}
+                    id="foto-cuidador"
+                    value={store.fotoCuidador}
+                    onChange={(e) => actions.setFotoCuidador(e.target.value)}
                   />
 
                   <div className="py-2">
-                    <label htmlFor="nombre-usuario" className="form-label">
+                    <label htmlFor="nombre-cuidador" className="form-label">
                       Nombre *
                     </label>
                     <input
                       type="text"
                       className="form-control"
-                      id="nombre-usuario"
-                      aria-describedby="nombre_usuario"
+                      id="nombre-cuidador"
+                      aria-describedby="nombre_cuidador"
                       placeholder="Nombre del usuario"
-                      value={store.nombrePropietario}
-                      onChange={(e) => actions.setNombrePropietario(e.target.value)}
+                      value={store.nombreCuidador}
+                      onChange={(e) => actions.setNombreCuidador(e.target.value)}
                       required
                     />
                   </div>
 
                   <div className="py-2">
-                    <label htmlFor="apellidos-usuario" className="form-label">
+                    <label htmlFor="apellidos-cuidador" className="form-label">
                       Apellidos *
                     </label>
                     <input
                       type="text"
                       className="form-control"
-                      id="apellidos-usuario"
-                      aria-describedby="apellidos_usuario"
+                      id="apellidos-cuidador"
+                      aria-describedby="apellidos_cuidador"
                       placeholder="Apellidos del usuario"
-                      value={store.apellidosPropietario}
-                      onChange={(e) => actions.setApellidosPropietario(e.target.value)}
+                      value={store.apellidosCuidador}
+                      onChange={(e) => actions.setApellidosCuidador(e.target.value)}
                       required
                     />
                   </div>
 
                   <div className="py-2">
-                    <label htmlFor="emailRegistroPropietario">Correo Electrónico</label>
+                    <label htmlFor="emailRegistroCuidador">Correo Electrónico</label>
                     <input
                         type="email"
                         className="form-control"
-                        id="emailRegistroPropietario"
+                        id="emailRegistroCuidador"
                         placeholder="name@example.com"
-                        value={store.emailRegistroPropietario}
-                        onChange={(e) => actions.setEmailRegistroPropietario(e.target.value)}
+                        value={store.emailRegistroCuidador}
+                        onChange={(e) => actions.setEmailRegistroCuidador(e.target.value)}
                         required
                     />
                 </div>
 
                 <div className="py-2">
-                    <label htmlFor="passRegistroPropietario">Contraseña</label>
+                    <label htmlFor="passRegistroCuidador">Contraseña</label>
                     <input
                         type="password"
                         className="form-control"
-                        id="passRegistroPropietario"
+                        id="passRegistroCuidador"
                         placeholder="Password"
-                        value={store.passwordRegistroPropietario}
-                        onChange={(e) => actions.setPasswordRegistroPropietario(e.target.value)}
+                        value={store.passwordRegistroCuidador}
+                        onChange={(e) => actions.setPasswordRegistroCuidador(e.target.value)}
                         required
                     />
                 </div>
 
                 <div className="py-2">
-                    <label htmlFor="direccion-usuario" className="form-label">
+                    <label htmlFor="direccion-cuidador" className="form-label">
                       Dirección *
                     </label>
                     <input
                       type="text"
                       className="form-control"
-                      id="direccion-usuario"
-                      aria-describedby="direccion_usuario"
+                      id="direccion-cuidador"
+                      aria-describedby="direccion_cuidador"
                       placeholder="Dirección del usuario (Calle y número)"
-                      value={store.direccionPropietario}
-                      onChange={(e) => actions.setDireccionPropietario(e.target.value)}
+                      value={store.direccionCuidador}
+                      onChange={(e) => actions.setDireccionCuidador(e.target.value)}
                       required
                     />
                   </div>
 
                   <div className="py-2">
-                    <label htmlFor="codigo-postal-usuario" className="form-label">
+                    <label htmlFor="codigo-postal-cuidador" className="form-label">
                       Código Postal *
                     </label>
                     <input
                       type="text"
                       className="form-control"
-                      id="codigo-postal-usuario"
-                      aria-describedby="codigo_postal_usuario"
+                      id="codigo-postal-cuidador"
+                      aria-describedby="codigo_postal_cuidador"
                       placeholder="Código Postal del usuario"
-                      value={store.codigoPostalPropietario}
-                      onChange={(e) => actions.setCodigoPostalPropietario(e.target.value)}
+                      value={store.codigoPostalCuidador}
+                      onChange={(e) => actions.setCodigoPostalCuidador(e.target.value)}
                       required
                     />
                   </div>
 
                   <div className="py-2">
-                    <label htmlFor="provincia-propietario" className="form-label">
+                    <label htmlFor="provincia-cuidador" className="form-label">
                       Localidad *
                     </label>
-                    <select required name="provincia" id="provincia-propietario" className="form-control" value={store.localidadPropietario} onChange={handleChangeLocalidadPropietario}>
+                    <select required name="provincia" id="provincia-cuidador" className="form-control" value={store.localidadCuidador} onChange={handleChangeLocalidadCuidador}>
                       <option defaultValue="">Elige Provincia</option>
                       <option value="Álava">Álava</option>
                       <option value="Albacete">Albacete</option>
@@ -195,30 +195,30 @@ const SingUpForm5 = () => {
                   </div>
 
                   <div className="py-2">
-                    <label htmlFor="telefono-propietario" className="form-label">
+                    <label htmlFor="telefono-cuidador" className="form-label">
                       Teléfono *
                     </label>
                     <input
                       type="tel"
                       className="form-control"
-                      id="telefono-propietario"
+                      id="telefono-cuidador"
                       aria-describedby="telefono"
                       placeholder="Teléfono 666123456"
-                      value={store.telefonoPropietario}
-                      onChange={(e) => actions.setTelefonoPropietario(e.target.value)}
+                      value={store.telefonoCuidador}
+                      onChange={(e) => actions.setTelefonoCuidador(e.target.value)}
                       required
                     />
                   </div>
                 </div>
 
                 <div className="d-grid gap-2 d-md-flex justify-content-md-start py-3">
-                  <Link to="/sign-up-form4">
+                  {/* <Link to="/sign-up-form-c2">
                     <button className="btn btn-primary m-2 w-100" type="submit">
-                      Atrás
+                      Siguiente
                     </button>
-                  </Link>
+                  </Link> */}
                   <Link to="/">
-                    <button className="btn btn-primary m-2 w-100" type="submit" onClick={(e) => actions.handleSubmitRegisterPropietario(e)}>
+                    <button className="btn btn-primary m-2 w-100" type="submit" onClick={(e) => actions.handleSubmitRegisterCuidador(e)}>
                       Terminar
                     </button>
                   </Link>
@@ -231,4 +231,4 @@ const SingUpForm5 = () => {
     </>
   );
 };
-export default SingUpForm5;
+export default SingUpForm6;
