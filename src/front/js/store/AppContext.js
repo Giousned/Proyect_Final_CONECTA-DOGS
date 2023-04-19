@@ -15,32 +15,51 @@ export const AppProvider = ({children}) => {
     const [passwordInicio, setPasswordInicio] = useState("");
     const [recordarme, setRecordarme] = useState(false);
 
-    // FORMULARIO REGISTRO
+    // FORMULARIOS REGISTRO: Nº 1
     const [propietario, setPropietario] = useState(false);
     const [cuidador, setCuidador] = useState(false);
+    // Nº 2
+    const [fotoPerro, setFotoPerro] = useState("");
     const [nombrePerro, setNombrePerro] = useState("");
     const [razaPerro, setRazaPerro] = useState("");
     const [nacimientoPerro, setNacimientoPerro] = useState("");
-    const [sexoHembra, setSexoHembra] = useState(false);
-    const [sexoMacho, setSexoMacho] = useState(false);
+    const [generoPerro, setGeneroPerro] = useState("");
     const [tamañoPequeño, setTamañoPequeño] = useState(false);
     const [tamañoMediano, setTamañoMediano] = useState(false);
     const [tamañoGrande, setTamañoGrande] = useState(false);
     const [tamañoGigante, setTamañoGigante] = useState(false);
+    // Nº 3
+    const [esterilizado, setEsterilizado] = useState("");
+    const [sociableGatos, setSociableGatos] = useState("");
+    const [sociableKids, setSociableKids] = useState("");
+    const [sociablePerros, setSociablePerros] = useState("");
+    const [microchip, setMicrochip] = useState(0);
+    const [observaciones, setObservaciones] = useState("");
+    // Nº 4
+    const [racionComida, setRacionComida] = useState(0);
+    const [horarioComidaMañana, setHorarioComidaMañana] = useState(false);
+    const [horarioComidaTarde, setHorarioComidaTarde] = useState(false);
+    const [horarioComidaNoche, setHorarioComidaNoche] = useState(false);
+    const [horarioPaseosMañana, setHorarioPaseosMañana] = useState(false);
+    const [horarioPaseosTarde, setHorarioPaseosTarde] = useState(false);
+    const [horarioPaseosNoche, setHorarioPaseosNoche] = useState(false);
+    const [actividadBaja, setActividadBaja] = useState(false);
+    const [actividadMedia, setActividadMedia] = useState(false);
+    const [actividadAlta, setActividadAlta] = useState(false);
+    const [masInformacionPerros, setMasInformacionPerros] = useState("");
 
-
-
-
+    // Nº 5
     const [fotoPropietario, setFotoPropietario] = useState("");
     const [nombrePropietario, setNombrePropietario] = useState("");
     const [apellidosPropietario, setApellidosPropietario] = useState("");
-
-
     const [emailRegistroPropietario, setEmailRegistroPropietario] = useState("");
     const [passwordRegistroPropietario, setPasswordRegistroPropietario] = useState("");
+    const [direccionPropietario, setDireccionPropietario] = useState("");
+    const [codigoPostalPropietario, setCodigoPostalPropietario] = useState(0);
+    const [localidadPropietario, setLocalidadPropietario] = useState("");
+    const [telefonoPropietario, setTelefonoPropietario] = useState(0);
 
     
-  
   
     const handleSubmitRegisterPropietario = (e) => {
       e.preventDefault();
@@ -77,72 +96,109 @@ export const AppProvider = ({children}) => {
 
         // getMyTasks(email, password);
     };
-  
+    
     const store = {
+        userLog,
+        token,
+
         emailInicio,
         passwordInicio,
         recordarme,
+
         propietario,
         cuidador,
+
+        fotoPerro,
         nombrePerro,
         razaPerro,
         nacimientoPerro,
-        sexoHembra,
-        sexoMacho,
+        generoPerro,
         tamañoPequeño,
         tamañoMediano,
         tamañoGrande,
         tamañoGigante,
+
+        esterilizado, 
+        sociableGatos,
+        sociableKids, 
+        sociablePerros,
+        microchip,
+        observaciones,
+
+        racionComida,
+        horarioComidaMañana,
+        horarioComidaTarde,
+        horarioComidaNoche,
+        horarioPaseosMañana,
+        horarioPaseosTarde,
+        horarioPaseosNoche,
+        actividadBaja,
+        actividadMedia,
+        actividadAlta,
+        masInformacionPerros,
         
         fotoPropietario,
         nombrePropietario,
         apellidosPropietario,
         emailRegistroPropietario,
         passwordRegistroPropietario,
-
-
-        userLog,
-        token,
+        direccionPropietario,
+        codigoPostalPropietario,
+        localidadPropietario,
+        telefonoPropietario,
     };
   
-    const actions = {
-        handleCheckRecordarme: () => actions.setRecordarme(!recordarme),
-        handleCheckPropietario: () => actions.setPropietario(!propietario),
-        handleCheckCuidador: () => actions.setCuidador(!cuidador),
-        handleCheckTamañoPequeño: () => actions.setTamañoPequeño(!tamañoPequeño),
-        handleCheckTamañoMediano: () => actions.setTamañoMediano(!tamañoMediano),
-        handleCheckTamañoGrande: () => actions.setTamañoGrande(!tamañoGrande),
-        handleCheckTamañoGigante: () => actions.setTamañoGigante(!tamañoGigante),
-
-
-
-
+    const actions = {    
+        setUserLog,
+        setToken,
 
         setEmailInicio,
         setPasswordInicio,
         setRecordarme,
-        handleCheckRecordarme,
+
         setPropietario,
         setCuidador,
+
+        setFotoPerro,
         setNombrePerro,
         setRazaPerro,
         setNacimientoPerro,
-        setSexoHembra,
-        setSexoMacho,
+        setGeneroPerro,
         setTamañoPequeño,
         setTamañoMediano,
         setTamañoGrande,
         setTamañoGigante,
         
-        
+        setEsterilizado,
+        setSociableGatos,
+        setSociableKids,
+        setSociablePerros,
+        setMicrochip,
+        setObservaciones,
+
+        setRacionComida,
+        setHorarioComidaMañana,
+        setHorarioComidaTarde,
+        setHorarioComidaNoche,
+        setHorarioPaseosMañana,
+        setHorarioPaseosTarde,
+        setHorarioPaseosNoche,
+        setActividadBaja,
+        setActividadMedia,
+        setActividadAlta,
+        setMasInformacionPerros,
+
         setFotoPropietario,
         setNombrePropietario,
         setApellidosPropietario,
         setEmailRegistroPropietario,
         setPasswordRegistroPropietario,
+        setDireccionPropietario,
+        setCodigoPostalPropietario,
+        setLocalidadPropietario,
+        setTelefonoPropietario,
 
 
-        setUserLog,
         handleSubmitRegisterPropietario,
         handleSubmitRegisterCuidador,
         handleSubmitLogIn,
@@ -158,3 +214,26 @@ export const AppProvider = ({children}) => {
 const useAppContext = () => useContext(AppContext);
 
 export default useAppContext;
+
+
+// handleCheckRecordarme: () => actions.setRecordarme(!recordarme),
+
+// handleCheckPropietario: () => actions.setPropietario(!propietario),
+// handleCheckCuidador: () => actions.setCuidador(!cuidador),
+
+// handleCheckTamañoPequeño: () => actions.setTamañoPequeño(!tamañoPequeño),
+// handleCheckTamañoMediano: () => actions.setTamañoMediano(!tamañoMediano),
+// handleCheckTamañoGrande: () => actions.setTamañoGrande(!tamañoGrande),
+// handleCheckTamañoGigante: () => actions.setTamañoGigante(!tamañoGigante),
+
+// handleCheckHorarioComidaMañana: () => actions.setHorarioComidaMañana(!horarioComidaMañana),
+// handleCheckHorarioComidaTarde: () => actions.setHorarioComidaTarde(!horarioComidaTarde),
+// handleCheckHorarioComidaNoche: () => actions.setHorarioComidaNoche(!horarioComidaNoche),
+// handleCheckHorarioPaseosMañana: () => actions.setHorarioPaseosMañana(!horarioPaseosMañana),
+// handleCheckHorarioPaseosTarde: () => actions.setHorarioPaseosTarde(!horarioPaseosTarde),
+// handleCheckHorarioPaseosNoche: () => actions.setHorarioPaseosNoche(!horarioPaseosNoche),
+// handleCheckActividadBaja: () => actions.setActividadBaja(!actividadBaja),
+// handleCheckActividadMedia: () => actions.setActividadMedia(!actividadMedia),
+// handleCheckActividadAlta: () => actions.setActividadAlta(!actividadAlta),
+
+// // handleChange: (event) => setValue(event.target.value),

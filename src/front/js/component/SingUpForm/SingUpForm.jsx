@@ -9,6 +9,9 @@ import "../SingUpForm/singup-form.css";
 const SingUpForm = () => {
 
     const {store, actions} = useAppContext();
+
+    const handleCheckPropietario = () => actions.setPropietario(!store.propietario);
+    const handleCheckCuidador = () => actions.setCuidador(!store.cuidador);
     
   return (
     <>
@@ -39,7 +42,7 @@ const SingUpForm = () => {
                           id="propietario"
                           name="perfil"
                           value={store.propietario}
-                          onChange={actions.handleCheckPropietario}
+                          onChange={handleCheckPropietario}
                           checked={store.propietario}
                         />
                         <label htmlFor="propietario">Propietario</label>
@@ -54,7 +57,7 @@ const SingUpForm = () => {
                           id="cuidador"
                           name="perfil"
                           value={store.cuidador}
-                          onChange={actions.handleCheckCuidador}
+                          onChange={handleCheckCuidador}
                           checked={store.cuidador}
                         />
                         <label htmlFor="cuidador">Cuidador</label>
@@ -64,11 +67,14 @@ const SingUpForm = () => {
                 </div>
 
                 <div className="d-grid gap-2 d-md-flex justify-content-md-end py-3">
-                  <Link to="/sign-up-form2">
-                    <button className="btn btn-primary m-3" type="submit">
-                      Siguiente
-                    </button>
-                  </Link>
+
+                  {store.propietario
+                    ? <Link to="/sign-up-form2"> <button className="btn btn-primary m-3" type="submit"> Siguiente </button> </Link>
+                    : store.cuidador
+                      ? <Link to="/sign-up-form-c1"> <button className="btn btn-primary m-3" type="submit"> Siguiente </button> </Link>
+                      : null
+                  }
+
                 </div>
               </form>
             </div>

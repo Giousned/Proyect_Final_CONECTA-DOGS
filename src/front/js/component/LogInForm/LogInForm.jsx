@@ -10,6 +10,8 @@ const LogInForm = () => {
 
     const {store, actions} = useAppContext();
 
+    const handleCheckRecordarme = () => actions.setRecordarme(!store.recordarme);
+
   return (
     <>
       <section className="py-2 custom-login">
@@ -57,7 +59,7 @@ const LogInForm = () => {
                 <div>
                   <div className="text-center">
                     <label>
-                      <input type="checkbox" value={store.recordarme} onChange={actions.handleCheckRecordarme} checked={store.recordarme}/> Recordarme
+                      <input type="checkbox" value={store.recordarme} onChange={handleCheckRecordarme} checked={store.recordarme}/> Recordarme
                     </label>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="#">¿Olvidaste tu contraseña?</a>

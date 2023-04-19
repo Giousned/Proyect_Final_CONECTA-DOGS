@@ -10,6 +10,9 @@ const SingUpForm5 = () => {
 
     const {store, actions} = useAppContext();
 
+    const handleChangeLocalidadPropietario = (event) => actions.setLocalidadPropietario(event.target.value);
+
+
   return (
     <>
       <section className="py-2 custom-login">
@@ -37,6 +40,7 @@ const SingUpForm5 = () => {
                     type="file"
                     id="foto-usuario"
                     value={store.fotoPropietario}
+                    onChange={(e) => actions.setFotoPropietario(e.target.value)}
                   />
 
                   <div className="py-2">
@@ -44,7 +48,7 @@ const SingUpForm5 = () => {
                       Nombre *
                     </label>
                     <input
-                      type="nombre_usuario"
+                      type="text"
                       className="form-control"
                       id="nombre-usuario"
                       aria-describedby="nombre_usuario"
@@ -60,7 +64,7 @@ const SingUpForm5 = () => {
                       Apellidos *
                     </label>
                     <input
-                      type="apellidos_usuario"
+                      type="text"
                       className="form-control"
                       id="apellidos-usuario"
                       aria-describedby="apellidos_usuario"
@@ -70,6 +74,7 @@ const SingUpForm5 = () => {
                       required
                     />
                   </div>
+
                   <div className="py-2">
                     <label htmlFor="emailRegistroPropietario">Correo Electrónico</label>
                     <input
@@ -82,6 +87,7 @@ const SingUpForm5 = () => {
                         required
                     />
                 </div>
+
                 <div className="py-2">
                     <label htmlFor="passRegistroPropietario">Contraseña</label>
                     <input
@@ -95,13 +101,44 @@ const SingUpForm5 = () => {
                     />
                 </div>
 
+                <div className="py-2">
+                    <label htmlFor="direccion-usuario" className="form-label">
+                      Dirección *
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="direccion-usuario"
+                      aria-describedby="direccion_usuario"
+                      placeholder="Dirección del usuario (Calle y número)"
+                      value={store.direccionPropietario}
+                      onChange={(e) => actions.setDireccionPropietario(e.target.value)}
+                      required
+                    />
+                  </div>
+
+                  <div className="py-2">
+                    <label htmlFor="codigo-postal-usuario" className="form-label">
+                      Código Postal *
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="codigo-postal-usuario"
+                      aria-describedby="codigo_postal_usuario"
+                      placeholder="Código Postal del usuario"
+                      value={store.codigoPostalPropietario}
+                      onChange={(e) => actions.setCodigoPostalPropietario(e.target.value)}
+                      required
+                    />
+                  </div>
 
                   <div className="py-2">
                     <label htmlFor="provincia" className="form-label">
                       Localidad *
                     </label>
-                    <select required name="provincia" className="form-control">
-                      <option value="">Elige Provincia</option>
+                    <select required name="provincia" className="form-control" value={store.localidadPropietario} onChange={handleChangeLocalidadPropietario}>
+                      <option defaultValue="">Elige Provincia</option>
                       <option value="Álava">Álava</option>
                       <option value="Albacete">Albacete</option>
                       <option value="Alicante">Alicante</option>
@@ -162,11 +199,13 @@ const SingUpForm5 = () => {
                       Teléfono *
                     </label>
                     <input
-                      type="telefono"
+                      type="tel"
                       className="form-control"
                       id="telefono"
                       aria-describedby="telefono"
                       placeholder="Teléfono 666123456"
+                      value={store.telefonoPropietario}
+                      onChange={(e) => actions.setTelefonoPropietario(e.target.value)}
                       required
                     />
                   </div>

@@ -10,6 +10,12 @@ const SingUpForm3 = () => {
 
     const {store, actions} = useAppContext();
 
+    const handleChangeEsterilizado = (event) => actions.setEsterilizado(event.target.value);
+    const handleChangeSociableGatos = (event) => actions.setSociableGatos(event.target.value);
+    const handleChangeSociableKids = (event) => actions.setSociableKids(event.target.value);
+    const handleChangeSociablePerros = (event) => actions.setSociablePerros(event.target.value);
+
+
   return (
     <>
       <section className="py-2 custom-login">
@@ -35,10 +41,10 @@ const SingUpForm3 = () => {
                     <label htmlFor="estirilizado" className="form-label">
                       ¿Tu perro está esterilizado?
                     </label>
-                    <select className="form-select" aria-label="estirilizado">
-                      <option defaultValue>Elige una opción</option>
-                      <option value="3">Sí</option>
-                      <option value="4">No</option>
+                    <select className="form-select" aria-label="estirilizado" value={store.esterilizado} onChange={handleChangeEsterilizado}>
+                      <option defaultValue="">Elige una opción</option>
+                      <option value="True">Sí</option>
+                      <option value="False">No</option>
                     </select>
                   </div>
 
@@ -46,10 +52,10 @@ const SingUpForm3 = () => {
                     <label htmlFor="sociable-gatos" className="form-label">
                       ¿Tu perro es sociable con gatos?
                     </label>
-                    <select className="form-select" aria-label="sociable-gatos">
-                      <option defaultValue>Elige una opción</option>
-                      <option value="5">Sí</option>
-                      <option value="6">No</option>
+                    <select className="form-select" aria-label="sociable-gatos" value={store.sociableGatos} onChange={handleChangeSociableGatos}>
+                      <option defaultValue="">Elige una opción</option>
+                      <option value="True">Sí</option>
+                      <option value="False">No</option>
                     </select>
                   </div>
 
@@ -57,10 +63,10 @@ const SingUpForm3 = () => {
                     <label htmlFor="sociable-niños" className="form-label">
                       ¿Tu perro es sociable con niños?
                     </label>
-                    <select className="form-select" aria-label="sociable-niños">
-                      <option defaultValue>Elige una opción</option>
-                      <option value="7">Sí</option>
-                      <option value="8">No</option>
+                    <select className="form-select" aria-label="sociable-niños" value={store.sociableKids} onChange={handleChangeSociableKids}>
+                      <option defaultValue="">Elige una opción</option>
+                      <option value="True">Sí</option>
+                      <option value="False">No</option>
                     </select>
                   </div>
 
@@ -68,13 +74,10 @@ const SingUpForm3 = () => {
                     <label htmlFor="sociable-perros" className="form-label">
                       ¿Tu perro es sociable con otros perros?
                     </label>
-                    <select
-                      className="form-select"
-                      aria-label="sociable-perros"
-                    >
-                      <option defaultValue>Elige una opción</option>
-                      <option value="9">Sí</option>
-                      <option value="10">No</option>
+                    <select className="form-select" aria-label="sociable-perros" value={store.sociablePerros} onChange={handleChangeSociablePerros}>
+                      <option defaultValue="">Elige una opción</option>
+                      <option value="True">Sí</option>
+                      <option value="False">No</option>
                     </select>
                   </div>
 
@@ -83,11 +86,13 @@ const SingUpForm3 = () => {
                       Microchip *
                     </label>
                     <input
-                      type="micro-chip"
+                      type="text"
                       className="form-control"
                       id="microchip"
                       aria-describedby="micro-chip"
                       placeholder="Microchip del perro"
+                      value={store.microchip}
+                      onChange={(e) => actions.setMicrochip(e.target.value)}
                       required
                     />
                   </div>
@@ -103,6 +108,8 @@ const SingUpForm3 = () => {
                       className="form-control"
                       id="FormControlTextarea1"
                       rows="3"
+                      value={store.observaciones}
+                      onChange={(e) => actions.setObservaciones(e.target.value)}
                     ></textarea>
                   </div>
                 </div>

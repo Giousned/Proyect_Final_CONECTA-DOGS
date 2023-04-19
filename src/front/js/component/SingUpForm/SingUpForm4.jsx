@@ -10,6 +10,16 @@ const SingUpForm4 = () => {
 
     const {store, actions} = useAppContext();
 
+    const handleCheckHorarioComidaMañana = () => actions.setHorarioComidaMañana(!horarioComidaMañana);
+    const handleCheckHorarioComidaTarde = () => actions.setHorarioComidaTarde(!horarioComidaTarde);
+    const handleCheckHorarioComidaNoche = () => actions.setHorarioComidaNoche(!horarioComidaNoche);
+    const handleCheckHorarioPaseosMañana = () => actions.setHorarioPaseosMañana(!horarioPaseosMañana);
+    const handleCheckHorarioPaseosTarde = () => actions.setHorarioPaseosTarde(!horarioPaseosTarde);
+    const handleCheckHorarioPaseosNoche = () => actions.setHorarioPaseosNoche(!horarioPaseosNoche);
+    const handleCheckActividadBaja = () => actions.setActividadBaja(!actividadBaja);
+    const handleCheckActividadMedia = () => actions.setActividadMedia(!actividadMedia);
+    const handleCheckActividadAlta = () => actions.setActividadAlta(!actividadAlta);
+
   return (
     <>
       <section className="py-2 custom-login">
@@ -27,14 +37,12 @@ const SingUpForm4 = () => {
               <form>
                 <h2 className="pb-2">Información de mi perro</h2>
                 <p className="pb-2">
-                  Cuéntanos un poquito acerca de tu perro, así podremos ayudarte
-                  a encontrar el cuidador perfecto.
+                  Cuéntanos un poquito más acerca de tu perro, así podremos ayudarte a encontrar el cuidador perfecto.
                 </p>
                 <hr />
                 <h3 className="pb-2">Instrucciones para el cuidador</h3>
                 <p className="pb-2">
-                  Esta información estará disponible para los cuidadores al
-                  solicitar la reserva.
+                  Esta información estará disponible para los cuidadores al solicitar la reserva.
                 </p>
                 <div className="d-grid gap-2">
                   <div className="py-2">
@@ -42,11 +50,13 @@ const SingUpForm4 = () => {
                       Ración diaria de comida
                     </label>
                     <input
-                      type="racion_comida"
+                      type="text"
                       className="form-control"
                       id="racion-comida"
                       aria-describedby="racion_comida"
-                      placeholder="En gramos (gr)"
+                      placeholder="En kilogramos (kg)"
+                      value={store.racionComida}
+                      onChange={(e) => actions.setRacionComida(e.target.value)}
                     />
                   </div>
 
@@ -60,10 +70,12 @@ const SingUpForm4 = () => {
                         className="form-check-input"
                         type="checkbox"
                         name="comidas"
-                        id="mañana1"
-                        value="mañana"
+                        id="horario-comida-mañana"
+                        value={store.horarioComidaMañana}
+                        onChange={handleCheckHorarioComidaMañana}
+                        checked={store.horarioComidaMañana}
                       />
-                      <label className="form-check-label" htmlFor="mañana1">
+                      <label className="form-check-label" htmlFor="horario-comida-mañana">
                         Mañana
                       </label>
                     </div>
@@ -72,10 +84,12 @@ const SingUpForm4 = () => {
                         className="form-check-input"
                         type="checkbox"
                         name="comidas"
-                        id="tarde1"
-                        value="tarde"
+                        id="horario-comida-tarde"
+                        value={store.horarioComidaTarde}
+                        onChange={handleCheckHorarioComidaTarde}
+                        checked={store.horarioComidaTarde}
                       />
-                      <label className="form-check-label" htmlFor="tarde1">
+                      <label className="form-check-label" htmlFor="horario-comida-tarde">
                         Tarde
                       </label>
                     </div>
@@ -84,10 +98,12 @@ const SingUpForm4 = () => {
                         className="form-check-input"
                         type="checkbox"
                         name="comidas"
-                        id="noche1"
-                        value="noche"
+                        id="horario-comida-noche"
+                        value={store.horarioComidaNoche}
+                        onChange={handleCheckHorarioComidaNoche}
+                        checked={store.horarioComidaNoche}
                       />
-                      <label className="form-check-label" htmlFor="noche1">
+                      <label className="form-check-label" htmlFor="horario-comida-noche">
                         Noche
                       </label>
                     </div>
@@ -103,10 +119,12 @@ const SingUpForm4 = () => {
                         className="form-check-input"
                         type="checkbox"
                         name="paseos"
-                        id="mañana2"
-                        value="mañana"
+                        id="horario-paseos-mañana"
+                        value={store.horarioPaseosMañana}
+                        onChange={handleCheckHorarioPaseosMañana}
+                        checked={store.horarioPaseosMañana}
                       />
-                      <label className="form-check-label" htmlFor="mañana2">
+                      <label className="form-check-label" htmlFor="horario-paseos-mañana">
                         Mañana
                       </label>
                     </div>
@@ -115,10 +133,12 @@ const SingUpForm4 = () => {
                         className="form-check-input"
                         type="checkbox"
                         name="paseos"
-                        id="tarde2"
-                        value="tarde"
+                        id="horario-paseos-tarde"
+                        value={store.horarioPaseosTarde}
+                        onChange={handleCheckHorarioPaseosTarde}
+                        checked={store.horarioPaseosTarde}
                       />
-                      <label className="form-check-label" htmlFor="tarde2">
+                      <label className="form-check-label" htmlFor="horario-paseos-tarde">
                         Tarde
                       </label>
                     </div>
@@ -127,10 +147,12 @@ const SingUpForm4 = () => {
                         className="form-check-input"
                         type="checkbox"
                         name="paseos"
-                        id="noche2"
-                        value="noche"
+                        id="horario-paseos-noche"
+                        value={store.horarioPaseosNoche}
+                        onChange={handleCheckHorarioPaseosNoche}
+                        checked={store.horarioPaseosNoche}
                       />
-                      <label className="form-check-label" htmlFor="noche2">
+                      <label className="form-check-label" htmlFor="horario-paseos-noche">
                         Noche
                       </label>
                     </div>
@@ -146,11 +168,13 @@ const SingUpForm4 = () => {
                         className="form-check-input"
                         type="radio"
                         name="actividad"
-                        id="bajo"
-                        value="bajo"
+                        id="actividad-baja"
+                        value={store.actividadBaja}
+                        onChange={handleCheckActividadBaja}
+                        checked={store.actividadBaja}
                       />
-                      <label className="form-check-label" htmlFor="bajo">
-                        Bajo
+                      <label className="form-check-label" htmlFor="actividad-baja">
+                        Baja
                       </label>
                     </div>
                     <div className="form-check form-check-inline dog-mtn">
@@ -158,11 +182,13 @@ const SingUpForm4 = () => {
                         className="form-check-input"
                         type="radio"
                         name="actividad"
-                        id="medio"
-                        value="medio"
+                        id="actividad-media"
+                        value={store.actividadMedia}
+                        onChange={handleCheckActividadMedia}
+                        checked={store.actividadMedia}
                       />
-                      <label className="form-check-label" htmlFor="medio">
-                        Medio
+                      <label className="form-check-label" htmlFor="actividad-media">
+                        Media
                       </label>
                     </div>
                     <div className="form-check form-check-inline dog-mtn">
@@ -170,11 +196,13 @@ const SingUpForm4 = () => {
                         className="form-check-input"
                         type="radio"
                         name="actividad"
-                        id="moderado"
-                        value="moderado"
+                        id="actividad-alta"
+                        value={store.actividadAlta}
+                        onChange={handleCheckActividadAlta}
+                        checked={store.actividadAlta}
                       />
-                      <label className="form-check-label" htmlFor="moderado">
-                        Moderado
+                      <label className="form-check-label" htmlFor="actividad-alta">
+                        Alta
                       </label>
                     </div>
                   </div>
@@ -185,12 +213,14 @@ const SingUpForm4 = () => {
                       className="form-label"
                     >
                       Escribe aquí lo que desees indicarle al cuidador. Por ej: si tu perro tiene alguna alergia, si toma alguna
-                      medicación, algo que deban saber antes de pasear a tu perro, etc.
+                      medicación, algo que deban saber antes de pasear a tu perro, o cualquier otra cosa importante y a tener en cuenta.
                     </label>
                     <textarea
                       className="form-control"
                       id="FormControlTextarea2"
                       rows="3"
+                      value={store.masInformacionPerros}
+                      onChange={(e) => actions.setMasInformacionPerros(e.target.value)}
                     ></textarea>
                   </div>
                 </div>
@@ -216,3 +246,8 @@ const SingUpForm4 = () => {
   );
 };
 export default SingUpForm4;
+
+
+// value={store.recordarme} onChange={actions.handleCheckRecordarme} checked={store.recordarme}
+// value={store.emailInicio}
+// onChange={(e) => actions.setEmailInicio(e.target.value)}
