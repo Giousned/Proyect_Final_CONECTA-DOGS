@@ -10,10 +10,10 @@ const SingUpForm4 = () => {
 
     const {store, actions} = useAppContext();
 
-    const handleCheckHorarioComidaMañana = () => actions.setHorarioComidaMañana(!horarioComidaMañana);
+    const handleCheckHorarioComidaManana = () => actions.setHorarioComidaManana(!horarioComidaManana);
     const handleCheckHorarioComidaTarde = () => actions.setHorarioComidaTarde(!horarioComidaTarde);
     const handleCheckHorarioComidaNoche = () => actions.setHorarioComidaNoche(!horarioComidaNoche);
-    const handleCheckHorarioPaseosMañana = () => actions.setHorarioPaseosMañana(!horarioPaseosMañana);
+    const handleCheckHorarioPaseosManana = () => actions.setHorarioPaseosManana(!horarioPaseosManana);
     const handleCheckHorarioPaseosTarde = () => actions.setHorarioPaseosTarde(!horarioPaseosTarde);
     const handleCheckHorarioPaseosNoche = () => actions.setHorarioPaseosNoche(!horarioPaseosNoche);
     const handleCheckActividadBaja = () => actions.setActividadBaja(!actividadBaja);
@@ -71,9 +71,9 @@ const SingUpForm4 = () => {
                         type="checkbox"
                         name="comidas"
                         id="horario-comida-mañana"
-                        value={store.horarioComidaMañana}
-                        onChange={handleCheckHorarioComidaMañana}
-                        checked={store.horarioComidaMañana}
+                        value={store.horarioComidaManana}
+                        onChange={handleCheckHorarioComidaManana}
+                        checked={store.horarioComidaManana}
                       />
                       <label className="form-check-label" htmlFor="horario-comida-mañana">
                         Mañana
@@ -120,9 +120,9 @@ const SingUpForm4 = () => {
                         type="checkbox"
                         name="paseos"
                         id="horario-paseos-mañana"
-                        value={store.horarioPaseosMañana}
-                        onChange={handleCheckHorarioPaseosMañana}
-                        checked={store.horarioPaseosMañana}
+                        value={store.horarioPaseosManana}
+                        onChange={handleCheckHorarioPaseosManana}
+                        checked={store.horarioPaseosManana}
                       />
                       <label className="form-check-label" htmlFor="horario-paseos-mañana">
                         Mañana
@@ -169,7 +169,6 @@ const SingUpForm4 = () => {
                         type="radio"
                         name="actividad"
                         id="actividad-baja"
-                        value={store.actividadBaja}
                         onChange={handleCheckActividadBaja}
                         checked={store.actividadBaja}
                       />
@@ -183,7 +182,6 @@ const SingUpForm4 = () => {
                         type="radio"
                         name="actividad"
                         id="actividad-media"
-                        value={store.actividadMedia}
                         onChange={handleCheckActividadMedia}
                         checked={store.actividadMedia}
                       />
@@ -197,7 +195,6 @@ const SingUpForm4 = () => {
                         type="radio"
                         name="actividad"
                         id="actividad-alta"
-                        value={store.actividadAlta}
                         onChange={handleCheckActividadAlta}
                         checked={store.actividadAlta}
                       />

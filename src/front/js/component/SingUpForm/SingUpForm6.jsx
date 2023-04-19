@@ -126,7 +126,7 @@ const SingUpForm6 = () => {
                       className="form-control"
                       id="codigo-postal-cuidador"
                       aria-describedby="codigo_postal_cuidador"
-                      placeholder="Código Postal del usuario"
+                      placeholder="30000"
                       value={store.codigoPostalCuidador}
                       onChange={(e) => actions.setCodigoPostalCuidador(e.target.value)}
                       required
@@ -203,7 +203,7 @@ const SingUpForm6 = () => {
                       className="form-control"
                       id="telefono-cuidador"
                       aria-describedby="telefono"
-                      placeholder="Teléfono 666123456"
+                      placeholder="666123456"
                       value={store.telefonoCuidador}
                       onChange={(e) => actions.setTelefonoCuidador(e.target.value)}
                       required

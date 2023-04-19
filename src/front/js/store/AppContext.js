@@ -22,25 +22,25 @@ export const AppProvider = ({children}) => {
     const [fotoPerro, setFotoPerro] = useState("");
     const [nombrePerro, setNombrePerro] = useState("");
     const [razaPerro, setRazaPerro] = useState("");
-    const [nacimientoPerro, setNacimientoPerro] = useState("");
+    const [nacimientoPerro, setNacimientoPerro] = useState(new Date());
     const [generoPerro, setGeneroPerro] = useState("");
-    const [tamañoPequeño, setTamañoPequeño] = useState(false);
-    const [tamañoMediano, setTamañoMediano] = useState(false);
-    const [tamañoGrande, setTamañoGrande] = useState(false);
-    const [tamañoGigante, setTamañoGigante] = useState(false);
+    const [tamanoPequeno, setTamanoPequeno] = useState(false);
+    const [tamanoMediano, setTamanoMediano] = useState(false);
+    const [tamanoGrande, setTamanoGrande] = useState(false);
+    const [tamanoGigante, setTamanoGigante] = useState(false);
     // Nº 3
     const [esterilizado, setEsterilizado] = useState("");
     const [sociableGatos, setSociableGatos] = useState("");
     const [sociableKids, setSociableKids] = useState("");
     const [sociablePerros, setSociablePerros] = useState("");
-    const [microchip, setMicrochip] = useState(0);
+    const [microchip, setMicrochip] = useState("");
     const [observaciones, setObservaciones] = useState("");
     // Nº 4
-    const [racionComida, setRacionComida] = useState(0);
-    const [horarioComidaMañana, setHorarioComidaMañana] = useState(false);
+    const [racionComida, setRacionComida] = useState("");
+    const [horarioComidaManana, setHorarioComidaManana] = useState(false);
     const [horarioComidaTarde, setHorarioComidaTarde] = useState(false);
     const [horarioComidaNoche, setHorarioComidaNoche] = useState(false);
-    const [horarioPaseosMañana, setHorarioPaseosMañana] = useState(false);
+    const [horarioPaseosManana, setHorarioPaseosManana] = useState(false);
     const [horarioPaseosTarde, setHorarioPaseosTarde] = useState(false);
     const [horarioPaseosNoche, setHorarioPaseosNoche] = useState(false);
     const [actividadBaja, setActividadBaja] = useState(false);
@@ -54,9 +54,9 @@ export const AppProvider = ({children}) => {
     const [emailRegistroPropietario, setEmailRegistroPropietario] = useState("");
     const [passwordRegistroPropietario, setPasswordRegistroPropietario] = useState("");
     const [direccionPropietario, setDireccionPropietario] = useState("");
-    const [codigoPostalPropietario, setCodigoPostalPropietario] = useState(0);
+    const [codigoPostalPropietario, setCodigoPostalPropietario] = useState("");
     const [localidadPropietario, setLocalidadPropietario] = useState("");
-    const [telefonoPropietario, setTelefonoPropietario] = useState(0);
+    const [telefonoPropietario, setTelefonoPropietario] = useState("");
 
     // Nº 6 CUIDADOR
     const [fotoCuidador, setFotoCuidador] = useState("");
@@ -65,9 +65,9 @@ export const AppProvider = ({children}) => {
     const [emailRegistroCuidador, setEmailRegistroCuidador] = useState("");
     const [passwordRegistroCuidador, setPasswordRegistroCuidador] = useState("");
     const [direccionCuidador, setDireccionCuidador] = useState("");
-    const [codigoPostalCuidador, setCodigoPostalCuidador] = useState(0);
+    const [codigoPostalCuidador, setCodigoPostalCuidador] = useState("");
     const [localidadCuidador, setLocalidadCuidador] = useState("");
-    const [telefonoCuidador, setTelefonoCuidador] = useState(0);
+    const [telefonoCuidador, setTelefonoCuidador] = useState("");
 
     
   
@@ -123,10 +123,10 @@ export const AppProvider = ({children}) => {
         razaPerro,
         nacimientoPerro,
         generoPerro,
-        tamañoPequeño,
-        tamañoMediano,
-        tamañoGrande,
-        tamañoGigante,
+        tamanoPequeno,
+        tamanoMediano,
+        tamanoGrande,
+        tamanoGigante,
 
         esterilizado, 
         sociableGatos,
@@ -136,10 +136,10 @@ export const AppProvider = ({children}) => {
         observaciones,
 
         racionComida,
-        horarioComidaMañana,
+        horarioComidaManana,
         horarioComidaTarde,
         horarioComidaNoche,
-        horarioPaseosMañana,
+        horarioPaseosManana,
         horarioPaseosTarde,
         horarioPaseosNoche,
         actividadBaja,
@@ -184,10 +184,10 @@ export const AppProvider = ({children}) => {
         setRazaPerro,
         setNacimientoPerro,
         setGeneroPerro,
-        setTamañoPequeño,
-        setTamañoMediano,
-        setTamañoGrande,
-        setTamañoGigante,
+        setTamanoPequeno,
+        setTamanoMediano,
+        setTamanoGrande,
+        setTamanoGigante,
         
         setEsterilizado,
         setSociableGatos,
@@ -197,10 +197,10 @@ export const AppProvider = ({children}) => {
         setObservaciones,
 
         setRacionComida,
-        setHorarioComidaMañana,
+        setHorarioComidaManana,
         setHorarioComidaTarde,
         setHorarioComidaNoche,
-        setHorarioPaseosMañana,
+        setHorarioPaseosManana,
         setHorarioPaseosTarde,
         setHorarioPaseosNoche,
         setActividadBaja,
@@ -251,15 +251,15 @@ export default useAppContext;
 // handleCheckPropietario: () => actions.setPropietario(!propietario),
 // handleCheckCuidador: () => actions.setCuidador(!cuidador),
 
-// handleCheckTamañoPequeño: () => actions.setTamañoPequeño(!tamañoPequeño),
-// handleCheckTamañoMediano: () => actions.setTamañoMediano(!tamañoMediano),
-// handleCheckTamañoGrande: () => actions.setTamañoGrande(!tamañoGrande),
-// handleCheckTamañoGigante: () => actions.setTamañoGigante(!tamañoGigante),
+// handleCheckTamanoPequeno: () => actions.setTamanoPequeno(!tamanoPequeno),
+// handleCheckTamanoMediano: () => actions.setTamanoMediano(!tamanoMediano),
+// handleCheckTamanoGrande: () => actions.setTamanoGrande(!tamanoGrande),
+// handleCheckTamanoGigante: () => actions.setTamanoGigante(!tamanoGigante),
 
-// handleCheckHorarioComidaMañana: () => actions.setHorarioComidaMañana(!horarioComidaMañana),
+// handleCheckHorarioComidaManana: () => actions.setHorarioComidaManana(!horarioComidaManana),
 // handleCheckHorarioComidaTarde: () => actions.setHorarioComidaTarde(!horarioComidaTarde),
 // handleCheckHorarioComidaNoche: () => actions.setHorarioComidaNoche(!horarioComidaNoche),
-// handleCheckHorarioPaseosMañana: () => actions.setHorarioPaseosMañana(!horarioPaseosMañana),
+// handleCheckHorarioPaseosManana: () => actions.setHorarioPaseosManana(!horarioPaseosManana),
 // handleCheckHorarioPaseosTarde: () => actions.setHorarioPaseosTarde(!horarioPaseosTarde),
 // handleCheckHorarioPaseosNoche: () => actions.setHorarioPaseosNoche(!horarioPaseosNoche),
 // handleCheckActividadBaja: () => actions.setActividadBaja(!actividadBaja),

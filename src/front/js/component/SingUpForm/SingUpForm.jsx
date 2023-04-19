@@ -41,7 +41,6 @@ const SingUpForm = () => {
                           type="radio"
                           id="propietario"
                           name="perfil"
-                          value={store.propietario}
                           onChange={handleCheckPropietario}
                           checked={store.propietario}
                         />
@@ -56,7 +55,6 @@ const SingUpForm = () => {
                           type="radio"
                           id="cuidador"
                           name="perfil"
-                          value={store.cuidador}
                           onChange={handleCheckCuidador}
                           checked={store.cuidador}
                         />

@@ -2,6 +2,9 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 import useAppContext from "../../store/AppContext.js";
 
 import "../SingUpForm/singup-form.css";
@@ -12,10 +15,10 @@ const SingUpForm2 = () => {
 
     const handleChangeGeneroPerro = (event) => actions.setGeneroPerro(event.target.value);
 
-    const handleCheckTamañoPequeño = () => actions.setTamañoPequeño(!store.tamañoPequeño);
-    const handleCheckTamañoMediano = () => actions.setTamañoMediano(!store.tamañoMediano);
-    const handleCheckTamañoGrande = () => actions.setTamañoGrande(!store.tamañoGrande);
-    const handleCheckTamañoGigante = () => actions.setTamañoGigante(!store.tamañoGigante);
+    const handleCheckTamanoPequeno = () => actions.setTamanoPequeno(!store.tamanoPequeno);
+    const handleCheckTamanoMediano = () => actions.setTamanoMediano(!store.tamanoMediano);
+    const handleCheckTamanoGrande = () => actions.setTamanoGrande(!store.tamanoGrande);
+    const handleCheckTamanoGigante = () => actions.setTamanoGigante(!store.tamanoGigante);
 
   return (
     <>
@@ -81,17 +84,16 @@ const SingUpForm2 = () => {
                       Fecha de nacimiento *
                     </label>
                     <br />
-                    <input
-                      type="date" // month
-                      id="cumple-perro"
-                      name="start"
-                      min="2020-01"
-                      value={store.nacimientoPerro}
-                      onChange={(e) => actions.setNacimientoPerro(e.target.value)}
-                      required
+                    <DatePicker
+                    id="cumple-perro"
+                    className="text-center"
+                    selected={store.nacimientoPerro}
+                    onChange={(date) => actions.setNacimientoPerro(date)}
+                    dateFormat="MM/yyyy"
+                    showMonthYearPicker
                     />
-                    <div id="cumple-perro" className="form-text">
-                      Ejemplo: 2023-04 (Abril de 2023)
+                    <div className="form-text">
+                      Ejemplo: 04-2023
                     </div>
                   </div>
 
@@ -117,9 +119,8 @@ const SingUpForm2 = () => {
                         type="radio"
                         name="inlineRadioOptions"
                         id="inlineRadio1"
-                        value={store.tamañoPequeño}
-                        onChange={handleCheckTamañoPequeño}
-                        checked={store.tamañoPequeño}
+                        onChange={handleCheckTamanoPequeno}
+                        checked={store.tamanoPequeno}
                       />
                       <label
                         className="form-check-label"
@@ -134,9 +135,8 @@ const SingUpForm2 = () => {
                         type="radio"
                         name="inlineRadioOptions"
                         id="inlineRadio2"
-                        value={store.tamañoMediano}
-                        onChange={handleCheckTamañoMediano}
-                        checked={store.tamañoMediano}
+                        onChange={handleCheckTamanoMediano}
+                        checked={store.tamanoMediano}
                       />
                       <label
                         className="form-check-label"
@@ -151,9 +151,8 @@ const SingUpForm2 = () => {
                         type="radio"
                         name="inlineRadioOptions"
                         id="inlineRadio3"
-                        value={store.tamañoGrande}
-                        onChange={handleCheckTamañoGrande}
-                        checked={store.tamañoGrande}
+                        onChange={handleCheckTamanoGrande}
+                        checked={store.tamanoGrande}
                       />
                       <label
                         className="form-check-label"
@@ -168,9 +167,8 @@ const SingUpForm2 = () => {
                         type="radio"
                         name="inlineRadioOptions"
                         id="inlineRadio4"
-                        value={store.tamañoGigante}
-                        onChange={handleCheckTamañoGigante}
-                        checked={store.tamañoGigante}
+                        onChange={handleCheckTamanoGigante}
+                        checked={store.tamanoGigante}
                       />
                       <label
                         className="form-check-label"

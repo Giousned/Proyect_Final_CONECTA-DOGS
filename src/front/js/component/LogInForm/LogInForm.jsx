@@ -71,7 +71,7 @@ const LogInForm = () => {
                       </p>
                     </Link>
                   </div>
-                <div id="helpLogIn" className="form-text fs-6 fst-italic">
+                <div id="helpLogIn" className="form-text fs-8 fst-italic d-flex justify-content-center mb-2">
                     We'll never share your information with anyone else.
                 </div>
             </div>
