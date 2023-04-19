@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import "../SingUpForm/singup-form.css";
 
 const SingUpForm5 = () => {
-    return (
-        <>
-            <section className="py-2 custom-login">
-                <div className="container p-2 bg-light">
-                    <div className="row">
-                        <h2 className="text-center p-4">Datos del Usuario</h2>
+  return (
+    <>
+      <section className="py-2 custom-login">
+        <div className="container p-2 bg-light">
+          <div className="row">
+            <h2 className="text-center p-4">Datos del Usuario</h2>
 
             <div className="col-12 col-md-6 py-3">
               <img
@@ -33,17 +33,17 @@ const SingUpForm5 = () => {
                     id="foto-usuario"
                   />
 
-                                    <div className="py-2">
-                                        <label for="nombre-usuario" class="form-label">Nombre *</label>
-                                        <input type="nombre_usuario" class="form-control" id="nombre-usuario" aria-describedby="nombre_usuario"
-                                            placeholder="Nombre del usuario" required />
-                                    </div>
+                  <div className="py-2">
+                    <label for="nombre-usuario" class="form-label">Nombre *</label>
+                    <input type="nombre_usuario" class="form-control" id="nombre-usuario" aria-describedby="nombre_usuario"
+                      placeholder="Nombre del usuario" required />
+                  </div>
 
-                                    <div className="py-2">
-                                        <label for="apellidos-usuario" class="form-label">Apellidos *</label>
-                                        <input type="apellidos_usuario" class="form-control" id="apellidos-usuario" aria-describedby="apellidos_usuario"
-                                            placeholder="Apellidos del usuario" required />
-                                    </div>
+                  <div className="py-2">
+                    <label for="apellidos-usuario" class="form-label">Apellidos *</label>
+                    <input type="apellidos_usuario" class="form-control" id="apellidos-usuario" aria-describedby="apellidos_usuario"
+                      placeholder="Apellidos del usuario" required />
+                  </div>
 
                   <div className="py-2">
                     <label htmlFor="provincia" className="form-label">
@@ -131,7 +131,8 @@ const SingUpForm5 = () => {
                     </button>
                   </Link>
                   <Link to="/sign-up-form5">
-                    <button className="btn btn-primary m-2 w-100" type="submit">
+                    <button className="btn btn-danger m-2 w-100" type="submit" data-bs-toggle="popover"
+                      data-bs-title="OK!" data-bs-content="Sus datos se han guardado con éxito =) .">
                       Terminar
                     </button>
                   </Link>

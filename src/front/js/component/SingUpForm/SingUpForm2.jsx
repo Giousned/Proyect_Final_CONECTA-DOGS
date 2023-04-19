@@ -34,7 +34,7 @@ const SingUpForm2 = () => {
                                     <div className="py-2">
                                         <label for="nombre-perro" class="form-label">Nombre *</label>
                                         <input type="text" name="first-name" class="form-control" id="first-name" maxlength="10"
-                                            onkeydown="return /[a-z, ]/i.test(event.key)" required />
+                                            placeholder="Nombre del perro" required />
                                     </div>
 
                                     <div className="py-2">
