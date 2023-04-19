@@ -61,8 +61,8 @@ const SingUpForm3 = () => {
 
                                     <div className="py-2">
                                         <label for="microchip" class="form-label">Microchip *</label>
-                                        <input type="micro-chip" class="form-control" id="microchip" aria-describedby="micro-chip" required />
-                                        <div id="micro-chip" class="form-text">Microchip del perro</div>
+                                        <input type="micro-chip" class="form-control" id="microchip" aria-describedby="micro-chip"
+                                            placeholder="Microchip" required />
                                     </div>
 
                                     <div class="py-2">

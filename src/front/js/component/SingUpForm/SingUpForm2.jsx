@@ -10,7 +10,6 @@ const SingUpForm2 = () => {
             <section className="py-2 custom-login">
                 <div className="container p-2 bg-light">
                     <div className="row">
-                        {/* <h2 className="text-center p-4">INGRESAR</h2> */}
 
                         <div className="col-12 col-md-6 py-3">
                             <img src="https://cdn.pixabay.com/photo/2022/10/22/17/29/shitzu-7539692_1280.jpg" className="img-fluid" />
@@ -27,14 +26,14 @@ const SingUpForm2 = () => {
 
                                     <div className="py-2">
                                         <label for="nombre-perro" class="form-label">Nombre *</label>
-                                        <input type="nombre_perro" class="form-control" id="nombre-perro" aria-describedby="nombre_perro" required />
-                                        <div id="nombre_perro" class="form-text">Nombre del perro</div>
+                                        <input type="text" name="first-name" class="form-control" id="first-name" maxlength="10"
+                                            onkeydown="return /[a-z, ]/i.test(event.key)" required />
                                     </div>
 
                                     <div className="py-2">
                                         <label for="raza-perro" class="form-label">Raza *</label>
-                                        <input type="raza_perro" class="form-control" id="raza-perro" aria-describedby="raza_perro" required />
-                                        <div id="raza_perro" class="form-text">Raza del perro</div>
+                                        <input type="raza_perro" class="form-control" id="raza-perro" aria-describedby="raza_perro"
+                                            placeholder="Raza del perro" required />
                                     </div>
 
                                     <div className="py-2">

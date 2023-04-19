@@ -17,16 +17,14 @@ const SingUpForm = () => {
                         </div>
 
                         <div className="col-12 col-md-6 p-2">
-                            <form>
-                                <h2 className="pb-2">Regístrate</h2>
-
+                            <form action="" method="get" autocomplete="on">
                                 <h3 className="pb-2">¿Cómo quieres registrarte?</h3>
                                 <p>Elige una opción</p>
                                 <div class="row g-2">
                                     <div class="col-md">
                                         <div class="form-floating">
                                             <div className="glowing-register m-2">
-                                                <input type="radio" id="propietario" name="perfil" value="propietario" />
+                                                <input type="radio" id="propietario" name="perfil" value="propietario" required />
                                                 <label for="propietario">Propietario</label>
                                             </div>
                                         </div>
@@ -34,7 +32,7 @@ const SingUpForm = () => {
                                     <div class="col-md">
                                         <div class="form-floating">
                                             <div className="glowing-register m-2">
-                                                <input type="radio" id="cuidador" name="perfil" value="cuidador" />
+                                                <input type="radio" id="cuidador" name="perfil" value="cuidador" required />
                                                 <label for="cuidador">Cuidador</label>
                                             </div>
                                         </div>

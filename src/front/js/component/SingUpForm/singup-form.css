@@ -1,5 +1,12 @@
 /* LogIn Form - Styles */
 
+/*Para eliminar las flechas del input number*/
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .glowing-register input[type="radio"] {
   display: none;
 }

@@ -27,8 +27,8 @@ const SingUpForm4 = () => {
 
                                     <div className="py-2">
                                         <label for="racion-comida" class="form-label">Ración diaria de comida</label>
-                                        <input type="racion_comida" class="form-control" id="racion-comida" aria-describedby="racion_comida" />
-                                        <div id="racion_comida" class="form-text">En gramos (gr)</div>
+                                        <input type="racion_comida" class="form-control" id="racion-comida" aria-describedby="racion_comida"
+                                            placeholder="En gramos (gr)" />
                                     </div>
 
                                     <div className="py-2">

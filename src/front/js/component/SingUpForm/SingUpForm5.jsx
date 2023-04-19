@@ -10,7 +10,7 @@ const SingUpForm5 = () => {
             <section className="py-2 custom-login">
                 <div className="container p-2 bg-light">
                     <div className="row">
-                        {/* <h2 className="text-center p-4">INGRESAR</h2> */}
+                        <h2 className="text-center p-4">Datos del Usuario</h2>
 
                         <div className="col-12 col-md-6 py-3">
                             <img src="https://cdn.pixabay.com/photo/2018/04/09/14/17/woman-3304166_1280.jpg" className="img-fluid" />
@@ -27,14 +27,14 @@ const SingUpForm5 = () => {
 
                                     <div className="py-2">
                                         <label for="nombre-usuario" class="form-label">Nombre *</label>
-                                        <input type="nombre_usuario" class="form-control" id="nombre-usuario" aria-describedby="nombre_usuario" required />
-                                        <div id="nombre_usuario" class="form-text">Nombre del usuario</div>
+                                        <input type="nombre_usuario" class="form-control" id="nombre-usuario" aria-describedby="nombre_usuario"
+                                            placeholder="Nombre del usuario" required />
                                     </div>
 
                                     <div className="py-2">
                                         <label for="apellidos-usuario" class="form-label">Apellidos *</label>
-                                        <input type="apellidos_usuario" class="form-control" id="apellidos-usuario" aria-describedby="apellidos_usuario" required />
-                                        <div id="apellidos_usuario" class="form-text">Apellidos del usuario</div>
+                                        <input type="apellidos_usuario" class="form-control" id="apellidos-usuario" aria-describedby="apellidos_usuario"
+                                            placeholder="Apellidos del usuario" required />
                                     </div>
 
                                     <div className="py-2">
