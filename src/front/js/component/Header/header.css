@@ -66,6 +66,7 @@
     transition: box-shadow var(--transition), scale var(--transition);
     scale: calc(1 + (var(--active) * 0.1));
     transform-style: preserve-3d;
+    text-decoration: none;
 }
 
 .button-home:active {
