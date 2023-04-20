@@ -1,9 +1,9 @@
 
-const RUTA = "https://3001-4geeksacade-reactflaskh-buvlx6ws0oc.ws-eu94.gitpod.io"       // CAMBIAR CADA VEZ QUE SE LEVANTE EL SERVER DE BACK, YA QUE LA URL CAMBIA
+const RUTA = "https://3001-giousned-proyectfinalco-iekp8advkta.ws-eu94.gitpod.io"       // CAMBIAR CADA VEZ QUE SE LEVANTE EL SERVER DE BACK, YA QUE LA URL CAMBIA
 
 export const POSTLogin = async (mail, pass) => {
     const resp = await fetch(
-        `${RUTA}+/token`,
+        `${RUTA}/token`,
         {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -31,7 +31,7 @@ export const POSTLogin = async (mail, pass) => {
 
 export const POSTRegister = async (mail, pass) => {
     const resp = await fetch(
-        `${RUTA}+/signup`,
+        `${RUTA}/signup`,
         {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -59,7 +59,7 @@ export const GETToken = async () => {
     const token = sessionStorage.getItem("jwt-token");
 
     const resp = await fetch(
-        `${RUTA}+/protected`,
+        `${RUTA}/protected`,
         {
         method: "GET",
         headers: {

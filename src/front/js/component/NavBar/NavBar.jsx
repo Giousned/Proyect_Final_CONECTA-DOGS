@@ -2,10 +2,14 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
+import useAppContext from "../../store/AppContext.js";
+
 import Logo from "../../../img/conectadogs-logo-white.png";
 import "../NavBar/navbar.css";
 
 export const NavBar = () => {
+
+  const {store, actions} = useAppContext();
 
   return (
     <>
@@ -45,9 +49,11 @@ export const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/log-in-form" className="nav-link">
-                  INGRESAR
-                </Link>
+                {store.userLog 
+                  ? <Link to="/" className="nav-link" onClick={actions.handleLogOut}> LOGOUT </Link>
+                  : <Link to="/log-in-form" className="nav-link"> INGRESAR </Link>
+                  }
+
               </li>
               {/* <li className="nav-item">
               <Link to="/SingUpForm" className="nav-link">

@@ -106,6 +106,12 @@ export const AppProvider = ({children}) => {
 
         // getMyTasks(email, password);
     };
+
+    const handleLogOut = () => {
+
+        sessionStorage.removeItem(token);
+        setUserLog(false);
+      };
     
     const store = {
         userLog,
@@ -232,6 +238,7 @@ export const AppProvider = ({children}) => {
         handleSubmitRegisterPropietario,
         handleSubmitRegisterCuidador,
         handleSubmitLogIn,
+        handleLogOut,
     };
 
     return (
