@@ -58,7 +58,7 @@ class User(db.Model):
 #     def serialize(self):
 #         return {
 #             "id": self.id,
-#             "user_id": self.user_id
+#             "user_id": self.user_id,
 #         }
 
 
@@ -83,7 +83,7 @@ class User(db.Model):
 #             "image": self.image,
 #             "title": self.title,
 #             "description": self.description,
-#             "cuidador_id": self.cuidador_id
+#             "cuidador_id": self.cuidador_id,
 #         }
 
 
@@ -106,8 +106,8 @@ class User(db.Model):
 #         return {
 #             "id": self.id,
 #             "price": self.price,
-#             "cuidador_id": self.cuidador_id
-#             "servicios_id": self.servicios_id
+#             "cuidador_id": self.cuidador_id,
+#             "servicios_id": self.servicios_id,
 #         }
 
 
@@ -129,7 +129,7 @@ class User(db.Model):
 #         return {
 #             "id": self.id,
 #             "user_id": self.user_id,
-#             "dog_id": self.dog_id
+#             "dog_id": self.dog_id,
 #         }
 
 
@@ -175,8 +175,6 @@ class User(db.Model):
 #             "activity_level": self.activity_level,
 #             "observations": self.observations,
 #         }
-
-
 
 
 
