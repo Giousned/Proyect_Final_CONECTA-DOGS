@@ -14,6 +14,10 @@ const SingUpForm3 = () => {
     const handleChangeSociableGatos = (event) => actions.setSociableGatos(event.target.value);
     const handleChangeSociableKids = (event) => actions.setSociableKids(event.target.value);
     const handleChangeSociablePerros = (event) => actions.setSociablePerros(event.target.value);
+    const handleCheckActividadBaja = () => actions.setActividadBaja(!actividadBaja);
+    const handleCheckActividadMedia = () => actions.setActividadMedia(!actividadMedia);
+    const handleCheckActividadAlta = () => actions.setActividadAlta(!actividadAlta);
+
 
 
   return (
@@ -39,9 +43,9 @@ const SingUpForm3 = () => {
                 <div className="d-grid gap-2">
                   <div className="py-2">
                     <label htmlFor="estirilizado" className="form-label">
-                      ¿Tu perro está esterilizado?
+                      ¿Tu perro está esterilizado? *
                     </label>
-                    <select className="form-select" aria-label="estirilizado" value={store.esterilizado} onChange={handleChangeEsterilizado}>
+                    <select className="form-select" aria-label="estirilizado" value={store.esterilizado} onChange={handleChangeEsterilizado} required>
                       <option defaultValue="">Elige una opción</option>
                       <option value="True">Sí</option>
                       <option value="False">No</option>
@@ -50,9 +54,9 @@ const SingUpForm3 = () => {
 
                   <div className="py-2">
                     <label htmlFor="sociable-gatos" className="form-label">
-                      ¿Tu perro es sociable con gatos?
+                      ¿Tu perro es sociable con gatos? *
                     </label>
-                    <select className="form-select" aria-label="sociable-gatos" value={store.sociableGatos} onChange={handleChangeSociableGatos}>
+                    <select className="form-select" aria-label="sociable-gatos" value={store.sociableGatos} onChange={handleChangeSociableGatos} required>
                       <option defaultValue="">Elige una opción</option>
                       <option value="True">Sí</option>
                       <option value="False">No</option>
@@ -61,9 +65,9 @@ const SingUpForm3 = () => {
 
                   <div className="py-2">
                     <label htmlFor="sociable-niños" className="form-label">
-                      ¿Tu perro es sociable con niños?
+                      ¿Tu perro es sociable con niños? *
                     </label>
-                    <select className="form-select" aria-label="sociable-niños" value={store.sociableKids} onChange={handleChangeSociableKids}>
+                    <select className="form-select" aria-label="sociable-niños" value={store.sociableKids} onChange={handleChangeSociableKids} required>
                       <option defaultValue="">Elige una opción</option>
                       <option value="True">Sí</option>
                       <option value="False">No</option>
@@ -72,13 +76,59 @@ const SingUpForm3 = () => {
 
                   <div className="py-2">
                     <label htmlFor="sociable-perros" className="form-label">
-                      ¿Tu perro es sociable con otros perros?
+                      ¿Tu perro es sociable con otros perros? *
                     </label>
-                    <select className="form-select" aria-label="sociable-perros" value={store.sociablePerros} onChange={handleChangeSociablePerros}>
+                    <select className="form-select" aria-label="sociable-perros" value={store.sociablePerros} onChange={handleChangeSociablePerros} required>
                       <option defaultValue="">Elige una opción</option>
                       <option value="True">Sí</option>
                       <option value="False">No</option>
                     </select>
+                  </div>
+
+                  <div className="py-2">
+                    <label htmlFor="tamaño" className="form-label">
+                      Nivel de actividad
+                    </label>
+                    <br />
+                    <div className="form-check form-check-inline dog-mtn">
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        name="actividad"
+                        id="actividad-baja"
+                        onChange={handleCheckActividadBaja}
+                        checked={store.actividadBaja}
+                      />
+                      <label className="form-check-label" htmlFor="actividad-baja">
+                        Baja
+                      </label>
+                    </div>
+                    <div className="form-check form-check-inline dog-mtn">
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        name="actividad"
+                        id="actividad-media"
+                        onChange={handleCheckActividadMedia}
+                        checked={store.actividadMedia}
+                      />
+                      <label className="form-check-label" htmlFor="actividad-media">
+                        Media
+                      </label>
+                    </div>
+                    <div className="form-check form-check-inline dog-mtn">
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        name="actividad"
+                        id="actividad-alta"
+                        onChange={handleCheckActividadAlta}
+                        checked={store.actividadAlta}
+                      />
+                      <label className="form-check-label" htmlFor="actividad-alta">
+                        Alta
+                      </label>
+                    </div>
                   </div>
 
                   <div className="py-2">
@@ -120,9 +170,9 @@ const SingUpForm3 = () => {
                       Atrás
                     </button>
                   </Link>
-                  <Link to="/sign-up-form4">
-                    <button className="btn btn-primary m-2 w-100" type="submit">
-                      Siguiente
+                  <Link to="/">
+                    <button className="btn btn-primary m-2 w-100" type="submit" onClick={(e) => actions.handleSubmitRegisterOwner(e)}>
+                      Terminar
                     </button>
                   </Link>
                 </div>

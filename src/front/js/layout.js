@@ -2,16 +2,13 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
-// import { Home } from "./pages/home";
 // import { Demo } from "./pages/demo";
 // import { Single } from "./pages/single";
 import LogInForm from "../js/component/LogInForm/LogInForm.jsx";
-import SingUpForm from "./component/SingUpForm/SingUpForm.jsx";
+import SingUpForm1 from "./component/SingUpForm/SingUpForm1.jsx";
 import SingUpForm2 from "./component/SingUpForm/SingUpForm2.jsx";
 import SingUpForm3 from "./component/SingUpForm/SingUpForm3.jsx";
 import SingUpForm4 from "./component/SingUpForm/SingUpForm4.jsx";
-import SingUpForm5 from "./component/SingUpForm/SingUpForm5.jsx";
-import SingUpForm6 from "./component/SingUpForm/SingUpForm6.jsx";
 
 import { Home } from "./pages/Home.jsx";
 import { NavBar } from "./component/NavBar/NavBar.jsx";
@@ -31,12 +28,10 @@ const Layout = () => {
           <Routes>
             <Route element={<Home />} path="/" />
             <Route element={<LogInForm />} path="/log-in-form" />
-            <Route element={<SingUpForm />} path="/sign-up-form" />
+            <Route element={<SingUpForm1 />} path="/sign-up-form" />
             <Route element={<SingUpForm2 />} path="/sign-up-form2" />
             <Route element={<SingUpForm3 />} path="/sign-up-form3" />
-            <Route element={<SingUpForm4 />} path="/sign-up-form4" />
-            <Route element={<SingUpForm5 />} path="/sign-up-form5" />
-            <Route element={<SingUpForm6 />} path="/sign-up-form-c1" />
+            <Route element={<SingUpForm4 />} path="/sign-up-form-c1" />
             {/* <Route element={<LogInForm2 />} path="/LogInForm2" /> */}
             <Route element={<h1>Not found!</h1>} />
           </Routes>

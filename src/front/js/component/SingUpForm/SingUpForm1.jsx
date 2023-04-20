@@ -6,28 +6,33 @@ import useAppContext from "../../store/AppContext.js";
 
 import "../SingUpForm/singup-form.css";
 
-const SingUpForm5 = () => {
+const SingUpForm1 = () => {
 
     const {store, actions} = useAppContext();
 
-    const handleChangeLocalidadPropietario = (event) => actions.setLocalidadPropietario(event.target.value);
+    const handleChangeLocalidad = (event) => actions.setLocalidad(event.target.value);
+    const handleCheckPropietario = () => {actions.setPropietario(!store.propietario); if(store.cuidador) actions.setCuidador(false);}
+    const handleCheckCuidador = () => {actions.setCuidador(!store.cuidador); if(store.propietario) actions.setPropietario(false);}
 
-
+    
   return (
     <>
       <section className="py-2 custom-login">
         <div className="container p-2 bg-light">
           <div className="row">
+            <h2 className="text-center p-4">REGISTRO DE USUARIOS</h2>
 
             <div className="col-12 col-md-6 py-3">
               <img
-                src="https://cdn.pixabay.com/photo/2018/04/09/14/17/woman-3304166_1280.jpg"
+                src="https://cdn.pixabay.com/photo/2019/02/07/16/26/cocker-spaniel-3981587_1280.jpg"
                 className="img-fluid"
               />
             </div>
 
             <div className="col-12 col-md-6 p-2">
               <form>
+                <h2 className="pb-2">Regístrate</h2>
+
                 <h2 className="pb-2">Información personal</h2>
                 <p className="pb-2">Cuéntanos un poquito acerca de ti.</p>
 
@@ -39,8 +44,8 @@ const SingUpForm5 = () => {
                     className="form-control"
                     type="file"
                     id="foto-usuario"
-                    value={store.fotoPropietario}
-                    onChange={(e) => actions.setFotoPropietario(e.target.value)}
+                    value={store.fotoUser}
+                    onChange={(e) => actions.setFotoUser(e.target.value)}
                   />
 
                   <div className="py-2">
@@ -53,8 +58,8 @@ const SingUpForm5 = () => {
                       id="nombre-usuario"
                       aria-describedby="nombre_usuario"
                       placeholder="Nombre del usuario"
-                      value={store.nombrePropietario}
-                      onChange={(e) => actions.setNombrePropietario(e.target.value)}
+                      value={store.nombreUser}
+                      onChange={(e) => actions.setNombreUser(e.target.value)}
                       required
                     />
                   </div>
@@ -69,34 +74,34 @@ const SingUpForm5 = () => {
                       id="apellidos-usuario"
                       aria-describedby="apellidos_usuario"
                       placeholder="Apellidos del usuario"
-                      value={store.apellidosPropietario}
-                      onChange={(e) => actions.setApellidosPropietario(e.target.value)}
+                      value={store.apellidosUser}
+                      onChange={(e) => actions.setApellidosUser(e.target.value)}
                       required
                     />
                   </div>
 
                   <div className="py-2">
-                    <label htmlFor="emailRegistroPropietario">Correo Electrónico</label>
+                    <label htmlFor="emailRegistroUser">Correo Electrónico</label>
                     <input
                         type="email"
                         className="form-control"
-                        id="emailRegistroPropietario"
+                        id="emailRegistroUser"
                         placeholder="name@example.com"
-                        value={store.emailRegistroPropietario}
-                        onChange={(e) => actions.setEmailRegistroPropietario(e.target.value)}
+                        value={store.emailRegistro}
+                        onChange={(e) => actions.setEmailRegistro(e.target.value)}
                         required
                     />
                 </div>
 
                 <div className="py-2">
-                    <label htmlFor="passRegistroPropietario">Contraseña</label>
+                    <label htmlFor="passRegistroUser">Contraseña</label>
                     <input
                         type="password"
                         className="form-control"
-                        id="passRegistroPropietario"
+                        id="passRegistroUser"
                         placeholder="Password"
-                        value={store.passwordRegistroPropietario}
-                        onChange={(e) => actions.setPasswordRegistroPropietario(e.target.value)}
+                        value={store.passwordRegistro}
+                        onChange={(e) => actions.setPasswordRegistro(e.target.value)}
                         required
                     />
                 </div>
@@ -111,8 +116,8 @@ const SingUpForm5 = () => {
                       id="direccion-usuario"
                       aria-describedby="direccion_usuario"
                       placeholder="Dirección del usuario (Calle y número)"
-                      value={store.direccionPropietario}
-                      onChange={(e) => actions.setDireccionPropietario(e.target.value)}
+                      value={store.direccion}
+                      onChange={(e) => actions.setDireccion(e.target.value)}
                       required
                     />
                   </div>
@@ -127,17 +132,17 @@ const SingUpForm5 = () => {
                       id="codigo-postal-usuario"
                       aria-describedby="codigo_postal_usuario"
                       placeholder="30000"
-                      value={store.codigoPostalPropietario}
-                      onChange={(e) => actions.setCodigoPostalPropietario(e.target.value)}
+                      value={store.codigoPostal}
+                      onChange={(e) => actions.setCodigoPostal(e.target.value)}
                       required
                     />
                   </div>
 
                   <div className="py-2">
-                    <label htmlFor="provincia-propietario" className="form-label">
+                    <label htmlFor="provincia-user" className="form-label">
                       Localidad *
                     </label>
-                    <select required name="provincia" id="provincia-propietario" className="form-control" value={store.localidadPropietario} onChange={handleChangeLocalidadPropietario}>
+                    <select required name="provincia" id="provincia-user" className="form-control" value={store.localidad} onChange={handleChangeLocalidad}>
                       <option defaultValue="">Elige Provincia</option>
                       <option value="Álava">Álava</option>
                       <option value="Albacete">Albacete</option>
@@ -195,33 +200,64 @@ const SingUpForm5 = () => {
                   </div>
 
                   <div className="py-2">
-                    <label htmlFor="telefono-propietario" className="form-label">
+                    <label htmlFor="telefono-user" className="form-label">
                       Teléfono *
                     </label>
                     <input
                       type="tel"
                       className="form-control"
-                      id="telefono-propietario"
+                      id="telefono-user"
                       aria-describedby="telefono"
                       placeholder="666123456"
-                      value={store.telefonoPropietario}
-                      onChange={(e) => actions.setTelefonoPropietario(e.target.value)}
+                      value={store.telefono}
+                      onChange={(e) => actions.setTelefono(e.target.value)}
                       required
                     />
                   </div>
                 </div>
 
-                <div className="d-grid gap-2 d-md-flex justify-content-md-start py-3">
-                  <Link to="/sign-up-form4">
-                    <button className="btn btn-primary m-2 w-100" type="submit">
-                      Atrás
-                    </button>
-                  </Link>
-                  <Link to="/">
-                    <button className="btn btn-primary m-2 w-100" type="submit" onClick={(e) => actions.handleSubmitRegisterPropietario(e)}>
-                      Terminar
-                    </button>
-                  </Link>
+                <h3 className="pb-2">¿Cómo quieres registrarte?</h3>
+                <p>Elige una opción</p>
+                <div className="row g-2">
+                  <div className="col-md">
+                    <div className="form-floating">
+                      <div className="glowing-register m-2">
+                        <input
+                          type="radio"
+                          id="propietario"
+                          name="perfil"
+                          onChange={handleCheckPropietario}
+                          checked={store.propietario}
+                        />
+                        <label htmlFor="propietario">Propietario</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md">
+                    <div className="form-floating">
+                      <div className="glowing-register m-2">
+                        <input
+                          type="radio"
+                          id="cuidador"
+                          name="perfil"
+                          onChange={handleCheckCuidador}
+                          checked={store.cuidador}
+                        />
+                        <label htmlFor="cuidador">Cuidador</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="d-grid gap-2 d-md-flex justify-content-md-end py-3">
+
+                  {store.propietario
+                    ? <Link to="/sign-up-form2"> <button className="btn btn-primary m-3" type="submit"> Siguiente </button> </Link>
+                    : store.cuidador
+                      ? <Link to="/sign-up-form-c1"> <button className="btn btn-primary m-3" type="submit"> Siguiente </button> </Link>
+                      : null
+                  }
+
                 </div>
               </form>
             </div>
@@ -231,4 +267,16 @@ const SingUpForm5 = () => {
     </>
   );
 };
-export default SingUpForm5;
+export default SingUpForm1;
+
+
+// value={store.recordarme} onChange={actions.handleCheckRecordarme} checked={store.recordarme}
+// value={store.emailInicio}
+// onChange={(e) => actions.setEmailInicio(e.target.value)}
+ 
+
+// Checkbox.propTypes = {
+// 	value: PropTypes.bool,
+//   handleClick: PropTypes.func,
+//   label: PropTypes.string,
+// };

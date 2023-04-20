@@ -15,10 +15,20 @@ export const AppProvider = ({children}) => {
     const [passwordInicio, setPasswordInicio] = useState("");
     const [recordarme, setRecordarme] = useState(false);
 
-    // FORMULARIOS REGISTRO: Nº 1
+    // FORMULARIOS REGISTRO: USER Nº 1
+    const [fotoUser, setFotoUser] = useState("");
+    const [nombreUser, setNombreUser] = useState("");
+    const [apellidosUser, setApellidosUser] = useState("");
+    const [emailRegistro, setEmailRegistro] = useState("");
+    const [passwordRegistro, setPasswordRegistro] = useState("");
+    const [direccion, setDireccion] = useState("");
+    const [codigoPostal, setCodigoPostal] = useState("");
+    const [localidad, setLocalidad] = useState("");
+    const [telefono, setTelefono] = useState("");
     const [propietario, setPropietario] = useState(false);
     const [cuidador, setCuidador] = useState(false);
-    // Nº 2
+
+    // PERROS Nº 2
     const [fotoPerro, setFotoPerro] = useState("");
     const [nombrePerro, setNombrePerro] = useState("");
     const [razaPerro, setRazaPerro] = useState("");
@@ -28,53 +38,31 @@ export const AppProvider = ({children}) => {
     const [tamanoMediano, setTamanoMediano] = useState(false);
     const [tamanoGrande, setTamanoGrande] = useState(false);
     const [tamanoGigante, setTamanoGigante] = useState(false);
-    // Nº 3
+    // PERROS Nº 3
     const [esterilizado, setEsterilizado] = useState("");
     const [sociableGatos, setSociableGatos] = useState("");
     const [sociableKids, setSociableKids] = useState("");
     const [sociablePerros, setSociablePerros] = useState("");
-    const [microchip, setMicrochip] = useState("");
-    const [observaciones, setObservaciones] = useState("");
-    // Nº 4
-    const [racionComida, setRacionComida] = useState("");
-    const [horarioComidaManana, setHorarioComidaManana] = useState(false);
-    const [horarioComidaTarde, setHorarioComidaTarde] = useState(false);
-    const [horarioComidaNoche, setHorarioComidaNoche] = useState(false);
-    const [horarioPaseosManana, setHorarioPaseosManana] = useState(false);
-    const [horarioPaseosTarde, setHorarioPaseosTarde] = useState(false);
-    const [horarioPaseosNoche, setHorarioPaseosNoche] = useState(false);
     const [actividadBaja, setActividadBaja] = useState(false);
     const [actividadMedia, setActividadMedia] = useState(false);
     const [actividadAlta, setActividadAlta] = useState(false);
-    const [masInformacionPerros, setMasInformacionPerros] = useState("");
-    // Nº 5 PROPIETARIO
-    const [fotoPropietario, setFotoPropietario] = useState("");
-    const [nombrePropietario, setNombrePropietario] = useState("");
-    const [apellidosPropietario, setApellidosPropietario] = useState("");
-    const [emailRegistroPropietario, setEmailRegistroPropietario] = useState("");
-    const [passwordRegistroPropietario, setPasswordRegistroPropietario] = useState("");
-    const [direccionPropietario, setDireccionPropietario] = useState("");
-    const [codigoPostalPropietario, setCodigoPostalPropietario] = useState("");
-    const [localidadPropietario, setLocalidadPropietario] = useState("");
-    const [telefonoPropietario, setTelefonoPropietario] = useState("");
+    const [microchip, setMicrochip] = useState("");
+    const [observaciones, setObservaciones] = useState("");
 
-    // Nº 6 CUIDADOR
-    const [fotoCuidador, setFotoCuidador] = useState("");
-    const [nombreCuidador, setNombreCuidador] = useState("");
-    const [apellidosCuidador, setApellidosCuidador] = useState("");
-    const [emailRegistroCuidador, setEmailRegistroCuidador] = useState("");
-    const [passwordRegistroCuidador, setPasswordRegistroCuidador] = useState("");
-    const [direccionCuidador, setDireccionCuidador] = useState("");
-    const [codigoPostalCuidador, setCodigoPostalCuidador] = useState("");
-    const [localidadCuidador, setLocalidadCuidador] = useState("");
-    const [telefonoCuidador, setTelefonoCuidador] = useState("");
 
-    
+    // CUIDADOR Nº4
+    const [guarderiaDiurna, setGuarderiaDiurna] = useState("");
+    const [precioGuarderiaDiurna, setPrecioGuarderiaDiurna] = useState("");
+    const [paseo, setPaseo] = useState("");
+    const [precioPaseo, setPrecioPaseo] = useState("");
+    const [guarderiaNocturna, setGuarderiaNocturna] = useState("");
+    const [precioGuarderiaNocturna, setPrecioGuarderiaNocturna] = useState("");
+        
   
-    const handleSubmitRegisterPropietario = (e) => {
+    const handleSubmitRegisterOwner = (e) => {
       e.preventDefault();
   
-      POSTRegister(emailRegistroPropietario, passwordRegistroPropietario)
+      POSTRegister(emailRegistro, passwordRegistro)
         .then(() => {
             setEmailRegistro("");
             setPasswordRegistro("");
@@ -85,7 +73,7 @@ export const AppProvider = ({children}) => {
     const handleSubmitRegisterCuidador = (e) => {
         e.preventDefault();
     
-        POSTRegister(emailRegistroCuidador, passwordRegistroCuidador)
+        POSTRegister(emailRegistro, passwordRegistro)
           .then(() => {
               setEmailRegistro("");
               setPasswordRegistro("");
@@ -110,6 +98,7 @@ export const AppProvider = ({children}) => {
     const handleLogOut = () => {
 
         sessionStorage.removeItem("jwt-token");
+        setToken("");
         setUserLog(false);
       };
     
@@ -121,6 +110,15 @@ export const AppProvider = ({children}) => {
         passwordInicio,
         recordarme,
 
+        fotoUser,
+        nombreUser,
+        apellidosUser,
+        emailRegistro,
+        passwordRegistro,
+        direccion,
+        codigoPostal,
+        localidad,
+        telefono,
         propietario,
         cuidador,
 
@@ -138,40 +136,18 @@ export const AppProvider = ({children}) => {
         sociableGatos,
         sociableKids, 
         sociablePerros,
-        microchip,
-        observaciones,
-
-        racionComida,
-        horarioComidaManana,
-        horarioComidaTarde,
-        horarioComidaNoche,
-        horarioPaseosManana,
-        horarioPaseosTarde,
-        horarioPaseosNoche,
         actividadBaja,
         actividadMedia,
         actividadAlta,
-        masInformacionPerros,
+        microchip,
+        observaciones,
         
-        fotoPropietario,
-        nombrePropietario,
-        apellidosPropietario,
-        emailRegistroPropietario,
-        passwordRegistroPropietario,
-        direccionPropietario,
-        codigoPostalPropietario,
-        localidadPropietario,
-        telefonoPropietario,
-
-        fotoCuidador,
-        nombreCuidador,
-        apellidosCuidador,
-        emailRegistroCuidador,
-        passwordRegistroCuidador,
-        direccionCuidador,
-        codigoPostalCuidador,
-        localidadCuidador,
-        telefonoCuidador,
+        guarderiaDiurna,
+        precioGuarderiaDiurna,
+        paseo,
+        precioPaseo,
+        guarderiaNocturna,
+        precioGuarderiaNocturna,
     };
   
     const actions = {    
@@ -182,6 +158,15 @@ export const AppProvider = ({children}) => {
         setPasswordInicio,
         setRecordarme,
 
+        setFotoUser,
+        setNombreUser,
+        setApellidosUser,
+        setEmailRegistro,
+        setPasswordRegistro,
+        setDireccion,
+        setCodigoPostal,
+        setLocalidad,
+        setTelefono,
         setPropietario,
         setCuidador,
 
@@ -199,43 +184,21 @@ export const AppProvider = ({children}) => {
         setSociableGatos,
         setSociableKids,
         setSociablePerros,
-        setMicrochip,
-        setObservaciones,
-
-        setRacionComida,
-        setHorarioComidaManana,
-        setHorarioComidaTarde,
-        setHorarioComidaNoche,
-        setHorarioPaseosManana,
-        setHorarioPaseosTarde,
-        setHorarioPaseosNoche,
         setActividadBaja,
         setActividadMedia,
         setActividadAlta,
-        setMasInformacionPerros,
+        setMicrochip,
+        setObservaciones,
 
-        setFotoPropietario,
-        setNombrePropietario,
-        setApellidosPropietario,
-        setEmailRegistroPropietario,
-        setPasswordRegistroPropietario,
-        setDireccionPropietario,
-        setCodigoPostalPropietario,
-        setLocalidadPropietario,
-        setTelefonoPropietario,
-
-        setFotoCuidador,
-        setNombreCuidador,
-        setApellidosCuidador,
-        setEmailRegistroCuidador,
-        setPasswordRegistroCuidador,
-        setDireccionCuidador,
-        setCodigoPostalCuidador,
-        setLocalidadCuidador,
-        setTelefonoCuidador,
+        setGuarderiaDiurna,
+        setPrecioGuarderiaDiurna,
+        setPaseo,
+        setPrecioPaseo,
+        setGuarderiaNocturna,
+        setPrecioGuarderiaNocturna,
 
 
-        handleSubmitRegisterPropietario,
+        handleSubmitRegisterOwner,
         handleSubmitRegisterCuidador,
         handleSubmitLogIn,
         handleLogOut,
