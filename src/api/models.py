@@ -3,19 +3,23 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 class User(db.Model):
+    __tablename__ = "User"
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(50), unique=False, nullable=False)
-    # photo = db.Column(db.String(200), unique=True, nullable=False)
-    # name = db.Column(db.String(20), unique=False, nullable=False)
+    is_active = db.Column(db.Boolean, unique=False, nullable=False)
+    # photo = db.Column(db.String(240), unique=True, nullable=True)
+    # name = db.Column(db.String(25), unique=False, nullable=False)
     # last_name = db.Column(db.String(50), unique=False, nullable=False)
-    # address = db.Column(db.String(100), unique=False, nullable=False)
-    # city = db.Column(db.String(50), unique=False, nullable=False)
+    # address = db.Column(db.String(150), unique=False, nullable=False)
+    # city = db.Column(db.String(35), unique=False, nullable=False)
     # postal_code = db.Column(db.Integer, unique=False, nullable=False)
     # country = db.Column(db.String(50), unique=False, nullable=False)
     # birthdate = db.Column(db.Date, unique=False, nullable=False)
     # phone_number = db.Column(db.Integer, unique=False, nullable=False)
-    is_active = db.Column(db.Boolean, unique=False, nullable=False)
+
+#     asistant = relationship("Cuidador", back_populates="user")
+#     owner = relationship("Propietario", back_populates="user")
 
 
     def __repr__(self):
@@ -41,7 +45,15 @@ class User(db.Model):
 # class Cuidador(db.Model):
 #     __tablename__ = "Cuidador"
 #     id = db.Column(db.Integer, primary_key=True)
-#     user_id = db.Column(db.Integer, ForeignKey("user.id"))
+
+#     user_id = db.Column(db.Integer, ForeignKey("User.id"))
+
+#     user = relationship("User", back_populates="asistant")
+#     tarif = relationship("Tarifas", back_populates="cost")
+
+
+#     def __repr__(self):
+#         return f'<Cuidador {self.name}>'
 
 #     def serialize(self):
 #         return {
@@ -50,13 +62,68 @@ class User(db.Model):
 #         }
 
 
+# class Servicios(db.Model):
+#     __tablename__ = "Servicios"
+#     id = db.Column(db.Integer, primary_key=True)
+#     image = db.Column(db.String(240), unique=True, nullable=False)
+#     title = db.Column(db.String(35), unique=True, nullable=False)
+#     description = db.Column(db.String(500), unique=True, nullable=False)
+
+#     cuidador_id = db.Column(db.Integer, ForeignKey("Cuidador.id"))
+
+#     tarif = relationship("Tarifas", back_populates="service")
+
+
+#     def __repr__(self):
+#         return f'<Servicios {self.title}>'
+
+#     def serialize(self):
+#         return {
+#             "id": self.id,
+#             "image": self.image,
+#             "title": self.title,
+#             "description": self.description,
+#             "cuidador_id": self.cuidador_id
+#         }
+
+
+# class Tarifas(db.Model):
+#     __tablename__ = "Tarifas"
+#     id = db.Column(db.Integer, primary_key=True)
+#     price = db.Column(db.Integer, unique=False, nullable=False)
+
+#     cuidador_id = db.Column(db.Integer, ForeignKey("Cuidador.id"))
+#     servicios_id = db.Column(db.Integer, ForeignKey("Servicios.id"))
+
+#     cost = relationship("Cuidador", back_populates="tarif")
+#     service = relationship("Servicios", back_populates="tarif")
+
+
+#     def __repr__(self):
+#         return f'<Tarifas {self.price}>'
+
+#     def serialize(self):
+#         return {
+#             "id": self.id,
+#             "price": self.price,
+#             "cuidador_id": self.cuidador_id
+#             "servicios_id": self.servicios_id
+#         }
+
+
 # class Propietario(db.Model):
 #     __tablename__ = "Propietario"
 #     id = db.Column(db.Integer, primary_key=True)
-#     user_id = Column(Integer, ForeignKey("user.id"))
-#     dog_id = Column(Integer, ForeignKey("dog.id"))
+
+#     user_id = Column(Integer, ForeignKey("User.id"))
+#     dog_id = Column(Integer, ForeignKey("Dog.id"))
 
 #     pet = relationship("Dog", back_populates="owner")
+#     user = relationship("User", back_populates="owner")
+
+
+#     def __repr__(self):
+#         return f'<Propietario {self.id}>'
 
 #     def serialize(self):
 #         return {
@@ -69,24 +136,21 @@ class User(db.Model):
 # class Dog(db.Model):
 #     __tablename__ = "Dog"
 #     id = db.Column(db.Integer, primary_key=True)
-#     photo = db.Column(db.String(240), unique=False, nullable=False)
-#     name = db.Column(db.String(120), unique=False, nullable=False)
+#     name = db.Column(db.String(35), unique=False, nullable=False)
+#     photo = db.Column(db.String(240), unique=True, nullable=True)
 #     breed = db.Column(db.String(50), unique=False, nullable=False)
 #     birthdate = db.Column(db.Date, unique=False, nullable=False)
 #     sex = db.Column(db.String(20), unique=False, nullable=False)
-#     dog_size = db.Column(db.String(30), unique=False, nullable=False)
-#     sterilized = db.Column(db.String(30), unique=False, nullable=False)
+#     dog_size = db.Column(db.String(20), unique=False, nullable=True)
+#     sterilized = db.Column(db.Boolean, unique=False, nullable=False)
 #     social_cats = db.Column(db.Boolean, unique=False, nullable=False)
 #     social_kids = db.Column(db.Boolean, unique=False, nullable=False)
 #     social_dogs = db.Column(db.Boolean, unique=False, nullable=False)
-#     microchip = db.Column(db.Integer, unique=False, nullable=False)
-#     observations = db.Column(db.String, unique=False, nullable=False)
-#     daily_food_rations = db.Column(db.String, unique=False, nullable=False)
-#     meal_times = db.Column(db.String, unique=False, nullable=False)
-#     schedule_walks = db.Column(db.String, unique=False, nullable=False)
-#     activity_level = db.Column(db.String, unique=False, nullable=False)
-#     caretaker_comments	= db.Column(db.String, unique=False, nullable=False)
-#     propietario_id = Column(Integer, ForeignKey("propietario.id"))
+#     microchip = db.Column(db.Integer, unique=True, nullable=False)
+#     activity_level = db.Column(db.String(20), unique=False, nullable=True)
+#     observations = db.Column(db.String(500), unique=False, nullable=True)
+
+#     propietario_id = Column(Integer, ForeignKey("Propietario.id"))
 
 #     owner = relationship("Propietario", back_populates="pet")
 
@@ -97,24 +161,27 @@ class User(db.Model):
 #     def serialize(self):
 #         return {
 #             "id": self.id,
-#             "photo": self.photo,
 #             "name": self.name,
-#             "size": self.size,
-#             "weight": self.weight,
+#             "photo": self.photo,
 #             "breed": self.breed,
 #             "birthdate": self.birthdate,
-#             "gender": self.gender,
-#             "neutered": self.neutered,
-#             "social_cat": self.social_cat,
+#             "sex": self.sex,
+#             "dog_size": self.dog_size,    
+#             "sterilized": self.sterilized,
+#             "social_cats": self.social_cats,
 #             "social_kids": self.social_kids,
 #             "social_dogs": self.social_dogs,
 #             "microchip": self.microchip,
-#             "feed": self.feed,
-#             "feed_time": self.feed_time,
-#             "walk": self.walk,
-#             "activity": self.activity,
-#             "alone": self.alone,
-#             "house": self.house,
-#             "other_details": self.other_details,
-#             # do not serialize the password, its a security breach
+#             "activity_level": self.activity_level,
+#             "observations": self.observations,
 #         }
+
+
+
+
+
+
+#     daily_food_rations = db.Column(db.String, unique=False, nullable=False)
+#     meal_times = db.Column(db.String, unique=False, nullable=False)
+#     schedule_walks = db.Column(db.String, unique=False, nullable=False)
+#     caretaker_comments = db.Column(db.String, unique=False, nullable=False)
