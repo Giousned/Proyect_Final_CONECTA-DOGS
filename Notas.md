@@ -24,3 +24,17 @@ import "react-datepicker/dist/react-datepicker.css";
 
 # COPIAR CARPETA DE OTRA RAMA
 git checkout NOMBRERAMA carpeta/
+
+# RESETEAR BASE DE DATOS
+rm -R -f ./migrations &&
+pipenv run init &&
+psql -U gitpod -c 'DROP DATABASE example;' || true &&
+psql -U gitpod -c 'CREATE DATABASE example;' &&
+psql -U gitpod -c 'CREATE EXTENSION unaccent;' -d example &&
+pipenv run migrate &&
+pipenv run upgrade
+
+MEJOR --> pipenv run reset_db
+
+# UPGRADE DB
+pipenv run upgrade

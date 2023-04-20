@@ -109,7 +109,7 @@ export const AppProvider = ({children}) => {
 
     const handleLogOut = () => {
 
-        sessionStorage.removeItem(token);
+        sessionStorage.removeItem("jwt-token");
         setUserLog(false);
       };
     

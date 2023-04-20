@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import useAppContext from "../../store/AppContext.js";
 
@@ -9,6 +9,8 @@ import "../LogInForm/login-form.css";
 const LogInForm = () => {
 
     const {store, actions} = useAppContext();
+
+    const navigate = useNavigate();
 
     const handleCheckRecordarme = () => actions.setRecordarme(!store.recordarme);
 
@@ -75,7 +77,7 @@ const LogInForm = () => {
                     We'll never share your information with anyone else.
                 </div>
             </div>
-                <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={(e) => actions.handleSubmitLogIn(e)}>
+                <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={(e) => {actions.handleSubmitLogIn(e); navigate("/")}}>
                   Iniciar Sesión
                 </button>
               </form>
