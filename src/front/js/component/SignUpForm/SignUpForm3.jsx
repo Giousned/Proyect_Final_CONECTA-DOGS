@@ -1,12 +1,9 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
-
 import useAppContext from "../../store/AppContext.js";
+import "../SignUpForm/signup-form.css";
 
-import "../SingUpForm/singup-form.css";
-
-const SingUpForm3 = () => {
+const SignUpForm3 = () => {
 
     const {store, actions} = useAppContext();
 
@@ -184,7 +181,7 @@ const SingUpForm3 = () => {
     </>
   );
 };
-export default SingUpForm3;
+export default SignUpForm3;
 
 
 // value={store.recordarme} onChange={actions.handleCheckRecordarme} checked={store.recordarme}

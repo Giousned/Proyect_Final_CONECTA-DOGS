@@ -1,12 +1,10 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
-
 import useAppContext from "../../store/AppContext.js";
 
-import "../SingUpForm/singup-form.css";
+import "./signup-form.css";
 
-const SingUpForm1 = () => {
+const SignUpForm1 = () => {
 
     const {store, actions} = useAppContext();
 
@@ -25,117 +23,80 @@ const SingUpForm1 = () => {
             <div className="col-12 col-md-6 py-3">
               <img
                 src="https://cdn.pixabay.com/photo/2019/02/07/16/26/cocker-spaniel-3981587_1280.jpg"
-                className="img-fluid"
-              />
+                className="img-fluid" />
             </div>
 
             <div className="col-12 col-md-6 p-2">
               <form>
-                <h2 className="pb-2">Regístrate</h2>
-
                 <h2 className="pb-2">Información personal</h2>
                 <p className="pb-2">Cuéntanos un poquito acerca de ti.</p>
-
                 <div className="d-grid gap-2">
                   <label htmlFor="foto-usuario" className="form-label">
                     Foto de perfil
                   </label>
-                  <input
-                    className="form-control"
-                    type="file"
-                    id="foto-usuario"
-                    value={store.fotoUser}
-                    onChange={(e) => actions.setFotoUser(e.target.value)}
-                  />
+                  <input className="form-control" type="file" id="foto-usuario" value={store.fotoUser}
+                    onChange={(e) => actions.setFotoUser(e.target.value)} />
 
                   <div className="py-2">
                     <label htmlFor="nombre-usuario" className="form-label">
                       Nombre *
                     </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="nombre-usuario"
-                      aria-describedby="nombre_usuario"
-                      placeholder="Nombre del usuario"
+                    <input className="form-control" type="text" id="nombre-usuario" 
+                    aria-describedby="nombre_usuario" placeholder="Nombre del usuario"
                       value={store.nombreUser}
                       onChange={(e) => actions.setNombreUser(e.target.value)}
-                      required
-                    />
+                      required />
                   </div>
 
                   <div className="py-2">
                     <label htmlFor="apellidos-usuario" className="form-label">
                       Apellidos *
                     </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="apellidos-usuario"
-                      aria-describedby="apellidos_usuario"
-                      placeholder="Apellidos del usuario"
+                    <input className="form-control" type="text" id="apellidos-usuario"
+                      aria-describedby="apellidos_usuario" placeholder="Apellidos del usuario"
                       value={store.apellidosUser}
                       onChange={(e) => actions.setApellidosUser(e.target.value)}
-                      required
-                    />
+                      required />
                   </div>
 
                   <div className="py-2">
                     <label htmlFor="emailRegistroUser">Correo Electrónico</label>
-                    <input
-                        type="email"
-                        className="form-control"
-                        id="emailRegistroUser"
+                    <input className="form-control" type="email" id="emailRegistroUser"
                         placeholder="name@example.com"
                         value={store.emailRegistro}
                         onChange={(e) => actions.setEmailRegistro(e.target.value)}
-                        required
-                    />
+                        required />
                 </div>
 
                 <div className="py-2">
                     <label htmlFor="passRegistroUser">Contraseña</label>
-                    <input
-                        type="password"
-                        className="form-control"
-                        id="passRegistroUser"
+                    <input className="form-control" type="password" id="passRegistroUser"
                         placeholder="Password"
                         value={store.passwordRegistro}
                         onChange={(e) => actions.setPasswordRegistro(e.target.value)}
-                        required
-                    />
+                        required />
                 </div>
 
                 <div className="py-2">
                     <label htmlFor="direccion-usuario" className="form-label">
                       Dirección *
                     </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="direccion-usuario"
-                      aria-describedby="direccion_usuario"
-                      placeholder="Dirección del usuario (Calle y número)"
+                    <input className="form-control" type="text" id="direccion-usuario"
+                      aria-describedby="direccion_usuario" placeholder="Dirección del usuario (Calle y número)"
                       value={store.direccion}
                       onChange={(e) => actions.setDireccion(e.target.value)}
-                      required
-                    />
+                      required />
                   </div>
 
                   <div className="py-2">
                     <label htmlFor="codigo-postal-usuario" className="form-label">
                       Código Postal *
                     </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="codigo-postal-usuario"
-                      aria-describedby="codigo_postal_usuario"
-                      placeholder="30000"
+                    <input className="form-control" type="text" id="codigo-postal-usuario"
+                      aria-describedby="codigo_postal_usuario" placeholder="30000"
                       value={store.codigoPostal}
                       onChange={(e) => actions.setCodigoPostal(e.target.value)}
-                      required
-                    />
+                      required />
                   </div>
 
                   <div className="py-2">
@@ -203,16 +164,11 @@ const SingUpForm1 = () => {
                     <label htmlFor="telefono-user" className="form-label">
                       Teléfono *
                     </label>
-                    <input
-                      type="tel"
-                      className="form-control"
-                      id="telefono-user"
-                      aria-describedby="telefono"
-                      placeholder="666123456"
+                    <input className="form-control" type="tel" id="telefono-user"
+                      aria-describedby="telefono" placeholder="666123456"
                       value={store.telefono}
                       onChange={(e) => actions.setTelefono(e.target.value)}
-                      required
-                    />
+                      required />
                   </div>
                 </div>
 
@@ -222,13 +178,9 @@ const SingUpForm1 = () => {
                   <div className="col-md">
                     <div className="form-floating">
                       <div className="glowing-register m-2">
-                        <input
-                          type="radio"
-                          id="propietario"
-                          name="perfil"
+                        <input type="radio" id="propietario" name="perfil"
                           onChange={handleCheckPropietario}
-                          checked={store.propietario}
-                        />
+                          checked={store.propietario} />
                         <label htmlFor="propietario">Propietario</label>
                       </div>
                     </div>
@@ -236,13 +188,9 @@ const SingUpForm1 = () => {
                   <div className="col-md">
                     <div className="form-floating">
                       <div className="glowing-register m-2">
-                        <input
-                          type="radio"
-                          id="cuidador"
-                          name="perfil"
+                        <input type="radio" id="cuidador" name="perfil"
                           onChange={handleCheckCuidador}
-                          checked={store.cuidador}
-                        />
+                          checked={store.cuidador} />
                         <label htmlFor="cuidador">Cuidador</label>
                       </div>
                     </div>
@@ -250,14 +198,12 @@ const SingUpForm1 = () => {
                 </div>
 
                 <div className="d-grid gap-2 d-md-flex justify-content-md-end py-3">
-
                   {store.propietario
-                    ? <Link to="/sign-up-form2"> <button className="btn btn-primary m-3" type="submit"> Siguiente </button> </Link>
+                    ? <Link to="/sign-up-form3"> <button className="btn btn-primary m-3" type="submit"> Siguiente </button> </Link>
                     : store.cuidador
                       ? <Link to="/sign-up-form-c1"> <button className="btn btn-primary m-3" type="submit"> Siguiente </button> </Link>
                       : null
                   }
-
                 </div>
               </form>
             </div>
@@ -267,7 +213,7 @@ const SingUpForm1 = () => {
     </>
   );
 };
-export default SingUpForm1;
+export default SignUpForm1;
 
 
 // value={store.recordarme} onChange={actions.handleCheckRecordarme} checked={store.recordarme}

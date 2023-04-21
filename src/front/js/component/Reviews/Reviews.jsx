@@ -4,40 +4,20 @@ import "../Reviews/reviews.css";
 
 export const Reviews = () => {
   return (
-    <div
-      id="carouselExampleCaptions"
-      className="carousel slide"
-      data-bs-ride="carousel"
-    >
+    <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
       <div className="carousel-indicators">
-        <button
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide-to="0"
-          className="active"
-          aria-current="true"
-          aria-label="Slide 1"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide-to="1"
-          aria-label="Slide 2"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide-to="2"
-          aria-label="Slide 3"
-        ></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+          className="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+          aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+          aria-label="Slide 3"></button>
       </div>
       <div className="carousel-inner">
         <div className="carousel-item active">
           <img
             src="https://cdn.pixabay.com/photo/2016/11/22/19/41/puppy-1850276_960_720.jpg"
-            className="imagenesOpiniones "
-            alt="Opinion del usuario X"
-          />
+            className="imagenesOpiniones" alt="Opinion del usuario X" />
           <div className="carousel-caption d-none d-md-block">
             <div className="justify-content-center">
               <h5>Sandra sobre "Muffin"</h5>
@@ -58,9 +38,7 @@ export const Reviews = () => {
         <div className="carousel-item">
           <img
             src="https://cdn.pixabay.com/photo/2018/04/23/14/38/dog-3344414_960_720.jpg"
-            className="imagenesOpiniones"
-            alt="Opinion del usuario X"
-          />
+            className="imagenesOpiniones" alt="Opinion del usuario X" />
           <div className="carousel-caption d-none d-md-block">
             <h5>Nuria sobre "Cookie"</h5>
             <i className="fas fa-star stars-reviews"></i>
@@ -79,9 +57,7 @@ export const Reviews = () => {
         <div className="carousel-item">
           <img
             src="https://cdn.pixabay.com/photo/2016/07/15/15/55/dachshund-1519374_960_720.jpg"
-            className="imagenesOpiniones "
-            alt="Opinion del usuario X"
-          />
+            className="imagenesOpiniones " alt="Opinion del usuario X" />
           <div className="carousel-caption d-none d-md-block">
             <h5>Guillermo sobre "Fluffy"</h5>
             <i className="fas fa-star stars-reviews"></i>
@@ -97,21 +73,11 @@ export const Reviews = () => {
           </div>
         </div>
       </div>
-      <button
-        className="carousel-control-prev"
-        type="button"
-        data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="prev"
-      >
+      <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
         <span className="visually-hidden">Previous</span>
       </button>
-      <button
-        className="carousel-control-next"
-        type="button"
-        data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="next"
-      >
+      <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
         <span className="carousel-control-next-icon" aria-hidden="true"></span>
         <span className="visually-hidden">Next</span>
       </button>

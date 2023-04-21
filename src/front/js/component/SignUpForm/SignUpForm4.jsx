@@ -1,12 +1,10 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
-
 import useAppContext from "../../store/AppContext.js";
 
-import "../SingUpForm/singup-form.css";
+import "../SignUpForm/signup-form.css";
 
-const SingUpForm4 = () => {
+const SignUpForm4 = () => {
 
     const {store, actions} = useAppContext();
 
@@ -125,4 +123,4 @@ const SingUpForm4 = () => {
     </>
   );
 };
-export default SingUpForm4;
+export default SignUpForm4;

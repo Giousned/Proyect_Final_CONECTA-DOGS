@@ -1,7 +1,7 @@
 import React from "react";
 import "../Footer/footer.css";
 
-export const Footer = () => (
+const Footer = () => (
   <section className="contact bg-dark py-4">
     <div id="contact"></div>
 
@@ -38,3 +38,5 @@ export const Footer = () => (
     </footer>
   </section>
 );
+
+export default Footer;

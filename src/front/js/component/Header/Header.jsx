@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "../Header/header.css";
 
 export const Header = () => {
-  
+
   return (
     <header className="d-flex align-items-center custom-header" id="home">
       <div className="container text-white-custom text-shadow text-center">

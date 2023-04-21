@@ -1,15 +1,12 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
-
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
 import useAppContext from "../../store/AppContext.js";
 
-import "../SingUpForm/singup-form.css";
+import "../SignUpForm/signup-form.css";
 
-const SingUpForm2 = () => {
+const SignUpForm2 = () => {
 
     const {store, actions} = useAppContext();
 
@@ -200,7 +197,7 @@ const SingUpForm2 = () => {
     </>
   );
 };
-export default SingUpForm2;
+export default SignUpForm2;
 
 
 // value={store.recordarme} onChange={actions.handleCheckRecordarme} checked={store.recordarme}

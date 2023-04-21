@@ -13,35 +13,6 @@
     color: white;
 }
 
-/* Botones del Header */
-/* .btn-home {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 0.5rem;
-    font-size: 16px;
-    font-weight: bold;
-    color: #000;
-    background-color: #ffffff7e;
-    border: 2px solid black;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: -10px 0px 13px -7px #fff, 10px 0px 13px -7px #fff, 7px 7px 18px 7px rgba(255, 255, 255, 0);
-    transition: background-color 0.3s, border-color 0.3s, color 0.3s,
-        box-shadow 0.3s;
-}
-
-.btn-home:hover {
-    color: #fff;
-    background-color: #0000007e;
-    border: 2px solid white;
-    box-shadow: -10px 0px 20px -7px #fff, 10px 0px 20px -7px #fff, 7px 7px 25px 7px rgba(255, 255, 255, 0);
-    transform: scale(1.0);
-} */
-
-/* *+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+* */
-/* *+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+* */
-/* *+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+* */
-
 :root {
     --transition: 0.25s;
     --spark: 1.8s;

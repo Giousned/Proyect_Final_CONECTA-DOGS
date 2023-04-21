@@ -15,14 +15,14 @@
     color: #fff71a;
 }
 
-.review {
+/* .review {
     border-style: double;
     border-color: #b13e04;
     background-color: #000000d7;
-}
+} */
 
 .carousel {
-    max-width: 46%;
+    max-width: 80%;
     margin: auto;
 }
 

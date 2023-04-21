@@ -14,17 +14,17 @@ export const AboutUs = () => {
                             className="img-thumbnail" alt="ConectaDogs" />
                     </div>
                     <div className="col-12 col-md-3 p-3">
-                        <div className="numbers"><i className="fas fa-1 fa-3x"></i></div>
+                        <div className="numbers-green"><i className="fas fa-1 fa-3x"></i></div>
                         <h4>Busca</h4>
                         <p>Busca y contacta con cuidadores de confianza y con experiencia cerca de ti</p>
                     </div>
                     <div className="col-12 col-md-3 p-3">
-                        <div className="numbers"><i className="fas fa-2 fa-3x"></i></div>
+                        <div className="numbers-green"><i className="fas fa-2 fa-3x"></i></div>
                         <h4>Reserva</h4>
                         <p>Encuentra al cuidador adecuado para tu perro y paga online para contar con la cobertura veterinaria</p>
                     </div>
                     <div className="col-12 col-md-3 p-3">
-                        <div className="numbers"><i className="fas fa-3 fa-3x"></i></div>
+                        <div className="numbers-green"><i className="fas fa-3 fa-3x"></i></div>
                         <h4>Relájate</h4>
                         <p>Tu perro se divertirá y estará en familia y tú recibirás fotografías regularmente</p>
                     </div>

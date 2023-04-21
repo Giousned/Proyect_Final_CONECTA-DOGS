@@ -1,7 +1,5 @@
 import React from "react";
-
 import { POSTLogin, POSTRegister, GETToken } from "../services/Fetchs.js";
-
 import { createContext, useContext, useState } from "react";
 
 const AppContext = createContext();
@@ -38,6 +36,7 @@ export const AppProvider = ({children}) => {
     const [tamanoMediano, setTamanoMediano] = useState(false);
     const [tamanoGrande, setTamanoGrande] = useState(false);
     const [tamanoGigante, setTamanoGigante] = useState(false);
+
     // PERROS Nº 3
     const [esterilizado, setEsterilizado] = useState("");
     const [sociableGatos, setSociableGatos] = useState("");
@@ -48,7 +47,6 @@ export const AppProvider = ({children}) => {
     const [actividadAlta, setActividadAlta] = useState(false);
     const [microchip, setMicrochip] = useState("");
     const [observaciones, setObservaciones] = useState("");
-
 
     // CUIDADOR Nº4
     const [guarderiaDiurna, setGuarderiaDiurna] = useState("");

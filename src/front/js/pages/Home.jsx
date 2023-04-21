@@ -8,17 +8,17 @@ import { AboutUs } from "../component/AboutUs/AboutUs.jsx";
 import { Reviews } from "../component/Reviews/Reviews.jsx";
 import { Services } from "../component/Services/Services.jsx";
 import { Blog } from "../component/Blog/Blog.jsx";
-// import TV from "../component/TV/TV.jsx";
 
-export const Home = () => {
+const Home = () => {
   return (
-    <div className="text-center mt-5">
+    <div className="text-center">
       <Header />
       <AboutUs />
       <Reviews />
       <Services />
       <Blog />
-      {/* <TV /> */}
     </div>
   );
 };
+
+export default Home;
