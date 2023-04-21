@@ -8,7 +8,7 @@ import { AdditionalInformation } from "../component/forms/AdditionalInformation.
 
 const formUser = {
   0: {
-    imageSrc: "https://cdn.pixabay.com/photo/2018/04/09/14/17/woman-3304166_1280.jpg",
+    imageSrc: "https://cdn.pixabay.com/photo/2017/09/08/03/49/couple-2727559_960_720.png",
     mainTitle: "REGISTRO DE USUARIOS - CUIDADOR | PROPIETARIO",
     secondaryTitle: "Información personal",
     description: "Cuéntanos un poquito acerca de ti.",
@@ -46,14 +46,28 @@ const SingUpForm = () => {
   const handleNext = () => {
     if (currentStep == lastStep) { return; }
     setCurrentStep((prev) => prev + 1);
+    console.log(currentStep);
   };
+
 
   const handleBack = () => {
     if (currentStep == firstStep) { return; }
     setCurrentStep((prev) => prev - 1);
+    console.log(currentStep);
   };
 
-  const stopSending = (e) => {
+
+  // const handleSubmit = (e) => {
+  //   if (currentStep < 2) {
+  //     e.preventDefault();
+  //     return;
+  //   }
+
+  //   // Función para enviar la información
+
+  // }
+
+  const handleSubmit = (e) => {
     e.preventDefault();
   }
 
@@ -70,9 +84,9 @@ const SingUpForm = () => {
             </div>
             {/* FORMULARIO */}
             <div className="col-12 col-md-6 py-3">
-              <form onSubmit={stopSending}>
-                <h2>{formUser[currentStep].secondaryTitle}</h2>
-                <p>{formUser[currentStep].description}</p>
+              <form onSubmit={handleSubmit}>
+              <h2 className="text-center">{formUser[currentStep].secondaryTitle}</h2>
+              <p className="text-center">{formUser[currentStep].description}</p>
                 {formUser[currentStep].component}
                 <div className="d-grid gap-2 d-md-flex justify-content-md-end py-2">
                   <button className="btn btn-primary m-3" onClick={handleBack}> Atrás </button>

@@ -13,8 +13,8 @@ export const PersonalInformation = () => {
   
     return (
         <>
-        <h4 className="text-center">¿Cómo quieres registrarte?</h4>
-            <p className="text-center">Elige una opción</p>
+        <h5>¿Cómo quieres registrarte?</h5>
+            <p>Elige una opción</p>
             <div className="row py-2 g-2">
                 <div className="col-md">
                     <div className="form-floating">
@@ -40,7 +40,7 @@ export const PersonalInformation = () => {
                 </div>
             </div>
             
-            <div className="d-grid gap-2">
+            <div className="d-grid row g-3">
                 <label htmlFor="foto-usuario" className="form-label">
                     Foto de perfil
                 </label>
@@ -49,10 +49,11 @@ export const PersonalInformation = () => {
                 // onChange={(e) => actions.setFotoUser(e.target.value)}
                 />
 
-                <div className="py-2">
-                    <label htmlFor="nombre-usuario" className="form-label">
+            <div className="input-group">
+                    <div className="col me-2">
+                        <label htmlFor="nombre-usuario" className="form-label">
                         Nombre *
-                    </label>
+                        </label>
                     <input className="form-control" type="text" id="nombre-usuario"
                         aria-describedby="nombre_usuario" placeholder="Nombre del usuario"
                         // value={store.nombreUser}
@@ -60,7 +61,7 @@ export const PersonalInformation = () => {
                         required />
                 </div>
 
-                <div className="py-2">
+                <div className="col ms-2">
                     <label htmlFor="apellidos-usuario" className="form-label">
                         Apellidos *
                     </label>
@@ -70,8 +71,10 @@ export const PersonalInformation = () => {
                         // onChange={(e) => actions.setApellidosUser(e.target.value)}
                         required />
                 </div>
+            </div>
 
-                <div className="py-2">
+            <div className="input-group">
+                    <div className="col me-2">
                     <label htmlFor="emailRegistroUser">Correo Electrónico</label>
                     <input className="form-control" type="email" id="emailRegistroUser"
                         placeholder="name@example.com"
@@ -80,7 +83,7 @@ export const PersonalInformation = () => {
                         required />
                 </div>
 
-                <div className="py-2">
+                <div className="col me-2">
                     <label htmlFor="passRegistroUser">Contraseña</label>
                     <input className="form-control" type="password" id="passRegistroUser"
                         placeholder="Password"
@@ -88,8 +91,9 @@ export const PersonalInformation = () => {
                         // onChange={(e) => actions.setPasswordRegistro(e.target.value)}
                         required />
                 </div>
+            </div>
 
-                <div className="py-2">
+                <div className="">
                     <label htmlFor="direccion-usuario" className="form-label">
                         Dirección *
                     </label>
@@ -100,7 +104,8 @@ export const PersonalInformation = () => {
                         required />
                 </div>
 
-                <div className="py-2">
+                <div className="input-group">
+                    <div className="col me-2">
                     <label htmlFor="codigo-postal-usuario" className="form-label">
                         Código Postal *
                     </label>
@@ -111,7 +116,7 @@ export const PersonalInformation = () => {
                         required />
                 </div>
 
-                <div className="py-2">
+                <div className="col me-2">
                     <label htmlFor="provincia-user" className="form-label">
                         Localidad *
                     </label>
@@ -174,8 +179,9 @@ export const PersonalInformation = () => {
                         <option value="Zaragoza">Zaragoza</option>
                     </select>
                 </div>
+                </div>
 
-                <div className="py-2">
+                <div className="">
                     <label htmlFor="telefono-user" className="form-label">
                         Teléfono *
                     </label>

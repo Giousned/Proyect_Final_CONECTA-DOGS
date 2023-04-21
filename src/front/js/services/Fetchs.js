@@ -29,13 +29,13 @@ export const POSTLogin = async (mail, pass) => {
     return data;
   };
 
-export const POSTRegister = async (mail, pass) => {
+export const POSTRegister = async (email, password) => {
     const resp = await fetch(
         `${RUTA}/signup`,
         {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: mail, password: pass }),
+        body: JSON.stringify({ email, password }),
         }
     );
 
