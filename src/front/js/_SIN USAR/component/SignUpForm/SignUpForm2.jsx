@@ -8,14 +8,14 @@ import "../SignUpForm/signup-form.css";
 
 const SignUpForm2 = () => {
 
-    const {store, actions} = useAppContext();
+  const { store, actions } = useAppContext();
 
-    const handleChangeGeneroPerro = (event) => actions.setGeneroPerro(event.target.value);
+  const handleChangeGeneroPerro = (event) => actions.setGeneroPerro(event.target.value);
 
-    const handleCheckTamanoPequeno = () => actions.setTamanoPequeno(!store.tamanoPequeno);
-    const handleCheckTamanoMediano = () => actions.setTamanoMediano(!store.tamanoMediano);
-    const handleCheckTamanoGrande = () => actions.setTamanoGrande(!store.tamanoGrande);
-    const handleCheckTamanoGigante = () => actions.setTamanoGigante(!store.tamanoGigante);
+  const handleCheckTamanoPequeno = () => actions.setTamanoPequeno(!store.tamanoPequeno);
+  const handleCheckTamanoMediano = () => actions.setTamanoMediano(!store.tamanoMediano);
+  const handleCheckTamanoGrande = () => actions.setTamanoGrande(!store.tamanoGrande);
+  const handleCheckTamanoGigante = () => actions.setTamanoGigante(!store.tamanoGigante);
 
   return (
     <>
@@ -37,7 +37,6 @@ const SignUpForm2 = () => {
                   Cuéntanos un poquito acerca de tu perro, así podremos ayudarte
                   a encontrar el cuidador perfecto.
                 </p>
-
                 <div className="d-grid gap-2">
                   <label htmlFor="foto-perro" className="form-label">
                     Foto del perro
@@ -82,12 +81,12 @@ const SignUpForm2 = () => {
                     </label>
                     <br />
                     <DatePicker
-                    id="cumple-perro"
-                    className="text-center"
-                    selected={store.nacimientoPerro}
-                    onChange={(date) => actions.setNacimientoPerro(date)}
-                    dateFormat="MM/yyyy"
-                    showMonthYearPicker
+                      id="cumple-perro"
+                      className="text-center"
+                      selected={store.nacimientoPerro}
+                      onChange={(date) => actions.setNacimientoPerro(date)}
+                      dateFormat="MM/yyyy"
+                      showMonthYearPicker
                     />
                     <div className="form-text">
                       Ejemplo: 04-2023

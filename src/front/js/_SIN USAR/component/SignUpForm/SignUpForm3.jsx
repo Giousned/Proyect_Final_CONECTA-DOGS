@@ -5,15 +5,15 @@ import "../SignUpForm/signup-form.css";
 
 const SignUpForm3 = () => {
 
-    const {store, actions} = useAppContext();
+  const { store, actions } = useAppContext();
 
-    const handleChangeEsterilizado = (event) => actions.setEsterilizado(event.target.value);
-    const handleChangeSociableGatos = (event) => actions.setSociableGatos(event.target.value);
-    const handleChangeSociableKids = (event) => actions.setSociableKids(event.target.value);
-    const handleChangeSociablePerros = (event) => actions.setSociablePerros(event.target.value);
-    const handleCheckActividadBaja = () => actions.setActividadBaja(!actividadBaja);
-    const handleCheckActividadMedia = () => actions.setActividadMedia(!actividadMedia);
-    const handleCheckActividadAlta = () => actions.setActividadAlta(!actividadAlta);
+  const handleChangeEsterilizado = (event) => actions.setEsterilizado(event.target.value);
+  const handleChangeSociableGatos = (event) => actions.setSociableGatos(event.target.value);
+  const handleChangeSociableKids = (event) => actions.setSociableKids(event.target.value);
+  const handleChangeSociablePerros = (event) => actions.setSociablePerros(event.target.value);
+  const handleCheckActividadBaja = () => actions.setActividadBaja(!actividadBaja);
+  const handleCheckActividadMedia = () => actions.setActividadMedia(!actividadMedia);
+  const handleCheckActividadAlta = () => actions.setActividadAlta(!actividadAlta);
 
 
 

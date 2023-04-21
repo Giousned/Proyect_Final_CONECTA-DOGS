@@ -1,55 +1,89 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-// import useAppContext from "../store/AppContext.js";
 
-const SingUpForm = () => {
-  const [step, setStep] = useState(0);
-  const [personalInfo, setPersonalInfo] = useState({});
-  //const [formUser, setFormUser] = useState(0);
+import { OwnerCarer } from "../component/forms/OwnerCarer.jsx";
+import { PersonalInformation } from "../component/forms/PersonalInformation.jsx";
+import { DogInformation } from "../component/forms/DogInformation.jsx";
+import { DogInformation2 } from "../component/forms/DogInformation2.jsx";
+import { AdditionalInformation } from "../component/forms/AdditionalInformation.jsx";
 
-  // Crear un objeto que contiene diferentes valores de formulario de usuario
-  const formUser = {
-    
+
+const formUser = {
+  0: {
     imageSrc: "https://cdn.pixabay.com/photo/2019/02/07/16/26/cocker-spaniel-3981587_1280.jpg",
     mainTitle: "REGISTRO DE USUARIOS",
+    component: <OwnerCarer />
+  },
+  1: {
+    imageSrc: "https://cdn.pixabay.com/photo/2018/04/09/14/17/woman-3304166_1280.jpg",
+    mainTitle: "REGISTRO DE USUARIOS - CUIDADOR | PROPIETARIO",
     secondaryTitle: "Información personal",
-    description: "Cuéntanos un poquito acerca de ti."
-
-  // 1 : {
-  //   imageSrc: "https://cdn.pixabay.com/photo/2019/02/07/16/26/cocker-spaniel-3981587_1280.jpg",
-  //   mainTitle: "REGISTRO DE USUARIOS222",
-  //   secondaryTitle: "Información personal222",
-  //   description: "Cuéntanos un poquito acerca de ti222."
-  // }
+    description: "Cuéntanos un poquito acerca de ti.",
+    component: <PersonalInformation />
+  },
+  2: {
+    imageSrc: "https://cdn.pixabay.com/photo/2022/10/22/17/29/shitzu-7539692_1280.jpg",
+    mainTitle: "REGISTRO DE USUARIOS - PROPIETARIO",
+    secondaryTitle: "Información de mi perro",
+    description: "Cuéntanos un poquito acerca de tu perro, así podremos ayudarte a encontrar el cuidador perfecto.",
+    component: <DogInformation />
+  },
+  3: {
+    imageSrc: "https://cdn.pixabay.com/photo/2020/03/29/04/10/dog-4979248_1280.jpg",
+    mainTitle: "REGISTRO DE USUARIOS - PROPIETARIO",
+    secondaryTitle: "Información de mi perro",
+    description: "Cuéntanos otro poquito acerca de tu perro...",
+    component: <DogInformation2 />
+  },
+  4: {
+    imageSrc: "https://cdn.pixabay.com/photo/2018/04/09/14/17/woman-3304166_1280.jpg",
+    mainTitle: "REGISTRO DE USUARIOS - CUIDADOR",
+    secondaryTitle: "Información adicional",
+    description: "¿Qué servicios ofreces y a qué precio?",
+    component: <AdditionalInformation />
+  }
 }
 
-const handleNext = () => {
-  setStep(step + 1);
-};
+const lastStep = 4;
+const firstStep = 0;
 
-const handleBack = () => {
-  setStep(step - 1);
-};
+const SingUpForm = () => {
+  const [currentStep, setCurrentStep] = useState(0);
 
+  const handleNext = () => {
+    if (currentStep == lastStep) { return; }
+    setCurrentStep((prev) => prev + 1);
+  };
 
-  // const mockup = () => {}
+  const handleBack = () => {
+    if (currentStep == firstStep) { return; }
+    setCurrentStep((prev) => prev - 1);
+  };
+
+  const stopSending = (e) => {
+    e.preventDefault();
+  }
+
 
   return (
     <>
       <section className="py-2 custom-login">
-        <div className="container p-2 bg-light">
+        <div className="container bg-light">
           <div className="row">
-            <h2 className="text-center p-4">{formUser.mainTitle}</h2>
+            <h2 className="text-center p-4">{formUser[currentStep].mainTitle}</h2>
             {/* IMAGEN */}
             <div className="col-12 col-md-6 py-3">
-              <img src={formUser.imageSrc} className="img-fluid" />
+              <img src={formUser[currentStep].imageSrc} className="img-fluid" />
             </div>
             {/* FORMULARIO */}
-            <div className="col-12 col-md-6 p-2">
-              <form action="" method="get">
-                <h2 className="pb-2">{formUser.secondaryTitle}</h2>
-                <p className="pb-2">{formUser.description}</p>
-                <button className="btn-primary p-2" onClick={handleNext}>SIGUIENTE</button>
+            <div className="col-12 col-md-6 py-3">
+              <form onSubmit={stopSending}>
+                <h2>{formUser[currentStep].secondaryTitle}</h2>
+                <p>{formUser[currentStep].description}</p>
+                {formUser[currentStep].component}
+                <div className="d-grid gap-2 d-md-flex justify-content-md-end py-2">
+                  <button className="btn btn-primary m-3" onClick={handleBack}> Atrás </button>
+                  <button className="btn btn-primary m-3" onClick={handleNext}> Siguiente </button>
+                </div>
               </form>
             </div>
           </div>

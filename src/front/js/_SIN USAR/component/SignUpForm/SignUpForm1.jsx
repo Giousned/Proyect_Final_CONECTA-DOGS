@@ -6,13 +6,13 @@ import "./signup-form.css";
 
 const SignUpForm1 = () => {
 
-    const {store, actions} = useAppContext();
+  const { store, actions } = useAppContext();
 
-    const handleChangeLocalidad = (event) => actions.setLocalidad(event.target.value);
-    const handleCheckPropietario = () => {actions.setPropietario(!store.propietario); if(store.cuidador) actions.setCuidador(false);}
-    const handleCheckCuidador = () => {actions.setCuidador(!store.cuidador); if(store.propietario) actions.setPropietario(false);}
+  const handleChangeLocalidad = (event) => actions.setLocalidad(event.target.value);
+  const handleCheckPropietario = () => { actions.setPropietario(!store.propietario); if (store.cuidador) actions.setCuidador(false); }
+  const handleCheckCuidador = () => { actions.setCuidador(!store.cuidador); if (store.propietario) actions.setPropietario(false); }
 
-    
+
   return (
     <>
       <section className="py-2 custom-login">
@@ -30,6 +30,7 @@ const SignUpForm1 = () => {
               <form>
                 <h2 className="pb-2">Información personal</h2>
                 <p className="pb-2">Cuéntanos un poquito acerca de ti.</p>
+
                 <div className="d-grid gap-2">
                   <label htmlFor="foto-usuario" className="form-label">
                     Foto de perfil
@@ -41,8 +42,8 @@ const SignUpForm1 = () => {
                     <label htmlFor="nombre-usuario" className="form-label">
                       Nombre *
                     </label>
-                    <input className="form-control" type="text" id="nombre-usuario" 
-                    aria-describedby="nombre_usuario" placeholder="Nombre del usuario"
+                    <input className="form-control" type="text" id="nombre-usuario"
+                      aria-describedby="nombre_usuario" placeholder="Nombre del usuario"
                       value={store.nombreUser}
                       onChange={(e) => actions.setNombreUser(e.target.value)}
                       required />
@@ -62,22 +63,22 @@ const SignUpForm1 = () => {
                   <div className="py-2">
                     <label htmlFor="emailRegistroUser">Correo Electrónico</label>
                     <input className="form-control" type="email" id="emailRegistroUser"
-                        placeholder="name@example.com"
-                        value={store.emailRegistro}
-                        onChange={(e) => actions.setEmailRegistro(e.target.value)}
-                        required />
-                </div>
+                      placeholder="name@example.com"
+                      value={store.emailRegistro}
+                      onChange={(e) => actions.setEmailRegistro(e.target.value)}
+                      required />
+                  </div>
 
-                <div className="py-2">
+                  <div className="py-2">
                     <label htmlFor="passRegistroUser">Contraseña</label>
                     <input className="form-control" type="password" id="passRegistroUser"
-                        placeholder="Password"
-                        value={store.passwordRegistro}
-                        onChange={(e) => actions.setPasswordRegistro(e.target.value)}
-                        required />
-                </div>
+                      placeholder="Password"
+                      value={store.passwordRegistro}
+                      onChange={(e) => actions.setPasswordRegistro(e.target.value)}
+                      required />
+                  </div>
 
-                <div className="py-2">
+                  <div className="py-2">
                     <label htmlFor="direccion-usuario" className="form-label">
                       Dirección *
                     </label>
@@ -215,14 +216,3 @@ const SignUpForm1 = () => {
 };
 export default SignUpForm1;
 
-
-// value={store.recordarme} onChange={actions.handleCheckRecordarme} checked={store.recordarme}
-// value={store.emailInicio}
-// onChange={(e) => actions.setEmailInicio(e.target.value)}
- 
-
-// Checkbox.propTypes = {
-// 	value: PropTypes.bool,
-//   handleClick: PropTypes.func,
-//   label: PropTypes.string,
-// };
