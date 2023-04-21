@@ -13,6 +13,33 @@ export const PersonalInformation = () => {
   
     return (
         <>
+        <h4 className="text-center">¿Cómo quieres registrarte?</h4>
+            <p className="text-center">Elige una opción</p>
+            <div className="row py-2 g-2">
+                <div className="col-md">
+                    <div className="form-floating">
+                        <div className="glowing-register m-2">
+                            <input type="radio" id="propietario" name="perfil"
+                            // onChange={handleCheckPropietario}
+                            // checked={store.propietario}
+                            />
+                            <label htmlFor="propietario">Propietario</label>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md">
+                    <div className="form-floating">
+                        <div className="glowing-register m-2">
+                            <input type="radio" id="cuidador" name="perfil"
+                            // onChange={handleCheckCuidador}
+                            // checked={store.cuidador}
+                            />
+                            <label htmlFor="cuidador">Cuidador</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div className="d-grid gap-2">
                 <label htmlFor="foto-usuario" className="form-label">
                     Foto de perfil

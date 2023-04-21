@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import { OwnerCarer } from "../component/forms/OwnerCarer.jsx";
 import { PersonalInformation } from "../component/forms/PersonalInformation.jsx";
 import { DogInformation } from "../component/forms/DogInformation.jsx";
 import { DogInformation2 } from "../component/forms/DogInformation2.jsx";
@@ -9,32 +8,27 @@ import { AdditionalInformation } from "../component/forms/AdditionalInformation.
 
 const formUser = {
   0: {
-    imageSrc: "https://cdn.pixabay.com/photo/2019/02/07/16/26/cocker-spaniel-3981587_1280.jpg",
-    mainTitle: "REGISTRO DE USUARIOS",
-    component: <OwnerCarer />
-  },
-  1: {
     imageSrc: "https://cdn.pixabay.com/photo/2018/04/09/14/17/woman-3304166_1280.jpg",
     mainTitle: "REGISTRO DE USUARIOS - CUIDADOR | PROPIETARIO",
     secondaryTitle: "Información personal",
     description: "Cuéntanos un poquito acerca de ti.",
     component: <PersonalInformation />
   },
-  2: {
+  1: {
     imageSrc: "https://cdn.pixabay.com/photo/2022/10/22/17/29/shitzu-7539692_1280.jpg",
     mainTitle: "REGISTRO DE USUARIOS - PROPIETARIO",
     secondaryTitle: "Información de mi perro",
     description: "Cuéntanos un poquito acerca de tu perro, así podremos ayudarte a encontrar el cuidador perfecto.",
     component: <DogInformation />
   },
-  3: {
+  2: {
     imageSrc: "https://cdn.pixabay.com/photo/2020/03/29/04/10/dog-4979248_1280.jpg",
     mainTitle: "REGISTRO DE USUARIOS - PROPIETARIO",
     secondaryTitle: "Información de mi perro",
     description: "Cuéntanos otro poquito acerca de tu perro...",
     component: <DogInformation2 />
   },
-  4: {
+  3: {
     imageSrc: "https://cdn.pixabay.com/photo/2018/04/09/14/17/woman-3304166_1280.jpg",
     mainTitle: "REGISTRO DE USUARIOS - CUIDADOR",
     secondaryTitle: "Información adicional",
@@ -43,7 +37,7 @@ const formUser = {
   }
 }
 
-const lastStep = 4;
+const lastStep = 3;
 const firstStep = 0;
 
 const SingUpForm = () => {
