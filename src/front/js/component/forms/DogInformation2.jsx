@@ -19,63 +19,68 @@ export const DogInformation2 = () => {
     return (
         <>
             <div className="d-grid gap-2">
-                <div className="py-2">
-                    <label htmlFor="estirilizado" className="form-label">
-                        ¿Tu perro está esterilizado? *
-                    </label>
-                    <select className="form-select" aria-label="estirilizado"
-                        // value={store.esterilizado} 
-                        // onChange={handleChangeEsterilizado} 
-                        required>
-                        <option defaultValue="">Elige una opción</option>
-                        <option value="True">Sí</option>
-                        <option value="False">No</option>
-                    </select>
+
+                <div className="input-group">
+                    <div className="col me-2 py-2">
+                        <label htmlFor="estirilizado" className="form-label">
+                            ¿Tu perro está esterilizado? *
+                        </label>
+                        <select className="form-select" aria-label="estirilizado"
+                            // value={store.esterilizado} 
+                            // onChange={handleChangeEsterilizado} 
+                            required>
+                            <option defaultValue="">Elige una opción</option>
+                            <option value="True">Sí</option>
+                            <option value="False">No</option>
+                        </select>
+                    </div>
+
+                    <div className="col ms-2 py-2">
+                        <label htmlFor="sociable-gatos" className="form-label">
+                            ¿Tu perro es sociable con gatos? *
+                        </label>
+                        <select className="form-select" aria-label="sociable-gatos"
+                            // value={store.sociableGatos} 
+                            // onChange={handleChangeSociableGatos} 
+                            required>
+                            <option defaultValue="">Elige una opción</option>
+                            <option value="True">Sí</option>
+                            <option value="False">No</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div className="py-2">
-                    <label htmlFor="sociable-gatos" className="form-label">
-                        ¿Tu perro es sociable con gatos? *
-                    </label>
-                    <select className="form-select" aria-label="sociable-gatos"
-                        // value={store.sociableGatos} 
-                        // onChange={handleChangeSociableGatos} 
-                        required>
-                        <option defaultValue="">Elige una opción</option>
-                        <option value="True">Sí</option>
-                        <option value="False">No</option>
-                    </select>
+                <div className="input-group">
+                    <div className="col me-2 py-2">
+                        <label htmlFor="sociable-niños" className="form-label">
+                            ¿Tu perro es sociable con niños? *
+                        </label>
+                        <select className="form-select" aria-label="sociable-niños"
+                            // value={store.sociableKids} 
+                            // onChange={handleChangeSociableKids} 
+                            required>
+                            <option defaultValue="">Elige una opción</option>
+                            <option value="True">Sí</option>
+                            <option value="False">No</option>
+                        </select>
+                    </div>
+
+                    <div className="col ms-2 py-2">
+                        <label htmlFor="sociable-perros" className="form-label">
+                            ¿Tu perro es sociable con otros perros? *
+                        </label>
+                        <select className="form-select" aria-label="sociable-perros"
+                            // value={store.sociablePerros} 
+                            // onChange={handleChangeSociablePerros} 
+                            required>
+                            <option defaultValue="">Elige una opción</option>
+                            <option value="True">Sí</option>
+                            <option value="False">No</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div className="py-2">
-                    <label htmlFor="sociable-niños" className="form-label">
-                        ¿Tu perro es sociable con niños? *
-                    </label>
-                    <select className="form-select" aria-label="sociable-niños"
-                        // value={store.sociableKids} 
-                        // onChange={handleChangeSociableKids} 
-                        required>
-                        <option defaultValue="">Elige una opción</option>
-                        <option value="True">Sí</option>
-                        <option value="False">No</option>
-                    </select>
-                </div>
-
-                <div className="py-2">
-                    <label htmlFor="sociable-perros" className="form-label">
-                        ¿Tu perro es sociable con otros perros? *
-                    </label>
-                    <select className="form-select" aria-label="sociable-perros"
-                        // value={store.sociablePerros} 
-                        // onChange={handleChangeSociablePerros} 
-                        required>
-                        <option defaultValue="">Elige una opción</option>
-                        <option value="True">Sí</option>
-                        <option value="False">No</option>
-                    </select>
-                </div>
-
-                <div className="py-2">
+                <div className="col text-center py-2">
                     <label htmlFor="tamaño" className="form-label">
                         Nivel de actividad
                     </label>
@@ -112,7 +117,7 @@ export const DogInformation2 = () => {
                     </div>
                 </div>
 
-                <div className="py-2">
+                <div className="col py-2">
                     <label htmlFor="microchip" className="form-label">
                         Microchip *
                     </label>

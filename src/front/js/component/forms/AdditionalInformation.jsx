@@ -13,13 +13,11 @@ export const AdditionalInformation = () => {
 
     return (
         <>
-            <label htmlFor="tamaño" className="form-label">
-                Servicios
-            </label>
-            <br /><br />
-            <div className="form-check form-check-inline">
+            <h2 className="py-2">Servicios</h2>
+
+            <div className="form-check form-check-inline py-2">
                 <label className="form-check-label" htmlFor="guarderia-diurna">
-                    Guardería Diurna
+                    Guardería Diurna (de día)
                 </label>
                 <input type="checkbox" className="form-check-input"
                     name="guarderiaDiurna" id="guarderia-diurna"
@@ -34,10 +32,10 @@ export const AdditionalInformation = () => {
                 // onChange={(e) => actions.setPrecioGuarderiaDiurna(e.target.value)}
                 />
             </div>
-            <br /><br />
-            <div className="form-check form-check-inline">
+            
+            <div className="form-check form-check-inline py-2">
                 <label className="form-check-label" htmlFor="paseo">
-                    Paseo
+                    Paseo (por hora)
                 </label>
                 <input type="checkbox" className="form-check-input"
                     name="paseo" id="paseo"
@@ -52,10 +50,10 @@ export const AdditionalInformation = () => {
                 // onChange={(e) => actions.setPrecioPaseo(e.target.value)}
                 />
             </div>
-            <br /><br />
-            <div className="form-check form-check-inline">
+           
+            <div className="form-check form-check-inline py-2">
                 <label className="form-check-label" htmlFor="guarderia-nocturna">
-                    Guardería Nocturna
+                    Guardería Nocturna (de noche)
                 </label>
                 <input type="checkbox" className="form-check-input"
                     name="guarderiaNocturna" id="guarderia-nocturna"

@@ -74,10 +74,10 @@ const SingUpForm = () => {
 
   return (
     <>
-      <section className="py-2 custom-login">
-        <div className="container bg-light">
+      <section className="py-4 custom-login">
+        <div className="container border border-primary custom-form bg-light">
           <div className="row">
-            <h2 className="text-center p-4">{formUser[currentStep].mainTitle}</h2>
+            <h2 className="text-center border border-primary p-4">{formUser[currentStep].mainTitle}</h2>
             {/* IMAGEN */}
             <div className="col-12 col-md-6 py-3">
               <img src={formUser[currentStep].imageSrc} className="img-fluid" />
@@ -85,8 +85,8 @@ const SingUpForm = () => {
             {/* FORMULARIO */}
             <div className="col-12 col-md-6 py-3">
               <form onSubmit={handleSubmit}>
-              <h2 className="text-center">{formUser[currentStep].secondaryTitle}</h2>
-              <p className="text-center">{formUser[currentStep].description}</p>
+                <h2 className="text-center">{formUser[currentStep].secondaryTitle}</h2>
+                <p className="text-center">{formUser[currentStep].description}</p>
                 {formUser[currentStep].component}
                 <div className="d-grid gap-2 d-md-flex justify-content-md-end py-2">
                   <button className="btn btn-primary m-3" onClick={handleBack}> Atrás </button>
