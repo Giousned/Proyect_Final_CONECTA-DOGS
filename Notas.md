@@ -38,3 +38,18 @@ MEJOR --> pipenv run reset_db
 
 # UPGRADE DB
 pipenv run upgrade
+
+<!-- ********************** -->
+# INSTALAR REACT SCROLL
+Inicio rápido: Usar react-scroll
+Creará una aplicación sencilla en este tutorial, pero si desea un resumen rápido de cómo funciona react-scroll, consulte estos pasos resumidos:
+
+Instale react-scroll:
+
+npm i -S react-scroll
+Importe el paquete react-scroll:
+
+import { Link, animateScroll as scroll } from "react-scroll";
+Añada el componente de enlace. El componente <Link /> apuntará a un área concreta de su aplicación:
+
+<Link to="section1">
