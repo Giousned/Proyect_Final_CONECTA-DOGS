@@ -1,0 +1,54 @@
+/* Header | Portada - Styles */
+
+.custom-header {
+    background: url("https://cdn.pixabay.com/photo/2019/10/27/07/31/screen-background-4580904_960_720.jpg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+    background-size: 100%;
+    min-height: 100vh;
+    background-size: cover;
+    background-blend-mode: overlay;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+}
+
+:root {
+    --transition: 0.25s;
+    --spark: 1.8s;
+    --hue: 245;
+}
+
+.button-home {
+    color: white;
+    text-shadow: 0 0 10px whitesmoke;
+    background: #0000006e;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.9em 1.3em;
+    margin: 0.5rem;
+    align-items: center;
+    border: solid black;
+    border-radius: 2rem;
+    box-shadow:
+        0 0 calc(var(--active) * 7em) calc(var(--active) * 3em) hsl(var(--hue) 97% 61% / 0.5),
+        0 0.05em 0 0 hsl(var(--hue) calc(var(--active) * 97%) calc((var(--active) * 50%) + 30%)) inset,
+        0 -0.05em 0 0 hsl(var(--hue) calc(var(--active) * 97%) calc(var(--active) * 10%)) inset;
+    transition: box-shadow var(--transition), scale var(--transition);
+    scale: calc(1 + (var(--active) * 0.1));
+    transform-style: preserve-3d;
+    text-decoration: none;
+}
+
+.button-home:active {
+    scale: 1;
+}
+
+.button-home:is(:hover, :focus-visible) {
+    --active: 1;
+}
+
+.text {
+    translate: 2% -6%;
+    color: hsl(0 0% calc(60% + (var(--active) * 26%)));
+}

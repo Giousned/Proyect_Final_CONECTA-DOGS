@@ -1,0 +1,24 @@
+/* Servicios | Services - Styles */
+
+.custom-card {
+    max-width: 23rem;
+}
+
+.testimonial-card .card-up {
+    height: 100px;
+    overflow: hidden;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+
+.aqua-gradient {
+    background: linear-gradient(40deg, #2096ff, #05ffa3) !important;
+}
+
+.testimonial-card .avatar {
+    width: 150px;
+    margin-top: -70px;
+    overflow: hidden;
+    border: 5px solid #fff;
+    box-shadow: 10px 10px 10px;
+}
