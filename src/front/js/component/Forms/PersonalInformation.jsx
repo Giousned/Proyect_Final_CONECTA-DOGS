@@ -41,7 +41,7 @@ export const PersonalInformation = () => {
                         <input className="form-control" type="text" id="apellidos-usuario"
                             aria-describedby="apellidos_usuario" placeholder="Apellidos del usuario"
                             name="lastnameUser"
-                            value={userInput.lastnameUSer}
+                            value={userInput.lastnameUser}
                             onChange={handleUserInput}
                             required />
                     </div>
@@ -185,7 +185,7 @@ export const PersonalInformation = () => {
                                     <input type="radio" id="propietario"
                                         name="owner"
                                         onChange={handleUserRadio}
-                                        checked={ userInput.owner == "owner"} />
+                                        checked={ userInput.owner == "owner" } />
                                     <label htmlFor="owner">Propietario</label>
                                 </div>
                             </div>
@@ -196,7 +196,7 @@ export const PersonalInformation = () => {
                                     <input type="radio" id="cuidador"
                                         name="carer"
                                         onChange={handleUserRadio}
-                                        checked={userInput.carer == "carer"} />
+                                        checked={ userInput.carer == "carer" } />
                                     <label htmlFor="carer">Cuidador</label>
                                 </div>
                             </div>

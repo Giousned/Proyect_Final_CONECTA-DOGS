@@ -12,8 +12,7 @@ const LogInForm = () => {
   const { userLog, resetLog, handleStatusLog, handleLogCheck, handleUserLogInput } = useUserLog();
 
   const navigate = useNavigate();
-
-  const handleCheckRecordarme = () => actions.setRecordarme(!store.recordarme);
+  
 
   return (
     <>

@@ -18,7 +18,6 @@ export const AppProvider = ({children}) => {
 
 
     const [token, setToken] = useState("");
-    const [userType, setUserType] = useState("");
         
   
     const handleSubmitRegister = (e) => {
@@ -34,11 +33,9 @@ export const AppProvider = ({children}) => {
     const handleSubmitLogIn = (e) => {
       e.preventDefault();
   
-      POSTLogin(userLog.emailLogIn, userLog.passwordLogIn)
+      POSTLogin(userLog.logEmail, userLog.logPassword)
         .then((data) => {
-            setToken(data.token)
-            setEmailInicio("");
-            setPasswordInicio("");
+            setToken(data.token);
             // setUserLog(!userLog.status);
         })
 
@@ -55,14 +52,10 @@ export const AppProvider = ({children}) => {
 
     const store = {
         token,
-        userType,
-
     };
   
     const actions = {    
         setToken,
-        setUserType,
-
 
         handleSubmitRegister,
         handleSubmitLogIn,

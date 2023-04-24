@@ -4,10 +4,26 @@ import { useState } from "react";
 
 const useUserLog = () => {
     
-    const [userLog, setUserLog] = useState({
-        remember: false,
-        status: false});
+    const [userLog, setUserLog] = useState({ remember: false, status: false});
+    
 
+    const handleUserLogInput = (event) => {
+
+        setUserLog((prev) => {
+            const newUserLog = {...prev}
+            newUserLog[event.target.name] = event.target.value;
+            return newUserLog;
+        })
+    } 
+    
+    const handleLogCheck = (event) => {
+
+        setUserLog((prev) => {
+            const newUserLog = {...prev}
+            newUserLog[event.target.name] = !event.target.value;
+            return newUserLog;
+        })
+    } 
 
     // const handleStatusLog = (event) => {
 
@@ -19,24 +35,6 @@ const useUserLog = () => {
 
     // }
 
-    const handleLogCheck = (event) => {
-
-        setUserLog((prev) => {
-            const newUserLog = {...prev}
-            newUserLog[event.target.name] = !event.target.value;
-            return newUserLog;
-        })
-    } 
-
-
-    const handleUserLogInput = (event) => {
-
-        setUserLog((prev) => {
-            const newUserLog = {...prev}
-            newUserLog[event.target.name] = event.target.value;
-            return newUserLog;
-        })
-    } 
 
     const resetLog = () => setUserLog("");
 

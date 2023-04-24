@@ -27,13 +27,6 @@ const formUser = {
     description: "¿Qué servicios ofreces y a qué precio?",
     component: <AdditionalInformation />
   }
-  // 2: {
-  //   imageSrc: "https://cdn.pixabay.com/photo/2020/03/29/04/10/dog-4979248_1280.jpg",
-  //   mainTitle: "REGISTRO DE USUARIOS - PROPIETARIO",
-  //   secondaryTitle: "Información de mi perro",
-  //   description: "Cuéntanos otro poquito acerca de tu perro...",
-  //   component: <DogInformation2 />
-  // },
 }
 
 const lastStep = 2;
@@ -56,18 +49,14 @@ const SingUpForm = () => {
   };
 
 
-  // const handleSubmit = (e) => {
-  //   if (currentStep < 2) {
-  //     e.preventDefault();
-  //     return;
-  //   }
-
-  //   // Función para enviar la información
-
-  // }
-
   const handleSubmit = (e) => {
-    e.preventDefault();
+    if (currentStep < 2) {
+      e.preventDefault();
+      return;
+    }
+
+    // Función para enviar la información
+
   }
 
 
@@ -100,3 +89,12 @@ const SingUpForm = () => {
   );
 };
 export default SingUpForm;
+
+
+  // 2: {
+  //   imageSrc: "https://cdn.pixabay.com/photo/2020/03/29/04/10/dog-4979248_1280.jpg",
+  //   mainTitle: "REGISTRO DE USUARIOS - PROPIETARIO",
+  //   secondaryTitle: "Información de mi perro",
+  //   description: "Cuéntanos otro poquito acerca de tu perro...",
+  //   component: <DogInformation2 />
+  // },
