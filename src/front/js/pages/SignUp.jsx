@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 
-import { PersonalInformation } from "../component/forms/PersonalInformation.jsx";
-import { DogInformation } from "../component/forms/DogInformation.jsx";
-import { DogInformation2 } from "../component/forms/DogInformation2.jsx";
-import { AdditionalInformation } from "../component/forms/AdditionalInformation.jsx";
+import { PersonalInformation } from "../component/Forms/PersonalInformation.jsx";
+import { DogInformation } from "../component/Forms/DogInformation.jsx";
+import { AdditionalInformation } from "../component/Forms/AdditionalInformation.jsx";
 
 
 const formUser = {
@@ -22,22 +21,22 @@ const formUser = {
     component: <DogInformation />
   },
   2: {
-    imageSrc: "https://cdn.pixabay.com/photo/2020/03/29/04/10/dog-4979248_1280.jpg",
-    mainTitle: "REGISTRO DE USUARIOS - PROPIETARIO",
-    secondaryTitle: "Información de mi perro",
-    description: "Cuéntanos otro poquito acerca de tu perro...",
-    component: <DogInformation2 />
-  },
-  3: {
     imageSrc: "https://cdn.pixabay.com/photo/2018/04/09/14/17/woman-3304166_1280.jpg",
     mainTitle: "REGISTRO DE USUARIOS - CUIDADOR",
     secondaryTitle: "Información adicional",
     description: "¿Qué servicios ofreces y a qué precio?",
     component: <AdditionalInformation />
   }
+  // 2: {
+  //   imageSrc: "https://cdn.pixabay.com/photo/2020/03/29/04/10/dog-4979248_1280.jpg",
+  //   mainTitle: "REGISTRO DE USUARIOS - PROPIETARIO",
+  //   secondaryTitle: "Información de mi perro",
+  //   description: "Cuéntanos otro poquito acerca de tu perro...",
+  //   component: <DogInformation2 />
+  // },
 }
 
-const lastStep = 3;
+const lastStep = 2;
 const firstStep = 0;
 
 const SingUpForm = () => {

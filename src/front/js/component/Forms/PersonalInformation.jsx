@@ -1,51 +1,25 @@
 import React from "react";
-// import useAppContext from "../../store/AppContext.js";
+
+import useUserInput from "../../hooks/useUserInput.js";
+
 import "./signup-form.css";
 
 export const PersonalInformation = () => {
 
-//   const { store, actions } = useAppContext();
+    const { userInput, resetInput, handleUserInput, handleUserRadio, handleUserCheck, handleUserSelectDate } = useUserInput();
 
-//   const handleChangeLocalidad = (event) => actions.setLocalidad(event.target.value);
-//   const handleCheckPropietario = () => { actions.setPropietario(!store.propietario); if (store.cuidador) actions.setCuidador(false); }
-//   const handleCheckCuidador = () => { actions.setCuidador(!store.cuidador); if (store.propietario) actions.setPropietario(false); }
-  
+ 
     return (
         <>
-        <h5>¿Cómo quieres registrarte?</h5>
-            <p>Elige una opción</p>
-            <div className="row py-2 g-2">
-                <div className="col-md">
-                    <div className="form-floating">
-                        <div className="glowing-register m-2">
-                            <input type="radio" id="propietario" name="perfil"
-                            // onChange={handleCheckPropietario}
-                            // checked={store.propietario}
-                            />
-                            <label htmlFor="propietario">Propietario</label>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md">
-                    <div className="form-floating">
-                        <div className="glowing-register m-2">
-                            <input type="radio" id="cuidador" name="perfil"
-                            // onChange={handleCheckCuidador}
-                            // checked={store.cuidador}
-                            />
-                            <label htmlFor="cuidador">Cuidador</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
+            <h2>Registro: Información Personal</h2>
 
             <div className="d-grid row g-3">
                 <label htmlFor="foto-usuario" className="form-label">
                     Foto de perfil
                     <input className="form-control" type="file" id="foto-usuario"
-                        // value={store.fotoUser}
-                        // onChange={(e) => actions.setFotoUser(e.target.value)}
+                        name="photoUser"
+                        value={userInput.photoUser}
+                        onChange={handleUserInput}
                         />
                 </label>
 
@@ -56,8 +30,9 @@ export const PersonalInformation = () => {
                         </label>
                         <input className="form-control" type="text" id="nombre-usuario"
                             aria-describedby="nombre_usuario" placeholder="Nombre del usuario"
-                            // value={store.nombreUser}
-                            // onChange={(e) => actions.setNombreUser(e.target.value)}
+                            name="nameUser"
+                            value={userInput.nameUser}
+                            onChange={handleUserInput}
                             required /> 
                     </div>
 
@@ -67,8 +42,9 @@ export const PersonalInformation = () => {
                         </label>
                         <input className="form-control" type="text" id="apellidos-usuario"
                             aria-describedby="apellidos_usuario" placeholder="Apellidos del usuario"
-                            // value={store.apellidosUser}
-                            // onChange={(e) => actions.setApellidosUser(e.target.value)}
+                            name="lastnameUser"
+                            value={userInput.lastnameUSer}
+                            onChange={handleUserInput}
                             required />
                     </div>
                 </div>
@@ -80,8 +56,9 @@ export const PersonalInformation = () => {
                     </label>
                     <input className="form-control" type="email" id="emailRegistroUser"
                         placeholder="usuario@ejemplo.com"
-                        // value={store.emailRegistro}
-                        // onChange={(e) => actions.setEmailRegistro(e.target.value)}
+                        name="email"
+                        value={userInput.email}
+                        onChange={handleUserInput}
                         required /> 
                 </div>
 
@@ -91,8 +68,9 @@ export const PersonalInformation = () => {
                     </label>
                     <input className="form-control" type="password" id="passRegistroUser"
                         placeholder="Contraseña"
-                        // value={store.passwordRegistro}
-                        // onChange={(e) => actions.setPasswordRegistro(e.target.value)}
+                        name="password"
+                        value={userInput.password}
+                        onChange={handleUserInput}
                         required />
                 </div>
             </div>
@@ -103,8 +81,9 @@ export const PersonalInformation = () => {
                     </label>
                     <input className="form-control" type="text" id="direccion-usuario"
                         aria-describedby="direccion_usuario" placeholder="Dirección del usuario (Calle y número)"
-                        // value={store.direccion}
-                        // onChange={(e) => actions.setDireccion(e.target.value)}
+                        name="address"
+                        value={userInput.address}
+                        onChange={handleUserInput}
                         required />
                 </div>
 
@@ -115,8 +94,9 @@ export const PersonalInformation = () => {
                         </label>
                         <input className="form-control" type="text" id="codigo-postal-usuario"
                             aria-describedby="codigo_postal_usuario" placeholder="30000"
-                            // value={store.codigoPostal}
-                            // onChange={(e) => actions.setCodigoPostal(e.target.value)}
+                            name="postalCode"
+                            value={userInput.postalCode}
+                            onChange={handleUserInput}
                             required />
                     </div>
 
@@ -124,9 +104,10 @@ export const PersonalInformation = () => {
                         <label htmlFor="provincia-user" className="form-label">
                             Localidad *
                         </label>
-                        <select required name="provincia" id="provincia-user" className="form-select"
-                        // value={store.localidad} 
-                        // onChange={handleChangeLocalidad}
+                        <select required id="provincia-user" className="form-select"
+                            name="province"
+                            value={userInput.province}
+                            onChange={handleUserInput}
                         >
                             <option defaultValue="">Elige Provincia</option>
                             <option value="Álava">Álava</option>
@@ -191,16 +172,50 @@ export const PersonalInformation = () => {
                     </label>
                     <input className="form-control" type="tel" id="telefono-user"
                         aria-describedby="telefono" placeholder="666123456"
-                        // value={store.telefono}
-                        // onChange={(e) => actions.setTelefono(e.target.value)}
+                        name="phone"
+                        value={userInput.phone}
+                        onChange={handleUserInput}
                         required />
                 </div>
+
+                <h5>¿Cómo quieres registrarte?</h5>
+                    <p>Elige una opción</p>
+                    <div className="row py-2 g-2">
+                        <div className="col-md">
+                            <div className="form-floating">
+                                <div className="glowing-register m-2">
+                                    <input type="radio" id="propietario"
+                                        name="owner"
+                                        onChange={handleUserRadio}
+                                        checked={ userInput.owner == "owner"} />
+                                    <label htmlFor="owner">Propietario</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md">
+                            <div className="form-floating">
+                                <div className="glowing-register m-2">
+                                    <input type="radio" id="cuidador"
+                                        name="carer"
+                                        onChange={handleUserRadio}
+                                        checked={userInput.carer == "carer"} />
+                                    <label htmlFor="carer">Cuidador</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
             </div>
         </>
     );
 }
 
 
+
+    // const handleChangeLocalidad = (event) => actions.setLocalidad(event.target.value);
+    // const handleCheckPropietario = () => { actions.setPropietario(!store.propietario); if (store.cuidador) actions.setCuidador(false); }
+    // const handleCheckCuidador = () => { actions.setCuidador(!store.cuidador); if (store.propietario) actions.setPropietario(false); }
+    // const handleUserType = (event) => { if(event.target.value) actions.setUserType(event.target.name) }
 // value={store.recordarme} onChange={actions.handleCheckRecordarme} checked={store.recordarme}
 // value={store.emailInicio}
 // onChange={(e) => actions.setEmailInicio(e.target.value)}

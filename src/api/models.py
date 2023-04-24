@@ -8,7 +8,7 @@ class User(db.Model):
     email = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(50), unique=False, nullable=False)
     is_active = db.Column(db.Boolean, unique=False, nullable=False)
-    # photo = db.Column(db.String(240), unique=True, nullable=True)
+    # photo = db.Column(db.String(500), unique=True, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GAURDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
     # name = db.Column(db.String(25), unique=False, nullable=False)
     # last_name = db.Column(db.String(50), unique=False, nullable=False)
     # address = db.Column(db.String(150), unique=False, nullable=False)
@@ -65,7 +65,7 @@ class User(db.Model):
 # class Servicios(db.Model):
 #     __tablename__ = "Servicios"
 #     id = db.Column(db.Integer, primary_key=True)
-#     image = db.Column(db.String(240), unique=True, nullable=False)
+#     image = db.Column(db.String(350), unique=True, nullable=False)
 #     title = db.Column(db.String(35), unique=True, nullable=False)
 #     description = db.Column(db.String(500), unique=True, nullable=False)
 
@@ -137,7 +137,7 @@ class User(db.Model):
 #     __tablename__ = "Dog"
 #     id = db.Column(db.Integer, primary_key=True)
 #     name = db.Column(db.String(35), unique=False, nullable=False)
-#     photo = db.Column(db.String(240), unique=True, nullable=True)
+#     photo = db.Column(db.String(500), unique=True, nullable=True)         # USAR API CLOUDINARY, HACER LLAMADA Y GAURDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
 #     breed = db.Column(db.String(50), unique=False, nullable=False)
 #     birthdate = db.Column(db.Date, unique=False, nullable=False)
 #     sex = db.Column(db.String(20), unique=False, nullable=False)

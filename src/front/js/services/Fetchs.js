@@ -1,13 +1,13 @@
 
 const RUTA = "https://3001-giousned-proyectfinalco-iekp8advkta.ws-eu94.gitpod.io"       // CAMBIAR CADA VEZ QUE SE LEVANTE EL SERVER DE BACK, YA QUE LA URL CAMBIA
 
-export const POSTLogin = async (mail, pass) => {
+export const POSTLogin = async (email, password) => {
     const resp = await fetch(
         `${RUTA}/token`,
         {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: mail, password: pass }),
+        body: JSON.stringify({ email, password}),
         }
     );
 
@@ -29,13 +29,13 @@ export const POSTLogin = async (mail, pass) => {
     return data;
   };
 
-export const POSTRegister = async (email, password) => {
+export const POSTRegister = async (informacionUsuario) => {
     const resp = await fetch(
         `${RUTA}/signup`,
         {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ informacionUsuario }),
         }
     );
 

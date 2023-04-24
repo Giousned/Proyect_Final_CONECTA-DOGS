@@ -1,31 +1,16 @@
 import React from "react";
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-// import useAppContext from "../../store/AppContext.js";
+
+import useUserInput from "../../hooks/useUserInput.js";
+
 
 import "./signup-form.css";
 
 export const DogInformation = () => {
 
-    // const { store, actions } = useAppContext();
-
-    // const handleChangeGeneroPerro = (event) => actions.setGeneroPerro(event.target.value);
-
-    // const handleCheckTamanoPequeno = () => actions.setTamanoPequeno(!store.tamanoPequeno);
-    // const handleCheckTamanoMediano = () => actions.setTamanoMediano(!store.tamanoMediano);
-    // const handleCheckTamanoGrande = () => actions.setTamanoGrande(!store.tamanoGrande);
-    // const handleCheckTamanoGigante = () => actions.setTamanoGigante(!store.tamanoGigante);
-
-
-    // DogInformation2
-
-    // const handleChangeEsterilizado = (event) => actions.setEsterilizado(event.target.value);
-    // const handleChangeSociableGatos = (event) => actions.setSociableGatos(event.target.value);
-    // const handleChangeSociableKids = (event) => actions.setSociableKids(event.target.value);
-    // const handleChangeSociablePerros = (event) => actions.setSociablePerros(event.target.value);
-    // const handleCheckActividadBaja = () => actions.setActividadBaja(!actividadBaja);
-    // const handleCheckActividadMedia = () => actions.setActividadMedia(!actividadMedia);
-    // const handleCheckActividadAlta = () => actions.setActividadAlta(!actividadAlta);
+    const { userInput, resetInput, handleUserInput, handleUserRadio, handleUserCheck, handleUserSelectDate } = useUserInput();
 
 
     return (
@@ -35,7 +20,9 @@ export const DogInformation = () => {
                     Foto del perro
                 </label>
                 <input className="form-control" type="file" id="foto-perro"
-                // value={store.fotoPerro} onChange={(e) => actions.setFotoPerro(e.target.value)} 
+                        name="fotoPerro"
+                        value={userInput.fotoPerro}
+                        onChange={handleUserInput}
                 />
 
                 <div className="input-group">
@@ -45,8 +32,9 @@ export const DogInformation = () => {
                         </label>
                         <input type="text" className="form-control" id="nombre-perro"
                             aria-describedby="nombre_perro" placeholder="Nombre del perro"
-                            // value={store.nombrePerro}
-                            // onChange={(e) => actions.setNombrePerro(e.target.value)}
+                            name="nombrePerro"
+                            value={userInput.nombrePerro}
+                            onChange={handleUserInput}
                             required />
                     </div>
 
@@ -56,8 +44,9 @@ export const DogInformation = () => {
                         </label>
                         <input type="text" className="form-control" id="raza-perro"
                             aria-describedby="raza_perro" placeholder="Raza del perro"
-                            // value={store.razaPerro}
-                            // onChange={(e) => actions.setRazaPerro(e.target.value)}
+                            name="raza"
+                            value={userInput.raza}
+                            onChange={handleUserInput}
                             required
                         />
                     </div>
@@ -71,13 +60,12 @@ export const DogInformation = () => {
                         <br />
                         <DatePicker
                             id="cumple-perro" className="text-center form-control"
-                            // selected={store.nacimientoPerro}
-                            // onChange={(date) => actions.setNacimientoPerro(date)}
+                            placeholderText="Ejemplo: 04-2023"
+                            name="nacimientoPerro"
+                            selected={userInput.nacimientoPerro}
+                            onChange={handleUserSelectDate}
                             dateFormat="MM/yyyy" showMonthYearPicker
                         />
-                        {/* <div className="form-text">
-                                Ejemplo: 04-2023
-                            </div> */}
                     </div>
 
                     <div className="col ms-2">
@@ -85,8 +73,9 @@ export const DogInformation = () => {
                             Sexo *
                         </label>
                         <select className="form-select" aria-label="Sexo del perro"
-                        // value={store.generoPerro} 
-                        // onChange={handleChangeGeneroPerro}
+                                name="generoPerro"
+                                value={userInput.generoPerro}
+                                onChange={handleUserInput}
                         >
                             <option defaultValue="">Elige una opción</option>
                             <option value="Hembra">Hembra</option>
@@ -96,47 +85,47 @@ export const DogInformation = () => {
                 </div>
 
                 <div className="col">
-                    <label htmlFor="tamaño" className="form-label">
+                    <label htmlFor="tamañoPerro" className="form-label">
                         Tamaño del perro *
                     </label>
                     <br />
                     <div className="form-check form-check-inline dog-size">
                         <input type="radio" className="form-check-input"
-                            name="inlineRadioOptions" id="inlineRadio1"
-                        // onChange={handleCheckTamanoPequeno}
-                        // checked={store.tamanoPequeno}
+                            name="sizeSmall" id="sizeSmall"
+                            onChange={handleUserRadio}
+                            checked={userInput.sizeSmall}
                         />
-                        <label htmlFor="inlineRadio1" className="form-check-label">
+                        <label htmlFor="sizeSmall" className="form-check-label">
                             <i className="fas fa-paw"></i> Pequeño (0kg - 7kg)
                         </label>
                     </div>
                     <div className="form-check form-check-inline dog-size">
                         <input type="radio" className="form-check-input"
-                            name="inlineRadioOptions" id="inlineRadio2"
-                        // onChange={handleCheckTamanoMediano}
-                        // checked={store.tamanoMediano}
+                            name="sizeMedium" id="sizeMedium"
+                            onChange={handleUserRadio}
+                            checked={userInput.sizeMedium}
                         />
-                        <label htmlFor="inlineRadio2" className="form-check-label">
+                        <label htmlFor="sizeMedium" className="form-check-label">
                             <i className="fas fa-paw"></i> Mediano (8kg - 18kg)
                         </label>
                     </div>
                     <div className="form-check form-check-inline dog-size">
                         <input type="radio" className="form-check-input"
-                            name="inlineRadioOptions" id="inlineRadio3"
-                        // onChange={handleCheckTamanoGrande}
-                        // checked={store.tamanoGrande}
+                            name="sizeBig" id="sizeBig"
+                            onChange={handleUserRadio}
+                            checked={userInput.sizeBig}
                         />
-                        <label htmlFor="inlineRadio3" className="form-check-label">
+                        <label htmlFor="sizeBig" className="form-check-label">
                             <i className="fas fa-paw"></i> Grande (19kg - 45kg)
                         </label>
                     </div>
                     <div className="form-check form-check-inline dog-size">
                         <input type="radio" className="form-check-input"
-                            name="inlineRadioOptions" id="inlineRadio4"
-                        // onChange={handleCheckTamanoGigante}
-                        // checked={store.tamanoGigante}
+                            name="sizeHuge" id="sizeHuge"
+                            onChange={handleUserRadio}
+                            checked={userInput.sizeHuge}
                         />
-                        <label htmlFor="inlineRadio4" className="form-check-label">
+                        <label htmlFor="sizeHuge" className="form-check-label">
                             <i className="fas fa-paw"></i> Gigante (+46kg)
                         </label>
                     </div>
@@ -151,8 +140,9 @@ export const DogInformation = () => {
                             ¿Tu perro está esterilizado? *
                         </label>
                         <select className="form-select" aria-label="estirilizado"
-                            // value={store.esterilizado} 
-                            // onChange={handleChangeEsterilizado} 
+                            name="neutered"
+                            value={userInput.neutered}
+                            onChange={handleUserInput}
                             required>
                             <option defaultValue="">Elige una opción</option>
                             <option value="True">Sí</option>
@@ -165,8 +155,9 @@ export const DogInformation = () => {
                             ¿Tu perro es sociable con gatos? *
                         </label>
                         <select className="form-select" aria-label="sociable-gatos"
-                            // value={store.sociableGatos} 
-                            // onChange={handleChangeSociableGatos} 
+                            name="socialCats"
+                            value={userInput.socialCats}
+                            onChange={handleUserInput}
                             required>
                             <option defaultValue="">Elige una opción</option>
                             <option value="True">Sí</option>
@@ -181,8 +172,9 @@ export const DogInformation = () => {
                             ¿Tu perro es sociable con niños? *
                         </label>
                         <select className="form-select" aria-label="sociable-niños"
-                            // value={store.sociableKids} 
-                            // onChange={handleChangeSociableKids} 
+                            name="socialKids"
+                            value={userInput.socialKids}
+                            onChange={handleUserInput}
                             required>
                             <option defaultValue="">Elige una opción</option>
                             <option value="True">Sí</option>
@@ -195,8 +187,9 @@ export const DogInformation = () => {
                             ¿Tu perro es sociable con otros perros? *
                         </label>
                         <select className="form-select" aria-label="sociable-perros"
-                            // value={store.sociablePerros} 
-                            // onChange={handleChangeSociablePerros} 
+                            name="socialDogs"
+                            value={userInput.socialDogs}
+                            onChange={handleUserInput}
                             required>
                             <option defaultValue="">Elige una opción</option>
                             <option value="True">Sí</option>
@@ -206,15 +199,15 @@ export const DogInformation = () => {
                 </div>
 
                 <div className="col text-center py-1">
-                    <label htmlFor="tamaño" className="form-label">
+                    <label htmlFor="actividad" className="form-label">
                         Nivel de actividad de tu perro
                     </label>
                     <br />
                     <div className="form-check form-check-inline dog-mtn">
                         <input type="radio" className="form-check-input"
-                            name="actividad" id="actividad-baja"
-                        // onChange={handleCheckActividadBaja}
-                        // checked={store.actividadBaja}
+                            name="activityLow" id="activityLow"
+                            onChange={handleUserCheck}
+                            checked={ userInput.activityLow == "activityLow"}
                         />
                         <label className="form-check-label" htmlFor="actividad-baja">
                             Baja
@@ -222,9 +215,9 @@ export const DogInformation = () => {
                     </div>
                     <div className="form-check form-check-inline dog-mtn">
                         <input type="radio" className="form-check-input"
-                            name="actividad" id="actividad-media"
-                        // onChange={handleCheckActividadMedia}
-                        // checked={store.actividadMedia}
+                            name="activityMedium" id="activityMedium"
+                            onChange={handleUserCheck}
+                            checked={ userInput.activityMedium == "activityMedium"}
                         />
                         <label className="form-check-label" htmlFor="actividad-media">
                             Media
@@ -232,9 +225,9 @@ export const DogInformation = () => {
                     </div>
                     <div className="form-check form-check-inline dog-mtn">
                         <input type="radio" className="form-check-input"
-                            name="actividad" id="actividad-alta"
-                        // onChange={handleCheckActividadAlta}
-                        // checked={store.actividadAlta}
+                            name="activityHigh" id="activityHigh"
+                            onChange={handleUserCheck}
+                            checked={ userInput.activityHigh == "activityHigh"}
                         />
                         <label className="form-check-label" htmlFor="actividad-alta">
                             Alta
@@ -249,8 +242,9 @@ export const DogInformation = () => {
                     <input type="text" className="form-control"
                         id="microchip" aria-describedby="micro-chip"
                         placeholder="Microchip del perro"
-                        // value={store.microchip}
-                        // onChange={(e) => actions.setMicrochip(e.target.value)}
+                        name="microchip"
+                        value={userInput.microchip}
+                        onChange={handleUserInput}
                         required />
                 </div>
 
@@ -259,8 +253,9 @@ export const DogInformation = () => {
                         Observaciones
                     </label>
                     <textarea className="form-control" id="FormControlTextarea1" rows="3"
-                    // value={store.observaciones}
-                    // onChange={(e) => actions.setObservaciones(e.target.value)}
+                        name="observations"
+                        value={userInput.observations}
+                        onChange={handleUserInput}
                     ></textarea>
                 </div>
 
@@ -270,6 +265,24 @@ export const DogInformation = () => {
 }
 
 
+
+// const handleChangeGeneroPerro = (event) => actions.setGeneroPerro(event.target.value);
+
+// const handleCheckTamanoPequeno = () => actions.setTamanoPequeno(!store.tamanoPequeno);
+// const handleCheckTamanoMediano = () => actions.setTamanoMediano(!store.tamanoMediano);
+// const handleCheckTamanoGrande = () => actions.setTamanoGrande(!store.tamanoGrande);
+// const handleCheckTamanoGigante = () => actions.setTamanoGigante(!store.tamanoGigante);
+
+
+// // DogInformation2
+
+// const handleChangeEsterilizado = (event) => actions.setEsterilizado(event.target.value);
+// const handleChangeSociableGatos = (event) => actions.setSociableGatos(event.target.value);
+// const handleChangeSociableKids = (event) => actions.setSociableKids(event.target.value);
+// const handleChangeSociablePerros = (event) => actions.setSociablePerros(event.target.value);
+// const handleCheckActividadBaja = () => actions.setActividadBaja(!actividadBaja);
+// const handleCheckActividadMedia = () => actions.setActividadMedia(!actividadMedia);
+// const handleCheckActividadAlta = () => actions.setActividadAlta(!actividadAlta);
 // value={store.recordarme} onChange={actions.handleCheckRecordarme} checked={store.recordarme}
 // value={store.emailInicio}
 // onChange={(e) => actions.setEmailInicio(e.target.value)}
@@ -281,8 +294,3 @@ export const DogInformation = () => {
 // label: PropTypes.string,
 // };
 
-
-
-// value={store.recordarme} onChange={actions.handleCheckRecordarme} checked={store.recordarme}
-// value={store.emailInicio}
-// onChange={(e) => actions.setEmailInicio(e.target.value)}

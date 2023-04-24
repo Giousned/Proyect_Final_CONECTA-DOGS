@@ -1,12 +1,15 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+
 import useAppContext from "../../store/AppContext.js";
+import useUserLog from "../../hooks/useUserLog.js";
 
 import "../LogInForm/login-form.css";
 
 const LogInForm = () => {
 
   const { store, actions } = useAppContext();
+  const { userLog, resetLog, handleStatusLog, handleLogCheck, handleUserLogInput } = useUserLog();
 
   const navigate = useNavigate();
 
@@ -30,15 +33,17 @@ const LogInForm = () => {
 
                 <div className="form-floating m-3">
                   <input type="email" className="form-control" id="emailLogIn" placeholder="name@example.com"
-                    value={store.emailInicio}
-                    onChange={(e) => actions.setEmailInicio(e.target.value)}
+                    name="logEmail"
+                    value={userLog.logEmail}
+                    onChange={handleUserLogInput}
                     required />
                   <label htmlFor="emailLogIn">Correo Electrónico</label>
                 </div>
                 <div className="form-floating m-3">
                   <input type="password" className="form-control" id="passLogIn" placeholder="Password"
-                    value={store.passwordInicio}
-                    onChange={(e) => actions.setPasswordInicio(e.target.value)}
+                    name="logPassword"
+                    value={userLog.logPassword}
+                    onChange={handleUserLogInput}
                     required />
                   <label htmlFor="passLogIn">Contraseña</label>
                 </div>
@@ -46,7 +51,11 @@ const LogInForm = () => {
                 <div>
                   <div className="text-center">
                     <label>
-                      <input type="checkbox" value={store.recordarme} onChange={handleCheckRecordarme} checked={store.recordarme} /> Recordarme
+                      <input type="checkbox"
+                      name="remember" 
+                      value={userLog.remember} 
+                      onChange={handleLogCheck} 
+                      checked={userLog.remember} /> Recordarme
                     </label>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="#">¿Olvidaste tu contraseña?</a>
