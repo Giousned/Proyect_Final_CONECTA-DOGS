@@ -10,6 +10,8 @@ import NavBar from "./component/NavBar/NavBar.jsx";
 import LogInForm from "../js/component/LogInForm/LogInForm.jsx";
 import SignUpForm from "./pages/SignUp.jsx";
 import Footer from "./component/Footer/Footer.jsx";
+import { Contact } from "./component/Contact/Contact.jsx";
+import { ProfileUser } from "./pages/ProfileUser/ProfileUser.jsx";
 
 //create your first component
 const Layout = () => {
@@ -22,8 +24,10 @@ const Layout = () => {
       <BrowserRouter basename={basename}>
         <ScrollToTop>
           <NavBar />
+          <Contact />
           <Routes>
             <Route element={<Home />} path="/" />
+            <Route element={<ProfileUser />} path="/profile-carer" />
             <Route element={<LogInForm />} path="/log-in-form" />
             <Route element={<SignUpForm />} path="/sign-up-form" />
             <Route element={<h1>Not found!</h1>} />

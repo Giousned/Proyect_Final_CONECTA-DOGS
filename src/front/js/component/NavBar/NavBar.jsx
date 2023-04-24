@@ -26,7 +26,7 @@ const NavBar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-end">
               <li className="nav-item">
-                <Link to="#about-us" className="nav-link " aria-current="page">
+                <Link to="/" className="nav-link " aria-current="page">
                   INICIO
                 </Link>
               </li>
@@ -37,8 +37,13 @@ const NavBar = () => {
                 }
               </li>
               <li className="nav-item">
-                <Link to="#" className="nav-link">
+                <button type="button" class="btn text-light me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
                   CONTACTO
+                </button>
+              </li>
+              <li className="nav-item">
+                <Link to="/profile-carer" className="nav-link border rounded px-3">
+                  <i class="fas fa-user-circle fa-1x"></i>
                 </Link>
               </li>
             </ul>

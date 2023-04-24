@@ -71,6 +71,8 @@ def serve_any_other_file(path):
     response.cache_control.max_age = 0 # avoid cache memory
     return response
 
+
+
 @app.route("/signup", methods=["POST"])
 def signup():
     body = request.json
