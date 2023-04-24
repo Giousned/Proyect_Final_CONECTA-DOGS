@@ -14,9 +14,9 @@ export const ProfileUser = () => {
         </button>
       ) : (
         <section className="Profile">
-          <div class="card-container col-12 col-md-7">
+          <div className="card-container col-12 col-md-7">
             <img
-              class="round"
+              className="round"
               src="https://www.goodtherapy.org/thumbs/175x175/blog/blog/wp-content/uploads/2014/08/woman-walking-dog.jpg"
               alt="user"
             />
@@ -46,7 +46,7 @@ export const ProfileUser = () => {
                 </p>
               </div>
             </div>
-            <div class="skills">
+            <div className="skills">
               <h6>Mas sobre mi:</h6>
               <p className="text">
                 Me encantan los perros....blalbfargaetcxqhG3 UWRCU3XWHhxe
