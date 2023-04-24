@@ -5,26 +5,24 @@ import { useState } from "react";
 const useUserLog = () => {
     
     const [userLog, setUserLog] = useState({
-        logEmail,
-        logPassword,
         remember: false,
         status: false});
 
 
-    const handleStatusLog = () => {
+    // const handleStatusLog = (event) => {
 
-        setUserLog((prev) => {
-            const newUserLog = {... prev}
-            newUserLog["status"] = !userLog.status;
-            return newUserLog;
-        })
+    //     setUserLog((prev) => {
+    //         const newUserLog = {...prev}
+    //         newUserLog["status"] = !.status;
+    //         return newUserLog;
+    //     })
 
-    }
+    // }
 
     const handleLogCheck = (event) => {
 
         setUserLog((prev) => {
-            const newUserLog = {... prev}
+            const newUserLog = {...prev}
             newUserLog[event.target.name] = !event.target.value;
             return newUserLog;
         })
@@ -34,18 +32,18 @@ const useUserLog = () => {
     const handleUserLogInput = (event) => {
 
         setUserLog((prev) => {
-            const newUserLog = {... prev}
+            const newUserLog = {...prev}
             newUserLog[event.target.name] = event.target.value;
             return newUserLog;
         })
     } 
 
-    const resetLog = setUserLog("");
+    const resetLog = () => setUserLog("");
 
     return {
         userLog,
         resetLog,
-        handleStatusLog,
+        // setUserLog,
         handleLogCheck,
         handleUserLogInput,
     }

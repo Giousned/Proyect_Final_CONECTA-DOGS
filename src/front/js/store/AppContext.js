@@ -13,7 +13,7 @@ const AppContext = createContext();
 
 export const AppProvider = ({children}) => {
 
-    const { userLog, resetLog, handleStatusLog, handleUserLogInput } = useUserLog();
+    const { userLog, resetLog, handleLogCheck, handleUserLogInput } = useUserLog();
     const { userInput, resetInput, handleUserInput, handleUserRadio, handleUserCheck, handleUserSelectDate } = useUserInput();
 
 
@@ -39,7 +39,7 @@ export const AppProvider = ({children}) => {
             setToken(data.token)
             setEmailInicio("");
             setPasswordInicio("");
-            handleStatusLog();
+            // setUserLog(!userLog.status);
         })
 
         // getMyTasks(email, password);
@@ -49,7 +49,6 @@ export const AppProvider = ({children}) => {
 
         sessionStorage.removeItem("jwt-token");
         setToken("");
-        handleStatusLog();
       };
     
 

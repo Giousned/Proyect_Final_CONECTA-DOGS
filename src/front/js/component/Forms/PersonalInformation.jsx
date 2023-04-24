@@ -11,8 +11,6 @@ export const PersonalInformation = () => {
  
     return (
         <>
-            <h2>Registro: Información Personal</h2>
-
             <div className="d-grid row g-3">
                 <label htmlFor="foto-usuario" className="form-label">
                     Foto de perfil
