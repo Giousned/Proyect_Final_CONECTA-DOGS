@@ -1,17 +1,20 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import useAppContext from "../../store/AppContext.js";
-import useUserLog from "../../hooks/useUserLog.js";
+import useAuthContext from "../../store/AuthContext.js";
 
 import "../LogInForm/login-form.css";
 
 const LogInForm = () => {
 
-  const { store, actions } = useAppContext();
-  const { userLog, resetLog, handleStatusLog, handleLogCheck, handleUserLogInput } = useUserLog();
+  const { storeAuth, actionsAuth } = useAuthContext();
 
   const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    actionsAuth.handleLogIn(e);
+    navigate("/");
+  }
   
 
   return (
@@ -27,22 +30,22 @@ const LogInForm = () => {
             </div>
 
             <div className="col-12 col-md-6 p-2">
-              <form>
+              <form onSubmit={(e) => handleSubmit(e)}>
                 <h2 className="pb-4">Iniciar Sesión</h2>
 
                 <div className="form-floating m-3">
                   <input type="email" className="form-control" id="emailLogIn" placeholder="name@example.com"
                     name="logEmail"
-                    value={userLog.logEmail}
-                    onChange={handleUserLogInput}
+                    value={storeAuth.userInput.logEmail}
+                    onChange={actionsAuth.handleUserInput}
                     required />
                   <label htmlFor="emailLogIn">Correo Electrónico</label>
                 </div>
                 <div className="form-floating m-3">
                   <input type="password" className="form-control" id="passLogIn" placeholder="Password"
                     name="logPassword"
-                    value={userLog.logPassword}
-                    onChange={handleUserLogInput}
+                    value={storeAuth.userInput.logPassword}
+                    onChange={actionsAuth.handleUserInput}
                     required />
                   <label htmlFor="passLogIn">Contraseña</label>
                 </div>
@@ -51,12 +54,12 @@ const LogInForm = () => {
                   <div className="text-center">
                     <label>
                       <input type="checkbox"
+                      className="mb-2"
                       name="remember" 
-                      value={userLog.remember} 
-                      onChange={handleLogCheck} 
-                      checked={userLog.remember} /> Recordarme
+                      value={storeAuth.userInput.remember} 
+                      onChange={actionsAuth.handleUserCheck} 
+                      checked={storeAuth.userInput.remember} /> Recordarme
                     </label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="#">¿Olvidaste tu contraseña?</a>
                   </div>
                   <div className="d-flex justify-content-center p-3 register">
@@ -70,7 +73,7 @@ const LogInForm = () => {
                     Nunca compartiremos su información con nadie.
                   </div>
                 </div>
-                <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={(e) => { actions.handleSubmitLogIn(e); navigate("/") }}>
+                <button className="w-100 btn btn-lg btn-primary" type="submit">
                   Iniciar Sesión
                 </button>
               </form>
@@ -83,4 +86,4 @@ const LogInForm = () => {
 };
 export default LogInForm;
 
-// <Checkbox label="Incluir Mayúscula" handleClick={actions.handleCheckMajus} valor={store.includeMajus} />
+// <Checkbox label="Incluir Mayúscula" handleClick={actionsAuth.handleCheckMajus} valor={storeAuth.includeMajus} />

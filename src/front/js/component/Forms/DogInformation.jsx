@@ -3,14 +3,14 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import useUserInput from "../../hooks/useUserInput.js";
+import useAppContext from "../../store/AppContext";
 
 
 import "./signup-form.css";
 
 export const DogInformation = () => {
 
-    const { userInput, resetInput, handleUserInput, handleUserRadio, handleUserCheck, handleUserSelectDate } = useUserInput();
+    const { store, actions } = useAppContext();
 
 
     return (
@@ -21,8 +21,8 @@ export const DogInformation = () => {
                 </label>
                 <input className="form-control" type="file" id="foto-perro"
                         name="fotoPerro"
-                        value={userInput.fotoPerro}
-                        onChange={handleUserInput}
+                        value={store.userInput.fotoPerro}
+                        onChange={actions.handleUserInput}
                 />
 
                 <div className="input-group">
@@ -33,8 +33,8 @@ export const DogInformation = () => {
                         <input type="text" className="form-control" id="nombre-perro"
                             aria-describedby="nombre_perro" placeholder="Nombre del perro"
                             name="nombrePerro"
-                            value={userInput.nombrePerro}
-                            onChange={handleUserInput}
+                            value={store.userInput.nombrePerro}
+                            onChange={actions.handleUserInput}
                             required />
                     </div>
 
@@ -45,8 +45,8 @@ export const DogInformation = () => {
                         <input type="text" className="form-control" id="raza-perro"
                             aria-describedby="raza_perro" placeholder="Raza del perro"
                             name="raza"
-                            value={userInput.raza}
-                            onChange={handleUserInput}
+                            value={store.userInput.raza}
+                            onChange={actions.handleUserInput}
                             required
                         />
                     </div>
@@ -62,8 +62,8 @@ export const DogInformation = () => {
                             id="cumple-perro" className="text-center form-control"
                             placeholderText="Ejemplo: 04-2023"
                             name="nacimientoPerro"
-                            selected={userInput.nacimientoPerro}
-                            onChange={handleUserSelectDate}
+                            selected={store.userInput.nacimientoPerro}
+                            onChange={actions.handleUserSelectDate}
                             dateFormat="MM/yyyy" showMonthYearPicker
                         />
                     </div>
@@ -74,8 +74,8 @@ export const DogInformation = () => {
                         </label>
                         <select className="form-select" aria-label="Sexo del perro"
                                 name="generoPerro"
-                                value={userInput.generoPerro}
-                                onChange={handleUserInput}
+                                value={store.userInput.generoPerro}
+                                onChange={actions.handleUserInput}
                         >
                             <option defaultValue="">Elige una opción</option>
                             <option value="Hembra">Hembra</option>
@@ -92,8 +92,9 @@ export const DogInformation = () => {
                     <div className="form-check form-check-inline dog-size">
                         <input type="radio" className="form-check-input"
                             name="sizeSmall" id="sizeSmall"
-                            onChange={handleUserRadio}
-                            checked={userInput.sizeSmall}
+                            placeholder="radioSizeDog"
+                            onChange={actions.handleUserRadio}
+                            checked={store.userInput.radioSizeDog == "sizeSmall" }
                         />
                         <label htmlFor="sizeSmall" className="form-check-label">
                             <i className="fas fa-paw"></i> Pequeño (0kg - 7kg)
@@ -102,8 +103,9 @@ export const DogInformation = () => {
                     <div className="form-check form-check-inline dog-size">
                         <input type="radio" className="form-check-input"
                             name="sizeMedium" id="sizeMedium"
-                            onChange={handleUserRadio}
-                            checked={userInput.sizeMedium}
+                            placeholder="radioSizeDog"
+                            onChange={actions.handleUserRadio}
+                            checked={store.userInput.radioSizeDog == "sizeMedium" }
                         />
                         <label htmlFor="sizeMedium" className="form-check-label">
                             <i className="fas fa-paw"></i> Mediano (8kg - 18kg)
@@ -112,8 +114,9 @@ export const DogInformation = () => {
                     <div className="form-check form-check-inline dog-size">
                         <input type="radio" className="form-check-input"
                             name="sizeBig" id="sizeBig"
-                            onChange={handleUserRadio}
-                            checked={userInput.sizeBig}
+                            placeholder="radioSizeDog"
+                            onChange={actions.handleUserRadio}
+                            checked={store.userInput.radioSizeDog == "sizeBig" }
                         />
                         <label htmlFor="sizeBig" className="form-check-label">
                             <i className="fas fa-paw"></i> Grande (19kg - 45kg)
@@ -122,8 +125,9 @@ export const DogInformation = () => {
                     <div className="form-check form-check-inline dog-size">
                         <input type="radio" className="form-check-input"
                             name="sizeHuge" id="sizeHuge"
-                            onChange={handleUserRadio}
-                            checked={userInput.sizeHuge}
+                            placeholder="radioSizeDog"
+                            onChange={actions.handleUserRadio}
+                            checked={store.userInput.radioSizeDog == "sizeHuge" }
                         />
                         <label htmlFor="sizeHuge" className="form-check-label">
                             <i className="fas fa-paw"></i> Gigante (+46kg)
@@ -141,8 +145,8 @@ export const DogInformation = () => {
                         </label>
                         <select className="form-select" aria-label="estirilizado"
                             name="neutered"
-                            value={userInput.neutered}
-                            onChange={handleUserInput}
+                            value={store.userInput.neutered}
+                            onChange={actions.handleUserInput}
                             required>
                             <option defaultValue="">Elige una opción</option>
                             <option value="True">Sí</option>
@@ -156,8 +160,8 @@ export const DogInformation = () => {
                         </label>
                         <select className="form-select" aria-label="sociable-gatos"
                             name="socialCats"
-                            value={userInput.socialCats}
-                            onChange={handleUserInput}
+                            value={store.userInput.socialCats}
+                            onChange={actions.handleUserInput}
                             required>
                             <option defaultValue="">Elige una opción</option>
                             <option value="True">Sí</option>
@@ -173,8 +177,8 @@ export const DogInformation = () => {
                         </label>
                         <select className="form-select" aria-label="sociable-niños"
                             name="socialKids"
-                            value={userInput.socialKids}
-                            onChange={handleUserInput}
+                            value={store.userInput.socialKids}
+                            onChange={actions.handleUserInput}
                             required>
                             <option defaultValue="">Elige una opción</option>
                             <option value="True">Sí</option>
@@ -188,8 +192,8 @@ export const DogInformation = () => {
                         </label>
                         <select className="form-select" aria-label="sociable-perros"
                             name="socialDogs"
-                            value={userInput.socialDogs}
-                            onChange={handleUserInput}
+                            value={store.userInput.socialDogs}
+                            onChange={actions.handleUserInput}
                             required>
                             <option defaultValue="">Elige una opción</option>
                             <option value="True">Sí</option>
@@ -206,8 +210,9 @@ export const DogInformation = () => {
                     <div className="form-check form-check-inline dog-mtn">
                         <input type="radio" className="form-check-input"
                             name="activityLow" id="activityLow"
-                            onChange={handleUserCheck}
-                            checked={ userInput.activityLow == "activityLow"}
+                            placeholder="radioActivity"
+                            onChange={actions.handleUserRadio}
+                            checked={ store.userInput.radioActivity == "activityLow" }
                         />
                         <label className="form-check-label" htmlFor="actividad-baja">
                             Baja
@@ -216,8 +221,9 @@ export const DogInformation = () => {
                     <div className="form-check form-check-inline dog-mtn">
                         <input type="radio" className="form-check-input"
                             name="activityMedium" id="activityMedium"
-                            onChange={handleUserCheck}
-                            checked={ userInput.activityMedium == "activityMedium"}
+                            placeholder="radioActivity"
+                            onChange={actions.handleUserRadio}
+                            checked={ store.userInput.radioActivity == "activityMedium"}
                         />
                         <label className="form-check-label" htmlFor="actividad-media">
                             Media
@@ -226,8 +232,9 @@ export const DogInformation = () => {
                     <div className="form-check form-check-inline dog-mtn">
                         <input type="radio" className="form-check-input"
                             name="activityHigh" id="activityHigh"
-                            onChange={handleUserCheck}
-                            checked={ userInput.activityHigh == "activityHigh"}
+                            placeholder="radioActivity"
+                            onChange={actions.handleUserRadio}
+                            checked={ store.userInput.radioActivity == "activityHigh"}
                         />
                         <label className="form-check-label" htmlFor="actividad-alta">
                             Alta
@@ -243,8 +250,8 @@ export const DogInformation = () => {
                         id="microchip" aria-describedby="micro-chip"
                         placeholder="Microchip del perro"
                         name="microchip"
-                        value={userInput.microchip}
-                        onChange={handleUserInput}
+                        value={store.userInput.microchip}
+                        onChange={actions.handleUserInput}
                         required />
                 </div>
 
@@ -254,8 +261,8 @@ export const DogInformation = () => {
                     </label>
                     <textarea className="form-control" id="FormControlTextarea1" rows="3"
                         name="observations"
-                        value={userInput.observations}
-                        onChange={handleUserInput}
+                        value={store.userInput.observations}
+                        onChange={actions.handleUserInput}
                     ></textarea>
                 </div>
 

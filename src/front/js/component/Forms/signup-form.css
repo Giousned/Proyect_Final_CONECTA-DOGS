@@ -6,7 +6,7 @@
 }
 
 .glowing-register input[type="radio"] {
-  display: none;
+  /* display: none; */
 }
 
 .glowing-register label {
@@ -61,7 +61,7 @@
 }
 
 .dog-mtn input[type="radio"] {
-  display: none;
+  /* display: none; */
 }
 
 .dog-mtn input[type="checkbox"] {

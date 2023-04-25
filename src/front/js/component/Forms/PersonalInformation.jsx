@@ -1,12 +1,12 @@
 import React from "react";
 
-import useUserInput from "../../hooks/useUserInput.js";
+import useAppContext from "../../store/AppContext";
 
 import "./signup-form.css";
 
 export const PersonalInformation = () => {
 
-    const { userInput, resetInput, handleUserInput, handleUserRadio, handleUserCheck, handleUserSelectDate } = useUserInput();
+    const { store, actions } = useAppContext();
 
  
     return (
@@ -16,8 +16,8 @@ export const PersonalInformation = () => {
                     Foto de perfil
                     <input className="form-control" type="file" id="foto-usuario"
                         name="photoUser"
-                        value={userInput.photoUser}
-                        onChange={handleUserInput}
+                        value={store.userInput.photoUser}
+                        onChange={actions.handleUserInput}
                         />
                 </label>
 
@@ -29,8 +29,8 @@ export const PersonalInformation = () => {
                         <input className="form-control" type="text" id="nombre-usuario"
                             aria-describedby="nombre_usuario" placeholder="Nombre del usuario"
                             name="nameUser"
-                            value={userInput.nameUser}
-                            onChange={handleUserInput}
+                            value={store.userInput.nameUser}
+                            onChange={actions.handleUserInput}
                             required /> 
                     </div>
 
@@ -41,8 +41,8 @@ export const PersonalInformation = () => {
                         <input className="form-control" type="text" id="apellidos-usuario"
                             aria-describedby="apellidos_usuario" placeholder="Apellidos del usuario"
                             name="lastnameUser"
-                            value={userInput.lastnameUser}
-                            onChange={handleUserInput}
+                            value={store.userInput.lastnameUser}
+                            onChange={actions.handleUserInput}
                             required />
                     </div>
                 </div>
@@ -55,8 +55,8 @@ export const PersonalInformation = () => {
                     <input className="form-control" type="email" id="emailRegistroUser"
                         placeholder="usuario@ejemplo.com"
                         name="email"
-                        value={userInput.email}
-                        onChange={handleUserInput}
+                        value={store.userInput.email}
+                        onChange={actions.handleUserInput}
                         required /> 
                 </div>
 
@@ -67,8 +67,8 @@ export const PersonalInformation = () => {
                     <input className="form-control" type="password" id="passRegistroUser"
                         placeholder="Contraseña"
                         name="password"
-                        value={userInput.password}
-                        onChange={handleUserInput}
+                        value={store.userInput.password}
+                        onChange={actions.handleUserInput}
                         required />
                 </div>
             </div>
@@ -80,8 +80,8 @@ export const PersonalInformation = () => {
                     <input className="form-control" type="text" id="direccion-usuario"
                         aria-describedby="direccion_usuario" placeholder="Dirección del usuario (Calle y número)"
                         name="address"
-                        value={userInput.address}
-                        onChange={handleUserInput}
+                        value={store.userInput.address}
+                        onChange={actions.handleUserInput}
                         required />
                 </div>
 
@@ -93,8 +93,8 @@ export const PersonalInformation = () => {
                         <input className="form-control" type="text" id="codigo-postal-usuario"
                             aria-describedby="codigo_postal_usuario" placeholder="30000"
                             name="postalCode"
-                            value={userInput.postalCode}
-                            onChange={handleUserInput}
+                            value={store.userInput.postalCode}
+                            onChange={actions.handleUserInput}
                             required />
                     </div>
 
@@ -104,8 +104,8 @@ export const PersonalInformation = () => {
                         </label>
                         <select required id="provincia-user" className="form-select"
                             name="province"
-                            value={userInput.province}
-                            onChange={handleUserInput}
+                            value={store.userInput.province}
+                            onChange={actions.handleUserInput}
                         >
                             <option defaultValue="">Elige Provincia</option>
                             <option value="Álava">Álava</option>
@@ -171,8 +171,8 @@ export const PersonalInformation = () => {
                     <input className="form-control" type="tel" id="telefono-user"
                         aria-describedby="telefono" placeholder="666123456"
                         name="phone"
-                        value={userInput.phone}
-                        onChange={handleUserInput}
+                        value={store.userInput.phone}
+                        onChange={actions.handleUserInput}
                         required />
                 </div>
 
@@ -184,8 +184,9 @@ export const PersonalInformation = () => {
                                 <div className="glowing-register m-2">
                                     <input type="radio" id="propietario"
                                         name="owner"
-                                        onChange={handleUserRadio}
-                                        checked={ userInput.owner == "owner" } />
+                                        placeholder="radioOwnerCarer"
+                                        onChange={actions.handleUserRadio}
+                                        checked={ store.userInput.radioOwnerCarer == "owner" } />
                                     <label htmlFor="owner">Propietario</label>
                                 </div>
                             </div>
@@ -195,8 +196,9 @@ export const PersonalInformation = () => {
                                 <div className="glowing-register m-2">
                                     <input type="radio" id="cuidador"
                                         name="carer"
-                                        onChange={handleUserRadio}
-                                        checked={ userInput.carer == "carer" } />
+                                        placeholder="radioOwnerCarer"
+                                        onChange={actions.handleUserRadio}
+                                        checked={ store.userInput.radioOwnerCarer == "carer" } />
                                     <label htmlFor="carer">Cuidador</label>
                                 </div>
                             </div>

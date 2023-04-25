@@ -14,6 +14,10 @@ import { ProfileUser } from "./pages/ProfileUser/ProfileUser.jsx";
 import { UserProfile } from "./pages/ProfileUser/UserProfile.jsx";
 import Footer from "./component/Footer/Footer.jsx";
 
+//import context
+import { AppProvider } from "../js/store/AppContext.js"
+
+
 //create your first component
 const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -24,21 +28,19 @@ const Layout = () => {
     <div>
       <BrowserRouter basename={basename}>
         <ScrollToTop>
-          <NavBar />
-          <Contact />
-          <Routes>
-            <Route element={<Home />} path="/" />
-            <Route element={<LogInForm />} path="/log-in-form" />
-            <Route element={<SignUpForm />} path="/sign-up-form" />
-            <Route element={<UserProfile />} path="/user-profile" />
-            <Route element={<ProfileUser />} path="/profile-carer" />
-            <Route element={<h1>Not found!</h1>} />
-          </Routes>
-          {/*
-            <Route element={<Demo />} path="/demo" />
-            <Route element={<Signle />} path="/Signle/:theid" />
-           */}
-          <Footer />
+          <AppProvider>
+            <NavBar />
+            <Contact />
+              <Routes>
+                <Route element={<Home />} path="/" />
+                <Route element={<LogInForm />} path="/log-in-form" />
+                <Route element={<SignUpForm />} path="/sign-up-form" />
+                <Route element={<UserProfile />} path="/user-profile" />
+                <Route element={<ProfileUser />} path="/profile-carer" />
+                <Route element={<h1>Not found!</h1>} />
+              </Routes>
+            <Footer />
+          </AppProvider>
         </ScrollToTop>
       </BrowserRouter>
     </div>
@@ -46,3 +48,9 @@ const Layout = () => {
 };
 
 export default Layout;
+
+
+{/*
+  <Route element={<Demo />} path="/demo" />
+  <Route element={<Signle />} path="/Signle/:theid" />
+*/}
