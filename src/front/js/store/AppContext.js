@@ -13,9 +13,12 @@ const AppContext = createContext();
 
 export const AppProvider = ({children}) => {
 
-    const { userLog, resetLog, handleLogCheck, handleUserLogInput } = useUserLog();
+    const { userLog, resetLog, handleLogCheck, handleUserLogInput, handleStatusLog } = useUserLog();
     const { userInput, resetInput, handleUserInput, handleUserRadio, handleUserCheck, handleUserSelectDate } = useUserInput();
 
+    const [userLogIn, setUserLogIn] = useState(false);
+
+    console.log(userLog)
 
     const [token, setToken] = useState("");
         
@@ -24,19 +27,21 @@ export const AppProvider = ({children}) => {
       e.preventDefault();
   
       POSTRegister(userInput)
-        .then(() => {
-            resetInput;
-        })
+        // .then(() => {
+        //     ;
+        // })
 
     };
   
     const handleSubmitLogIn = (e) => {
       e.preventDefault();
+
+      console.log(userLog)
   
       POSTLogin(userLog.logEmail, userLog.logPassword)
         .then((data) => {
             setToken(data.token);
-            // setUserLog(!userLog.status);
+            setUserLogIn(true);
         })
 
         // getMyTasks(email, password);
@@ -46,12 +51,15 @@ export const AppProvider = ({children}) => {
 
         sessionStorage.removeItem("jwt-token");
         setToken("");
+        setUserLogIn(false);
       };
     
 
 
     const store = {
         token,
+        userLog,
+        userLogIn,
     };
   
     const actions = {    
@@ -60,6 +68,8 @@ export const AppProvider = ({children}) => {
         handleSubmitRegister,
         handleSubmitLogIn,
         handleLogOut,
+        handleUserLogInput,
+        handleLogCheck,
     };
 
     return (

@@ -2,15 +2,17 @@ import React from "react";
 
 import { useState } from "react";
 
-const useUserInput = () => {
+const useUserInput = (initialValue = {}) => {
     
     const [userInput, setUserInput] = useState({});
 
     const handleUserInput = (event) => {
 
+        const target = event.target
+
         setUserInput((prev) => {
             const newUserInput = {...prev}
-            newUserInput[event.target.name] = event.target.value;
+            newUserInput[target.name] = target.value;
             return newUserInput;
         })
 
@@ -18,9 +20,11 @@ const useUserInput = () => {
 
     const handleUserSelectDate = (event) => {
 
+        const target = event.target
+
         setUserInput((prev) => {
             const newUserInput = {...prev}
-            newUserInput[event.target.name] = event.target.selected;
+            newUserInput[target.name] = target.selected;
             return newUserInput;
         })
 
@@ -28,23 +32,25 @@ const useUserInput = () => {
 
     const handleUserRadio = (event) => {
 
+        const target = event.target
+
         setUserInput((prev) => {
             const newUserInput = {...prev}
-            if(event.target.value) newUserInput[event.target.name] = event.target.name;
+            if(target.value) newUserInput[target.name] = target.name;
             return newUserInput;
         })
     }
 
-    const handleUserCheck = (event) => {
+    const handleUserCheck = ({target}) => {
 
         setUserInput((prev) => {
             const newUserInput = {...prev}
-            newUserInput[event.target.name] = !event.target.value;
+            newUserInput[target.name] = target.checked;
             return newUserInput;
         })
     } 
 
-    const resetInput = () => setUserInput("");
+    const resetInput = () => setUserInput(initialValue);
 
     return {
         userInput,

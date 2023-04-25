@@ -9,9 +9,13 @@ import "../LogInForm/login-form.css";
 const LogInForm = () => {
 
   const { store, actions } = useAppContext();
-  const { userLog, resetLog, handleStatusLog, handleLogCheck, handleUserLogInput } = useUserLog();
 
   const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    actions.handleSubmitLogIn(e);
+    navigate("/");
+  }
   
 
   return (
@@ -27,22 +31,22 @@ const LogInForm = () => {
             </div>
 
             <div className="col-12 col-md-6 p-2">
-              <form>
+              <form onSubmit={(e) => handleSubmit(e)}>
                 <h2 className="pb-4">Iniciar Sesión</h2>
 
                 <div className="form-floating m-3">
                   <input type="email" className="form-control" id="emailLogIn" placeholder="name@example.com"
                     name="logEmail"
-                    value={userLog.logEmail}
-                    onChange={handleUserLogInput}
+                    value={store.userLog.logEmail}
+                    onChange={actions.handleUserLogInput}
                     required />
                   <label htmlFor="emailLogIn">Correo Electrónico</label>
                 </div>
                 <div className="form-floating m-3">
                   <input type="password" className="form-control" id="passLogIn" placeholder="Password"
                     name="logPassword"
-                    value={userLog.logPassword}
-                    onChange={handleUserLogInput}
+                    value={store.userLog.logPassword}
+                    onChange={actions.handleUserLogInput}
                     required />
                   <label htmlFor="passLogIn">Contraseña</label>
                 </div>
@@ -51,12 +55,12 @@ const LogInForm = () => {
                   <div className="text-center">
                     <label>
                       <input type="checkbox"
+                      className="mb-2"
                       name="remember" 
-                      value={userLog.remember} 
-                      onChange={handleLogCheck} 
-                      checked={userLog.remember} /> Recordarme
+                      value={store.userLog.remember} 
+                      onChange={actions.handleLogCheck} 
+                      checked={store.userLog.remember} /> Recordarme
                     </label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="#">¿Olvidaste tu contraseña?</a>
                   </div>
                   <div className="d-flex justify-content-center p-3 register">
@@ -70,7 +74,7 @@ const LogInForm = () => {
                     Nunca compartiremos su información con nadie.
                   </div>
                 </div>
-                <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={(e) => { actions.handleSubmitLogIn(e); navigate("/") }}>
+                <button className="w-100 btn btn-lg btn-primary" type="submit">
                   Iniciar Sesión
                 </button>
               </form>

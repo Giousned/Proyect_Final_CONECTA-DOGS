@@ -2,48 +2,54 @@ import React from "react";
 
 import { useState } from "react";
 
-const useUserLog = () => {
+const useUserLog = (initialValue = {remember: false, status: false}) => {
     
-    const [userLog, setUserLog] = useState({ remember: false, status: false});
+    const [userLog, setUserLog] = useState(initialValue);         // remember: false, status: false
     
 
     const handleUserLogInput = (event) => {
 
+        const target = event.target
+
         setUserLog((prev) => {
             const newUserLog = {...prev}
-            newUserLog[event.target.name] = event.target.value;
+            newUserLog[target.name] = target.value;
             return newUserLog;
         })
     } 
     
     const handleLogCheck = (event) => {
 
+        const target = event.target
+
+        console.log(target)
+
         setUserLog((prev) => {
             const newUserLog = {...prev}
-            newUserLog[event.target.name] = !event.target.value;
+            newUserLog[target.name] = target.checked;
             return newUserLog;
         })
     } 
 
-    // const handleStatusLog = (event) => {
+    const handleStatusLog = () => {
 
-    //     setUserLog((prev) => {
-    //         const newUserLog = {...prev}
-    //         newUserLog["status"] = !.status;
-    //         return newUserLog;
-    //     })
+        setUserLog((prev) => {
+            const newUserLog = {...prev}
+            newUserLog["status"] = !newUserLog.status;
+            return newUserLog;
+        })
 
-    // }
+    }
 
 
-    const resetLog = () => setUserLog("");
+    const resetLog = (newValue = initialValue) => setUserLog(newValue);
 
     return {
         userLog,
         resetLog,
-        // setUserLog,
         handleLogCheck,
         handleUserLogInput,
+        handleStatusLog,
     }
 }
 
