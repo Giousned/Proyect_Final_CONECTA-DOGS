@@ -1,6 +1,6 @@
 import React from "react";
 
-import { POSTLogin, POSTRegister, GETToken } from "../services/Fetchs.js";
+import { POSTRegister} from "../services/Fetchs.js";
 
 import { createContext, useContext, useState } from "react";
 
@@ -27,8 +27,6 @@ export const AppProvider = ({children}) => {
 
     };
 
-
-  
 
     
 
