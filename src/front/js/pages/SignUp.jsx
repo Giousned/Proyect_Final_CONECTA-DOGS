@@ -49,7 +49,8 @@ const SingUpForm = () => {
       e.preventDefault();
       return;
     }
-    e.preventDefault();
+
+    // e.preventDefault();
 
     actions.handleRegister(e);
 
@@ -88,7 +89,10 @@ const SingUpForm = () => {
                   {formUser[currentStep].component}
                 <div className="d-grid gap-2 d-md-flex justify-content-md-end py-2">
                   <button className="btn btn-primary m-3" onClick={handleBack}> Atrás </button>
-                  <button className="btn btn-primary m-3" onClick={handleNext}> Siguiente </button>
+                  {currentStep < 1 
+                    ? <button className="btn btn-primary m-3" onClick={handleNext}> Siguiente </button>
+                    : <button className="btn btn-primary m-3" onClick={handleSubmit}> Enviar </button>
+                  }      
                 </div>
               </form>
             </div>

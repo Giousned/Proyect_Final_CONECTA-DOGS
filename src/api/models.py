@@ -14,9 +14,9 @@ class User(db.Model):
     # address = db.Column(db.String(150), unique=False, nullable=False)
     # city = db.Column(db.String(35), unique=False, nullable=False)
     # postal_code = db.Column(db.Integer, unique=False, nullable=False)
+    # phone_number = db.Column(db.Integer, unique=False, nullable=False)
     # country = db.Column(db.String(50), unique=False, nullable=False)
     # birthdate = db.Column(db.Date, unique=False, nullable=False)
-    # phone_number = db.Column(db.Integer, unique=False, nullable=False)
 
 #     asistant = relationship("Cuidador", back_populates="user")
 #     owner = relationship("Propietario", back_populates="user")
@@ -42,14 +42,14 @@ class User(db.Model):
         }
 
 
-# class Cuidador(db.Model):
-#     __tablename__ = "Cuidador"
+# class Carer(db.Model):
+#     __tablename__ = "Carer"
 #     id = db.Column(db.Integer, primary_key=True)
 
 #     user_id = db.Column(db.Integer, ForeignKey("User.id"))
 
 #     user = relationship("User", back_populates="asistant")
-#     tarif = relationship("Tarifas", back_populates="cost")
+#     tarif = relationship("Tarifs", back_populates="cost")
 
 
 #     def __repr__(self):
@@ -62,8 +62,8 @@ class User(db.Model):
 #         }
 
 
-# class Servicios(db.Model):
-#     __tablename__ = "Servicios"
+# class Services(db.Model):
+#     __tablename__ = "Services"
 #     id = db.Column(db.Integer, primary_key=True)
 #     image = db.Column(db.String(350), unique=True, nullable=False)
 #     title = db.Column(db.String(35), unique=True, nullable=False)
@@ -71,7 +71,7 @@ class User(db.Model):
 
 #     cuidador_id = db.Column(db.Integer, ForeignKey("Cuidador.id"))
 
-#     tarif = relationship("Tarifas", back_populates="service")
+#     tarif = relationship("Tarifs", back_populates="service")
 
 
 #     def __repr__(self):
@@ -87,16 +87,16 @@ class User(db.Model):
 #         }
 
 
-# class Tarifas(db.Model):
-#     __tablename__ = "Tarifas"
+# class Tarifs(db.Model):
+#     __tablename__ = "Tarifs"
 #     id = db.Column(db.Integer, primary_key=True)
 #     price = db.Column(db.Integer, unique=False, nullable=False)
 
 #     cuidador_id = db.Column(db.Integer, ForeignKey("Cuidador.id"))
 #     servicios_id = db.Column(db.Integer, ForeignKey("Servicios.id"))
 
-#     cost = relationship("Cuidador", back_populates="tarif")
-#     service = relationship("Servicios", back_populates="tarif")
+#     cost = relationship("Carer", back_populates="tarif")
+#     service = relationship("Services", back_populates="tarif")
 
 
 #     def __repr__(self):
@@ -111,8 +111,8 @@ class User(db.Model):
 #         }
 
 
-# class Propietario(db.Model):
-#     __tablename__ = "Propietario"
+# class Owner(db.Model):
+#     __tablename__ = "Owner"
 #     id = db.Column(db.Integer, primary_key=True)
 
 #     user_id = Column(Integer, ForeignKey("User.id"))
@@ -152,7 +152,7 @@ class User(db.Model):
 
 #     propietario_id = Column(Integer, ForeignKey("Propietario.id"))
 
-#     owner = relationship("Propietario", back_populates="pet")
+#     owner = relationship("Owner", back_populates="pet")
 
 
 #     def __repr__(self):

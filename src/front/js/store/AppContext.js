@@ -17,8 +17,10 @@ export const AppProvider = ({children}) => {
 
     const handleRegister = (e) => {
       e.preventDefault();
+
+      console.log(userInput)
   
-      POSTRegister(userInput)
+    //   POSTRegister(userInput)
         // .then(() => {
         //     ;
         // })
