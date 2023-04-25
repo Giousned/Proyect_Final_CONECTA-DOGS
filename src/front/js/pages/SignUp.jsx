@@ -38,19 +38,17 @@ const SingUpForm = () => {
   const handleNext = () => {
     if (currentStep == lastStep) { return; }
     setCurrentStep((prev) => prev + 1);
-    console.log(currentStep);
   };
 
 
   const handleBack = () => {
     if (currentStep == firstStep) { return; }
     setCurrentStep((prev) => prev - 1);
-    console.log(currentStep);
   };
 
 
   const handleSubmit = (e) => {
-    if (currentStep < 2) {
+    if (currentStep <= 2) {
       e.preventDefault();
       return;
     }
@@ -58,7 +56,6 @@ const SingUpForm = () => {
     // Función para enviar la información
 
   }
-
 
   return (
     <>

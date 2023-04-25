@@ -1,0 +1,83 @@
+/* Perfil de Usuario | User Profile - Styles */
+
+.header {
+  position: relative;
+  width: 100%;
+  height: 18rem;
+  border-bottom: 3px solid #fff;
+  background-color: black;
+  background-position: center;
+  background-image: url("https://cdn.pixabay.com/photo/2014/04/04/14/55/dog-313357_960_720.jpg");
+  background-size: cover;
+}
+
+.header button {
+  position: relative;
+  float: right;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 100%;
+  padding: 0px 15px 0px 15px;
+  top: 10rem;
+  margin-right: 2rem;
+  transition: 0.2s;
+  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 2px rgba(0, 0, 0, .2);
+  box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 2px rgba(0, 0, 0, .2);
+}
+
+.header button:hover {
+  width: 180px;
+  height: 50px;
+  margin-right: 15px;
+  border-radius: 1000px;
+  padding: 0px 15px 0px 15px;
+  bottom: 5px;
+  right: 5px;
+  transition: 0.2s;
+}
+
+.header button i {
+  color: white;
+}
+
+.header button:hover i {
+  display: none;
+  transition: 1s;
+}
+
+.header button .text {
+  display: none;
+  font-weight: 600;
+  transition: 1s;
+}
+
+.header button:hover .text {
+  display: inline-block;
+  transition: 1s;
+}
+
+.avatar-user {
+  z-index: 1;
+  position: relative;
+  margin: auto;
+  margin-top: -80px;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 100%;
+  border: 4px solid rgba(255, 255, 255, 1);
+  background: url("https://avatars.githubusercontent.com/u/116319632?v=4");
+  background-size: cover;
+  background-position: center;
+}
+
+.tituloperfil h1 {
+  color: black;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.tituloperfil p {
+  text-align: center;
+  text-transform: uppercase;
+  color: black;
+}
