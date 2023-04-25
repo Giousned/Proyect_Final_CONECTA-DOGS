@@ -17,15 +17,10 @@ const NavBar = () => {
               <img src={Logo} className="logo" />
             </strong>
           </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
+          <button className="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -37,37 +32,29 @@ const NavBar = () => {
               </li>
               <li className="nav-item">
                 {store.userLog ? (
-                  <Link
-                    to="/"
-                    className="nav-link"
-                    onClick={actions.handleLogOut}
-                  >
-                    {" "}
-                    LOGOUT{" "}
+                  <Link to="/" className="nav-link" onClick={actions.handleLogOut}>
+                    {" "}LOGOUT{" "}
                   </Link>
                 ) : (
                   <Link to="/log-in-form" className="nav-link">
-                    {" "}
-                    INGRESAR{" "}
+                    {" "}INGRESAR{" "}
                   </Link>
                 )}
               </li>
               <li className="nav-item">
-                <button
-                  type="button"
-                  className="btn text-light me-2"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
-                >
+                <button className="btn text-light me-2" type="button"
+                  data-bs-toggle="modal" data-bs-target="#exampleModal">
                   CONTACTO
                 </button>
               </li>
               <li className="nav-item">
-                <Link
-                  to="/profile-carer"
-                  className="nav-link border rounded px-3"
-                >
+                <Link to="/profile-carer" className="nav-link border rounded px-3 mx-1">
                   <i className="fas fa-user-circle fa-1x"></i>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/user-profile" className="nav-link border rounded px-3 mx-1">
+                  <i className="fas fa-user fa-1x"></i>
                 </Link>
               </li>
             </ul>

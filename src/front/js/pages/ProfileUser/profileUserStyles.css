@@ -14,10 +14,10 @@
   margin: 0;
 }
 
-p {
+/* p {
   font-size: 14px;
   line-height: 21px;
-}
+} */
 
 .card-container {
   background-color: white;
@@ -30,6 +30,7 @@ p {
   max-width: 100%;
   text-align: center;
 }
+
 .name {
   text-align: center;
 }
@@ -83,6 +84,7 @@ button.primary {
   margin-bottom: 10px;
   margin-left: 60px;
 }
+
 .icono {
   width: 30px;
   height: 30px;
@@ -92,6 +94,7 @@ button.primary {
 .location {
   font-size: 20px;
 }
+
 .button {
   margin-top: 100px;
 }
