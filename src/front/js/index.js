@@ -9,7 +9,7 @@ import "../styles/index.css";
 import Layout from "./layout";
 
 //import context
-import { AppProvider } from "../../front/js/store/AppContext.js";
+import { AuthProvider } from "./store/AuthContext.js";
 
 //render your react application
-ReactDOM.render(<AppProvider><Layout /></AppProvider>, document.querySelector("#app"));
+ReactDOM.render(<AuthProvider><Layout /></AuthProvider>, document.querySelector("#app"));

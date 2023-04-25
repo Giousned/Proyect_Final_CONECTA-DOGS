@@ -50,15 +50,15 @@ const useUserInput = (initialValue = {}) => {
         })
     } 
 
-    const resetInput = () => setUserInput(initialValue);
+    const resetInput = (newValue = initialValue) => setUserInput(newValue);
 
     return {
         userInput,
         resetInput,
         handleUserInput,
+        handleUserSelectDate,
         handleUserRadio,
         handleUserCheck,
-        handleUserSelectDate,
     }
 }
 

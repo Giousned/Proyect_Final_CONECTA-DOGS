@@ -1,5 +1,5 @@
 
-const RUTA = "https://3001-giousned-proyectfinalco-iekp8advkta.ws-eu94.gitpod.io"       // CAMBIAR CADA VEZ QUE SE LEVANTE EL SERVER DE BACK, YA QUE LA URL CAMBIA
+const RUTA = "https://3001-giousned-proyectfinalco-n2vh2xmouju.ws-eu95.gitpod.io"       // CAMBIAR CADA VEZ QUE SE LEVANTE EL SERVER DE BACK, YA QUE LA URL CAMBIA
 
 export const POSTLogin = async (email, password) => {
     const resp = await fetch(

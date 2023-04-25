@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import useAppContext from "../../store/AppContext.js";
-
+import useAuthContext from "../../store/AuthContext";
 
 import Logo from "../../../img/conectadogs-logo-white.png";
 import "../NavBar/navbar.css";
 
 const NavBar = () => {
 
-  const { store, actions } = useAppContext();
-
-
+  const { storeAuth, actionsAuth } = useAuthContext();
 
   return (
     <>
@@ -41,21 +38,10 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                {store.userLogIn ? (
-                  <Link
-                    to="/"
-                    className="nav-link"
-                    onClick={actions.handleLogOut}
-                  >
-                    {" "}
-                    LOGOUT{" "}
-                  </Link>
-                ) : (
-                  <Link to="/log-in-form" className="nav-link">
-                    {" "}
-                    INGRESAR{" "}
-                  </Link>
-                )}
+                {storeAuth.userLog 
+                  ? <Link to="/" className="nav-link" onClick={actionsAuth.handleLogOut}> LOGOUT </Link>
+                  : <Link to="/log-in-form" className="nav-link"> INGRESAR </Link>
+                }
               </li>
               <li className="nav-item">
                 <button
