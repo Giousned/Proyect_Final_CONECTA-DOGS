@@ -15,7 +15,7 @@ export const AppProvider = ({children}) => {
     const { userInput, resetInput, handleUserInput, handleUserRadio, handleUserCheck, handleUserSelectDate } = useUserInput();
 
 
-    const handleSubmitRegister = (e) => {
+    const handleRegister = (e) => {
       e.preventDefault();
   
       POSTRegister(userInput)
@@ -42,7 +42,7 @@ export const AppProvider = ({children}) => {
         handleUserCheck,
         handleUserSelectDate,
 
-        handleSubmitRegister,
+        handleRegister,
     };
 
     return (

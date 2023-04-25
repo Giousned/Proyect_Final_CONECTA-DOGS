@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import { PersonalInformation } from "../component/Forms/PersonalInformation.jsx";
 import { DogInformation } from "../component/Forms/DogInformation.jsx";
 import { AdditionalInformation } from "../component/Forms/AdditionalInformation.jsx";
+
+import useAppContext from "../store/AppContext.js";
 
 
 const formUser = {
@@ -33,29 +37,38 @@ const lastStep = 2;
 const firstStep = 0;
 
 const SingUpForm = () => {
+
+  const { store, actions } = useAppContext();
+
   const [currentStep, setCurrentStep] = useState(0);
 
-  const handleNext = () => {
-    if (currentStep == lastStep) { return; }
-    setCurrentStep((prev) => prev + 1);
-  };
-
-
-  const handleBack = () => {
-    if (currentStep == firstStep) { return; }
-    setCurrentStep((prev) => prev - 1);
-  };
-
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     if (currentStep <= 2) {
       e.preventDefault();
       return;
     }
+    e.preventDefault();
 
-    // Función para enviar la información
+    actions.handleRegister(e);
 
+    navigate("/");
   }
+
+  const handleNext = () => {
+    if (currentStep == lastStep) { return; }
+    if (store.userInput.radioOwnerCarer == "owner") { setCurrentStep(1) }
+    else if (store.userInput.radioOwnerCarer == "carer") { setCurrentStep(2) }
+    else return;
+    // setCurrentStep((prev) => prev + 1);
+  };
+
+  const handleBack = () => {
+    if (currentStep == firstStep) { return; }
+    setCurrentStep((prev) => prev - 1);
+  };
+
 
   return (
     <>
@@ -72,7 +85,7 @@ const SingUpForm = () => {
               <form onSubmit={handleSubmit}>
                 <h2 className="text-center">{formUser[currentStep].secondaryTitle}</h2>
                 <p className="text-center">{formUser[currentStep].description}</p>
-                {formUser[currentStep].component}
+                  {formUser[currentStep].component}
                 <div className="d-grid gap-2 d-md-flex justify-content-md-end py-2">
                   <button className="btn btn-primary m-3" onClick={handleBack}> Atrás </button>
                   <button className="btn btn-primary m-3" onClick={handleNext}> Siguiente </button>

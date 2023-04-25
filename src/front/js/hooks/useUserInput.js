@@ -31,12 +31,13 @@ const useUserInput = (initialValue = {}) => {
     }
 
     const handleUserRadio = (event) => {
-
+        
         const target = event.target
-
+        
         setUserInput((prev) => {
             const newUserInput = {...prev}
-            if(target.value) newUserInput[target.name] = target.name;
+            if(target.value) newUserInput[target.placeholder] = target.name;
+            console.log(newUserInput)
             return newUserInput;
         })
     }
