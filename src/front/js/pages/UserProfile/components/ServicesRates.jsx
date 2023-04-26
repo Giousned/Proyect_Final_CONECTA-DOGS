@@ -1,34 +1,34 @@
 import React from "react";
-import { Link, animateScroll as scroll } from "react-scroll";
+import useUserInput from "../../../hooks/useUserInput";
 
-import useAppContext from "../../store/AppContext";
-import "./signup-form.css";
+const ServicesRates = () => {
 
-window.scrollTo(0, 0);
-
-export const AdditionalInformation = () => {
-
-    const { store, actions } = useAppContext();
+    const {
+        userInput,
+        resetInput,
+        handleUserInput,
+        handleUserCheck,
+        handleUserSelectDate,
+    } = useUserInput({ name: "Guillermo", lastname: "Hola" });
 
     return (
         <>
-            <h2 className="py-2">Servicios</h2>
             <div className="form-check form-check-inline py-2">
                 <label className="form-check-label" htmlFor="guarderia-diurna">
                     Guardería Diurna (Alojamiento de día)
                 </label>
                 <input type="checkbox" className="form-check-input"
                     name="nurseryDay" id="guarderia-diurna"
-                    value={store.userInput.nurseryDay}
-                    onChange={actions.handleUserCheck}
-                    checked={store.userInput.nurseryDay}
+                    value={userInput.nurseryDay}
+                    onChange={handleUserCheck}
+                    checked={userInput.nurseryDay}
                 />
                 <input type="text" className="form-control"
                     id="precio-guarderia-diurna" aria-describedby="precio_guarderia_diurna"
                     placeholder="Precio en €"
                     name="priceNurseryDay"
-                    value={store.userInput.priceNurseryDay}
-                    onChange={actions.handleUserInput}
+                    value={userInput.priceNurseryDay}
+                    onChange={handleUserInput}
                 />
             </div>
 
@@ -38,16 +38,16 @@ export const AdditionalInformation = () => {
                 </label>
                 <input type="checkbox" className="form-check-input"
                     name="walk" id="paseo"
-                    value={store.userInput.walk}
-                    onChange={actions.handleUserCheck}
-                    checked={store.userInput.walk}
+                    value={userInput.walk}
+                    onChange={handleUserCheck}
+                    checked={userInput.walk}
                 />
                 <input type="text" className="form-control"
                     id="precio-paseo" aria-describedby="precio_paseo"
                     placeholder="Precio en €"
                     name="priceWalk"
-                    value={store.userInput.priceWalk}
-                    onChange={actions.handleUserInput}
+                    value={userInput.priceWalk}
+                    onChange={handleUserInput}
                 />
             </div>
 
@@ -57,23 +57,20 @@ export const AdditionalInformation = () => {
                 </label>
                 <input type="checkbox" className="form-check-input"
                     name="nurseryNight" id="guarderia-nocturna"
-                    value={store.userInput.nurseryNight}
-                    onChange={actions.handleUserCheck}
-                    checked={store.userInput.nurseryNight}
+                    value={userInput.nurseryNight}
+                    onChange={handleUserCheck}
+                    checked={userInput.nurseryNight}
                 />
                 <input type="text" className="form-control"
                     id="precio-guarderia-nocturna" aria-describedby="precio_guarderia_nocturna"
                     placeholder="Precio en €"
                     name="priceNurseryNight"
-                    value={store.userInput.priceNurseryNight}
-                    onChange={actions.handleUserInput}
+                    value={userInput.priceNurseryNight}
+                    onChange={handleUserInput}
                 />
             </div>
         </>
     );
 }
 
-
-    // const handleCheckGuarderiaDiurna = () => actions.setGuarderiaDiurna(!guarderiaDiurna);
-    // const handleCheckPaseo = () => actions.setPaseo(!paseo);
-    // const handleCheckGuarderiaNocturna = () => actions.setGuarderiaNocturna(!guarderiaNocturna);
+export default ServicesRates;

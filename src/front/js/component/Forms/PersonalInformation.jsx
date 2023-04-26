@@ -1,7 +1,11 @@
 import React from "react";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 import useAppContext from "../../store/AppContext";
 import "./signup-form.css";
+
+window.scrollTo(0, 0);
+
 
 export const PersonalInformation = () => {
 

@@ -53,13 +53,13 @@ const NavBar = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/user-profile" className="dropdown-item">
+                    <Link to="/notifications" className="dropdown-item">
                       <i className="fas fa-bell"></i> Notificaciones
                     </Link>
                   </li>
                   <li><hr className="dropdown-divider" /></li>
                   <li>
-                    <Link to="/user-profile" className="dropdown-item">
+                    <Link to="/home" className="dropdown-item">
                       <i className="fas fa-sign-out-alt"></i> Cerrar Sesión
                     </Link>
                   </li>
