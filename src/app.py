@@ -98,6 +98,9 @@ def create_token():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
 
+    if email == None or password == None:                                               
+        return {"code": 400, "msg": "Insert and email or password"}
+
     # Consulta la base de datos por el nombre de usuario y la contraseña
     # user = User.filter.query(email=email).first()                   # No sé como hacer esta query segun el metodo de la academia
     query = db.session.query(User).filter(User.email == email)
@@ -108,10 +111,6 @@ def create_token():
         # el usuario no se encontró en la base de datos
         return jsonify({"msg": "Bad email or password"}), 401       # SIEMPRE PONER EMAIL O PASS, NUNCA DECIR 1 SOLA DE LAS 2 ESTÁ MAL, MUCHA INFORMACIÓN GRATIS PARA LOS HACKERS
 
-    
-    # HARCODEANDO PRUEBA FACIL DE EMAIL
-    # if email != "test" or password != "test":
-    #     return jsonify({"msg": "Bad email or password"}), 401
 
     if password == user.password:
         # crea un nuevo token con el id de usuario dentro
@@ -140,3 +139,8 @@ def protected():
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3001))
     app.run(host='0.0.0.0', port=PORT, debug=True)
+
+
+# HARCODEANDO PRUEBA FACIL DE EMAIL
+# if email != "test" or password != "test":
+#     return jsonify({"msg": "Bad email or password"}), 401

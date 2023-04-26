@@ -1,13 +1,20 @@
 import React, { useState } from "react";
-import useUserInput from "../../hooks/useUserInput";
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import useAppContext from "../../store/AppContext";
+
+import useUserInput from "../../hooks/useUserInput.js";
 import "./user-profile.css";
 
 export const UserProfile = () => {
-    const { userInput, handleUserInput } = useUserInput();
-
+    const {
+        userInput,
+        resetInput,
+        handleUserInput,
+        handleUserCheck,
+        handleUserSelectDate,
+      } = useUserInput({name: "Guillermo", lastname: "Hola"});
+    
     return (
         <>
             <div className="header">
@@ -68,7 +75,7 @@ export const UserProfile = () => {
                                             aria-labelledby="home-tab" tabindex="0">
                                             <div className="form-floating my-1">
                                                 <input type="text" className="form-control" id="nombre-usuario"
-                                                    placeholder="Sandra"
+                                                    placeholder="Introduce un nombre"
                                                     value={userInput.name} name="name"
                                                     onChange={handleUserInput} />
                                                 <label htmlFor="nombre-usuario">Nombre</label>
@@ -76,15 +83,15 @@ export const UserProfile = () => {
 
                                             <div className="form-floating my-1">
                                                 <input type="text" className="form-control" id="apellidos-usuario"
-                                                    placeholder="Madarnas"
-                                                    value={userInput.lastname} lastname="name"
+                                                    placeholder="Introduce los apellidos"
+                                                    value={userInput.lastname} name="lastname"
                                                     onChange={handleUserInput} />
                                                 <label htmlFor="apellidos-usuario">Apellidos</label>
                                             </div>
 
                                             <div className="form-floating my-1">
                                                 <input type="text" className="form-control" id="direccion-usuario"
-                                                    placeholder="Algún sitio en España"
+                                                    placeholder="Introduce una dirección"
                                                     value={userInput.address} name="address"
                                                     onChange={handleUserInput} />
                                                 <label htmlFor="direccion-usuario">Dirección</label>
@@ -92,14 +99,16 @@ export const UserProfile = () => {
 
                                             <div className="form-floating my-1">
                                                 <input type="text" className="form-control" id="codigo-postal-usuario"
-                                                    placeholder="36200"
-                                                    value={userInput.postalcode} name="postalcode"
+                                                    placeholder="Introduce un código postal"
+                                                    value={userInput.postalcode} name="postalCode"
                                                     onChange={handleUserInput} />
                                                 <label htmlFor="codigo-postal-usuario">Código Postal</label>
                                             </div>
 
                                             {/* <label htmlFor="provincia-user">Localidad</label> */}
-                                            <select required id="provincia-user" className="form-select" name="province">
+                                            <select required id="provincia-user" className="form-select"
+                                                name="province" value={userInput.province}
+                                                onChange={handleUserInput}>
                                                 <option defaultValue="">Localidad</option>
                                                 <option value="Álava">Álava</option>
                                                 <option value="Albacete">Albacete</option>
@@ -162,7 +171,7 @@ export const UserProfile = () => {
                                             aria-labelledby="profile-tab" tabindex="0">
                                             <div className="form-floating my-1">
                                                 <input type="email" className="form-control" id="emailRegistroUser"
-                                                    placeholder="sandra@gmail.com"
+                                                    placeholder="Introduce un email"
                                                     value={userInput.email} name="email"
                                                     onChange={handleUserInput} />
                                                 <label htmlFor="emailRegistroUser">Correo Electrónico</label>
@@ -170,7 +179,7 @@ export const UserProfile = () => {
 
                                             <div className="form-floating my-1">
                                                 <input type="tel" className="form-control" id="telefono-user"
-                                                    placeholder="666 123 456"
+                                                    placeholder="Introduce un teléfono"
                                                     value={userInput.phone} name="phone"
                                                     onChange={handleUserInput} />
                                                 <label htmlFor="telefono-user">Teléfono</label>
@@ -186,11 +195,18 @@ export const UserProfile = () => {
                                                     Guardería Diurna (Alojamiento de día)
                                                 </label>
                                                 <input type="checkbox" className="form-check-input"
-                                                    name="nurseryDay" id="guarderia-diurna" />
+                                                    name="nurseryDay" id="guarderia-diurna"
+                                                    value={userInput.nurseryDay}
+                                                    onChange={handleUserCheck}
+                                                    checked={userInput.nurseryDay}
+                                                />
                                                 <input type="text" className="form-control"
                                                     id="precio-guarderia-diurna" aria-describedby="precio_guarderia_diurna"
-                                                    placeholder="15€" value={userInput.priceNurseryDay} name="priceNurseryDay"
-                                                    onChange={handleUserInput} />
+                                                    placeholder="Precio en €"
+                                                    name="priceNurseryDay"
+                                                    value={userInput.priceNurseryDay}
+                                                    onChange={handleUserInput}
+                                                />
                                             </div>
 
                                             <div className="form-check form-check-inline py-2">
@@ -198,22 +214,37 @@ export const UserProfile = () => {
                                                     Paseo (Por horas)
                                                 </label>
                                                 <input type="checkbox" className="form-check-input"
-                                                    name="walk" id="paseo" />
+                                                    name="walk" id="paseo"
+                                                    value={userInput.walk}
+                                                    onChange={handleUserCheck}
+                                                    checked={userInput.walk}
+                                                />
                                                 <input type="text" className="form-control"
                                                     id="precio-paseo" aria-describedby="precio_paseo"
-                                                    placeholder="15€" value={userInput.priceWalk} name="priceWalk"
-                                                    onChange={handleUserInput} />
+                                                    placeholder="Precio en €"
+                                                    name="priceWalk"
+                                                    value={userInput.priceWalk}
+                                                    onChange={handleUserInput}
+                                                />
                                             </div>
 
                                             <div className="form-check form-check-inline py-2">
                                                 <label className="form-check-label" htmlFor="guarderia-nocturna">
                                                     Guardería Nocturna (Alojamiento de noche)
                                                 </label>
-                                                <input type="checkbox" className="form-check-input" />
+                                                <input type="checkbox" className="form-check-input"
+                                                    name="nurseryNight" id="guarderia-nocturna"
+                                                    value={userInput.nurseryNight}
+                                                    onChange={handleUserCheck}
+                                                    checked={userInput.nurseryNight}
+                                                />
                                                 <input type="text" className="form-control"
                                                     id="precio-guarderia-nocturna" aria-describedby="precio_guarderia_nocturna"
-                                                    placeholder="15€" value={userInput.priceNurseryNight} name="priceNurseryNight"
-                                                    onChange={handleUserInput} />
+                                                    placeholder="Precio en €"
+                                                    name="priceNurseryNight"
+                                                    value={userInput.priceNurseryNight}
+                                                    onChange={handleUserInput}
+                                                />
                                             </div>
                                         </div>
 
@@ -232,8 +263,8 @@ export const UserProfile = () => {
                                                         <div className="col me-2">
                                                             <div className="form-floating my-1">
                                                                 <input type="text" className="form-control" id="dogName"
-                                                                    placeholder="Pelusa"
-                                                                    value={userInput.dogname} name="dogname"
+                                                                    placeholder="Introduce el nombre del perr@"
+                                                                    value={userInput.dogName} name="dogName"
                                                                     onChange={handleUserInput} />
                                                                 <label htmlFor="dogName">Nombre del Perro</label>
                                                             </div>
@@ -242,7 +273,7 @@ export const UserProfile = () => {
                                                         <div className="col ms-2">
                                                             <div className="form-floating my-1">
                                                                 <input type="text" className="form-control" id="breed"
-                                                                    placeholder="ShitZu"
+                                                                    placeholder="Introduce la raza del perr@"
                                                                     value={userInput.breed} name="breed"
                                                                     onChange={handleUserInput} />
                                                                 <label htmlFor="breed">Raza</label>
@@ -257,8 +288,8 @@ export const UserProfile = () => {
                                                         <div className="form-floating my-1">
                                                             <DatePicker
                                                                 id="nacimientoPerro" className="form-control p-3"
-                                                                name="nacimientoPerro"
-                                                                value={userInput.nacimientoPerro}
+                                                                name="dogBirth"
+                                                                value={userInput.dogBirth}
                                                                 onChange={handleUserInput}
                                                                 dateFormat="MM/yyyy" showMonthYearPicker
                                                             />
@@ -269,7 +300,7 @@ export const UserProfile = () => {
                                                     <div className="col ms-2">
                                                         <div className="form-floating my-1">
                                                             <select className="form-select " aria-label="Sexo del perro"
-                                                                name="generoPerro" value={userInput.generoPerro}
+                                                                name="dogSex" value={userInput.dogSex}
                                                                 onChange={handleUserInput}>
                                                                 <option defaultValue="">Elige una opción</option>
                                                                 <option value="Hembra">Hembra</option>
