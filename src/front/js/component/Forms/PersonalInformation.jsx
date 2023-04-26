@@ -13,7 +13,7 @@ export const PersonalInformation = () => {
                 <label htmlFor="foto-usuario" className="form-label">
                     Foto de perfil
                     <input className="form-control" type="file" id="foto-usuario"
-                        name="photoUser" value={store.userInput.photoUser}
+                        name="userPhoto" value={store.userInput.userPhoto}
                         onChange={actions.handleUserInput} />
                 </label>
 
@@ -24,7 +24,7 @@ export const PersonalInformation = () => {
                         </label>
                         <input className="form-control" type="text" id="nombre-usuario"
                             aria-describedby="nombre_usuario" placeholder="Nombre del usuario"
-                            name="nameUser" value={store.userInput.nameUser}
+                            name="name" value={store.userInput.name}
                             onChange={actions.handleUserInput}
                             required />
                     </div>
@@ -35,7 +35,7 @@ export const PersonalInformation = () => {
                         </label>
                         <input className="form-control" type="text" id="apellidos-usuario"
                             aria-describedby="apellidos_usuario" placeholder="Apellidos del usuario"
-                            name="lastnameUser" value={store.userInput.lastnameUser}
+                            name="lastName" value={store.userInput.lastName}
                             onChange={actions.handleUserInput}
                             required />
                     </div>
