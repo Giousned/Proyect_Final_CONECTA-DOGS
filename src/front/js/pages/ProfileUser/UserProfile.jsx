@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import useUserInput from "../../hooks/useUserInput";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import useAppContext from "../../store/AppContext";
 import "./user-profile.css";
 
 export const UserProfile = () => {
@@ -18,9 +21,9 @@ export const UserProfile = () => {
                     <div className="col">
                         <div className="avatar-user"></div>
 
-                        <div className="tituloperfil">
+                        <div className="tituloperfil text-center">
                             <h1>Sandra Madarnas</h1>
-                            <p><b> Ciudad: </b> Vigo <b> Localidad: </b> Pontevedra </p>
+                            <h3>Estás registrado como: <b className="border rounded bg-light p-2">PROPIETARIO | CUIDADOR</b></h3>
                         </div>
 
                         <div>
@@ -28,7 +31,7 @@ export const UserProfile = () => {
                                 <h3>Sobre mí:</h3>
                                 <div className="col">
                                     <textarea className="form-control" id="sobre-mi" rows="3">Breve descripción sobre mí...
-                                        Puedo editar ya todos los campos =) </textarea>
+                                        Puedo editar ya todos los campos ❤️ 🤗 ❤️ 🤗 ❤️</textarea>
                                 </div>
 
 
@@ -65,28 +68,32 @@ export const UserProfile = () => {
                                             aria-labelledby="home-tab" tabindex="0">
                                             <div className="form-floating my-1">
                                                 <input type="text" className="form-control" id="nombre-usuario"
-                                                    placeholder="Sandra" value={userInput.name} name="name"
+                                                    placeholder="Sandra"
+                                                    value={userInput.name} name="name"
                                                     onChange={handleUserInput} />
                                                 <label htmlFor="nombre-usuario">Nombre</label>
                                             </div>
 
                                             <div className="form-floating my-1">
                                                 <input type="text" className="form-control" id="apellidos-usuario"
-                                                    placeholder="Madarnas" value={userInput.lastname} lastname="name"
+                                                    placeholder="Madarnas"
+                                                    value={userInput.lastname} lastname="name"
                                                     onChange={handleUserInput} />
                                                 <label htmlFor="apellidos-usuario">Apellidos</label>
                                             </div>
 
                                             <div className="form-floating my-1">
                                                 <input type="text" className="form-control" id="direccion-usuario"
-                                                    placeholder="Algún sitio en España" value={userInput.address} name="address"
+                                                    placeholder="Algún sitio en España"
+                                                    value={userInput.address} name="address"
                                                     onChange={handleUserInput} />
                                                 <label htmlFor="direccion-usuario">Dirección</label>
                                             </div>
 
                                             <div className="form-floating my-1">
                                                 <input type="text" className="form-control" id="codigo-postal-usuario"
-                                                    placeholder="36200" value={userInput.postalcode} name="postalcode"
+                                                    placeholder="36200"
+                                                    value={userInput.postalcode} name="postalcode"
                                                     onChange={handleUserInput} />
                                                 <label htmlFor="codigo-postal-usuario">Código Postal</label>
                                             </div>
@@ -155,14 +162,16 @@ export const UserProfile = () => {
                                             aria-labelledby="profile-tab" tabindex="0">
                                             <div className="form-floating my-1">
                                                 <input type="email" className="form-control" id="emailRegistroUser"
-                                                    placeholder="sandra@gmail.com" value={userInput.email} name="email"
+                                                    placeholder="sandra@gmail.com"
+                                                    value={userInput.email} name="email"
                                                     onChange={handleUserInput} />
                                                 <label htmlFor="emailRegistroUser">Correo Electrónico</label>
                                             </div>
 
                                             <div className="form-floating my-1">
                                                 <input type="tel" className="form-control" id="telefono-user"
-                                                    placeholder="666 123 456" value={userInput.phone} name="phone"
+                                                    placeholder="666 123 456"
+                                                    value={userInput.phone} name="phone"
                                                     onChange={handleUserInput} />
                                                 <label htmlFor="telefono-user">Teléfono</label>
                                             </div>
@@ -212,14 +221,80 @@ export const UserProfile = () => {
                                         {/* Mi Perro */}
                                         <div className="tab-pane fade" id="mydog-tab-pane" role="tabpanel"
                                             aria-labelledby="mydog-tab" tabindex="0">
-                                            <br /><br /><br />
-                                            <h3>Formulario de datos del perro</h3>
-                                            <br /><br /><br />
-                                        </div>
+                                            <h3 className="my-2">Datos del perro</h3>
 
+                                            <div className="avatar-dog my-3"></div>
+
+                                            <div className="container">
+
+                                                <div className="row">
+                                                    <div className="input-group">
+                                                        <div className="col me-2">
+                                                            <div className="form-floating my-1">
+                                                                <input type="text" className="form-control" id="dogName"
+                                                                    placeholder="Pelusa"
+                                                                    value={userInput.dogname} name="dogname"
+                                                                    onChange={handleUserInput} />
+                                                                <label htmlFor="dogName">Nombre del Perro</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="col ms-2">
+                                                            <div className="form-floating my-1">
+                                                                <input type="text" className="form-control" id="breed"
+                                                                    placeholder="ShitZu"
+                                                                    value={userInput.breed} name="breed"
+                                                                    onChange={handleUserInput} />
+                                                                <label htmlFor="breed">Raza</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div className="row">
+                                                    <div className="col me-2">
+                                                        <div className="form-floating my-1">
+                                                            <DatePicker
+                                                                id="nacimientoPerro" className="form-control p-3"
+                                                                name="nacimientoPerro"
+                                                                value={userInput.nacimientoPerro}
+                                                                onChange={handleUserInput}
+                                                                dateFormat="MM/yyyy" showMonthYearPicker
+                                                            />
+                                                            <label htmlFor="nacimientoPerro">Fecha de Nacimiento del Perro</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="col ms-2">
+                                                        <div className="form-floating my-1">
+                                                            <select className="form-select " aria-label="Sexo del perro"
+                                                                name="generoPerro" value={userInput.generoPerro}
+                                                                onChange={handleUserInput}>
+                                                                <option defaultValue="">Elige una opción</option>
+                                                                <option value="Hembra">Hembra</option>
+                                                                <option value="Macho">Macho</option>
+                                                            </select>
+                                                            <label htmlFor="sexo-dog">Sexo del Perro</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div className="row">
+                                                    <div className="col me-2">
+
+                                                        <h2>AQUI SIGUE METIENDO LA INFO DE LOS DATOS DEL PERRO SIGUIENDO LA MISMA ARQUITECTURA</h2>
+
+                                                    </div>
+                                                </div>
+
+
+                                                {/* /container */}
+                                            </div>
+                                        </div>
                                         {/* /Tab */}
                                     </div>
-
                                 </div>
 
                                 <div className="col my-3">
@@ -228,10 +303,8 @@ export const UserProfile = () => {
                                 </div>
                             </form>
                         </div>
-
                     </div>
                 </div>
-
             </div>
         </>
     );
