@@ -20,11 +20,10 @@ export const AppProvider = ({children}) => {
   
       POSTRegister(userInput)
         .then(() => {
-            ;
+
         })
 
     };
-
 
     
 
