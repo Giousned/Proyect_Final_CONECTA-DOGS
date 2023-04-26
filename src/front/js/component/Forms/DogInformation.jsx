@@ -89,7 +89,7 @@ export const DogInformation = () => {
                         Tamaño del perro *
                     </label>
                     <br />
-                    <div className="form-check form-check-inline dog-size">
+                    <div className={"form-check form-check-inline dog-size" + ((store.userInput.radioSizeDog == "sizeSmall") ? " activeGlow" : "")}>
                         <input type="radio" className="form-check-input"
                             name="radioSizeDog" id="sizeSmall"
                             value="sizeSmall"
@@ -100,7 +100,7 @@ export const DogInformation = () => {
                             <i className="fas fa-paw"></i> Pequeño (0kg - 7kg)
                         </label>
                     </div>
-                    <div className="form-check form-check-inline dog-size">
+                    <div className={"form-check form-check-inline dog-size" + ((store.userInput.radioSizeDog == "sizeMedium") ? " activeGlow" : "")}>
                         <input type="radio" className="form-check-input"
                             name="radioSizeDog" id="sizeMedium"
                             value="sizeMedium"
@@ -111,7 +111,7 @@ export const DogInformation = () => {
                             <i className="fas fa-paw"></i> Mediano (8kg - 18kg)
                         </label>
                     </div>
-                    <div className="form-check form-check-inline dog-size">
+                    <div className={"form-check form-check-inline dog-size" + ((store.userInput.radioSizeDog == "sizeBig") ? " activeGlow" : "")}>
                         <input type="radio" className="form-check-input"
                             name="radioSizeDog" id="sizeBig"
                             value="sizeBig"
@@ -122,7 +122,7 @@ export const DogInformation = () => {
                             <i className="fas fa-paw"></i> Grande (19kg - 45kg)
                         </label>
                     </div>
-                    <div className="form-check form-check-inline dog-size">
+                    <div className={"form-check form-check-inline dog-size" + ((store.userInput.radioSizeDog == "sizeHuge") ? " activeGlow" : "")}>
                         <input type="radio" className="form-check-input"
                             name="radioSizeDog" id="sizeHuge"
                             value="sizeHuge"
@@ -207,7 +207,7 @@ export const DogInformation = () => {
                         Nivel de actividad de tu perro
                     </label>
                     <br />
-                    <div className="form-check form-check-inline dog-mtn">
+                    <div className={"form-check form-check-inline dog-mtn" + ((store.userInput.radioActivity == "activityLow") ? " activeGlow" : "")}>
                         <input type="radio" className="form-check-input"
                             name="radioActivity" id="activityLow"
                             value="activityLow"
@@ -218,7 +218,7 @@ export const DogInformation = () => {
                             Baja
                         </label>
                     </div>
-                    <div className="form-check form-check-inline dog-mtn">
+                    <div className={"form-check form-check-inline dog-mtn" + ((store.userInput.radioActivity == "activityMedium") ? " activeGlow" : "")}>
                         <input type="radio" className="form-check-input"
                             name="radioActivity" id="activityMedium"
                             value="activityMedium"
@@ -229,7 +229,7 @@ export const DogInformation = () => {
                             Media
                         </label>
                     </div>
-                    <div className="form-check form-check-inline dog-mtn">
+                    <div className={"form-check form-check-inline dog-mtn" + ((store.userInput.radioActivity == "activityHigh") ? " activeGlow" : "")}>
                         <input type="radio" className="form-check-input"
                             name="radioActivity" id="activityHigh"
                             value="activityHigh"
