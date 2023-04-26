@@ -4,16 +4,11 @@ def create_user(body):
 
     try:
     
-        #  claves_user = body.keys()
+        claves_user = body.keys()
 
-#         if not "first_name" in claves_member or not "age" in claves_member or not "lucky_numbers" in claves_member:
-#             return {"code": 400, "mensaje": "Falta el nombre, edad o los números favoritos"}
-# if not type(x) is int:
-#   raise TypeError("Only integers are allowed") 
+        if not "email" in claves_user or not "password" in claves_user:
+            return {"code": 400, "mensaje": "Missing data in the forms"}
 #   raise Exception("Sorry, no numbers below zero")
-
-        if body["email"] == None or body["password"] == None:
-            return {"code": 400, "msg": "Insert and email or password"}
 
 
         # Crear un nuevo usuario en la base de datos

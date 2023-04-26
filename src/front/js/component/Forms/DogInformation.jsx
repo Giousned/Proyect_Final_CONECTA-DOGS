@@ -16,7 +16,7 @@ export const DogInformation = () => {
                     Foto del perro
                 </label>
                 <input className="form-control" type="file" id="foto-perro"
-                    name="fotoPerro" value={store.userInput.fotoPerro}
+                    name="dogPhoto" value={store.userInput.dogPhoto}
                     onChange={actions.handleUserInput} />
 
                 <div className="input-group">
@@ -26,7 +26,7 @@ export const DogInformation = () => {
                         </label>
                         <input type="text" className="form-control" id="nombre-perro"
                             aria-describedby="nombre_perro" placeholder="Nombre del perro"
-                            name="nombrePerro" value={store.userInput.nombrePerro}
+                            name="dogName" value={store.userInput.dogName}
                             onChange={actions.handleUserInput} required />
                     </div>
 
@@ -36,7 +36,7 @@ export const DogInformation = () => {
                         </label>
                         <input type="text" className="form-control" id="raza-perro"
                             aria-describedby="raza_perro" placeholder="Raza del perro"
-                            name="raza" value={store.userInput.raza}
+                            name="breed" value={store.userInput.breed}
                             onChange={actions.handleUserInput} required />
                     </div>
                 </div>
@@ -50,8 +50,8 @@ export const DogInformation = () => {
                         <DatePicker
                             id="cumple-perro" className="text-center form-control"
                             placeholderText="Ejemplo: 04-2023"
-                            name="nacimientoPerro"
-                            selected={store.userInput.nacimientoPerro}
+                            name="dogBirth"
+                            selected={store.userInput.dogBirth}
                             onChange={actions.handleUserSelectDate}
                             dateFormat="MM/yyyy" showMonthYearPicker
                         />
@@ -62,7 +62,7 @@ export const DogInformation = () => {
                             Sexo *
                         </label>
                         <select className="form-select" aria-label="Sexo del perro"
-                            name="generoPerro" value={store.userInput.generoPerro}
+                            name="dogSex" value={store.userInput.dogSex}
                             onChange={actions.handleUserInput}>
                             <option defaultValue="">Elige una opción</option>
                             <option value="Hembra">Hembra</option>
