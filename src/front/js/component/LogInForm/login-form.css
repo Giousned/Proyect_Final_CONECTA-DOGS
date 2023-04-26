@@ -2,14 +2,14 @@
 
 .custom-login {
   background: url("https://cdn.pixabay.com/photo/2021/10/31/15/22/paws-6757808_960_720.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
-    min-height: 50vh;
-    background-size: cover;
-    background-blend-mode: overlay;
-    background-color: rgba(0, 0, 0, 0.1);
-    color: black;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  min-height: 50vh;
+  background-size: cover;
+  background-blend-mode: overlay;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: black;
 }
 
 .register {

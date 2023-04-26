@@ -12,4 +12,9 @@ import Layout from "./layout";
 import { AuthProvider } from "./store/AuthContext.js";
 
 //render your react application
-ReactDOM.render(<AuthProvider><Layout /></AuthProvider>, document.querySelector("#app"));
+ReactDOM.render(
+  <AuthProvider>
+    <Layout />
+  </AuthProvider>,
+  document.querySelector("#app")
+);

@@ -1,20 +1,16 @@
 import React from "react";
 
 import useAppContext from "../../store/AppContext";
-
 import "./signup-form.css";
-
 
 export const AdditionalInformation = () => {
 
     const { store, actions } = useAppContext();
 
-
     return (
         <>
-
             <div className="form-check form-check-inline py-2">
-            <h2 className="py-2">Servicios</h2>
+                <h2 className="py-2">Servicios</h2>
                 <label className="form-check-label" htmlFor="guarderia-diurna">
                     Guardería Diurna (Alojamiento de día)
                 </label>
@@ -32,7 +28,7 @@ export const AdditionalInformation = () => {
                     onChange={actions.handleUserInput}
                 />
             </div>
-            
+
             <div className="form-check form-check-inline py-2">
                 <label className="form-check-label" htmlFor="paseo">
                     Paseo (Por horas)
@@ -51,7 +47,7 @@ export const AdditionalInformation = () => {
                     onChange={actions.handleUserInput}
                 />
             </div>
-           
+
             <div className="form-check form-check-inline py-2">
                 <label className="form-check-label" htmlFor="guarderia-nocturna">
                     Guardería Nocturna (Alojamiento de noche)

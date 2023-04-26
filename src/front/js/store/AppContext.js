@@ -1,52 +1,44 @@
 import React from "react";
-
-import { POSTRegister} from "../services/Fetchs.js";
-
 import { createContext, useContext, useState } from "react";
-
+import { POSTRegister } from "../services/Fetchs.js";
 import useUserInput from "../hooks/useUserInput.js";
-
 
 const AppContext = createContext();
 
+export const AppProvider = ({ children }) => {
+  const {
+    userInput,
+    resetInput,
+    handleUserInput,
+    handleUserCheck,
+    handleUserSelectDate,
+  } = useUserInput();
 
-export const AppProvider = ({children}) => {
+  const handleRegister = (e) => {
+    e.preventDefault();
 
-    const { userInput, resetInput, handleUserInput, handleUserCheck, handleUserSelectDate } = useUserInput();
+    POSTRegister(userInput).then(() => {});
+  };
 
+  const store = {
+    userInput,
+  };
 
-    const handleRegister = (e) => {
-      e.preventDefault();
-  
-      POSTRegister(userInput)
-        .then(() => {
+  const actions = {
+    resetInput,
+    handleUserInput,
+    handleUserCheck,
+    handleUserSelectDate,
 
-        })
+    handleRegister,
+  };
 
-    };
-
-    
-
-
-    const store = {
-        userInput,
-    };
-  
-    const actions = {
-        resetInput,
-        handleUserInput,
-        handleUserCheck,
-        handleUserSelectDate,
-
-        handleRegister,
-    };
-
-    return (
-        <AppContext.Provider value={{store, actions}}>
-            {children}
-        </AppContext.Provider>
-    );
-}
+  return (
+    <AppContext.Provider value={{ store, actions }}>
+      {children}
+    </AppContext.Provider>
+  );
+};
 
 const useAppContext = () => useContext(AppContext);
 

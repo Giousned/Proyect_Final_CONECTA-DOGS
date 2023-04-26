@@ -71,7 +71,6 @@ const Footer = () => (
         </div>
       </div>
 
-
       <div className="text-center">
         © 2023 Conecta-Dogs.
         <br />

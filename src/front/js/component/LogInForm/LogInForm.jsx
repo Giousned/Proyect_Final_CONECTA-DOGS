@@ -2,7 +2,6 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import useAuthContext from "../../store/AuthContext.js";
-
 import "../LogInForm/login-form.css";
 
 const LogInForm = () => {
@@ -15,7 +14,7 @@ const LogInForm = () => {
     actionsAuth.handleLogIn(e);
     navigate("/");
   }
-  
+
 
   return (
     <>
@@ -54,11 +53,11 @@ const LogInForm = () => {
                   <div className="text-center">
                     <label>
                       <input type="checkbox"
-                      className="mb-2"
-                      name="remember" 
-                      value={storeAuth.userInput.remember} 
-                      onChange={actionsAuth.handleUserCheck} 
-                      checked={storeAuth.userInput.remember} /> Recordarme
+                        className="mb-2"
+                        name="remember"
+                        value={storeAuth.userInput.remember}
+                        onChange={actionsAuth.handleUserCheck}
+                        checked={storeAuth.userInput.remember} /> Recordarme
                     </label>
                     <a href="#">¿Olvidaste tu contraseña?</a>
                   </div>
