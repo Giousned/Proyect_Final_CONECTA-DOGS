@@ -182,7 +182,7 @@ export const PersonalInformation = () => {
                         <div className="col-md">
                             <div className="form-floating">
                                 <div className="glowing-register m-2">
-                                    <input type="radio" id="propietario"
+                                    <input type="radio" id="owner"
                                         name="owner"
                                         placeholder="radioOwnerCarer"
                                         onChange={actions.handleUserRadio}
@@ -194,7 +194,7 @@ export const PersonalInformation = () => {
                         <div className="col-md">
                             <div className="form-floating">
                                 <div className="glowing-register m-2">
-                                    <input type="radio" id="cuidador"
+                                    <input type="radio" id="carer"
                                         name="carer"
                                         placeholder="radioOwnerCarer"
                                         onChange={actions.handleUserRadio}

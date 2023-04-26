@@ -5,8 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import useAppContext from "../../store/AppContext";
 
-
 import "./signup-form.css";
+
 
 export const DogInformation = () => {
 
@@ -214,7 +214,7 @@ export const DogInformation = () => {
                             onChange={actions.handleUserRadio}
                             checked={ store.userInput.radioActivity == "activityLow" }
                         />
-                        <label className="form-check-label" htmlFor="actividad-baja">
+                        <label className="form-check-label" htmlFor="activityLow">
                             Baja
                         </label>
                     </div>
@@ -225,7 +225,7 @@ export const DogInformation = () => {
                             onChange={actions.handleUserRadio}
                             checked={ store.userInput.radioActivity == "activityMedium"}
                         />
-                        <label className="form-check-label" htmlFor="actividad-media">
+                        <label className="form-check-label" htmlFor="activityMedium">
                             Media
                         </label>
                     </div>
@@ -236,7 +236,7 @@ export const DogInformation = () => {
                             onChange={actions.handleUserRadio}
                             checked={ store.userInput.radioActivity == "activityHigh"}
                         />
-                        <label className="form-check-label" htmlFor="actividad-alta">
+                        <label className="form-check-label" htmlFor="activityHigh">
                             Alta
                         </label>
                     </div>

@@ -37,7 +37,6 @@ const useUserInput = (initialValue = {}) => {
         setUserInput((prev) => {
             const newUserInput = {...prev}
             if(target.value) newUserInput[target.placeholder] = target.name;
-            console.log(newUserInput)
             return newUserInput;
         })
     }

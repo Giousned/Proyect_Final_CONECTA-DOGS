@@ -33,7 +33,7 @@
 
 
 .dog-size input[type="radio"] {
-  display: none;
+  /* display: none; */
 }
 
 .dog-size label {

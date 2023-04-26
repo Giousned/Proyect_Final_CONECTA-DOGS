@@ -10,21 +10,21 @@ import useAppContext from "../store/AppContext.js";
 
 
 const formUser = {
-  0: {
+  personalInfo: {
     imageSrc: "https://cdn.pixabay.com/photo/2017/09/08/03/49/couple-2727559_960_720.png",
     mainTitle: "REGISTRO DE USUARIOS - CUIDADOR | PROPIETARIO",
     secondaryTitle: "Información personal",
     description: "Cuéntanos un poquito acerca de ti.",
     component: <PersonalInformation />
   },
-  1: {
+  dogInfo: {
     imageSrc: "https://cdn.pixabay.com/photo/2022/10/22/17/29/shitzu-7539692_1280.jpg",
     mainTitle: "REGISTRO DE USUARIOS - PROPIETARIO",
     secondaryTitle: "Información de mi perro",
     description: "Cuéntanos un poquito acerca de tu perro, así podremos ayudarte a encontrar el cuidador perfecto.",
     component: <DogInformation />
   },
-  2: {
+  additionalInfo: {
     imageSrc: "https://cdn.pixabay.com/photo/2018/04/09/14/17/woman-3304166_1280.jpg",
     mainTitle: "REGISTRO DE USUARIOS - CUIDADOR",
     secondaryTitle: "Información adicional",
@@ -34,40 +34,37 @@ const formUser = {
 }
 
 const lastStep = 2;
-const firstStep = 0;
+const firstStep = "personalInfo";
 
 const SingUpForm = () => {
-
+  
   const { store, actions } = useAppContext();
 
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(firstStep);
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    if (currentStep <= 2) {
+
+  const handleStopSubmit = (e) => {
       e.preventDefault();
-      return;
-    }
-
-    // e.preventDefault();
-
-    actions.handleRegister(e);
-
-    navigate("/");
   }
 
   const handleNext = () => {
-    if (currentStep == lastStep) { return; }
-    if (store.userInput.radioOwnerCarer == "owner") { setCurrentStep(1) }
-    else if (store.userInput.radioOwnerCarer == "carer") { setCurrentStep(2) }
-    else return;
-    // setCurrentStep((prev) => prev + 1);
+    if (store.userInput.radioOwnerCarer == "owner") { setCurrentStep("dogInfo") }
+    if (store.userInput.radioOwnerCarer == "carer") { setCurrentStep("additionalInfo") }
   };
 
   const handleBack = () => {
     if (currentStep == firstStep) { return; }
-    setCurrentStep((prev) => prev - 1);
+    setCurrentStep("personalInfo");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    actions.handleRegister(e)
+    
+    navigate("/");
   };
 
 
@@ -83,15 +80,15 @@ const SingUpForm = () => {
             </div>
             {/* FORMULARIO */}
             <div className="col-12 col-md-6 py-3">
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleStopSubmit}>
                 <h2 className="text-center">{formUser[currentStep].secondaryTitle}</h2>
                 <p className="text-center">{formUser[currentStep].description}</p>
                   {formUser[currentStep].component}
                 <div className="d-grid gap-2 d-md-flex justify-content-md-end py-2">
                   <button className="btn btn-primary m-3" onClick={handleBack}> Atrás </button>
-                  {currentStep < 1 
+                  {currentStep == "personalInfo" 
                     ? <button className="btn btn-primary m-3" onClick={handleNext}> Siguiente </button>
-                    : <button className="btn btn-primary m-3" onClick={handleSubmit}> Enviar </button>
+                    : <button className="btn btn-primary m-3" type="submit" onClick={handleSubmit}> Enviar </button>
                   }      
                 </div>
               </form>
@@ -103,12 +100,3 @@ const SingUpForm = () => {
   );
 };
 export default SingUpForm;
-
-
-  // 2: {
-  //   imageSrc: "https://cdn.pixabay.com/photo/2020/03/29/04/10/dog-4979248_1280.jpg",
-  //   mainTitle: "REGISTRO DE USUARIOS - PROPIETARIO",
-  //   secondaryTitle: "Información de mi perro",
-  //   description: "Cuéntanos otro poquito acerca de tu perro...",
-  //   component: <DogInformation2 />
-  // },
