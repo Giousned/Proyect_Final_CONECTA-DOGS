@@ -15,8 +15,7 @@ import { UserProfile } from "./pages/ProfileUser/UserProfile.jsx";
 import Footer from "./component/Footer/Footer.jsx";
 
 //import context
-import { AppProvider } from "../js/store/AppContext.js"
-
+import { AppProvider } from "../js/store/AppContext.js";
 
 //create your first component
 const Layout = () => {
@@ -31,14 +30,14 @@ const Layout = () => {
           <AppProvider>
             <NavBar />
             <Contact />
-              <Routes>
-                <Route element={<Home />} path="/" />
-                <Route element={<LogInForm />} path="/log-in-form" />
-                <Route element={<SignUpForm />} path="/sign-up-form" />
-                <Route element={<UserProfile />} path="/user-profile" />
-                <Route element={<ProfileUser />} path="/profile-carer" />
-                <Route element={<h1>Not found!</h1>} />
-              </Routes>
+            <Routes>
+              <Route element={<Home />} path="/" />
+              <Route element={<LogInForm />} path="/log-in-form" />
+              <Route element={<SignUpForm />} path="/sign-up-form" />
+              <Route element={<UserProfile />} path="/user-profile" />
+              <Route element={<ProfileUser />} path="/profile-carer" />
+              <Route element={<h1>Not found!</h1>} />
+            </Routes>
             <Footer />
           </AppProvider>
         </ScrollToTop>
@@ -49,8 +48,9 @@ const Layout = () => {
 
 export default Layout;
 
-
-{/*
+{
+  /*
   <Route element={<Demo />} path="/demo" />
   <Route element={<Signle />} path="/Signle/:theid" />
-*/}
+*/
+}

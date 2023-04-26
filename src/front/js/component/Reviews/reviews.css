@@ -16,3 +16,18 @@
 .stars-reviews {
     color: #fff71a;
 }
+
+@media screen and (max-width: 980px) {
+    .carousel-item img {
+        width: 80%;
+    }
+
+    .carousel-item {
+        margin-top: 4rem;
+    }
+
+    .carousel-caption h4,
+    p {
+        font-size: small;
+    }
+}

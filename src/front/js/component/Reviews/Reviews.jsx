@@ -25,7 +25,7 @@ export const Reviews = () => {
               src="https://cdn.pixabay.com/photo/2018/10/30/23/13/girl-3784883_960_720.jpg"
               alt="Opinion del usuario X"
             />
-            <div className="carousel-caption d-none d-md-block">
+            <div className="carousel-caption d-md-block">
               <h4>Sandra cuidó de "Pelusa"</h4>
               <i className="fas fa-star stars-reviews"></i>
               <i className="fas fa-star stars-reviews"></i>
@@ -41,14 +41,14 @@ export const Reviews = () => {
               src="https://cdn.pixabay.com/photo/2015/04/28/11/44/sunset-743429_960_720.jpg"
               alt="Opinion del usuario X"
             />
-            <div className="carousel-caption d-none d-md-block">
+            <div className="carousel-caption d-md-block">
               <h4>Guillermo cuidó de "Bimbo"</h4>
               <i className="fas fa-star stars-reviews"></i>
               <i className="fas fa-star stars-reviews"></i>
               <i className="fas fa-star stars-reviews"></i>
               <i className="fas fa-star stars-reviews"></i>
               <i className="fas fa-star stars-reviews"></i>
-              <p className="p-2">"Bimbo se portó muy bien. Me enamoró."</p>
+              <p className="p-2">"Bimbo se portó muy bien. Es muy tranquilo. Me enamoró."</p>
             </div>
           </div>
           <div className="carousel-item">
@@ -57,14 +57,14 @@ export const Reviews = () => {
               src="https://cdn.pixabay.com/photo/2017/12/27/14/02/friends-3042751_960_720.jpg"
               alt="Opinion del usuario X"
             />
-            <div className="carousel-caption d-none d-md-block">
+            <div className="carousel-caption d-md-block">
               <h4>Nuria cuidó de "Cookie"</h4>
               <i className="fas fa-star stars-reviews"></i>
               <i className="fas fa-star stars-reviews"></i>
               <i className="fas fa-star stars-reviews"></i>
               <i className="fas fa-star stars-reviews"></i>
               <i className="fas fa-star stars-reviews"></i>
-              <p className="p-2">"Nuria es muy cariñosa y trató a Cookie ¡excelente!"</p>
+              <p className="p-2">"Nuria es muy cariñosa y trató a Cookie ¡excelente!. La recomiendo."</p>
             </div>
           </div>
         </div>
