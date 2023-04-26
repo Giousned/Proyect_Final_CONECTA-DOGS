@@ -10,7 +10,8 @@ import NavBar from "./component/NavBar/NavBar.jsx";
 import LogInForm from "../js/component/LogInForm/LogInForm.jsx";
 import SignUpForm from "./pages/SignUp.jsx";
 import { Contact } from "./component/Contact/Contact.jsx";
-import { UserProfile } from "./pages/ProfileUser/UserProfile.jsx";
+import { UserProfile } from "./pages/UserProfile/UserProfile.jsx";
+import { Notifications } from "./pages/Notifications/Notifications.jsx";
 import Footer from "./component/Footer/Footer.jsx";
 
 //import context
@@ -34,6 +35,7 @@ const Layout = () => {
               <Route element={<LogInForm />} path="/log-in-form" />
               <Route element={<SignUpForm />} path="/sign-up-form" />
               <Route element={<UserProfile />} path="/user-profile" />
+              <Route element={<Notifications />} path="/notifications" />
               <Route element={<h1>Not found!</h1>} />
             </Routes>
             <Footer />

@@ -18,16 +18,23 @@
 }
 
 @media screen and (max-width: 980px) {
-    .carousel-item img {
+    /* .carousel-item img {
         width: 80%;
+    } */
+    
+    .custom-reviews h4 {
+        font-size: 1em;
+    }
+    .custom-reviews {
+        font-size: 0.5rem;
+        margin: 0.5rem;
     }
 
-    .carousel-item {
+    /* .carousel-item {
         margin-top: 4rem;
     }
 
-    .carousel-caption h4,
-    p {
-        font-size: small;
-    }
+    .carousel-caption h4, p {
+        font-size: 0.8rem;
+    } */
 }
