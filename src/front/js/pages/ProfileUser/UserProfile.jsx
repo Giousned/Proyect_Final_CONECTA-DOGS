@@ -13,10 +13,10 @@ export const UserProfile = () => {
         handleUserInput,
         handleUserCheck,
         handleUserSelectDate,
-      } = useUserInput({name: "Guillermo", lastname: "Hola"});
-    
+    } = useUserInput({ name: "Guillermo", lastname: "Hola" });
+
     return (
-        <>
+        <div className="user-profile">
             <div className="header">
                 <button className="btn btn-primary">
                     <div className="text">Cambiar Fondo</div>
@@ -337,6 +337,6 @@ export const UserProfile = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
