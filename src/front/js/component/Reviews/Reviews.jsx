@@ -54,7 +54,7 @@ export const Reviews = () => {
           <div className="carousel-item">
             <img
               className="bd-placeholder-img bd-placeholder-img-lg w-50 img-carrusel"
-              src="https://cdn.pixabay.com/photo/2019/04/24/22/37/dog-4153418_960_720.jpg"
+              src="https://cdn.pixabay.com/photo/2017/12/27/14/02/friends-3042751_960_720.jpg"
               alt="Opinion del usuario X"
             />
             <div className="carousel-caption d-none d-md-block">
@@ -64,7 +64,7 @@ export const Reviews = () => {
               <i className="fas fa-star stars-reviews"></i>
               <i className="fas fa-star stars-reviews"></i>
               <i className="fas fa-star stars-reviews"></i>
-              <p className="p-2">"¡Si tocas esto Nuria te matamos!"</p>
+              <p className="p-2">"Nuria es muy cariñosa y trató a Cookie ¡excelente!"</p>
             </div>
           </div>
         </div>
