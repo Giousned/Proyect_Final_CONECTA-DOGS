@@ -6,8 +6,9 @@ import useAppContext from "../../store/AppContext";
 import "./user-profile.css";
 
 export const UserProfile = () => {
-    const { userInput, handleUserInput } = useUserInput();
 
+    const { userInput, handleUserInput } = useUserInput({name: "Guillermo", lastname: "Hola"});
+   
     return (
         <>
             <div className="header">
@@ -68,16 +69,16 @@ export const UserProfile = () => {
                                             aria-labelledby="home-tab" tabindex="0">
                                             <div className="form-floating my-1">
                                                 <input type="text" className="form-control" id="nombre-usuario"
-                                                    placeholder="Sandra"
+                                                    placeholder="Introduce tu nombre"
                                                     value={userInput.name} name="name"
                                                     onChange={handleUserInput} />
-                                                <label htmlFor="nombre-usuario">Nombre</label>
+                                                <label htmlFor="nombre-usuario">Nombre:</label>
                                             </div>
 
                                             <div className="form-floating my-1">
                                                 <input type="text" className="form-control" id="apellidos-usuario"
-                                                    placeholder="Madarnas"
-                                                    value={userInput.lastname} lastname="name"
+                                                    placeholder="Introduce tu apellido"
+                                                    value={userInput.lastname} name="lastname"
                                                     onChange={handleUserInput} />
                                                 <label htmlFor="apellidos-usuario">Apellidos</label>
                                             </div>
