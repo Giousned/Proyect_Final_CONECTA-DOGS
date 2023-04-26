@@ -13,10 +13,10 @@ export const UserProfile = () => {
         handleUserInput,
         handleUserCheck,
         handleUserSelectDate,
-      } = useUserInput({name: "Guillermo", lastname: "Hola"});
-    
+    } = useUserInput({ name: "Guillermo", lastname: "Hola" });
+
     return (
-        <>
+        <div className="user-profile">
             <div className="header">
                 <button className="btn btn-primary">
                     <div className="text">Cambiar Fondo</div>
@@ -78,7 +78,7 @@ export const UserProfile = () => {
                                                     placeholder="Introduce un nombre"
                                                     value={userInput.name} name="name"
                                                     onChange={handleUserInput} />
-                                                <label htmlFor="nombre-usuario">Nombre</label>
+                                                <label htmlFor="nombre-usuario">Nombre:</label>
                                             </div>
 
                                             <div className="form-floating my-1">
@@ -337,6 +337,6 @@ export const UserProfile = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };

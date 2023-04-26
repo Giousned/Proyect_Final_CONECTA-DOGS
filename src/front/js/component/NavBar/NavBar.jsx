@@ -70,6 +70,8 @@ const NavBar = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
+
+                <a className="nav-link dropdown-toggle border rounded px-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <i className="fas fa-user-circle"></i>
                 </a>
                 <ul className="dropdown-menu">
@@ -83,9 +85,11 @@ const NavBar = () => {
                       <i className="fas fa-bell"></i> Notificaciones
                     </Link>
                   </li>
+
                   <li>
                     <hr className="dropdown-divider" />
                   </li>
+                  <li><hr className="dropdown-divider" /></li>
                   <li>
                     <Link to="/user-profile" className="dropdown-item">
                       <i className="fas fa-sign-out-alt"></i> Cerrar Sesión
