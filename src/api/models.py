@@ -8,13 +8,13 @@ class User(db.Model):
     email = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(50), unique=False, nullable=False)
     is_active = db.Column(db.Boolean, unique=False, nullable=False)
+    name = db.Column(db.String(30), unique=False, nullable=False)
+    last_name = db.Column(db.String(60), unique=False, nullable=False)
+    address = db.Column(db.String(150), unique=False, nullable=False)
+    city = db.Column(db.String(35), unique=False, nullable=False)
+    postal_code = db.Column(db.Integer, unique=False, nullable=False)
+    phone = db.Column(db.Integer, unique=False, nullable=False)
     # photo = db.Column(db.String(500), unique=True, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GAURDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
-    # name = db.Column(db.String(25), unique=False, nullable=False)
-    # last_name = db.Column(db.String(50), unique=False, nullable=False)
-    # address = db.Column(db.String(150), unique=False, nullable=False)
-    # city = db.Column(db.String(35), unique=False, nullable=False)
-    # postal_code = db.Column(db.Integer, unique=False, nullable=False)
-    # phone_number = db.Column(db.Integer, unique=False, nullable=False)
     # country = db.Column(db.String(50), unique=False, nullable=False)
     # birthdate = db.Column(db.Date, unique=False, nullable=False)
 
@@ -37,7 +37,7 @@ class User(db.Model):
             # "postal_code": self.postal_code,
             # "country": self.country,
             # "birthday": self.birthday,
-            # "phone_number": self.phone_number,
+            # "phone": self.phone,
             # do not serialize the password, its a security breach
         }
 
@@ -150,7 +150,7 @@ class User(db.Model):
 #     activity_level = db.Column(db.String(20), unique=False, nullable=True)
 #     observations = db.Column(db.String(500), unique=False, nullable=True)
 
-#     propietario_id = Column(Integer, ForeignKey("Propietario.id"))
+#     propietario_id = Column(db.Integer, ForeignKey("Propietario.id"))
 
 #     owner = relationship("Owner", back_populates="pet")
 

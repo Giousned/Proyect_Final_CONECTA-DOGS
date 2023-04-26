@@ -13,12 +13,11 @@ const useUserInput = (initialValue = {}) => {
     });
   };
 
-  const handleUserSelectDate = (event) => {
-    const target = event.target;
+  const handleUserSelectDate = (date) => {
 
     setUserInput((prev) => {
       const newUserInput = { ...prev };
-      newUserInput[target.name] = target.selected;
+      newUserInput["Date"] = date;
       return newUserInput;
     });
   };
