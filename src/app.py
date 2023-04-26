@@ -15,7 +15,7 @@ from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
 from api.models import User #, Carer, Services, Tarifs, Owner, Dog
-from api.controllers.user import create_user
+from api.controllers.user import create_user, get_users
 
 
 #from models import Person
@@ -77,18 +77,42 @@ def serve_any_other_file(path):
 
 @app.route("/signup", methods=["POST"])
 def signup():
-    body = request.json
 
-    # Rellenar las tablas de la DB
-    user_response = create_user(body)
+    try:
 
+        body = request.json
 
-    if user_response["code"] == 500:
-        return jsonify({"msg": "Ha habido un error en el servidor"}), 500
+        # Rellenar las tablas de la DB
+        user_response = create_user(body)
+        if user_response["code"] != 200:
+            return jsonify(user_response)
 
-    if user_response["code"] == 200:
-        return jsonify(user_response["user"]), 200             # return jsonify(response), response["code"]
+        return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
 
+        # owner_response = create_owner(body)
+        
+        # dog_response = create_dog(body)
+
+            
+    except:
+        return jsonify(user_response), user_response["code"]
+        
+
+@app.route("/users", methods=["GET"])
+def users():
+
+    try:
+
+         # Obtener info de las tablas de la DB
+        users_response = get_users()
+
+        if users_response["code"] != 200:
+            return jsonify(users_response)
+
+        return jsonify(users_response["users"])
+            
+    except:
+        return jsonify(users_response), users_response["code"]
     
 
 # Crea una ruta para autenticar a los usuarios y devolver el token JWT.

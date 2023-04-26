@@ -2,6 +2,7 @@ import React from "react";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+
 import useAppContext from "../../store/AppContext";
 import "./signup-form.css";
 
@@ -49,11 +50,12 @@ export const DogInformation = () => {
                         <br />
                         <DatePicker
                             id="cumple-perro" className="text-center form-control"
-                            placeholderText="Ejemplo: 04-2023"
+                            placeholderText="04-2023"
                             name="dogBirth"
-                            selected={store.userInput.dogBirth}
+                            selected={store.userInput.Date}
                             onChange={actions.handleUserSelectDate}
-                            dateFormat="MM/yyyy" showMonthYearPicker
+                            dateFormat="MM/yyyy"
+                            showMonthYearPicker
                         />
                     </div>
 
