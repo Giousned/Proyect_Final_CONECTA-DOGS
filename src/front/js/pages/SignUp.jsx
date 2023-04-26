@@ -33,7 +33,6 @@ const formUser = {
   }
 }
 
-const lastStep = 2;
 const firstStep = "personalInfo";
 
 const SingUpForm = () => {

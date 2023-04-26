@@ -91,9 +91,9 @@ export const DogInformation = () => {
                     <br />
                     <div className="form-check form-check-inline dog-size">
                         <input type="radio" className="form-check-input"
-                            name="sizeSmall" id="sizeSmall"
-                            placeholder="radioSizeDog"
-                            onChange={actions.handleUserRadio}
+                            name="radioSizeDog" id="sizeSmall"
+                            value="sizeSmall"
+                            onChange={actions.handleUserInput}
                             checked={store.userInput.radioSizeDog == "sizeSmall" }
                         />
                         <label htmlFor="sizeSmall" className="form-check-label">
@@ -102,9 +102,9 @@ export const DogInformation = () => {
                     </div>
                     <div className="form-check form-check-inline dog-size">
                         <input type="radio" className="form-check-input"
-                            name="sizeMedium" id="sizeMedium"
-                            placeholder="radioSizeDog"
-                            onChange={actions.handleUserRadio}
+                            name="radioSizeDog" id="sizeMedium"
+                            value="sizeMedium"
+                            onChange={actions.handleUserInput}
                             checked={store.userInput.radioSizeDog == "sizeMedium" }
                         />
                         <label htmlFor="sizeMedium" className="form-check-label">
@@ -113,9 +113,9 @@ export const DogInformation = () => {
                     </div>
                     <div className="form-check form-check-inline dog-size">
                         <input type="radio" className="form-check-input"
-                            name="sizeBig" id="sizeBig"
-                            placeholder="radioSizeDog"
-                            onChange={actions.handleUserRadio}
+                            name="radioSizeDog" id="sizeBig"
+                            value="sizeBig"
+                            onChange={actions.handleUserInput}
                             checked={store.userInput.radioSizeDog == "sizeBig" }
                         />
                         <label htmlFor="sizeBig" className="form-check-label">
@@ -124,9 +124,9 @@ export const DogInformation = () => {
                     </div>
                     <div className="form-check form-check-inline dog-size">
                         <input type="radio" className="form-check-input"
-                            name="sizeHuge" id="sizeHuge"
-                            placeholder="radioSizeDog"
-                            onChange={actions.handleUserRadio}
+                            name="radioSizeDog" id="sizeHuge"
+                            value="sizeHuge"
+                            onChange={actions.handleUserInput}
                             checked={store.userInput.radioSizeDog == "sizeHuge" }
                         />
                         <label htmlFor="sizeHuge" className="form-check-label">
@@ -209,9 +209,9 @@ export const DogInformation = () => {
                     <br />
                     <div className="form-check form-check-inline dog-mtn">
                         <input type="radio" className="form-check-input"
-                            name="activityLow" id="activityLow"
-                            placeholder="radioActivity"
-                            onChange={actions.handleUserRadio}
+                            name="radioActivity" id="activityLow"
+                            value="activityLow"
+                            onChange={actions.handleUserInput}
                             checked={ store.userInput.radioActivity == "activityLow" }
                         />
                         <label className="form-check-label" htmlFor="activityLow">
@@ -220,9 +220,9 @@ export const DogInformation = () => {
                     </div>
                     <div className="form-check form-check-inline dog-mtn">
                         <input type="radio" className="form-check-input"
-                            name="activityMedium" id="activityMedium"
-                            placeholder="radioActivity"
-                            onChange={actions.handleUserRadio}
+                            name="radioActivity" id="activityMedium"
+                            value="activityMedium"
+                            onChange={actions.handleUserInput}
                             checked={ store.userInput.radioActivity == "activityMedium"}
                         />
                         <label className="form-check-label" htmlFor="activityMedium">
@@ -231,9 +231,9 @@ export const DogInformation = () => {
                     </div>
                     <div className="form-check form-check-inline dog-mtn">
                         <input type="radio" className="form-check-input"
-                            name="activityHigh" id="activityHigh"
-                            placeholder="radioActivity"
-                            onChange={actions.handleUserRadio}
+                            name="radioActivity" id="activityHigh"
+                            value="activityHigh"
+                            onChange={actions.handleUserInput}
                             checked={ store.userInput.radioActivity == "activityHigh"}
                         />
                         <label className="form-check-label" htmlFor="activityHigh">
@@ -273,26 +273,8 @@ export const DogInformation = () => {
 
 
 
-// const handleChangeGeneroPerro = (event) => actions.setGeneroPerro(event.target.value);
-
-// const handleCheckTamanoPequeno = () => actions.setTamanoPequeno(!store.tamanoPequeno);
-// const handleCheckTamanoMediano = () => actions.setTamanoMediano(!store.tamanoMediano);
-// const handleCheckTamanoGrande = () => actions.setTamanoGrande(!store.tamanoGrande);
-// const handleCheckTamanoGigante = () => actions.setTamanoGigante(!store.tamanoGigante);
-
-
-// // DogInformation2
-
-// const handleChangeEsterilizado = (event) => actions.setEsterilizado(event.target.value);
-// const handleChangeSociableGatos = (event) => actions.setSociableGatos(event.target.value);
-// const handleChangeSociableKids = (event) => actions.setSociableKids(event.target.value);
-// const handleChangeSociablePerros = (event) => actions.setSociablePerros(event.target.value);
-// const handleCheckActividadBaja = () => actions.setActividadBaja(!actividadBaja);
-// const handleCheckActividadMedia = () => actions.setActividadMedia(!actividadMedia);
-// const handleCheckActividadAlta = () => actions.setActividadAlta(!actividadAlta);
-// value={store.recordarme} onChange={actions.handleCheckRecordarme} checked={store.recordarme}
-// value={store.emailInicio}
-// onChange={(e) => actions.setEmailInicio(e.target.value)}
+// {props.extra.map((item,index) => (
+//     <div key={index} onClick={() => {props.setColor(item);}} className={`trafficLight ${item}` + ((props.color === item) ? " glow" : "")}></div>
 
 
 // Checkbox.propTypes = {

@@ -12,7 +12,7 @@ const AppContext = createContext();
 
 export const AppProvider = ({children}) => {
 
-    const { userInput, resetInput, handleUserInput, handleUserRadio, handleUserCheck, handleUserSelectDate } = useUserInput();
+    const { userInput, resetInput, handleUserInput, handleUserCheck, handleUserSelectDate } = useUserInput();
 
 
     const handleRegister = (e) => {
@@ -36,7 +36,6 @@ export const AppProvider = ({children}) => {
     const actions = {
         resetInput,
         handleUserInput,
-        handleUserRadio,
         handleUserCheck,
         handleUserSelectDate,
 

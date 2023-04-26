@@ -14,7 +14,8 @@ from api.models import db
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
-from api.models import User, Carer, Services, Tarifs, Owner, Dog
+from api.models import User #, Carer, Services, Tarifs, Owner, Dog
+from api.controllers.user import create_user
 
 
 #from models import Person
@@ -78,24 +79,18 @@ def serve_any_other_file(path):
 def signup():
     body = request.json
 
-    if body["email"] == None or body["password"] == None:
-        return jsonify({"msg": "Insert and email or password"}), 400
-
     # Rellenar las tablas de la DB
-    # Crear un nuevo usuario en la base de datos
-    new_user = User(email = body["email"], password = body["password"], is_active = True, photo = body["photoUser"], name = body["nameUser"], last_name = body["lastnameUser"], address = body["address"], city = body["province"], postal_code = body["postalCode"], phone_number = body["phone"])     # country = body["email"], birthdate = body["email"],
-    new_dog = Dog(name = body["nombrePerro"], photo = body["fotoPerro"], breed = body["raza"], birthdate = body["nacimientoPerro"], sex = body["generoPerro"], dog_size = body["radioSizeDog"], sterilized = body["neutered"], social_cats = body["socialCats"], social_kids = body["socialKids"], social_dogs = body["socialDogs"], activity_level = body["radioActivity"], microchip = body["microchip"], observations = body["observations"])
-    new_service = Services(id = body["nurseryDay"], id = body["walk"], id = body["nurseryNight"])
-    new_tarif = Tarifs(price = body["priceNurseryDay"], price = body["priceWalk"], price = body["priceNurseryNight"])
+    user_response = create_user(body)
 
-    db.session.add(new_user)
-    db.session.add(new_dog)
-    db.session.add(new_service)
-    db.session.add(new_tarif)
+    # new_dog = Dog(name = body["nombrePerro"], photo = body["fotoPerro"], breed = body["raza"], birthdate = body["nacimientoPerro"], sex = body["generoPerro"], dog_size = body["radioSizeDog"], sterilized = body["neutered"], social_cats = body["socialCats"], social_kids = body["socialKids"], social_dogs = body["socialDogs"], activity_level = body["radioActivity"], microchip = body["microchip"], observations = body["observations"])
+    # new_service = Services(id = body["nurseryDay"], id = body["walk"], id = body["nurseryNight"])
+    # new_tarif = Tarifs(price = body["priceNurseryDay"], price = body["priceWalk"], price = body["priceNurseryNight"])
 
-    db.session.commit()
+    # db.session.add(new_dog)
+    # db.session.add(new_service)
+    # db.session.add(new_tarif)
 
-    return jsonify({"code": 200, "mensaje": "Todo ha ido bien"})
+    return jsonify(response), response["code"]
 
 # Crea una ruta para autenticar a los usuarios y devolver el token JWT.
 # La función create_access_token() se utiliza para generar el JWT.
