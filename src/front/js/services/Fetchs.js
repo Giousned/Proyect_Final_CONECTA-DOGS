@@ -35,7 +35,7 @@ export const POSTRegister = async (informacionUsuario) => {
         {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ informacionUsuario }),
+        body: JSON.stringify( informacionUsuario ),
         }
     );
 

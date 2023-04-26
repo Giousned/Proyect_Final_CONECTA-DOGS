@@ -181,11 +181,11 @@ export const PersonalInformation = () => {
                     <div className="row py-2 g-2">
                         <div className="col-md">
                             <div className="form-floating">
-                                <div className="glowing-register m-2">
-                                    <input type="radio" id="propietario"
-                                        name="owner"
-                                        placeholder="radioOwnerCarer"
-                                        onChange={actions.handleUserRadio}
+                                <div className={"glowing-register m-2" + ((store.userInput.radioOwnerCarer == "owner") ? " activeGlow" : "")}>
+                                    <input type="radio" id="owner"
+                                        name="radioOwnerCarer"
+                                        value="owner"
+                                        onChange={actions.handleUserInput}
                                         checked={ store.userInput.radioOwnerCarer == "owner" } />
                                     <label htmlFor="owner">Propietario</label>
                                 </div>
@@ -193,11 +193,11 @@ export const PersonalInformation = () => {
                         </div>
                         <div className="col-md">
                             <div className="form-floating">
-                                <div className="glowing-register m-2">
-                                    <input type="radio" id="cuidador"
-                                        name="carer"
-                                        placeholder="radioOwnerCarer"
-                                        onChange={actions.handleUserRadio}
+                                <div className={"glowing-register m-2"+ ((store.userInput.radioOwnerCarer == "carer") ? " activeGlow" : "")}>
+                                    <input type="radio" id="carer"
+                                        name="radioOwnerCarer"
+                                        value="carer"
+                                        onChange={actions.handleUserInput}
                                         checked={ store.userInput.radioOwnerCarer == "carer" } />
                                     <label htmlFor="carer">Cuidador</label>
                                 </div>
@@ -212,13 +212,35 @@ export const PersonalInformation = () => {
 
 
 
-    // const handleChangeLocalidad = (event) => actions.setLocalidad(event.target.value);
-    // const handleCheckPropietario = () => { actions.setPropietario(!store.propietario); if (store.cuidador) actions.setCuidador(false); }
-    // const handleCheckCuidador = () => { actions.setCuidador(!store.cuidador); if (store.propietario) actions.setPropietario(false); }
-    // const handleUserType = (event) => { if(event.target.value) actions.setUserType(event.target.name) }
-// value={store.recordarme} onChange={actions.handleCheckRecordarme} checked={store.recordarme}
-// value={store.emailInicio}
-// onChange={(e) => actions.setEmailInicio(e.target.value)}
+// {props.extra.map((item,index) => (
+//     <div key={index} onClick={() => {props.setColor(item);}} className={`trafficLight ${item}` + ((props.color === item) ? " glow" : "")}></div>
+
+{/* <div className="row py-2 g-2">
+<div className="col-md">
+    <div className="form-floating">
+        <div className="glowing-register m-2">
+            <input type="radio" id="owner"
+                name="radioOwnerCarer"
+                value="owner"
+                onChange={actions.handleUserInput}
+                checked={ store.userInput.radioOwnerCarer == "owner" } />
+            <label htmlFor="owner">Propietario</label>
+        </div>
+    </div>
+</div>
+<div className="col-md">
+    <div className="form-floating">
+        <div className="glowing-register m-2">
+            <input type="radio" id="carer"
+                name="radioOwnerCarer"
+                value="carer"
+                onChange={actions.handleUserInput}
+                checked={ store.userInput.radioOwnerCarer == "carer" } />
+            <label htmlFor="carer">Cuidador</label>
+        </div>
+    </div>
+</div>
+</div> */}
  
 
 // Checkbox.propTypes = {

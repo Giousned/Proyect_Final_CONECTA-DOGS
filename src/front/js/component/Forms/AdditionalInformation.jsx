@@ -12,9 +12,9 @@ export const AdditionalInformation = () => {
 
     return (
         <>
-            <h2 className="py-2">Servicios</h2>
 
             <div className="form-check form-check-inline py-2">
+            <h2 className="py-2">Servicios</h2>
                 <label className="form-check-label" htmlFor="guarderia-diurna">
                     Guardería Diurna (Alojamiento de día)
                 </label>

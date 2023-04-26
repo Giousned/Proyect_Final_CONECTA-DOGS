@@ -5,8 +5,10 @@
   box-shadow: 5px 5px 15px 5px #000000;
 }
 
-.glowing-register input[type="radio"] {
-  /* display: none; */
+.glowing-register input[type="radio"],
+.dog-mtn input[type="radio"],
+.dog-size input[type="radio"] {
+  display: none;
 }
 
 .glowing-register label {
@@ -31,9 +33,10 @@
     0 0 30px currentColor;
 }
 
-
-.dog-size input[type="radio"] {
-  display: none;
+.activeGlow label {
+  border-color: currentColor;
+  box-shadow: 0 0 10px currentColor, 0 0 20px currentColor,
+    0 0 30px currentColor;
 }
 
 .dog-size label {
@@ -58,10 +61,6 @@
   border-color: currentColor;
   box-shadow: 0 0 10px currentColor, 0 0 20px currentColor,
     0 0 30px currentColor;
-}
-
-.dog-mtn input[type="radio"] {
-  /* display: none; */
 }
 
 .dog-mtn input[type="checkbox"] {
