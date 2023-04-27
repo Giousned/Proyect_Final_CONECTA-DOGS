@@ -96,6 +96,6 @@
   color: black;
 }
 
-.user-profile .custom-tabs {
-  box-shadow: 7px 7px 7px black;
+.user-profile .boxshadow {
+  box-shadow: 5px 5px 5px black;
 }

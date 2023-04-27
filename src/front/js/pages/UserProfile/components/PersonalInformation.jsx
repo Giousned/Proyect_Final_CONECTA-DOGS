@@ -9,7 +9,7 @@ const PersonalInformation = () => {
         handleUserInput,
         handleUserCheck,
         handleUserSelectDate,
-    } = useUserInput({ name: "Guillermo", lastname: "Nuria" });
+    } = useUserInput({ name: "Sandra", lastname: "Madarnas" });
 
     return (
         <div id="profile">
@@ -27,6 +27,10 @@ const PersonalInformation = () => {
                     value={userInput.phone} name="phone"
                     onChange={handleUserInput} />
                 <label htmlFor="telefono-user">Teléfono</label>
+            </div>
+
+            <div className="d-grid m-4 d-md-flex justify-content-md-end">
+                <button type="button" className="action-button shadow animate red">Cambiar la Contraseña</button>
             </div>
         </div>
     );

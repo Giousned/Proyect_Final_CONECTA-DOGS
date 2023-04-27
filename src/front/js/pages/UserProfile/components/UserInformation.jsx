@@ -9,10 +9,11 @@ const UserInformation = () => {
         handleUserInput,
         handleUserCheck,
         handleUserSelectDate,
-    } = useUserInput({ name: "Guillermo", lastname: "Nuria" });
+    } = useUserInput({ name: "Sandra", lastname: "Madarnas" });
 
     return (
         <>
+            <h2 className="text-dark">Nombre: {userInput.name} {userInput.lastname}</h2>
             <div className="form-floating my-1">
                 <input type="text" className="form-control" id="nombre-usuario"
                     placeholder="Introduce un nombre"
@@ -46,7 +47,7 @@ const UserInformation = () => {
             </div>
 
             {/* <label htmlFor="provincia-user">Localidad</label> */}
-            <select required id="provincia-user" className="form-select"
+            <select required id="provincia-user" className="form-select p-3"
                 name="province" value={userInput.province}
                 onChange={handleUserInput}>
                 <option defaultValue="">Localidad</option>

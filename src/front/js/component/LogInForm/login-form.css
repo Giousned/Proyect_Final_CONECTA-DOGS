@@ -12,6 +12,44 @@
   color: black;
 }
 
-.register {
-  color: brown;
+.custom-login a {
+  text-decoration: none;
+}
+
+.custom-login .action-button {
+  position: relative;
+  border-radius: 3px;
+  color: white;
+  text-decoration: none;
+  width: 14rem;
+}
+
+.custom-login .blue {
+  background-color: #3498db;
+  border-bottom: 5px solid #2980B9;
+  text-shadow: 0px -2px #2980B9;
+}
+
+.custom-login .red {
+  background-color: #e74c3c;
+  border-bottom: 5px solid #c0392b;
+  text-shadow: 0px -2px #c0392b;
+}
+
+.custom-login .green {
+  background-color: #2ecc71;
+  border-bottom: 5px solid #27ae60;
+  text-shadow: 0px -2px #27ae60;
+}
+
+.custom-login .yellow {
+  background-color: #f1c40f;
+  border-bottom: 5px solid #f39c12;
+  text-shadow: 0px -2px #f39c12;
+}
+
+.custom-login .action-button:active {
+  transform: translate(0px, 5px);
+  -webkit-transform: translate(0px, 5px);
+  border-bottom: 1px solid black;
 }

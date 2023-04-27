@@ -1,6 +1,6 @@
 /* Blog - Styles */
 
-.custom-bg-blog {
+.custom-blog {
     background: url("https://cdn.pixabay.com/photo/2021/10/31/15/22/paws-6757808_960_720.png");
     background-repeat: no-repeat;
     background-position: center center;
@@ -9,4 +9,13 @@
     background-size: cover;
     background-blend-mode: overlay;
     background-color: rgba(0, 0, 0, 0.4);
+}
+
+.custom-blog a:hover {
+    color: white;
+    font-size: large;
+}
+
+.card-body-blog {
+    min-height: 15rem;
 }

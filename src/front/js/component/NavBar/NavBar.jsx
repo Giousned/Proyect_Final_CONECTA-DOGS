@@ -54,7 +54,7 @@ const NavBar = () => {
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <Link to="/user-profile" className="dropdown-item">
+                    <Link to="/profile" className="dropdown-item">
                       <i className="fas fa-user-circle"></i> Ver Perfil
                     </Link>
                   </li>

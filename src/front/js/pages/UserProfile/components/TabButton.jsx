@@ -14,7 +14,7 @@ const TabButton = ({ id, label, isActive, onClick }) => {
                 aria-selected={isActive}
                 onClick={onClick}
             >
-                {label}
+                <b>{label}</b>
             </button>
         </li>
     );

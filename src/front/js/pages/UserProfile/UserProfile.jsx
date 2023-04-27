@@ -9,10 +9,18 @@ import PersonalInformation from "./components/PersonalInformation.jsx";
 import ServicesRates from "./components/ServicesRates.jsx";
 import MyDog from "./components/MyDog.jsx";
 
-import useUserInput from "../../hooks/useUserInput.js";
+import useUserInput from "../../hooks/useUserInput";
 import "./user-profile.css";
 
 const UserProfile = () => {
+
+    const {
+        userInput,
+        resetInput,
+        handleUserInput,
+        handleUserCheck,
+        handleUserSelectDate,
+    } = useUserInput({ name: "Sandra", lastname: "Madarnas" });
 
     const [activeTab, setActiveTab] = useState('home');
 
@@ -34,14 +42,14 @@ const UserProfile = () => {
                         <div className="avatar-user"></div>
 
                         <div className="tituloperfil text-center">
-                            <h1>Sandra Madarnas</h1>
-                            <h3>Estás registrado como: <b className="border rounded bg-light p-2">PROPIETARIO | CUIDADOR</b></h3>
+                            <h1 className="text-dark">Nombre: {userInput.name} {userInput.lastname}</h1>
+                            <h3>Estás registrado como: <b className="border rounded bg-light boxshadow p-2">PROPIETARIO | CUIDADOR</b></h3>
                         </div>
 
                         <div>
                             <form>
                                 <h3>Sobre mí:</h3>
-                                <div className="col">
+                                <div className="col boxshadow">
                                     <textarea className="form-control" id="sobre-mi" rows="3">
                                         Breve descripción sobre mí... 🤗 ❤️
                                         Puedo editar ya todos los campos ❤️ 🤗
@@ -50,7 +58,7 @@ const UserProfile = () => {
 
 
                                 {/* Fichas - Tabs */}
-                                <div className="col my-3 border rounded p-2 custom-tabs">
+                                <div className="col my-3 border rounded p-2 boxshadow">
                                     <ul className="nav nav-tabs bg-light mb-4 pb-1" id="myTab" role="tablist">
                                         <TabButton
                                             id="home-tab"
@@ -107,9 +115,8 @@ const UserProfile = () => {
                                     </div>
                                 </div>
 
-                                <div className="col my-4 py-4">
-                                    <button className="btn btn-danger mx-2">Cambiar la contraseña</button>
-                                    <button type="submit" className="btn btn-primary mx-2">Guardar cambios</button>
+                                <div className="d-grid m-4 d-md-flex justify-content-md-end">
+                                    <button type="submit" className="action-button shadow animate blue">Guardar cambios</button>
                                 </div>
                             </form>
                         </div>

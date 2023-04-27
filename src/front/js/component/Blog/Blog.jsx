@@ -30,7 +30,7 @@ const blogPosts = [
         imageUrl:
             "https://cdn.pixabay.com/photo/2016/12/23/06/40/pup-1926897_960_720.jpg",
         description:
-            "¡Poooor fin empieza la cuenta atrás para las ansiadas vacaciones de Semana Santa!, y en Conecta-Dogs queremos echarte una mano...",
+            "¡Poooor fin empieza la cuenta atrás para las ansiadas vacaciones de Semana Santa!, y en Conecta-Dogs queremos echarte una mano, registrate con nosotros y encuentra al cuidador perfecto...",
         buttonLabel: "Leer más...",
         buttonUrl: "#",
     },
@@ -42,7 +42,7 @@ const Blog = () => {
             <div className="container col-12">
                 <h2>Blog de Conecta-Dogs</h2>
             </div>
-            <section className="blog custom-bg-blog">
+            <section className="blog custom-blog">
                 <div className="my-4 p-4 border rounded-3">
                     <div className="row">
                         {blogPosts.map((post) => (
@@ -51,7 +51,7 @@ const Blog = () => {
                             </div>
                         ))}
                         <div className="container text-center m-3">
-                            <button type="button" className="btn btn-primary">
+                            <button type="button" className="action-button shadow animate blue">
                                 Ver todas las publicaciones
                             </button>
                         </div>

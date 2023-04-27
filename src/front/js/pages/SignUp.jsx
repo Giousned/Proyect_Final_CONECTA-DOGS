@@ -85,10 +85,10 @@ const SingUpForm = () => {
                 <p className="text-center">{formUser[currentStep].description}</p>
                 {formUser[currentStep].component}
                 <div className="d-grid gap-2 d-md-flex justify-content-md-end py-2">
-                  <button className="btn btn-primary m-3" onClick={handleBack}> Atrás </button>
+                  <button className="action-button shadow animate blue" onClick={handleBack}> Atrás </button>
                   {currentStep == "personalInfo"
-                    ? <button className="btn btn-primary m-3" onClick={handleNext}> Siguiente </button>
-                    : <button className="btn btn-primary m-3" type="submit" onClick={handleSubmit}> Enviar </button>
+                    ? <button className="action-button shadow animate blue" onClick={handleNext}> Siguiente </button>
+                    : <button className="action-button shadow animate blue" type="submit" onClick={handleSubmit}> Enviar </button>
                   }
                 </div>
               </form>
