@@ -16,6 +16,11 @@ from api.admin import setup_admin
 from api.commands import setup_commands
 from api.models import User #, Carer, Services, Tarifs, Owner, Dog
 from api.controllers.user import create_user, get_users, get_user, update_user, delete_user
+from api.controllers.dog import create_dog, get_dogs, get_dog, update_dog, delete_dog
+from api.controllers.service import create_service, get_services, get_service, update_service, delete_service
+from api.controllers.tarif import create_tarif, get_tarifs, get_tarif, update_tarif, delete_tarif
+
+
 
 
 #from models import Person
@@ -65,8 +70,9 @@ def sitemap():
     return send_from_directory(static_file_dir, 'index.html')
 
 
+# RUTAS PARA EL REGISTRO DE USUARIO Y LAS PETICIONES DE USER(S)/CRUD DESDE EL FRONT
 @app.route("/signup", methods=["POST"])
-def signup():
+def signup_user():
 
     try:
 
@@ -124,6 +130,188 @@ def users_id(id):
         return jsonify(user_response), user_response["code"]
 
 
+###################################################################
+# RUTAS PARA EL REGISTRO DE PERROS Y LAS PETICIONES DE DOG(S)/CRUD DESDE EL FRONT
+@app.route("/signup-dog", methods=["POST"])
+def signup_dog():
+
+    try:
+
+        body = request.json
+
+        # Rellenar la tabla de la DB, con el registro de Perro
+        dog_response = create_dog(body)
+        if dog_response["code"] != 200:
+            return jsonify(dog_response)
+
+        return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
+            
+    except:
+        return jsonify(dog_response), dog_response["code"]
+        
+
+@app.route("/dogs", methods=["GET"])
+def dogs():
+
+    try:
+
+         # Obtener info de las tablas de la DB
+        dogs_response = get_dogs()
+
+        if dogs_response["code"] != 200:
+            return jsonify(dogs_response)
+
+        return jsonify(dogs_response["dogs"])
+            
+    except:
+        return jsonify(dogs_response), dogs_response["code"]
+
+
+@app.route("/dogs/<int:id>", methods=["GET","PUT","DELETE"])
+def dogs_id(id):
+
+    try:
+
+        # Obtener, actualizar y borrar info de las tablas de la DB
+        if request.method == "GET":
+            dog_response = get_dog(id)
+
+        if request.method == "PUT":
+            dog_response = update_dog(id)
+
+        if request.method == "DELETE":
+            dog_response = delete_dog(id)
+
+        if dog_response["code"] != 200:
+            return jsonify(dog_response)
+
+        return jsonify(dog_response)
+            
+    except:
+        return jsonify(dog_response), dog_response["code"]
+
+
+###################################################################
+# RUTAS PARA EL REGISTRO DE SERVICIOS POR PARTE DE LOS "CUIDADORES" Y LAS PETICIONES DE SERVICIO(S)/CRUD DESDE EL FRONT
+@app.route("/signup-service", methods=["POST"])
+def signup_service():
+
+    try:
+
+        body = request.json
+
+        # Rellenar la tabla de la DB, con el registro de 1 Servicio nuevo por parte de los "cuidadores"
+        service_response = create_service(body)
+        if service_response["code"] != 200:
+            return jsonify(service_response)
+
+        return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
+            
+    except:
+        return jsonify(service_response), service_response["code"]
+        
+
+@app.route("/services", methods=["GET"])
+def services():
+
+    try:
+
+         # Obtener info de las tablas de la DB
+        services_response = get_services()
+
+        if services_response["code"] != 200:
+            return jsonify(services_response)
+
+        return jsonify(services_response["services"])
+            
+    except:
+        return jsonify(services_response), services_response["code"]
+
+
+@app.route("/services/<int:id>", methods=["GET","PUT","DELETE"])
+def services_id(id):
+
+    try:
+
+        # Obtener, actualizar y borrar info de las tablas de la DB
+        if request.method == "GET":
+            service_response = get_service(id)
+
+        if request.method == "PUT":
+            service_response = update_service(id)
+
+        if request.method == "DELETE":
+            service_response = delete_service(id)
+
+        if service_response["code"] != 200:
+            return jsonify(service_response)
+
+        return jsonify(service_response)
+            
+    except:
+        return jsonify(service_response), service_response["code"]
+
+
+
+###################################################################
+# RUTAS PARA EL REGISTRO DE TARIFAS POR PARTE DE LOS "CUIDADORES" Y LAS PETICIONES DE TARIFA(S)/CRUD DESDE EL FRONT
+@app.route("/signup-tarif", methods=["POST"])
+def signup_tarif():
+
+    try:
+
+        body = request.json
+
+        # Rellenar la tabla de la DB, con el registro de 1 Servicio nuevo por parte de los "cuidadores"
+        tarif_response = create_tarif(body)
+        if tarif_response["code"] != 200:
+            return jsonify(tarif_response)
+
+        return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
+            
+    except:
+        return jsonify(tarif_response), tarif_response["code"]
+        
+
+@app.route("/tarifs", methods=["GET"])
+def tarifs():
+
+    try:
+
+         # Obtener info de las tablas de la DB
+        tarifs_response = get_tarifs()
+
+        if tarifs_response["code"] != 200:
+            return jsonify(tarifs_response)
+
+        return jsonify(tarifs_response["tarifs"])
+            
+    except:
+        return jsonify(tarifs_response), tarifs_response["code"]
+
+
+@app.route("/tarifs/<int:id>", methods=["GET","PUT","DELETE"])
+def tarifs_id(id):
+
+    try:
+
+        # Obtener, actualizar y borrar info de las tablas de la DB
+        if request.method == "GET":
+            tarif_response = get_tarif(id)
+
+        if request.method == "PUT":
+            tarif_response = update_tarif(id)
+
+        if request.method == "DELETE":
+            tarif_response = delete_tarif(id)
+
+        if tarif_response["code"] != 200:
+            return jsonify(tarif_response)
+
+        return jsonify(tarif_response)
+            
+    except:
+        return jsonify(tarif_response), tarif_response["code"]
 
 
 
@@ -131,32 +319,7 @@ def users_id(id):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#############################################################
 # Crea una ruta para autenticar a los usuarios y devolver el token JWT.
 # La función create_access_token() se utiliza para generar el JWT.
 @app.route("/token", methods=["POST"])
@@ -201,6 +364,20 @@ def protected():
     return jsonify({"id": user.id, "email": user.email }), 200
 
 
+
+
+
+
+
+# HARCODEANDO PRUEBA FACIL DE EMAIL
+# if email != "test" or password != "test":
+#     return jsonify({"msg": "Bad email or password"}), 401
+
+
+
+
+
+###################################################################
 # any other endpoint will try to serve it like a static file
 @app.route('/<path:path>', methods=['GET'])
 def serve_any_other_file(path):
@@ -214,8 +391,3 @@ def serve_any_other_file(path):
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3001))
     app.run(host='0.0.0.0', port=PORT, debug=True)
-
-
-# HARCODEANDO PRUEBA FACIL DE EMAIL
-# if email != "test" or password != "test":
-#     return jsonify({"msg": "Bad email or password"}), 401
