@@ -42,13 +42,11 @@ const NavBar = () => {
                     className="nav-link"
                     onClick={actionsAuth.handleLogOut}
                   >
-                    {" "}
-                    LOGOUT{" "}
+                    LOGOUT
                   </Link>
                 ) : (
                   <Link to="/log-in-form" className="nav-link">
-                    {" "}
-                    INGRESAR{" "}
+                    INGRESAR
                   </Link>
                 )}
               </li>
@@ -63,23 +61,18 @@ const NavBar = () => {
                 </button>
               </li>
               <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle border rounded px-3"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-
                 <a className="nav-link dropdown-toggle border rounded px-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <i className="fas fa-user-circle"></i>
                 </a>
+
                 <ul className="dropdown-menu">
+
                   <li>
                     <Link to="/user-profile" className="dropdown-item">
                       <i className="fas fa-user-circle"></i> Ver Perfil
                     </Link>
                   </li>
+
                   <li>
                     <Link to="/notifications" className="dropdown-item">
                       <i className="fas fa-bell"></i> Notificaciones
@@ -89,12 +82,13 @@ const NavBar = () => {
                   <li>
                     <hr className="dropdown-divider" />
                   </li>
-                  <li><hr className="dropdown-divider" /></li>
+
                   <li>
                     <Link to="/home" className="dropdown-item">
                       <i className="fas fa-sign-out-alt"></i> Cerrar Sesión
                     </Link>
                   </li>
+                  
                 </ul>
               </li>
             </ul>

@@ -15,7 +15,7 @@ from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
 from api.models import User #, Carer, Services, Tarifs, Owner, Dog
-from api.controllers.user import create_user, get_users
+from api.controllers.user import create_user, get_users, get_user, update_user, delete_user
 
 
 #from models import Person
@@ -64,16 +64,6 @@ def sitemap():
         return generate_sitemap(app)
     return send_from_directory(static_file_dir, 'index.html')
 
-# any other endpoint will try to serve it like a static file
-@app.route('/<path:path>', methods=['GET'])
-def serve_any_other_file(path):
-    if not os.path.isfile(os.path.join(static_file_dir, path)):
-        path = 'index.html'
-    response = send_from_directory(static_file_dir, path)
-    response.cache_control.max_age = 0 # avoid cache memory
-    return response
-
-
 
 @app.route("/signup", methods=["POST"])
 def signup():
@@ -82,17 +72,12 @@ def signup():
 
         body = request.json
 
-        # Rellenar las tablas de la DB
+        # Rellenar la tabla de la DB, con el registro de Usuario
         user_response = create_user(body)
         if user_response["code"] != 200:
             return jsonify(user_response)
 
         return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
-
-        # owner_response = create_owner(body)
-        
-        # dog_response = create_dog(body)
-
             
     except:
         return jsonify(user_response), user_response["code"]
@@ -113,7 +98,64 @@ def users():
             
     except:
         return jsonify(users_response), users_response["code"]
-    
+
+
+@app.route("/users/<int:id>", methods=["GET","PUT","DELETE"])
+def users_id(id):
+
+    try:
+
+        # Obtener, actualizar y borrar info de las tablas de la DB
+        if request.method == "GET":
+            user_response = get_user(id)
+
+        if request.method == "PUT":
+            user_response = update_user(id)
+
+        if request.method == "DELETE":
+            user_response = delete_user(id)
+
+        if user_response["code"] != 200:
+            return jsonify(user_response)
+
+        return jsonify(user_response)
+            
+    except:
+        return jsonify(user_response), user_response["code"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Crea una ruta para autenticar a los usuarios y devolver el token JWT.
 # La función create_access_token() se utiliza para generar el JWT.
@@ -158,6 +200,15 @@ def protected():
 
     return jsonify({"id": user.id, "email": user.email }), 200
 
+
+# any other endpoint will try to serve it like a static file
+@app.route('/<path:path>', methods=['GET'])
+def serve_any_other_file(path):
+    if not os.path.isfile(os.path.join(static_file_dir, path)):
+        path = 'index.html'
+    response = send_from_directory(static_file_dir, path)
+    response.cache_control.max_age = 0 # avoid cache memory
+    return response
 
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
