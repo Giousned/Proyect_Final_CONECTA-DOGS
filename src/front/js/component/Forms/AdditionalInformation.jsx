@@ -73,7 +73,3 @@ export const AdditionalInformation = () => {
     );
 }
 
-
-    // const handleCheckGuarderiaDiurna = () => actions.setGuarderiaDiurna(!guarderiaDiurna);
-    // const handleCheckPaseo = () => actions.setPaseo(!paseo);
-    // const handleCheckGuarderiaNocturna = () => actions.setGuarderiaNocturna(!guarderiaNocturna);
