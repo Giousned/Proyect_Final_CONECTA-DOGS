@@ -46,16 +46,12 @@ def get_dogs():
         dogs = db.session.execute(query).scalars()
         
 
-        newlist = [dog.serialize() for dog in dogs]
+        dog_list = [dog.serialize() for dog in dogs]
 
-        return {"code": 200, "msg": "All ok", "dogs": newlist}
+        return {"code": 200, "msg": "All ok", "dogs": dog_list}
 
     except:
         return {"code": 500, "msg": "Error in server, something was wrong"}
-
-
-    # dogs = db.session.execute(db.select(dog.email).order_by(dog.id)).scalars()
-    # dogs = db.session.execute(db.select([dog.name, dog.email]).order_by(dog.id)).scalars()
 
 
 def get_dog(id):
@@ -110,7 +106,7 @@ def delete_dog(id):
         db.session.delete(dog)
         db.session.commit()
 
-        # query = db.select(dog).order_by(dog.id)                 # SI DESPUES NECESITA UNA LISTA COMPLETA ACTUALIZADA
+        # query = db.select(dog).order_by(dog.id)                 # SI DESPUES SE NECESITA UNA LISTA COMPLETA ACTUALIZADA POR PARTE DEL FRONT
         # dogs = db.session.execute(query).scalars()
 
         return {"code": 200, "msg": "Delete dog ok"}

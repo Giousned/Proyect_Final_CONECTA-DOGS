@@ -45,9 +45,9 @@ def get_users():
         users = db.session.execute(query).scalars()
         
 
-        newlist = [user.serialize() for user in users]
+        user_list = [user.serialize() for user in users]
 
-        return {"code": 200, "msg": "All ok", "users": newlist}
+        return {"code": 200, "msg": "All ok", "users": user_list}
 
     except:
         return {"code": 500, "msg": "Error in server, something was wrong"}
