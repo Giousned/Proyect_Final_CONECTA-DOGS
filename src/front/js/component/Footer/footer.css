@@ -1,34 +1,27 @@
 /* Footer Styles */
 
-/* Contacto - Contact */
-.btn-instagram {
-    background-color: red;
+.logo-footer:hover {
+    background-color: #3498db;
 }
 
-.btn-instagram:hover {
-    background-color: rgba(255, 0, 0, 0.777);
+.section-footer:hover {
+    background-color: #3498db;
 }
 
-.btn-mail {
-    background-color: blue;
-}
-
-.btn-mail:hover {
-    background-color: rgba(0, 0, 255, 0.777);
-}
-
-.btn-telf {
-    background-color: green;
-}
-
-.btn-telf:hover {
-    background-color: rgba(0, 128, 0, 0.777);
-}
-
-.btn-github {
+.btn-githubs,
+.btn-githubg,
+.btn-githubn {
     background-color: black;
 }
 
-.btn-github:hover {
-    background-color: rgba(0, 0, 0, 0.777);
+.btn-githubs:hover {
+    background-color: #a06b65;
+}
+
+.btn-githubg:hover {
+    background-color: #7b92aa;
+}
+
+.btn-githubn:hover {
+    background-color: #d2b653;
 }

@@ -1,0 +1,9 @@
+/* Notificaciones | Notifications - Styles */
+
+.custom-notifications .custom-notif-card {
+    min-height: 120px;
+}
+
+.custom-notifications .card-body {
+    width: 300px;
+}

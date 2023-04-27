@@ -1,24 +1,20 @@
 import React from "react";
 
-import useUserInput from "../../hooks/useUserInput.js";
-
+import useAppContext from "../../store/AppContext";
 import "./signup-form.css";
 
-export const PersonalInformation = () => {
+const PersonalInformation = () => {
 
-    const { userInput, resetInput, handleUserInput, handleUserRadio, handleUserCheck, handleUserSelectDate } = useUserInput();
+    const { store, actions } = useAppContext();
 
- 
     return (
         <>
             <div className="d-grid row g-3">
                 <label htmlFor="foto-usuario" className="form-label">
                     Foto de perfil
                     <input className="form-control" type="file" id="foto-usuario"
-                        name="photoUser"
-                        value={userInput.photoUser}
-                        onChange={handleUserInput}
-                        />
+                        name="userPhoto" value={store.userInput.userPhoto}
+                        onChange={actions.handleUserInput} />
                 </label>
 
                 <div className="input-group">
@@ -28,10 +24,9 @@ export const PersonalInformation = () => {
                         </label>
                         <input className="form-control" type="text" id="nombre-usuario"
                             aria-describedby="nombre_usuario" placeholder="Nombre del usuario"
-                            name="nameUser"
-                            value={userInput.nameUser}
-                            onChange={handleUserInput}
-                            required /> 
+                            name="name" value={store.userInput.name}
+                            onChange={actions.handleUserInput}
+                            required />
                     </div>
 
                     <div className="col ms-2">
@@ -40,38 +35,35 @@ export const PersonalInformation = () => {
                         </label>
                         <input className="form-control" type="text" id="apellidos-usuario"
                             aria-describedby="apellidos_usuario" placeholder="Apellidos del usuario"
-                            name="lastnameUser"
-                            value={userInput.lastnameUser}
-                            onChange={handleUserInput}
+                            name="lastName" value={store.userInput.lastName}
+                            onChange={actions.handleUserInput}
                             required />
                     </div>
                 </div>
 
-            <div className="input-group">
-                <div className="col me-2">
-                    <label htmlFor="emailRegistroUser" className="form-label">
-                        Correo Electrónico *
-                    </label>
-                    <input className="form-control" type="email" id="emailRegistroUser"
-                        placeholder="usuario@ejemplo.com"
-                        name="email"
-                        value={userInput.email}
-                        onChange={handleUserInput}
-                        required /> 
-                </div>
+                <div className="input-group">
+                    <div className="col me-2">
+                        <label htmlFor="emailRegistroUser" className="form-label">
+                            Correo Electrónico *
+                        </label>
+                        <input className="form-control" type="email" id="emailRegistroUser"
+                            placeholder="usuario@ejemplo.com"
+                            name="email" value={store.userInput.email}
+                            onChange={actions.handleUserInput}
+                            required />
+                    </div>
 
-                <div className="col ms-2">
-                    <label htmlFor="passRegistroUser" className="form-label">
-                        Contraseña *
-                    </label>
-                    <input className="form-control" type="password" id="passRegistroUser"
-                        placeholder="Contraseña"
-                        name="password"
-                        value={userInput.password}
-                        onChange={handleUserInput}
-                        required />
+                    <div className="col ms-2">
+                        <label htmlFor="passRegistroUser" className="form-label">
+                            Contraseña *
+                        </label>
+                        <input className="form-control" type="password" id="passRegistroUser"
+                            placeholder="Contraseña"
+                            name="password" value={store.userInput.password}
+                            onChange={actions.handleUserInput}
+                            required />
+                    </div>
                 </div>
-            </div>
 
                 <div className="col">
                     <label htmlFor="direccion-usuario" className="form-label">
@@ -79,9 +71,8 @@ export const PersonalInformation = () => {
                     </label>
                     <input className="form-control" type="text" id="direccion-usuario"
                         aria-describedby="direccion_usuario" placeholder="Dirección del usuario (Calle y número)"
-                        name="address"
-                        value={userInput.address}
-                        onChange={handleUserInput}
+                        name="address" value={store.userInput.address}
+                        onChange={actions.handleUserInput}
                         required />
                 </div>
 
@@ -92,9 +83,8 @@ export const PersonalInformation = () => {
                         </label>
                         <input className="form-control" type="text" id="codigo-postal-usuario"
                             aria-describedby="codigo_postal_usuario" placeholder="30000"
-                            name="postalCode"
-                            value={userInput.postalCode}
-                            onChange={handleUserInput}
+                            name="postalCode" value={store.userInput.postalCode}
+                            onChange={actions.handleUserInput}
                             required />
                     </div>
 
@@ -103,10 +93,8 @@ export const PersonalInformation = () => {
                             Localidad *
                         </label>
                         <select required id="provincia-user" className="form-select"
-                            name="province"
-                            value={userInput.province}
-                            onChange={handleUserInput}
-                        >
+                            name="province" value={store.userInput.province}
+                            onChange={actions.handleUserInput}>
                             <option defaultValue="">Elige Provincia</option>
                             <option value="Álava">Álava</option>
                             <option value="Albacete">Albacete</option>
@@ -170,54 +158,48 @@ export const PersonalInformation = () => {
                     </label>
                     <input className="form-control" type="tel" id="telefono-user"
                         aria-describedby="telefono" placeholder="666123456"
-                        name="phone"
-                        value={userInput.phone}
-                        onChange={handleUserInput}
+                        name="phone" value={store.userInput.phone}
+                        onChange={actions.handleUserInput}
                         required />
                 </div>
 
-                <h5>¿Cómo quieres registrarte?</h5>
+                {/* <div className="my-3">
+                    <h5>¿Cómo quieres registrarte?</h5>
                     <p>Elige una opción</p>
-                    <div className="row py-2 g-2">
+                    <div className="row g-2">
                         <div className="col-md">
                             <div className="form-floating">
-                                <div className="glowing-register m-2">
-                                    <input type="radio" id="propietario"
-                                        name="owner"
-                                        onChange={handleUserRadio}
-                                        checked={ userInput.owner == "owner" } />
+                                <div className={"glowing-register" + ((store.userInput.radioOwnerCarer == "owner") ? " activeGlow" : "")}>
+                                    <input type="radio" id="owner"
+                                        name="radioOwnerCarer" value="owner"
+                                        onChange={actions.handleUserInput}
+                                        checked={store.userInput.radioOwnerCarer == "owner"} />
                                     <label htmlFor="owner">Propietario</label>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md">
                             <div className="form-floating">
-                                <div className="glowing-register m-2">
-                                    <input type="radio" id="cuidador"
-                                        name="carer"
-                                        onChange={handleUserRadio}
-                                        checked={ userInput.carer == "carer" } />
+                                <div className={"glowing-register" + ((store.userInput.radioOwnerCarer == "carer") ? " activeGlow" : "")}>
+                                    <input type="radio" id="carer"
+                                        name="radioOwnerCarer" value="carer"
+                                        onChange={actions.handleUserInput}
+                                        checked={store.userInput.radioOwnerCarer == "carer"} />
                                     <label htmlFor="carer">Cuidador</label>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                </div> */}
             </div>
         </>
     );
 }
 
+export default PersonalInformation;
 
 
-    // const handleChangeLocalidad = (event) => actions.setLocalidad(event.target.value);
-    // const handleCheckPropietario = () => { actions.setPropietario(!store.propietario); if (store.cuidador) actions.setCuidador(false); }
-    // const handleCheckCuidador = () => { actions.setCuidador(!store.cuidador); if (store.propietario) actions.setPropietario(false); }
-    // const handleUserType = (event) => { if(event.target.value) actions.setUserType(event.target.name) }
-// value={store.recordarme} onChange={actions.handleCheckRecordarme} checked={store.recordarme}
-// value={store.emailInicio}
-// onChange={(e) => actions.setEmailInicio(e.target.value)}
- 
+
 
 // Checkbox.propTypes = {
 // value: PropTypes.bool,

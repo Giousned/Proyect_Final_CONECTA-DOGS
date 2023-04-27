@@ -1,59 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { useState } from "react";
+const useUserInput = (initialValue = {}) => {
+  const [userInput, setUserInput] = useState(initialValue);
 
-const useUserInput = () => {
-    
-    const [userInput, setUserInput] = useState({});
+  const handleUserInput = (event) => {
+    const target = event.target;
 
-    const handleUserInput = (event) => {
+    setUserInput((prev) => {
+      const newUserInput = { ...prev };
+      newUserInput[target.name] = target.value;
+      return newUserInput;
+    });
+  };
 
-        setUserInput((prev) => {
-            const newUserInput = {...prev}
-            newUserInput[event.target.name] = event.target.value;
-            return newUserInput;
-        })
+  const handleUserSelectDate = (date) => {
+    setUserInput((prev) => {
+      const newUserInput = { ...prev };
+      newUserInput["Date"] = date;
+      return newUserInput;
+    });
+  };
 
-    }
+  const handleUserCheck = ({ target }) => {
+    setUserInput((prev) => {
+      const newUserInput = { ...prev };
+      newUserInput[target.name] = target.checked;
+      return newUserInput;
+    });
+  };
 
-    const handleUserSelectDate = (event) => {
+  const resetInput = (newValue = initialValue) => setUserInput(newValue);
 
-        setUserInput((prev) => {
-            const newUserInput = {...prev}
-            newUserInput[event.target.name] = event.target.selected;
-            return newUserInput;
-        })
-
-    }
-
-    const handleUserRadio = (event) => {
-
-        setUserInput((prev) => {
-            const newUserInput = {...prev}
-            if(event.target.value) newUserInput[event.target.name] = event.target.name;
-            return newUserInput;
-        })
-    }
-
-    const handleUserCheck = (event) => {
-
-        setUserInput((prev) => {
-            const newUserInput = {...prev}
-            newUserInput[event.target.name] = !event.target.value;
-            return newUserInput;
-        })
-    } 
-
-    const resetInput = () => setUserInput("");
-
-    return {
-        userInput,
-        resetInput,
-        handleUserInput,
-        handleUserRadio,
-        handleUserCheck,
-        handleUserSelectDate,
-    }
-}
+  return {
+    userInput,
+    resetInput,
+    handleUserInput,
+    handleUserSelectDate,
+    handleUserCheck,
+  };
+};
 
 export default useUserInput;

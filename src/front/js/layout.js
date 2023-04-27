@@ -9,9 +9,13 @@ import Home from "./pages/Home.jsx";
 import NavBar from "./component/NavBar/NavBar.jsx";
 import LogInForm from "../js/component/LogInForm/LogInForm.jsx";
 import SignUpForm from "./pages/SignUp.jsx";
+import Contact from "./component/Contact/Contact.jsx";
+import UserProfile from "./pages/UserProfile/UserProfile.jsx";
+import Notifications from "./pages/Notifications/Notifications.jsx";
 import Footer from "./component/Footer/Footer.jsx";
-import { Contact } from "./component/Contact/Contact.jsx";
-import { ProfileUser } from "./pages/ProfileUser/ProfileUser.jsx";
+
+//import context
+import { AppProvider } from "../js/store/AppContext.js";
 
 //create your first component
 const Layout = () => {
@@ -23,20 +27,19 @@ const Layout = () => {
     <div>
       <BrowserRouter basename={basename}>
         <ScrollToTop>
-          <NavBar />
-          <Contact />
-          <Routes>
-            <Route element={<Home />} path="/" />
-            <Route element={<ProfileUser />} path="/profile-carer" />
-            <Route element={<LogInForm />} path="/log-in-form" />
-            <Route element={<SignUpForm />} path="/sign-up-form" />
-            <Route element={<h1>Not found!</h1>} />
-          </Routes>
-          {/*
-            <Route element={<Demo />} path="/demo" />
-            <Route element={<Signle />} path="/Signle/:theid" />
-           */}
-          <Footer />
+          <AppProvider>
+            <NavBar />
+            <Contact />
+            <Routes>
+              <Route element={<Home />} path="/" />
+              <Route element={<LogInForm />} path="/log-in-form" />
+              <Route element={<SignUpForm />} path="/sign-up-form" />
+              <Route element={<UserProfile />} path="/user-profile" />
+              <Route element={<Notifications />} path="/notifications" />
+              <Route element={<h1>Not found!</h1>} />
+            </Routes>
+            <Footer />
+          </AppProvider>
         </ScrollToTop>
       </BrowserRouter>
     </div>
@@ -44,3 +47,10 @@ const Layout = () => {
 };
 
 export default Layout;
+
+{
+  /*
+  <Route element={<Demo />} path="/demo" />
+  <Route element={<Signle />} path="/Signle/:theid" />
+*/
+}

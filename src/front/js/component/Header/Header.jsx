@@ -1,10 +1,9 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
 
 import "../Header/header.css";
 
-export const Header = () => {
+const Header = () => {
 
   return (
     <header className="d-flex align-items-center custom-header" id="home">
@@ -22,3 +21,5 @@ export const Header = () => {
     </header>
   );
 };
+
+export default Header;

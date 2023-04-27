@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import useAppContext from "../../store/AppContext.js";
 
+import useAuthContext from "../../store/AuthContext";
 import Logo from "../../../img/conectadogs-logo-white.png";
 import "../NavBar/navbar.css";
 
 const NavBar = () => {
-  const { store, actions } = useAppContext();
+  const { storeAuth, actionsAuth } = useAuthContext();
 
   return (
     <>
@@ -17,15 +17,10 @@ const NavBar = () => {
               <img src={Logo} className="logo" />
             </strong>
           </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
+          <button type="button" className="navbar-toggler"
+            data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -36,39 +31,55 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                {store.userLog ? (
+                {storeAuth.userLog ? (
                   <Link
                     to="/"
                     className="nav-link"
-                    onClick={actions.handleLogOut}
+                    onClick={actionsAuth.handleLogOut}
                   >
-                    {" "}
-                    LOGOUT{" "}
+                    LOGOUT
                   </Link>
                 ) : (
                   <Link to="/log-in-form" className="nav-link">
-                    {" "}
-                    INGRESAR{" "}
+                    INGRESAR
                   </Link>
                 )}
               </li>
               <li className="nav-item">
-                <button
-                  type="button"
-                  className="btn text-light me-2"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
-                >
+                <button type="button" className="btn text-light me-2"
+                  data-bs-toggle="modal" data-bs-target="#exampleModal">
                   CONTACTO
                 </button>
               </li>
-              <li className="nav-item">
-                <Link
-                  to="/profile-carer"
-                  className="nav-link border rounded px-3"
-                >
-                  <i className="fas fa-user-circle fa-1x"></i>
-                </Link>
+              <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle border rounded px-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i className="fas fa-user-circle"></i>
+                </a>
+
+                <ul className="dropdown-menu">
+
+                  <li>
+                    <Link to="/user-profile" className="dropdown-item">
+                      <i className="fas fa-user-circle"></i> Ver Perfil
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link to="/notifications" className="dropdown-item">
+                      <i className="fas fa-bell"></i> Notificaciones
+                    </Link>
+                  </li>
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+
+                  <li>
+                    <Link to="/home" className="dropdown-item">
+                      <i className="fas fa-sign-out-alt"></i> Cerrar Sesión
+                    </Link>
+                  </li>
+
+                </ul>
               </li>
             </ul>
           </div>

@@ -1,0 +1,52 @@
+/* Perfil | Profile - Styles */
+
+.profile {
+    text-align: center;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+}
+
+.profile img {
+    width: 13%;
+    z-index: 1000;
+}
+
+.profile .animate {
+    transition: all 0.1s;
+    -webkit-transition: all 0.1s;
+}
+
+.profile .action-button {
+    position: relative;
+    padding: 1rem;
+    margin: 3rem;
+    border-radius: 3px;
+    color: white;
+    text-decoration: none;
+    width: 20rem;
+}
+
+.profile .blue {
+    background-color: #3498db;
+    border-bottom: 5px solid #2980B9;
+    text-shadow: 0px -2px #2980B9;
+}
+
+.profile .red {
+    background-color: #e74c3c;
+    border-bottom: 5px solid #c0392b;
+    text-shadow: 0px -2px #c0392b;
+}
+
+.profile .green {
+    background-color: #2ecc71;
+    border-bottom: 5px solid #27ae60;
+    text-shadow: 0px -2px #27ae60;
+}
+
+.profile .action-button:active {
+    transform: translate(0px, 5px);
+    -webkit-transform: translate(0px, 5px);
+    border-bottom: 1px solid;
+}
