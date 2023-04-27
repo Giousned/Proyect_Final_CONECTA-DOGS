@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import useUserInput from "../../../hooks/useUserInput";
 
 const ServicesRates = () => {
@@ -11,21 +11,18 @@ const ServicesRates = () => {
         handleUserSelectDate,
     } = useUserInput({ name: "Sandra", lastname: "Madarnas" });
 
-    const [numDogs, setNumDogs] = useState(1);
-
-    useEffect(() => {
-        //  Aquí podemos hacer cualquier operación que queramos cuando el número de perros admitidos cambie.
-        console.log(`El usuario ha admitido: ${numDogs} perros`);
-    }, [numDogs]);
-
     const handleNumDogsChange = (event) => {
-        const newNumDogs = parseInt(event.target.value, 10);
-        setNumDogs(newNumDogs);
+        const numDogs = Number(event.target.value);
+        if (numDogs >= 11) {
+            alert("Número máximo de perros es 10");
+            return;
+        }
+        handleUserInput(event);
     };
 
     return (
         <>
-            <h6 className="mb-4">El usuario admite: {numDogs} perro/s</h6>
+            <h6 className="mb-4">El usuario admite: {userInput.numDogs} perro/s</h6>
 
             <div className="form-check form-check-inline py-2">
                 <label className="form-check-label" htmlFor="guarderia-diurna">
@@ -85,9 +82,9 @@ const ServicesRates = () => {
             </div>
 
             <div className="container py-4">
-                <label htmlFor="num-dogs">Número de perros admitidos:</label>
-                <input type="number" id="num-dogs" min="0" max="10"
-                    name="num-dogs" value={numDogs}
+                <label htmlFor="numDogs">Número de perros admitidos:</label>
+                <input type="number" id="numDogs" min="0" max="10"
+                    name="numDogs" value={userInput.numDogs}
                     onChange={handleNumDogsChange}
                 />
             </div>

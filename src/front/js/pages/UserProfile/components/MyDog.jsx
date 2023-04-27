@@ -20,6 +20,7 @@ const MyDog = () => {
         <>
             <h3 className="my-2">Datos del perro</h3>
             <div className="avatar-dog my-3"></div>
+            
             <DogInformation />
 
 

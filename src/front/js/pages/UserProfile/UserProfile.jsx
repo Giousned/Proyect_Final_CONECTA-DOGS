@@ -43,7 +43,6 @@ const UserProfile = () => {
 
                         <div className="tituloperfil text-center">
                             <h1 className="text-dark">Nombre: {userInput.name} {userInput.lastname}</h1>
-                            <h3>Estás registrado como: <b className="border rounded bg-light boxshadow p-2">PROPIETARIO | CUIDADOR</b></h3>
                         </div>
 
                         <div>
