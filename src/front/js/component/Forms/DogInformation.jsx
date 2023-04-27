@@ -244,9 +244,6 @@ const DogInformation = () => {
 export default DogInformation;
 
 
-// {props.extra.map((item,index) => (
-//     <div key={index} onClick={() => {props.setColor(item);}} className={`trafficLight ${item}` + ((props.color === item) ? " glow" : "")}></div>
-
 
 // Checkbox.propTypes = {
 // value: PropTypes.bool,

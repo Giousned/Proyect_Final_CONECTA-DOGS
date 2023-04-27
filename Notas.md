@@ -15,6 +15,8 @@ import "react-datepicker/dist/react-datepicker.css";
 // CSS Modules, react-datepicker-cssmodules.css
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
++INFO -> https://reactdatepicker.com/
+
 <!-- const Example = () => {
   const [startDate, setStartDate] = useState(new Date());
   return (
@@ -41,15 +43,15 @@ pipenv run upgrade
 
 <!-- ********************** -->
 # INSTALAR REACT SCROLL
-Inicio rápido: Usar react-scroll
-Creará una aplicación sencilla en este tutorial, pero si desea un resumen rápido de cómo funciona react-scroll, consulte estos pasos resumidos:
+npm install react-scroll                                <!-- npm i -S react-scroll -->
 
-Instale react-scroll:
++INFO -> https://www.npmjs.com/package/react-scroll
 
-npm i -S react-scroll
+
 Importe el paquete react-scroll:
+import * as Scroll from 'react-scroll';
+import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'                 <!-- import { Link, animateScroll as scroll } from "react-scroll"; -->
 
-import { Link, animateScroll as scroll } from "react-scroll";
+
 Añada el componente de enlace. El componente <Link /> apuntará a un área concreta de su aplicación:
-
 <Link to="section1">
