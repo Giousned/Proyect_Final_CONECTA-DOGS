@@ -163,7 +163,7 @@ const PersonalInformation = () => {
                         required />
                 </div>
 
-                <div className="my-3">
+                {/* <div className="my-3">
                     <h5>¿Cómo quieres registrarte?</h5>
                     <p>Elige una opción</p>
                     <div className="row g-2">
@@ -190,7 +190,7 @@ const PersonalInformation = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </>
     );

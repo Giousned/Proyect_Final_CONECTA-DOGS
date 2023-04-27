@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-
 import TabButton from '../UserProfile/components/TabButton.jsx';
 import UserInformation from "./components/UserInformation.jsx";
-import PersonalInformation from "./components/PersonalInformation.jsx";
 import ServicesRates from "./components/ServicesRates.jsx";
 import MyDog from "./components/MyDog.jsx";
+import AddDog from "./components/AddDog.jsx";
 
 import useUserInput from "../../hooks/useUserInput";
 import "./user-profile.css";
@@ -42,14 +39,14 @@ const UserProfile = () => {
                         <div className="avatar-user"></div>
 
                         <div className="tituloperfil text-center">
-                            <h1 className="text-dark">Nombre: {userInput.name} {userInput.lastname}</h1>
+                            <h2 className="text-dark">{userInput.name} {userInput.lastname}</h2>
                         </div>
 
                         <div>
                             <form>
                                 <h3>Sobre mí:</h3>
                                 <div className="col boxshadow">
-                                    <textarea className="form-control" id="sobre-mi" rows="3">
+                                    <textarea className="form-control" id="aboutMe" rows="3">
                                         Breve descripción sobre mí... 🤗 ❤️
                                         Puedo editar ya todos los campos ❤️ 🤗
                                     </textarea>
@@ -61,27 +58,21 @@ const UserProfile = () => {
                                     <ul className="nav nav-tabs bg-light mb-4 pb-1" id="myTab" role="tablist">
                                         <TabButton
                                             id="home-tab"
-                                            label="Información de usuario"
+                                            label="INFORMACIÓN DE USUARIO"
                                             isActive={activeTab === 'home'}
                                             onClick={() => handleTabClick('home')}
                                         />
                                         <TabButton
-                                            id="profile-tab"
-                                            label="Información personal"
-                                            isActive={activeTab === 'profile'}
-                                            onClick={() => handleTabClick('profile')}
+                                            id="mydog-tab"
+                                            label="MIS PERROS"
+                                            isActive={activeTab === 'mydog-tab-pane'}
+                                            onClick={() => handleTabClick('mydog-tab-pane')}
                                         />
                                         <TabButton
                                             id="services-tab"
-                                            label="Servicios y Tarifas"
+                                            label="OPCIONES DE CUIDADOR"
                                             isActive={activeTab === 'services'}
                                             onClick={() => handleTabClick('services')}
-                                        />
-                                        <TabButton
-                                            id="mydog-tab"
-                                            label="Mi Perro"
-                                            isActive={activeTab === 'mydog-tab-pane'}
-                                            onClick={() => handleTabClick('mydog-tab-pane')}
                                         />
                                     </ul>
 
@@ -94,19 +85,13 @@ const UserProfile = () => {
                                             <UserInformation />
                                         </div>
 
-                                        {/* Información Personal */}
-                                        <div className="tab-pane fade" id="profile-tab-pane" role="tabpanel"
-                                            aria-labelledby="profile-tab" tabindex="0">
-                                            <PersonalInformation />
-                                        </div>
-
-                                        {/* Servicios - Tarifas */}
+                                        {/* CUIDADOR: Servicios - Tarifas */}
                                         <div className="tab-pane fade" id="services-tab-pane" role="tabpanel"
                                             aria-labelledby="services-tab" tabindex="0">
                                             <ServicesRates />
                                         </div>
 
-                                        {/* Mi Perro */}
+                                        {/* Mis Perros */}
                                         <div className="tab-pane fade" id="mydog-tab-pane" role="tabpanel"
                                             aria-labelledby="mydog-tab" tabindex="0">
                                             <MyDog />
@@ -115,6 +100,7 @@ const UserProfile = () => {
                                 </div>
 
                                 <div className="d-grid m-4 d-md-flex justify-content-md-end">
+                                    <button type="button" className="action-button shadow animate red">Cambiar la Contraseña</button>
                                     <button type="submit" className="action-button shadow animate blue">Guardar cambios</button>
                                 </div>
                             </form>

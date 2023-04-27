@@ -20,12 +20,12 @@ const MyDog = () => {
         <>
             <h3 className="my-2">Datos del perro</h3>
             <div className="avatar-dog my-3"></div>
-            
+
             <DogInformation />
 
 
             {/* FORMULARIO CREADO PARA EL PERFIL SI NO QUEREMOS UTILIZAR EL DEL REGISTRO */}
-            
+
             {/* <h3 className="my-2">Datos del perro</h3>
             <div className="avatar-dog my-3"></div>
 

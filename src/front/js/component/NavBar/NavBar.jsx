@@ -59,7 +59,7 @@ const NavBar = () => {
                 <ul className="dropdown-menu">
 
                   <li>
-                    <Link to="/profile" className="dropdown-item">
+                    <Link to="/user-profile" className="dropdown-item">
                       <i className="fas fa-user-circle"></i> Ver Perfil
                     </Link>
                   </li>
@@ -78,7 +78,7 @@ const NavBar = () => {
                       <i className="fas fa-sign-out-alt"></i> Cerrar Sesión
                     </Link>
                   </li>
-                  
+
                 </ul>
               </li>
             </ul>
