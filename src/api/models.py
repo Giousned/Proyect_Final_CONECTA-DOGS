@@ -29,16 +29,16 @@ class User(db.Model):
         return {
             "id": self.id,
             "email": self.email,
+            "name": self.name,
+            "last_name": self.last_name,
+            "address": self.address,
+            "city": self.city,
+            "postal_code": self.postal_code,
+            "phone": self.phone,
             # "photo": self.photo,
-            # "name": self.name,
-            # "last_name": self.last_name,
-            # "address": self.address,
-            # "city": self.city,
-            # "postal_code": self.postal_code,
             # "country": self.country,
             # "birthday": self.birthday,
-            # "phone": self.phone,
-            # do not serialize the password, its a security breach
+        # ¡¡¡¡DO NOT serialize the password, its a security breach!!!
         }
 
 
