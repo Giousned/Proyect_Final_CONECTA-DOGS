@@ -17,5 +17,36 @@ h1 {
 }
 
 /* *+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+* */
+/* BOTONES */
+/* *+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+* */
+.action-button {
+  position: relative;
+  padding: 10px 40px;
+  margin: 0px 10px 10px 0px;
+  border-radius: 3px;
+  color: white;
+  text-decoration: none;
+  width: 20rem;
+}
+
+.blue {
+  background-color: #3498db;
+  border-bottom: 5px solid #2980B9;
+  text-shadow: 0px -2px #2980B9;
+}
+
+.red {
+  background-color: #e74c3c;
+  border-bottom: 5px solid #c0392b;
+  text-shadow: 0px -2px #c0392b;
+}
+
+.action-button:active {
+  transform: translate(0px, 5px);
+  -webkit-transform: translate(0px, 5px);
+  border-bottom: 3px solid black;
+}
+
+/* *+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+* */
 /* *+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+* */
 /* *+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+* */

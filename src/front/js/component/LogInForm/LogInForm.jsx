@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import Logo from "../../../img/conectadogs-logo.black.png";
 import useAuthContext from "../../store/AuthContext.js";
 import "../LogInForm/login-form.css";
 
@@ -15,22 +16,21 @@ const LogInForm = () => {
     navigate("/");
   }
 
-
   return (
     <>
-      <section className="py-2 custom-login">
+      <section className="p-4 custom-login">
         <div id="login"></div>
         <div className="container p-2 bg-light">
           <div className="row">
-            <h2 className="text-center p-4">INGRESAR</h2>
+            <h2 className="text-center p-4">INICIAR SESIÓN</h2>
 
             <div className="col-12 col-md-6 py-3 login">
               <img src="https://cdn.pixabay.com/photo/2020/05/07/15/07/dog-5141881_1280.jpg" className="img-fluid" />
             </div>
 
-            <div className="col-12 col-md-6 p-2">
+            <div className="col-12 col-md-6 ">
               <form onSubmit={(e) => handleSubmit(e)}>
-                <h2 className="pb-4">Iniciar Sesión</h2>
+                <img src={Logo} className="img-fluid" />
 
                 <div className="form-floating m-3">
                   <input type="email" className="form-control" id="emailLogIn" placeholder="name@example.com"
@@ -50,7 +50,7 @@ const LogInForm = () => {
                 </div>
 
                 <div>
-                  <div className="text-center">
+                  <div className="d-flex justify-content-start">
                     <label>
                       <input type="checkbox"
                         className="mb-2"
@@ -59,22 +59,23 @@ const LogInForm = () => {
                         onChange={actionsAuth.handleUserCheck}
                         checked={storeAuth.userInput.remember} /> Recordarme
                     </label>
-                    <a href="#">¿Olvidaste tu contraseña?</a>
                   </div>
-                  <div className="d-flex justify-content-center p-3 register">
-                    <Link to="/sign-up-form">
-                      <p className="text-dark">
-                        ¿No te has registrado? ¡REGÍSTRATE YA!
-                      </p>
-                    </Link>
+                  <div className="d-flex justify-content-end">
+                    <a href="#"> ¿Olvidaste tu contraseña?</a>
                   </div>
+
+                  <div className="d-grid m-4 d-md-flex justify-content-md-center">
+                    <Link to="/sign-up-form" className="action-button shadow animate yellow text-dark"><b>¡REGÍSTRATE AQUÍ!</b></Link>
+                    <button className="action-button shadow animate blue" type="submit">
+                      Iniciar Sesión
+                    </button>
+                  </div>
+
                   <div id="helpLogIn" className="form-text fs-8 fst-italic d-flex justify-content-center mb-3">
                     Nunca compartiremos su información con nadie.
                   </div>
                 </div>
-                <button className="w-100 btn btn-lg btn-primary" type="submit">
-                  Iniciar Sesión
-                </button>
+
               </form>
             </div>
           </div>
@@ -83,6 +84,7 @@ const LogInForm = () => {
     </>
   );
 };
+
 export default LogInForm;
 
 // <Checkbox label="Incluir Mayúscula" handleClick={actionsAuth.handleCheckMajus} valor={storeAuth.includeMajus} />

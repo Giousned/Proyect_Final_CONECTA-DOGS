@@ -17,15 +17,10 @@ const NavBar = () => {
               <img src={Logo} className="logo" />
             </strong>
           </Link>
-          <button
-            type="button"
-            className="navbar-toggler"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
+          <button type="button" className="navbar-toggler"
+            data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -51,12 +46,8 @@ const NavBar = () => {
                 )}
               </li>
               <li className="nav-item">
-                <button
-                  type="button"
-                  className="btn text-light me-2"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
-                >
+                <button type="button" className="btn text-light me-2"
+                  data-bs-toggle="modal" data-bs-target="#exampleModal">
                   CONTACTO
                 </button>
               </li>
@@ -78,7 +69,6 @@ const NavBar = () => {
                       <i className="fas fa-bell"></i> Notificaciones
                     </Link>
                   </li>
-
                   <li>
                     <hr className="dropdown-divider" />
                   </li>
@@ -88,7 +78,7 @@ const NavBar = () => {
                       <i className="fas fa-sign-out-alt"></i> Cerrar Sesión
                     </Link>
                   </li>
-                  
+
                 </ul>
               </li>
             </ul>

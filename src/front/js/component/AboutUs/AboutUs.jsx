@@ -5,7 +5,7 @@ import AboutUsSection from "./AboutUsSection.jsx";
 import AboutUsItem from "./AboutUsItem.jsx";
 import Benefits from "./Benefits.jsx";
 
-export const AboutUs = () => {
+const AboutUs = () => {
     return (
         <AboutUsSection>
             <h2 className="custom-justify">¿Cómo funciona Conecta-Dogs?</h2>
@@ -55,3 +55,5 @@ export const AboutUs = () => {
 
     );
 };
+
+export default AboutUs;

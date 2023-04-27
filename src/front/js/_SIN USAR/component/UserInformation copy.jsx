@@ -13,10 +13,8 @@ const UserInformation = () => {
     } = useUserInput({ name: "Sandra", lastname: "Madarnas" });
 
     return (
-        <div className="my-4">
-            <PersonalInformation />
-
-            {/* FORMULARIO CREADO PARA EL PERFIL SI NO QUEREMOS UTILIZAR EL DEL REGISTRO */}
+        <>
+        <PersonalInformation />
             {/* <h2 className="text-dark">Nombre: {userInput.name} {userInput.lastname}</h2> */}
             {/* <div className="form-floating my-1">
                 <input type="text" className="form-control" id="nombre-usuario"
@@ -128,7 +126,7 @@ const UserInformation = () => {
                 </div>
 
             </div> */}
-        </div>
+        </>
     );
 }
 

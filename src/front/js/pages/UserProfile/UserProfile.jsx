@@ -1,32 +1,37 @@
 import React, { useState } from "react";
 
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-
+import TabButton from '../UserProfile/components/TabButton.jsx';
 import UserInformation from "./components/UserInformation.jsx";
-import PersonalInformation from "./components/PersonalInformation.jsx";
 import ServicesRates from "./components/ServicesRates.jsx";
 import MyDog from "./components/MyDog.jsx";
+import AddDog from "./components/AddDog.jsx";
 
-import useUserInput from "../../hooks/useUserInput.js";
+import useUserInput from "../../hooks/useUserInput";
 import "./user-profile.css";
 
-export const UserProfile = () => {
+const UserProfile = () => {
+
     const {
         userInput,
         resetInput,
         handleUserInput,
         handleUserCheck,
         handleUserSelectDate,
-    } = useUserInput({ name: "Guillermo", lastname: "Hola" });
+    } = useUserInput({ name: "Sandra", lastname: "Madarnas" });
+
+    const [activeTab, setActiveTab] = useState('home');
+
+    const handleTabClick = (tabId) => {
+        setActiveTab(tabId);
+    };
 
     return (
         <div className="user-profile">
             <div className="header">
-                <button className="btn btn-primary">
+                {/* <button className="btn btn-primary">
                     <div className="text">Cambiar Fondo</div>
                     <i className="fas fa-images fa-sm"></i>
-                </button>
+                </button> */}
             </div>
             <div className="container">
                 <div className="row">
@@ -34,42 +39,41 @@ export const UserProfile = () => {
                         <div className="avatar-user"></div>
 
                         <div className="tituloperfil text-center">
-                            <h1>Sandra Madarnas</h1>
-                            <h3>Estás registrado como: <b className="border rounded bg-light p-2">PROPIETARIO | CUIDADOR</b></h3>
+                            <h2 className="text-dark">{userInput.name} {userInput.lastname}</h2>
                         </div>
 
                         <div>
                             <form>
                                 <h3>Sobre mí:</h3>
-                                <div className="col">
-                                    <textarea className="form-control" id="sobre-mi" rows="3">Breve descripción sobre mí...
-                                        Puedo editar ya todos los campos ❤️ 🤗 ❤️ 🤗 ❤️</textarea>
+                                <div className="col boxshadow">
+                                    <textarea className="form-control" id="aboutMe" rows="3">
+                                        Breve descripción sobre mí... 🤗 ❤️
+                                        Puedo editar ya todos los campos ❤️ 🤗
+                                    </textarea>
                                 </div>
 
 
                                 {/* Fichas - Tabs */}
-                                <div className="col my-3">
-                                    <ul className="nav nav-tabs" id="myTab" role="tablist">
-                                        <li className="nav-item" role="presentation">
-                                            <button className="nav-link active" id="home-tab" data-bs-toggle="tab"
-                                                data-bs-target="#home-tab-pane" type="button" role="tab"
-                                                aria-controls="home-tab-pane" aria-selected="true"> Información de usuario </button>
-                                        </li>
-                                        <li className="nav-item" role="presentation">
-                                            <button className="nav-link" id="profile-tab" data-bs-toggle="tab"
-                                                data-bs-target="#profile-tab-pane" type="button" role="tab"
-                                                aria-controls="profile-tab-pane" aria-selected="false"> Información personal </button>
-                                        </li>
-                                        <li className="nav-item" role="presentation">
-                                            <button className="nav-link" id="services-tab" data-bs-toggle="tab"
-                                                data-bs-target="#services-tab-pane" type="button" role="tab"
-                                                aria-controls="services-tab-pane" aria-selected="false"> Servicios y Tarifas </button>
-                                        </li>
-                                        <li className="nav-item" role="presentation">
-                                            <button className="nav-link" id="mydog-tab" data-bs-toggle="tab"
-                                                data-bs-target="#mydog-tab-pane" type="button" role="tab"
-                                                aria-controls="mydog-tab-pane" aria-selected="false"> Mi Perro </button>
-                                        </li>
+                                <div className="col my-3 border rounded p-2 boxshadow">
+                                    <ul className="nav nav-tabs bg-light mb-4 pb-1" id="myTab" role="tablist">
+                                        <TabButton
+                                            id="home-tab"
+                                            label="INFORMACIÓN DE USUARIO"
+                                            isActive={activeTab === 'home'}
+                                            onClick={() => handleTabClick('home')}
+                                        />
+                                        <TabButton
+                                            id="mydog-tab"
+                                            label="MIS PERROS"
+                                            isActive={activeTab === 'mydog-tab-pane'}
+                                            onClick={() => handleTabClick('mydog-tab-pane')}
+                                        />
+                                        <TabButton
+                                            id="services-tab"
+                                            label="OPCIONES DE CUIDADOR"
+                                            isActive={activeTab === 'services'}
+                                            onClick={() => handleTabClick('services')}
+                                        />
                                     </ul>
 
                                     {/* Contenido de las fichas */}
@@ -81,19 +85,13 @@ export const UserProfile = () => {
                                             <UserInformation />
                                         </div>
 
-                                        {/* Información Personal */}
-                                        <div className="tab-pane fade" id="profile-tab-pane" role="tabpanel"
-                                            aria-labelledby="profile-tab" tabindex="0">
-                                            <PersonalInformation />
-                                        </div>
-
-                                        {/* Servicios - Tarifas */}
+                                        {/* CUIDADOR: Servicios - Tarifas */}
                                         <div className="tab-pane fade" id="services-tab-pane" role="tabpanel"
                                             aria-labelledby="services-tab" tabindex="0">
                                             <ServicesRates />
                                         </div>
 
-                                        {/* Mi Perro */}
+                                        {/* Mis Perros */}
                                         <div className="tab-pane fade" id="mydog-tab-pane" role="tabpanel"
                                             aria-labelledby="mydog-tab" tabindex="0">
                                             <MyDog />
@@ -101,9 +99,9 @@ export const UserProfile = () => {
                                     </div>
                                 </div>
 
-                                <div className="col my-3">
-                                    <button className="btn btn-primary mx-2">Cambiar la contraseña</button>
-                                    <button type="submit" className="btn btn-primary mx-2">Guardar cambios</button>
+                                <div className="d-grid m-4 d-md-flex justify-content-md-end">
+                                    <button type="button" className="action-button shadow animate red">Cambiar la Contraseña</button>
+                                    <button type="submit" className="action-button shadow animate blue">Guardar cambios</button>
                                 </div>
                             </form>
                         </div>
@@ -113,3 +111,5 @@ export const UserProfile = () => {
         </div>
     );
 };
+
+export default UserProfile;

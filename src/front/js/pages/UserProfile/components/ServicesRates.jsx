@@ -9,10 +9,21 @@ const ServicesRates = () => {
         handleUserInput,
         handleUserCheck,
         handleUserSelectDate,
-    } = useUserInput({ name: "Guillermo", lastname: "Hola" });
+    } = useUserInput({ name: "Sandra", lastname: "Madarnas" });
+
+    const handleNumDogsChange = (event) => {
+        const numDogs = Number(event.target.value);
+        if (numDogs >= 11) {
+            alert("Número máximo de perros es 10");
+            return;
+        }
+        handleUserInput(event);
+    };
 
     return (
         <>
+            <h6 className="mb-4">El usuario admite: {userInput.numDogs} perro/s</h6>
+
             <div className="form-check form-check-inline py-2">
                 <label className="form-check-label" htmlFor="guarderia-diurna">
                     Guardería Diurna (Alojamiento de día)
@@ -69,6 +80,27 @@ const ServicesRates = () => {
                     onChange={handleUserInput}
                 />
             </div>
+
+            <div className="container py-4">
+                <label htmlFor="numDogs">Número de perros admitidos:</label>
+                <input type="number" id="numDogs" min="0" max="10"
+                    name="numDogs" value={userInput.numDogs}
+                    onChange={handleNumDogsChange}
+                />
+            </div>
+
+            <h4 className="m-4">Preferencias de Cobro ¿?</h4>
+            <input type="checkbox" className="form-check-input"
+                name="transferencia" id="transferencia" />
+            <label className="form-check-label px-2 mb-4" htmlFor="transferencia">
+                Transferencia
+            </label>
+
+            <input type="checkbox" className="form-check-input"
+                name="PayPal" id="PayPal" />
+            <label className="form-check-label px-2 mb-4" htmlFor="PayPal">
+                PayPal
+            </label>
         </>
     );
 }

@@ -95,3 +95,7 @@
   text-transform: uppercase;
   color: black;
 }
+
+.user-profile .boxshadow {
+  box-shadow: 5px 5px 5px black;
+}

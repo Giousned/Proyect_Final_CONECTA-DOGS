@@ -2,7 +2,7 @@ import React from "react";
 
 import "../Reviews/reviews.css";
 
-export const Reviews = () => {
+const Reviews = () => {
   return (
     <section className="text-center custom-reviews">
       <h2 className="text-center text-light">Opiniones de nuestros usuarios</h2>
@@ -82,3 +82,5 @@ export const Reviews = () => {
     </section>
   );
 };
+
+export default Reviews;

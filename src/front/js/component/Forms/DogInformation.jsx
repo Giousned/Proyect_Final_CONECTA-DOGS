@@ -1,5 +1,4 @@
 import React from "react";
-import { Link, animateScroll as scroll } from "react-scroll";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import useAppContext from "../../store/AppContext";
 import "./signup-form.css";
 
-export const DogInformation = () => {
+const DogInformation = () => {
 
     const { store, actions } = useAppContext();
 
@@ -121,58 +120,60 @@ export const DogInformation = () => {
 
                 {/* DOGINFORMATION 2 */}
                 <div className="input-group">
-                    <div className="col me-2 py-2">
-                        <label htmlFor="estirilizado" className="form-label">
-                            ¿Tu perro está esterilizado? *
-                        </label>
-                        <select className="form-select" aria-label="estirilizado"
-                            name="neutered" value={store.userInput.neutered}
-                            onChange={actions.handleUserInput} required>
-                            <option defaultValue="">Elige una opción</option>
-                            <option value="True">Sí</option>
-                            <option value="False">No</option>
-                        </select>
-                    </div>
+                    <div className="row my-2">
 
-                    <div className="col ms-2 py-2">
-                        <label htmlFor="sociable-gatos" className="form-label">
-                            ¿Tu perro es sociable con gatos? *
-                        </label>
-                        <select className="form-select" aria-label="sociable-gatos"
-                            name="socialCats" value={store.userInput.socialCats}
-                            onChange={actions.handleUserInput} required>
-                            <option defaultValue="">Elige una opción</option>
-                            <option value="True">Sí</option>
-                            <option value="False">No</option>
-                        </select>
-                    </div>
-                </div>
+                        <div className="col-12 col-md-6">
+                            <label htmlFor="estirilizado" className="form-label">
+                                ¿Tu perro está esterilizado? *
+                            </label>
+                            <select className="form-select" aria-label="estirilizado"
+                                name="neutered" value={store.userInput.neutered}
+                                onChange={actions.handleUserInput} required>
+                                <option defaultValue="">Elige una opción</option>
+                                <option value="True">Sí</option>
+                                <option value="False">No</option>
+                            </select>
+                        </div>
 
-                <div className="input-group">
-                    <div className="col me-2 py-2">
-                        <label htmlFor="sociable-niños" className="form-label">
-                            ¿Tu perro es sociable con niños? *
-                        </label>
-                        <select className="form-select" aria-label="sociable-niños"
-                            name="socialKids" value={store.userInput.socialKids}
-                            onChange={actions.handleUserInput} required>
-                            <option defaultValue="">Elige una opción</option>
-                            <option value="True">Sí</option>
-                            <option value="False">No</option>
-                        </select>
-                    </div>
+                        <div className="col-12 col-md-6">
+                            <label htmlFor="sociable-gatos" className="form-label">
+                                ¿Tu perro es sociable con gatos? *
+                            </label>
+                            <select className="form-select" aria-label="sociable-gatos"
+                                name="socialCats" value={store.userInput.socialCats}
+                                onChange={actions.handleUserInput} required>
+                                <option defaultValue="">Elige una opción</option>
+                                <option value="True">Sí</option>
+                                <option value="False">No</option>
+                            </select>
+                        </div>
 
-                    <div className="col ms-2 py-2">
-                        <label htmlFor="sociable-perros" className="form-label">
-                            ¿Tu perro es sociable con otros perros? *
-                        </label>
-                        <select className="form-select" aria-label="sociable-perros"
-                            name="socialDogs" value={store.userInput.socialDogs}
-                            onChange={actions.handleUserInput} required>
-                            <option defaultValue="">Elige una opción</option>
-                            <option value="True">Sí</option>
-                            <option value="False">No</option>
-                        </select>
+
+                        <div className="col-12 col-md-6">
+                            <label htmlFor="sociable-niños" className="form-label">
+                                ¿Tu perro es sociable con niños? *
+                            </label>
+                            <select className="form-select" aria-label="sociable-niños"
+                                name="socialKids" value={store.userInput.socialKids}
+                                onChange={actions.handleUserInput} required>
+                                <option defaultValue="">Elige una opción</option>
+                                <option value="True">Sí</option>
+                                <option value="False">No</option>
+                            </select>
+                        </div>
+
+                        <div className="col-12 col-md-6">
+                            <label htmlFor="sociable-perros" className="form-label">
+                                ¿Tu perro es sociable con otros perros? *
+                            </label>
+                            <select className="form-select" aria-label="sociable-perros"
+                                name="socialDogs" value={store.userInput.socialDogs}
+                                onChange={actions.handleUserInput} required>
+                                <option defaultValue="">Elige una opción</option>
+                                <option value="True">Sí</option>
+                                <option value="False">No</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -239,6 +240,8 @@ export const DogInformation = () => {
         </>
     );
 }
+
+export default DogInformation;
 
 
 
