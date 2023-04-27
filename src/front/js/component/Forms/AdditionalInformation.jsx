@@ -1,12 +1,9 @@
 import React from "react";
-import { Link, animateScroll as scroll } from "react-scroll";
 
 import useAppContext from "../../store/AppContext";
 import "./signup-form.css";
 
-window.scrollTo(0, 0);
-
-export const AdditionalInformation = () => {
+const AdditionalInformation = () => {
 
     const { store, actions } = useAppContext();
 
@@ -22,7 +19,7 @@ export const AdditionalInformation = () => {
                     value={store.userInput.nurseryDay}
                     onChange={actions.handleUserCheck}
                     checked={store.userInput.nurseryDay}
-                />
+                /> <br />
                 <input type="text" className="form-control"
                     id="precio-guarderia-diurna" aria-describedby="precio_guarderia_diurna"
                     placeholder="Precio en €"
@@ -31,7 +28,7 @@ export const AdditionalInformation = () => {
                     onChange={actions.handleUserInput}
                 />
             </div>
-
+            <br />
             <div className="form-check form-check-inline py-2">
                 <label className="form-check-label" htmlFor="paseo">
                     Paseo (Por horas)
@@ -41,7 +38,7 @@ export const AdditionalInformation = () => {
                     value={store.userInput.walk}
                     onChange={actions.handleUserCheck}
                     checked={store.userInput.walk}
-                />
+                /><br />
                 <input type="text" className="form-control"
                     id="precio-paseo" aria-describedby="precio_paseo"
                     placeholder="Precio en €"
@@ -50,7 +47,7 @@ export const AdditionalInformation = () => {
                     onChange={actions.handleUserInput}
                 />
             </div>
-
+            <br />
             <div className="form-check form-check-inline py-2">
                 <label className="form-check-label" htmlFor="guarderia-nocturna">
                     Guardería Nocturna (Alojamiento de noche)
@@ -60,7 +57,7 @@ export const AdditionalInformation = () => {
                     value={store.userInput.nurseryNight}
                     onChange={actions.handleUserCheck}
                     checked={store.userInput.nurseryNight}
-                />
+                /><br />
                 <input type="text" className="form-control"
                     id="precio-guarderia-nocturna" aria-describedby="precio_guarderia_nocturna"
                     placeholder="Precio en €"
@@ -72,6 +69,8 @@ export const AdditionalInformation = () => {
         </>
     );
 }
+
+export default AdditionalInformation;
 
 
     // const handleCheckGuarderiaDiurna = () => actions.setGuarderiaDiurna(!guarderiaDiurna);

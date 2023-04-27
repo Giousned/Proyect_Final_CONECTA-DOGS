@@ -9,10 +9,10 @@ const PersonalInformation = () => {
         handleUserInput,
         handleUserCheck,
         handleUserSelectDate,
-    } = useUserInput({ name: "Guillermo", lastname: "Hola" });
+    } = useUserInput({ name: "Guillermo", lastname: "Nuria" });
 
     return (
-        <>
+        <div id="profile">
             <div className="form-floating my-1">
                 <input type="email" className="form-control" id="emailRegistroUser"
                     placeholder="Introduce un email"
@@ -28,7 +28,7 @@ const PersonalInformation = () => {
                     onChange={handleUserInput} />
                 <label htmlFor="telefono-user">Teléfono</label>
             </div>
-        </>
+        </div>
     );
 }
 

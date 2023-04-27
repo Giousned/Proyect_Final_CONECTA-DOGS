@@ -1,6 +1,6 @@
 import React from "react";
 
-export const BlogPost = ({ imageUrl, title, description, url }) => {
+const BlogPost = ({ imageUrl, title, description, url }) => {
     return (
         <>
             <div className="card">
@@ -16,3 +16,5 @@ export const BlogPost = ({ imageUrl, title, description, url }) => {
         </>
     );
 };
+
+export default BlogPost;

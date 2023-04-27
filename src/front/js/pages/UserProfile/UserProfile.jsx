@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+import TabButton from '../UserProfile/components/TabButton.jsx';
 import UserInformation from "./components/UserInformation.jsx";
 import PersonalInformation from "./components/PersonalInformation.jsx";
 import ServicesRates from "./components/ServicesRates.jsx";
@@ -11,22 +12,21 @@ import MyDog from "./components/MyDog.jsx";
 import useUserInput from "../../hooks/useUserInput.js";
 import "./user-profile.css";
 
-export const UserProfile = () => {
-    const {
-        userInput,
-        resetInput,
-        handleUserInput,
-        handleUserCheck,
-        handleUserSelectDate,
-    } = useUserInput({ name: "Guillermo", lastname: "Hola" });
+const UserProfile = () => {
+
+    const [activeTab, setActiveTab] = useState('home');
+
+    const handleTabClick = (tabId) => {
+        setActiveTab(tabId);
+    };
 
     return (
         <div className="user-profile">
             <div className="header">
-                <button className="btn btn-primary">
+                {/* <button className="btn btn-primary">
                     <div className="text">Cambiar Fondo</div>
                     <i className="fas fa-images fa-sm"></i>
-                </button>
+                </button> */}
             </div>
             <div className="container">
                 <div className="row">
@@ -42,34 +42,40 @@ export const UserProfile = () => {
                             <form>
                                 <h3>Sobre mí:</h3>
                                 <div className="col">
-                                    <textarea className="form-control" id="sobre-mi" rows="3">Breve descripción sobre mí...
-                                        Puedo editar ya todos los campos ❤️ 🤗 ❤️ 🤗 ❤️</textarea>
+                                    <textarea className="form-control" id="sobre-mi" rows="3">
+                                        Breve descripción sobre mí... 🤗 ❤️
+                                        Puedo editar ya todos los campos ❤️ 🤗
+                                    </textarea>
                                 </div>
 
 
                                 {/* Fichas - Tabs */}
-                                <div className="col my-3">
-                                    <ul className="nav nav-tabs" id="myTab" role="tablist">
-                                        <li className="nav-item" role="presentation">
-                                            <button className="nav-link active" id="home-tab" data-bs-toggle="tab"
-                                                data-bs-target="#home-tab-pane" type="button" role="tab"
-                                                aria-controls="home-tab-pane" aria-selected="true"> Información de usuario </button>
-                                        </li>
-                                        <li className="nav-item" role="presentation">
-                                            <button className="nav-link" id="profile-tab" data-bs-toggle="tab"
-                                                data-bs-target="#profile-tab-pane" type="button" role="tab"
-                                                aria-controls="profile-tab-pane" aria-selected="false"> Información personal </button>
-                                        </li>
-                                        <li className="nav-item" role="presentation">
-                                            <button className="nav-link" id="services-tab" data-bs-toggle="tab"
-                                                data-bs-target="#services-tab-pane" type="button" role="tab"
-                                                aria-controls="services-tab-pane" aria-selected="false"> Servicios y Tarifas </button>
-                                        </li>
-                                        <li className="nav-item" role="presentation">
-                                            <button className="nav-link" id="mydog-tab" data-bs-toggle="tab"
-                                                data-bs-target="#mydog-tab-pane" type="button" role="tab"
-                                                aria-controls="mydog-tab-pane" aria-selected="false"> Mi Perro </button>
-                                        </li>
+                                <div className="col my-3 border rounded p-2 custom-tabs">
+                                    <ul className="nav nav-tabs bg-light mb-4 pb-1" id="myTab" role="tablist">
+                                        <TabButton
+                                            id="home-tab"
+                                            label="Información de usuario"
+                                            isActive={activeTab === 'home'}
+                                            onClick={() => handleTabClick('home')}
+                                        />
+                                        <TabButton
+                                            id="profile-tab"
+                                            label="Información personal"
+                                            isActive={activeTab === 'profile'}
+                                            onClick={() => handleTabClick('profile')}
+                                        />
+                                        <TabButton
+                                            id="services-tab"
+                                            label="Servicios y Tarifas"
+                                            isActive={activeTab === 'services'}
+                                            onClick={() => handleTabClick('services')}
+                                        />
+                                        <TabButton
+                                            id="mydog-tab"
+                                            label="Mi Perro"
+                                            isActive={activeTab === 'mydog-tab-pane'}
+                                            onClick={() => handleTabClick('mydog-tab-pane')}
+                                        />
                                     </ul>
 
                                     {/* Contenido de las fichas */}
@@ -101,8 +107,8 @@ export const UserProfile = () => {
                                     </div>
                                 </div>
 
-                                <div className="col my-3">
-                                    <button className="btn btn-primary mx-2">Cambiar la contraseña</button>
+                                <div className="col my-4 py-4">
+                                    <button className="btn btn-danger mx-2">Cambiar la contraseña</button>
                                     <button type="submit" className="btn btn-primary mx-2">Guardar cambios</button>
                                 </div>
                             </form>
@@ -113,3 +119,5 @@ export const UserProfile = () => {
         </div>
     );
 };
+
+export default UserProfile;

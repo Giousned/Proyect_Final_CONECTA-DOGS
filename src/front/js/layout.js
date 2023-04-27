@@ -9,9 +9,9 @@ import Home from "./pages/Home.jsx";
 import NavBar from "./component/NavBar/NavBar.jsx";
 import LogInForm from "../js/component/LogInForm/LogInForm.jsx";
 import SignUpForm from "./pages/SignUp.jsx";
-import { Contact } from "./component/Contact/Contact.jsx";
-import { UserProfile } from "./pages/UserProfile/UserProfile.jsx";
-import { Notifications } from "./pages/Notifications/Notifications.jsx";
+import Contact from "./component/Contact/Contact.jsx";
+import UserProfile from "./pages/UserProfile/UserProfile.jsx";
+import Notifications from "./pages/Notifications/Notifications.jsx";
 import Footer from "./component/Footer/Footer.jsx";
 
 //import context

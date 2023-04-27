@@ -95,3 +95,7 @@
   text-transform: uppercase;
   color: black;
 }
+
+.user-profile .custom-tabs {
+  box-shadow: 7px 7px 7px black;
+}

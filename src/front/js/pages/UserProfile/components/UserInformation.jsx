@@ -9,7 +9,7 @@ const UserInformation = () => {
         handleUserInput,
         handleUserCheck,
         handleUserSelectDate,
-    } = useUserInput({ name: "Guillermo", lastname: "Hola" });
+    } = useUserInput({ name: "Guillermo", lastname: "Nuria" });
 
     return (
         <>

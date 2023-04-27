@@ -1,7 +1,7 @@
 import React from "react";
 
 import "../Blog/blog.css";
-import { BlogPost } from "./BlogPost.jsx";
+import BlogPost from "./BlogPost.jsx";
 
 const blogPosts = [
     {
@@ -36,7 +36,7 @@ const blogPosts = [
     },
 ];
 
-export const Blog = () => {
+const Blog = () => {
     return (
         <>
             <div className="container col-12">
@@ -61,3 +61,5 @@ export const Blog = () => {
         </>
     );
 };
+
+export default Blog;

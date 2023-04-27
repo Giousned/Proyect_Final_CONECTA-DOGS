@@ -14,7 +14,6 @@ const useUserInput = (initialValue = {}) => {
   };
 
   const handleUserSelectDate = (date) => {
-
     setUserInput((prev) => {
       const newUserInput = { ...prev };
       newUserInput["Date"] = date;

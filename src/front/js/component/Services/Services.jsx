@@ -2,7 +2,7 @@ import React from "react";
 import "../Services/services.css";
 import ServiceCard from "./ServiceCard.jsx";
 
-export const Services = () => {
+const Services = () => {
     return (
         <>
             <section className="services">
@@ -37,13 +37,4 @@ export const Services = () => {
     );
 };
 
-
-
-
-
-
-
-
-
-
-
+export default Services;

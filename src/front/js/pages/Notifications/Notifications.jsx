@@ -2,11 +2,9 @@ import React, { useState } from "react";
 
 import "./notifications.css";
 
-
-
-export const Notifications = () => {
+const Notifications = () => {
     return (
-        <>
+        <div className="custom-notifications">
             <div className="container">
                 <div className="row">
                     <div className="col-12 my-4">
@@ -35,11 +33,8 @@ export const Notifications = () => {
                     </div>
                 </div>
             </div>
-
-
-
-
-
-        </>
+        </div>
     );
 }
+
+export default Notifications;

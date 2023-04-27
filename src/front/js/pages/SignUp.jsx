@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { PersonalInformation } from "../component/Forms/PersonalInformation.jsx";
-import { DogInformation } from "../component/Forms/DogInformation.jsx";
-import { AdditionalInformation } from "../component/Forms/AdditionalInformation.jsx";
+import { Link, animateScroll as scroll } from "react-scroll";
+
+import PersonalInformation from "../component/Forms/PersonalInformation.jsx";
+import DogInformation from "../component/Forms/DogInformation.jsx";
+import AdditionalInformation from "../component/Forms/AdditionalInformation.jsx";
 
 import useAppContext from "../store/AppContext.js";
 

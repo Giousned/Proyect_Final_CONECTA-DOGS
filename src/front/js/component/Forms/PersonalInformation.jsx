@@ -1,13 +1,9 @@
 import React from "react";
-import { Link, animateScroll as scroll } from "react-scroll";
 
 import useAppContext from "../../store/AppContext";
 import "./signup-form.css";
 
-window.scrollTo(0, 0);
-
-
-export const PersonalInformation = () => {
+const PersonalInformation = () => {
 
     const { store, actions } = useAppContext();
 
@@ -167,28 +163,30 @@ export const PersonalInformation = () => {
                         required />
                 </div>
 
-                <h5>¿Cómo quieres registrarte?</h5>
-                <p>Elige una opción</p>
-                <div className="row py-2 g-2">
-                    <div className="col-md">
-                        <div className="form-floating">
-                            <div className={"glowing-register m-2" + ((store.userInput.radioOwnerCarer == "owner") ? " activeGlow" : "")}>
-                                <input type="radio" id="owner"
-                                    name="radioOwnerCarer" value="owner"
-                                    onChange={actions.handleUserInput}
-                                    checked={store.userInput.radioOwnerCarer == "owner"} />
-                                <label htmlFor="owner">Propietario</label>
+                <div className="my-3">
+                    <h5>¿Cómo quieres registrarte?</h5>
+                    <p>Elige una opción</p>
+                    <div className="row g-2">
+                        <div className="col-md">
+                            <div className="form-floating">
+                                <div className={"glowing-register" + ((store.userInput.radioOwnerCarer == "owner") ? " activeGlow" : "")}>
+                                    <input type="radio" id="owner"
+                                        name="radioOwnerCarer" value="owner"
+                                        onChange={actions.handleUserInput}
+                                        checked={store.userInput.radioOwnerCarer == "owner"} />
+                                    <label htmlFor="owner">Propietario</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="col-md">
-                        <div className="form-floating">
-                            <div className={"glowing-register m-2" + ((store.userInput.radioOwnerCarer == "carer") ? " activeGlow" : "")}>
-                                <input type="radio" id="carer"
-                                    name="radioOwnerCarer" value="carer"
-                                    onChange={actions.handleUserInput}
-                                    checked={store.userInput.radioOwnerCarer == "carer"} />
-                                <label htmlFor="carer">Cuidador</label>
+                        <div className="col-md">
+                            <div className="form-floating">
+                                <div className={"glowing-register" + ((store.userInput.radioOwnerCarer == "carer") ? " activeGlow" : "")}>
+                                    <input type="radio" id="carer"
+                                        name="radioOwnerCarer" value="carer"
+                                        onChange={actions.handleUserInput}
+                                        checked={store.userInput.radioOwnerCarer == "carer"} />
+                                    <label htmlFor="carer">Cuidador</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -197,6 +195,8 @@ export const PersonalInformation = () => {
         </>
     );
 }
+
+export default PersonalInformation;
 
 
 

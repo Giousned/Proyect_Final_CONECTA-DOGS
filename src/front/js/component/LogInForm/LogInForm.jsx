@@ -15,7 +15,6 @@ const LogInForm = () => {
     navigate("/");
   }
 
-
   return (
     <>
       <section className="py-2 custom-login">
@@ -83,6 +82,7 @@ const LogInForm = () => {
     </>
   );
 };
+
 export default LogInForm;
 
 // <Checkbox label="Incluir Mayúscula" handleClick={actionsAuth.handleCheckMajus} valor={storeAuth.includeMajus} />
