@@ -100,10 +100,10 @@ def update_user(body, id):
         user.city = body["province"] 
         user.postal_code = int(body["postalCode"]) 
         user.phone = int(body["phone"])
+        user.about_me = body["aboutMe"]
         user.is_active = True
 
         db.session.commit()
-        print(user.name)
 
         return {"code": 200, "msg": "User update ok", "user": user.serialize()}
 

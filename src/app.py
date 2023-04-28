@@ -30,12 +30,16 @@ static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
+
 # database condiguration
 db_url = os.getenv("DATABASE_URL")
 if db_url is not None:
     app.config['SQLALCHEMY_DATABASE_URI'] = db_url.replace("postgres://", "postgresql://")
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////tmp/test.db"
+    # app.config['SQLALCHEMY_DATABASE_CHARSET'] = 'utf8mb4'
+    # sqlite:////tmp/test.db
+    # mysql://user:pass@localhost/db?charset=utf8
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 MIGRATE = Migrate(app, db, compare_type = True)
@@ -84,10 +88,10 @@ def signup_user():
             return jsonify(user_response)
 
         return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
-            
+
     except:
         return jsonify(user_response), user_response["code"]
-        
+
 
 @app.route("/users", methods=["GET"])
 def users():
@@ -101,8 +105,9 @@ def users():
             return jsonify(users_response)
 
         return jsonify(users_response["users"])
-            
-    except:
+
+    except Exception as error:
+        print(error)
         return jsonify(users_response), users_response["code"]
 
 
@@ -127,7 +132,7 @@ def users_id(id):
             return jsonify(user_response)
 
         return jsonify(user_response)
-            
+
     except:
         return jsonify(user_response), user_response["code"]
 
@@ -147,10 +152,10 @@ def signup_dog():
             return jsonify(dog_response)
 
         return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
-            
+
     except:
         return jsonify(dog_response), dog_response["code"]
-        
+
 
 @app.route("/dogs", methods=["GET"])
 def dogs():
@@ -164,7 +169,7 @@ def dogs():
             return jsonify(dogs_response)
 
         return jsonify(dogs_response["dogs"])
-            
+
     except:
         return jsonify(dogs_response), dogs_response["code"]
 
@@ -190,7 +195,7 @@ def dogs_id(id):
             return jsonify(dog_response)
 
         return jsonify(dog_response)
-            
+
     except:
         return jsonify(dog_response), dog_response["code"]
 
@@ -210,10 +215,10 @@ def signup_service():
             return jsonify(service_response)
 
         return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
-            
+
     except:
         return jsonify(service_response), service_response["code"]
-        
+
 
 @app.route("/services", methods=["GET"])
 def services():
@@ -227,7 +232,7 @@ def services():
             return jsonify(services_response)
 
         return jsonify(services_response["services"])
-            
+
     except:
         return jsonify(services_response), services_response["code"]
 
@@ -253,7 +258,7 @@ def services_id(id):
             return jsonify(service_response)
 
         return jsonify(service_response)
-            
+
     except:
         return jsonify(service_response), service_response["code"]
 
@@ -262,6 +267,7 @@ def services_id(id):
 ###################################################################
 # RUTAS PARA EL REGISTRO DE TARIFAS POR PARTE DE LOS "CUIDADORES" Y LAS PETICIONES DE TARIFA(S)/CRUD DESDE EL FRONT
 @app.route("/signup-tariff", methods=["POST"])
+@jwt_required()
 def signup_tariff():
 
     try:
@@ -274,10 +280,10 @@ def signup_tariff():
             return jsonify(tariff_response)
 
         return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
-            
+
     except:
         return jsonify(tariff_response), tariff_response["code"]
-        
+
 
 @app.route("/tariffs", methods=["GET"])
 def tariffs():
@@ -291,7 +297,7 @@ def tariffs():
             return jsonify(tariffs_response)
 
         return jsonify(tariffs_response["tariffs"])
-            
+
     except:
         return jsonify(tariffs_response), tariffs_response["code"]
 
@@ -317,13 +323,26 @@ def tariffs_id(id):
             return jsonify(tariff_response)
 
         return jsonify(tariff_response)
-            
+
     except:
         return jsonify(tariff_response), tariff_response["code"]
 
 
 
+# RUTA PARA CREAR LOS 3 SERVICIOS EN LA BASE DE DATOS INICIAL CADA VEZ
+@app.route("/config-install", methods=["GET"])
+def config_services():
 
+    try:
+
+        # Rellenar la tabla de la DB, con el registro de Usuario
+        config_response = create_service()
+
+        return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
+
+    except Exception as error:
+        print(error)
+        return jsonify({"code": 500, "msg": "No ha ido bien"})
 
 
 
@@ -335,13 +354,12 @@ def create_token():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
 
-    if email == None or password == None:                                               
+    if email == None or password == None:
         return {"code": 400, "msg": "Insert and email or password"}
 
     # Consulta la base de datos por el nombre de usuario y la contraseña
     # user = User.filter.query(email=email).first()                   # No sé como hacer esta query segun el metodo de la academia
     query = db.session.query(User).filter(User.email == email)
-
     user = db.session.execute(query).scalars().one()
 
     if user is None:
@@ -351,8 +369,8 @@ def create_token():
 
     if password == user.password:
         # crea un nuevo token con el id de usuario dentro
-        access_token = create_access_token(identity=email)
-        return jsonify({ "token": access_token, "email": email })
+        access_token = create_access_token(identity=user.serialize())
+        return jsonify({ "token": access_token, "user": user.serialize() })
     else:
         return jsonify({"msg": "Bad email or password"}), 401
 
@@ -363,7 +381,7 @@ def create_token():
 def protected():
     # Accede a la identidad del usuario actual con get_jwt_identity
     current_user_email = get_jwt_identity()
-    # user = User.filter.get(current_user_email)        # No sé como hacer esta query segun el metodo de la academia 
+    # user = User.filter.get(current_user_email)        # No sé como hacer esta query segun el metodo de la academia
 
     query = db.session.query(User).filter(User.email == current_user_email)
 

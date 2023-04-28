@@ -3,7 +3,7 @@ import React from "react";
 import useAppContext from "../../store/AppContext";
 import "./signup-form.css";
 
-const PersonalInformation = () => {
+const PersonalInformation = (props) => {
 
     const { store, actions } = useAppContext();
 
@@ -48,6 +48,7 @@ const PersonalInformation = () => {
                         </label>
                         <input className="form-control" type="email" id="emailRegistroUser"
                             placeholder="usuario@ejemplo.com"
+                            readOnly={props.disable}
                             name="email" value={store.userInput.email}
                             onChange={actions.handleUserInput}
                             required />

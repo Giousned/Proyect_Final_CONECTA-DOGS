@@ -16,6 +16,7 @@ class User(db.Model):
     postal_code = db.Column(db.Integer, unique=False, nullable=False)
     phone = db.Column(db.Integer, unique=False, nullable=False)
     is_active = db.Column(db.Boolean, unique=False, nullable=False)
+    about_me = db.Column(db.String(300), unique=False, nullable=True)
     # country = db.Column(db.String(50), unique=False, nullable=False)
     # birthdate = db.Column(db.Date, unique=False, nullable=False)
     # photo = db.Column(db.String(500), unique=True, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GAURDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
@@ -38,8 +39,9 @@ class User(db.Model):
             "city": self.city,
             "postal_code": self.postal_code,
             "phone": self.phone,
+            "about_me": self.about_me,
             "dogs": [dog.serialize() for dog in self.dogs],
-            "tarifs": [tarif.serialize() for tarif in self.tarifs],
+            "tariffs": [tariff.serialize() for tariff in self.tariffs],
             # "country": self.country,
             # "birthday": self.birthday,
             # "photo": self.photo,
@@ -99,8 +101,6 @@ class Services(db.Model):
     title = db.Column(db.String(35), unique=True, nullable=False)
     description = db.Column(db.String(500), unique=True, nullable=False)
 
-    user_id = db.Column(db.Integer, ForeignKey("User.id"))
-
     tariff = relationship("Tariffs", back_populates="service")
 
 
@@ -113,7 +113,6 @@ class Services(db.Model):
             "image": self.image,
             "title": self.title,
             "description": self.description,
-            "user_id": self.user_id,
         }
 
 
@@ -123,7 +122,7 @@ class Tariffs(db.Model):
     price = db.Column(db.Integer, unique=False, nullable=False)
 
     user_id = db.Column(db.Integer, ForeignKey("User.id"))
-    services_id = db.Column(db.Integer, ForeignKey("Services.id"))
+    service_id = db.Column(db.Integer, ForeignKey("Services.id"))
 
     service = relationship("Services", back_populates="tariff")
     user = relationship("User", back_populates="tariffs")
@@ -136,8 +135,7 @@ class Tariffs(db.Model):
         return {
             "id": self.id,
             "price": self.price,
-            "user_id": self.user_id,
-            "service": [service.serialize() for service in self.service]
+            "service": self.service.serialize(),
         }
 
 
