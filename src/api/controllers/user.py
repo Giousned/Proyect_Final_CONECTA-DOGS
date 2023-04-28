@@ -82,14 +82,13 @@ def get_user(id):
         return {"code": 500, "msg": "Error in server, something was wrong"}
 
 
-def update_user(id):
+def update_user(body, id):
 
     try:
     
-        # Obtener usuario de la base de datos
+        # Obtener usuario de la base de datos           # NO SE PUEDE PASAR NI ACTUALIZAR UN EMAIL, PORQUE SI MANDAS EL MISMO, COMO ES UNICO DA ERROR
         user = db.get_or_404(User, id)
 
-        user.email = body["email"]
         user.password = body["password"] 
         user.name = body["name"] 
         user.last_name = body["lastName"] 
@@ -100,6 +99,7 @@ def update_user(id):
         user.is_active = True
 
         db.session.commit()
+        print(user.name)
 
         return {"code": 200, "msg": "User update ok", "user": user.serialize()}
 

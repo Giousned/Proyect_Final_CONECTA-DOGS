@@ -14,7 +14,7 @@ from api.models import db
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
-from api.models import User #, Carer, Services, Tarifs, Owner, Dog
+from api.models import User, Services, Tarifs, Dog
 from api.controllers.user import create_user, get_users, get_user, update_user, delete_user
 from api.controllers.dog import create_dog, get_dogs, get_dog, update_dog, delete_dog
 from api.controllers.service import create_service, get_services, get_service, update_service, delete_service
@@ -111,12 +111,14 @@ def users_id(id):
 
     try:
 
+        body = request.json
+
         # Obtener, actualizar y borrar info de las tablas de la DB
         if request.method == "GET":
             user_response = get_user(id)
 
         if request.method == "PUT":
-            user_response = update_user(id)
+            user_response = update_user(body, id)
 
         if request.method == "DELETE":
             user_response = delete_user(id)
@@ -172,12 +174,14 @@ def dogs_id(id):
 
     try:
 
+        body = request.json
+
         # Obtener, actualizar y borrar info de las tablas de la DB
         if request.method == "GET":
             dog_response = get_dog(id)
 
         if request.method == "PUT":
-            dog_response = update_dog(id)
+            dog_response = update_dog(body, id)
 
         if request.method == "DELETE":
             dog_response = delete_dog(id)
@@ -233,12 +237,14 @@ def services_id(id):
 
     try:
 
+        body = request.json
+
         # Obtener, actualizar y borrar info de las tablas de la DB
         if request.method == "GET":
             service_response = get_service(id)
 
         if request.method == "PUT":
-            service_response = update_service(id)
+            service_response = update_service(body, id)
 
         if request.method == "DELETE":
             service_response = delete_service(id)
@@ -295,12 +301,14 @@ def tarifs_id(id):
 
     try:
 
+        body = request.json
+
         # Obtener, actualizar y borrar info de las tablas de la DB
         if request.method == "GET":
             tarif_response = get_tarif(id)
 
         if request.method == "PUT":
-            tarif_response = update_tarif(id)
+            tarif_response = update_tarif(body, id)
 
         if request.method == "DELETE":
             tarif_response = delete_tarif(id)
