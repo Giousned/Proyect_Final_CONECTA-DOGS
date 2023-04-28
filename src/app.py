@@ -14,11 +14,11 @@ from api.models import db
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
-from api.models import User, Services, Tarifs, Dog
+from api.models import User, Services, Tariffs, Dog
 from api.controllers.user import create_user, get_users, get_user, update_user, delete_user
 from api.controllers.dog import create_dog, get_dogs, get_dog, update_dog, delete_dog
 from api.controllers.service import create_service, get_services, get_service, update_service, delete_service
-from api.controllers.tarif import create_tarif, get_tarifs, get_tarif, update_tarif, delete_tarif
+from api.controllers.tarif import create_tariff, get_tariffs, get_tariff, update_tariff, delete_tariff
 
 
 
@@ -260,43 +260,43 @@ def services_id(id):
 
 ###################################################################
 # RUTAS PARA EL REGISTRO DE TARIFAS POR PARTE DE LOS "CUIDADORES" Y LAS PETICIONES DE TARIFA(S)/CRUD DESDE EL FRONT
-@app.route("/signup-tarif", methods=["POST"])
-def signup_tarif():
+@app.route("/signup-tariff", methods=["POST"])
+def signup_tariff():
 
     try:
 
         body = request.json
 
         # Rellenar la tabla de la DB, con el registro de 1 Servicio nuevo por parte de los "cuidadores"
-        tarif_response = create_tarif(body)
-        if tarif_response["code"] != 200:
-            return jsonify(tarif_response)
+        tariff_response = create_tariff(body)
+        if tariff_response["code"] != 200:
+            return jsonify(tariff_response)
 
         return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
             
     except:
-        return jsonify(tarif_response), tarif_response["code"]
+        return jsonify(tariff_response), tariff_response["code"]
         
 
-@app.route("/tarifs", methods=["GET"])
-def tarifs():
+@app.route("/tariffs", methods=["GET"])
+def tariffs():
 
     try:
 
          # Obtener info de las tablas de la DB
-        tarifs_response = get_tarifs()
+        tariffs_response = get_tariffs()
 
-        if tarifs_response["code"] != 200:
-            return jsonify(tarifs_response)
+        if tariffs_response["code"] != 200:
+            return jsonify(tariffs_response)
 
-        return jsonify(tarifs_response["tarifs"])
+        return jsonify(tariffs_response["tariffs"])
             
     except:
-        return jsonify(tarifs_response), tarifs_response["code"]
+        return jsonify(tariffs_response), tariffs_response["code"]
 
 
-@app.route("/tarifs/<int:id>", methods=["GET","PUT","DELETE"])
-def tarifs_id(id):
+@app.route("/tariffs/<int:id>", methods=["GET","PUT","DELETE"])
+def tariffs_id(id):
 
     try:
 
@@ -304,21 +304,21 @@ def tarifs_id(id):
 
         # Obtener, actualizar y borrar info de las tablas de la DB
         if request.method == "GET":
-            tarif_response = get_tarif(id)
+            tariff_response = get_tariff(id)
 
         if request.method == "PUT":
-            tarif_response = update_tarif(body, id)
+            tariff_response = update_tariff(body, id)
 
         if request.method == "DELETE":
-            tarif_response = delete_tarif(id)
+            tariff_response = delete_tariff(id)
 
-        if tarif_response["code"] != 200:
-            return jsonify(tarif_response)
+        if tariff_response["code"] != 200:
+            return jsonify(tariff_response)
 
-        return jsonify(tarif_response)
+        return jsonify(tariff_response)
             
     except:
-        return jsonify(tarif_response), tarif_response["code"]
+        return jsonify(tariff_response), tariff_response["code"]
 
 
 

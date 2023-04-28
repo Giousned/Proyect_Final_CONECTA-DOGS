@@ -50,7 +50,8 @@ def get_dogs():
 
         return {"code": 200, "msg": "All ok", "dogs": dog_list}
 
-    except:
+    except Exception as error:
+        print(error)
         return {"code": 500, "msg": "Error in server, something was wrong"}
 
 
@@ -64,11 +65,12 @@ def get_dog(id):
         
         return {"code": 200, "msg": "All ok", "dog": dog.serialize()}
 
-    except:
+    except Exception as error:
+        print(error)
         return {"code": 500, "msg": "Error in server, something was wrong"}
 
 
-def update_dog(id):
+def update_dog(body, id):
 
     try:
     
@@ -92,7 +94,8 @@ def update_dog(id):
 
         return {"code": 200, "msg": "dog update ok", "dog": dog.serialize()}
 
-    except:
+    except Exception as error:
+        print(error)
         return {"code": 500, "msg": "Error in server, something was wrong"}
 
 
@@ -111,5 +114,6 @@ def delete_dog(id):
 
         return {"code": 200, "msg": "Delete dog ok"}
 
-    except:
+    except Exception as error:
+        print(error)
         return {"code": 500, "msg": "Error in server, something was wrong"}

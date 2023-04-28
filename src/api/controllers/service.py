@@ -6,19 +6,16 @@ def create_service(body):
 
         claves_service = body.keys()
 
-        if not "nurseryDay" in claves_service or not "walk" in claves_service or not "nurseryNight" in claves_service:
+        if not "image" in claves_service or not "title" in claves_service or not "description" in claves_service:
             return {"code": 400, "msg": "No one service to register"}
 
         # Crear un nuevo registro en la base de datos
-        # if body["nurseryDay"]:
-        #     new_service = Service(user_id = ???????)
-        
-        # if body["walk"]:
-        #     new_service = Service(user_id = ???????)
-        
-        # if body["nurseryNight"]:
-        #     new_service = Service(user_id = ???????)
 
+        new_service = Services(
+            image = body["image"],
+            title = body["title"], 
+            description = body["description"], 
+        )
 
         db.session.add(new_service)
         id_service = new_service.id
@@ -45,7 +42,8 @@ def get_services():
 
         return {"code": 200, "msg": "All ok", "services": service_list}
 
-    except:
+    except Exception as error:
+        print(error)
         return {"code": 500, "msg": "Error in server, something was wrong"}
 
 
@@ -60,31 +58,28 @@ def get_service(id):
         
         return {"code": 200, "msg": "All ok", "service": service.serialize()}
 
-    except:
+    except Exception as error:
+        print(error)
         return {"code": 500, "msg": "Error in server, something was wrong"}
 
 
-def update_service(id):
+def update_service(body, id):
 
     try:
     
         # Obtener registro de la base de datos
         service = db.get_or_404(Services, id)
 
-        # if body["nurseryDay"]:
-        #     new_service = Service(user_id = ???????)
-        
-        # if body["walk"]:
-        #     new_service = Service(user_id = ???????)
-        
-        # if body["nurseryNight"]:
-        #     new_service = Service(user_id = ???????)
+        service.image = body["image"]
+        service.title = body["title"]
+        service.description = body["description"]
 
         db.session.commit()
 
         return {"code": 200, "msg": "service update ok", "service": service.serialize()}
 
-    except:
+    except Exception as error:
+        print(error)
         return {"code": 500, "msg": "Error in server, something was wrong"}
 
 
@@ -103,6 +98,6 @@ def delete_service(id):
 
         return {"code": 200, "msg": "Delete service ok"}
 
-    except:
+    except Exception as error:
+        print(error)
         return {"code": 500, "msg": "Error in server, something was wrong"}
-

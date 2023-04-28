@@ -20,6 +20,10 @@ class User(db.Model):
     # birthdate = db.Column(db.Date, unique=False, nullable=False)
     # photo = db.Column(db.String(500), unique=True, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GAURDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
 
+    dogs = relationship("Dog", back_populates="user")
+
+    tariffs = relationship("Tariffs", back_populates="user")
+
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -34,6 +38,8 @@ class User(db.Model):
             "city": self.city,
             "postal_code": self.postal_code,
             "phone": self.phone,
+            "dogs": [dog.serialize() for dog in self.dogs],
+            "tarifs": [tarif.serialize() for tarif in self.tarifs],
             # "country": self.country,
             # "birthday": self.birthday,
             # "photo": self.photo,
@@ -60,6 +66,9 @@ class Dog(db.Model):
 
     user_id = db.Column(db.Integer, ForeignKey("User.id"))
 
+    user = relationship("User", back_populates="dogs")
+
+
     def __repr__(self):
         return f'<Dog {self.name}>'
 
@@ -78,7 +87,7 @@ class Dog(db.Model):
             "microchip": self.microchip,
             "activity_level": self.activity_level,
             "observations": self.observations,
-            "user_id": self.user_id.serialize(),
+            "user_id": self.user_id,
             # "photo": self.photo,
         }
 
@@ -92,7 +101,7 @@ class Services(db.Model):
 
     user_id = db.Column(db.Integer, ForeignKey("User.id"))
 
-    tarif = relationship("Tarifs", back_populates="service")
+    tariff = relationship("Tariffs", back_populates="service")
 
 
     def __repr__(self):
@@ -104,30 +113,31 @@ class Services(db.Model):
             "image": self.image,
             "title": self.title,
             "description": self.description,
-            "user_id": self.user_id.serialize(),
+            "user_id": self.user_id,
         }
 
 
-class Tarifs(db.Model):
-    __tablename__ = "Tarifs"
+class Tariffs(db.Model):
+    __tablename__ = "Tariffs"
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer, unique=False, nullable=False)
 
     user_id = db.Column(db.Integer, ForeignKey("User.id"))
     services_id = db.Column(db.Integer, ForeignKey("Services.id"))
 
-    service = relationship("Services", back_populates="tarif")
+    service = relationship("Services", back_populates="tariff")
+    user = relationship("User", back_populates="tariffs")
 
 
     def __repr__(self):
-        return f'<Tarifas {self.price}>'
+        return f'<Tariffs {self.price}>'
 
     def serialize(self):
         return {
             "id": self.id,
             "price": self.price,
-            "user_id": self.user_id.serialize(),
-            "services_id": self.services_id,
+            "user_id": self.user_id,
+            "service": [service.serialize() for service in self.service]
         }
 
 

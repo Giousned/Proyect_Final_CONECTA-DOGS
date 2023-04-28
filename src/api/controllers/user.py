@@ -39,17 +39,20 @@ def create_user(body):
 def get_users():
 
     try:
+
     
         # Obtener usuarios de la base de datos
         query = db.select(User).order_by(User.id)
         users = db.session.execute(query).scalars()
         
+        # print(users)
 
         user_list = [user.serialize() for user in users]
 
         return {"code": 200, "msg": "All ok", "users": user_list}
 
-    except:
+    except Exception as error:
+        print(error)
         return {"code": 500, "msg": "Error in server, something was wrong"}
 
 
@@ -78,7 +81,8 @@ def get_user(id):
         
         return {"code": 200, "msg": "All ok", "user": user.serialize()}
 
-    except:
+    except Exception as error:
+        print(error)
         return {"code": 500, "msg": "Error in server, something was wrong"}
 
 
@@ -103,7 +107,8 @@ def update_user(body, id):
 
         return {"code": 200, "msg": "User update ok", "user": user.serialize()}
 
-    except:
+    except Exception as error:
+        print(error)
         return {"code": 500, "msg": "Error in server, something was wrong"}
 
 
@@ -123,9 +128,9 @@ def delete_user(id):
 
         return {"code": 200, "msg": "Delete user ok"}
 
-    except:
+    except Exception as error:
+        print(error)
         return {"code": 500, "msg": "Error in server, something was wrong"}
-
 
 
 
