@@ -156,7 +156,6 @@ def signup_dog():
 def dogs():
 
     try:
-
          # Obtener info de las tablas de la DB
         dogs_response = get_dogs()
 
