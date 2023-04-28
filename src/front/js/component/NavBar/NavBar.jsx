@@ -17,10 +17,15 @@ const NavBar = () => {
               <img src={Logo} className="logo" />
             </strong>
           </Link>
-          <button type="button" className="navbar-toggler"
-            data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
+          <button
+            type="button"
+            className="navbar-toggler"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -46,18 +51,27 @@ const NavBar = () => {
                 )}
               </li>
               <li className="nav-item">
-                <button type="button" className="btn text-light me-2"
-                  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button
+                  type="button"
+                  className="btn text-light me-2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                >
                   CONTACTO
                 </button>
               </li>
               <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle border rounded px-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a
+                  className="nav-link dropdown-toggle border rounded px-3"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
                   <i className="fas fa-user-circle"></i>
                 </a>
 
                 <ul className="dropdown-menu">
-
                   <li>
                     <Link to="/user-profile" className="dropdown-item">
                       <i className="fas fa-user-circle"></i> Ver Perfil
@@ -70,6 +84,11 @@ const NavBar = () => {
                     </Link>
                   </li>
                   <li>
+                    <Link to="/public-profile" className="dropdown-item">
+                      <i className="fas fa-bell"></i> Perfil publico
+                    </Link>
+                  </li>
+                  <li>
                     <hr className="dropdown-divider" />
                   </li>
 
@@ -78,7 +97,6 @@ const NavBar = () => {
                       <i className="fas fa-sign-out-alt"></i> Cerrar Sesión
                     </Link>
                   </li>
-
                 </ul>
               </li>
             </ul>
