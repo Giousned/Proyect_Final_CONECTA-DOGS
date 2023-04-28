@@ -100,18 +100,20 @@
   box-shadow: 5px 5px 5px black;
 }
 
-
 /* Ajustes de las tarjetas de los perros */
-
-.dogCardInformation{
-  width: 300px;
+.dogCardInformation {
+  width: 400px;
   height: 300px;
 }
 
-.dogCardInformation img{
+.dogCardInformation h5, p {
+  color: #3498db;
+}
+
+.dogCardInformation img {
   opacity: 0.2;
 }
 
-.dogCardInformation .card-img-overlay{
+.dogCardInformation .card-img-overlay {
   align-items: center;
 }

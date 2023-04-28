@@ -10,15 +10,18 @@ const DogCardInformation = (props) => {
           alt={"Imagen de mi perrito" + props.dogName}
         />
         <div className="card-img-overlay d-flex justify-content-center">
-        <div className="text-center text-info">
-          <h5 className="card-title fw-bold fs-1">{props.dogName}</h5>
-          <p className="card-text">
-            {props.dogSex} - {props.breed}
-          </p>
-          <p className="card-text fst-italic fs-6">
-            {props.microchip}
-          </p>
-        </div>
+          <div className="text-center text-info">
+            <h5 className="card-title fw-bold fs-1">
+              {props.dogName}
+            </h5>
+            <p className="card-text"><i class="fa-solid fa-dog fa-2xl"></i></p>
+            <p className="card-text">
+              {props.dogSex} - {props.breed}
+            </p>
+            <p className="card-text fst-italic fs-4">
+              <i class="fa-solid fa-shield-dog"></i> {props.microchip}
+            </p>
+          </div>
         </div>
       </div>
     </div>

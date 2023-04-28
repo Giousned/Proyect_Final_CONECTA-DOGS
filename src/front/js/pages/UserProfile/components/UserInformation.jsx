@@ -14,6 +14,7 @@ const UserInformation = () => {
 
     return (
         <div className="my-4">
+            <h3 className="my-4">Información personal</h3>
             <PersonalInformation />
 
             {/* FORMULARIO CREADO PARA EL PERFIL SI NO QUEREMOS UTILIZAR EL DEL REGISTRO */}
