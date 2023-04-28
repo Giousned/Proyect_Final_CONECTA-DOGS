@@ -1,25 +1,56 @@
 from api.models import db, Tariffs
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import JWTManager
 
 def create_tariff(body):
 
     try:
 
-        claves_tariff = body.keys()
+        # claves_tariff = body.keys()
+        # if not "price" in claves_tariff:
+        #     return {"code": 400, "msg": "No one tariff to register"}
 
-        if not "price" in claves_tariff:
-            return {"code": 400, "msg": "No one tariff to register"}
+        services = body["services"]
 
-        new_tariff = Tariffs(
-            price = body["price"],
-        )
+        sub_token = get_jwt_identity()
+
+        user_id = sub_token["id"]
+
+        for service in services:
+            service_active = service["serviceActive"]
+            service_id = service["serviceId"]
+            price = service["price"]
+
+            query = db.select(Tariffs).filter_by(user_id=user_id, service_id=service_id)
+            tarif = db.session.execute(query).scalars().first()         # first()
+
+            if service_active and tarif:
+                tarif.price = price
+                db.session.commit()
+                continue
+
+            if service_active and not tarif:
+                new_tarif = Tariffs(
+                    price = price,
+                    user_id = user_id,
+                    service_id = service_id,
+                    )
+
+                db.session.add(new_tarif)                
+                db.session.commit()
+                continue
+
+            if not service_active and tarif:
+                db.session.delete(tarif)
+                db.session.commit()
+                continue
+
+            if not service_active and not tarif:
+                continue
 
 
-        db.session.add(new_tarif)
-        id_tariff = new_tariff.id
-        
-        db.session.commit()
-
-        return {"code": 200, "msg": "All ok", "id": id_tariff}          #ID para rutas
+        return {"code": 200, "msg": "All ok"}
 
     except Exception as error:
         print(error)

@@ -1,20 +1,20 @@
-const RUTA =
-  "https://3001-giousned-proyectfinalco-n2vh2xmouju.ws-eu96.gitpod.io"; // CAMBIAR CADA VEZ QUE SE LEVANTE EL SERVER DE BACK, YA QUE LA URL CAMBIA
+import { RUTABACK } from "../constants/RutaBack.jsx";
+
 
 export const POSTLogin = async (email, password) => {
-  const resp = await fetch(`${RUTA}/token`, {
+  const resp = await fetch(`${RUTABACK}/token`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
   });
 
-  if (!resp.ok) throw Error("There was a problem in the login request");
+  // if (!resp.ok) throw Error("There was a problem in the login request");
 
-  if (resp.status === 401) {
-    throw "Invalid credentials";
-  } else if (resp.status === 400) {
-    throw "Invalid email or password format";
-  }
+  // if (resp.code === 401) {
+  //   throw "Invalid credentials";
+  // } else if (resp.code === 400) {
+  //   throw "Invalid email or password format";
+  // }
 
   const data = await resp.json();
 
@@ -27,19 +27,19 @@ export const POSTLogin = async (email, password) => {
 };
 
 export const POSTRegister = async (informacionUsuario) => {
-  const resp = await fetch(`${RUTA}/signup`, {
+  const resp = await fetch(`${RUTABACK}/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(informacionUsuario),
   });
 
-  if (!resp.ok) throw Error("There was a problem in the login request");
+  // if (!resp.ok) throw Error("There was a problem in the register request");
 
-  if (resp.status === 401) {
-    throw "Invalid credentials";
-  } else if (resp.status === 400) {
-    throw "Invalid email or password format";
-  }
+  // if (resp.code === 401) {
+  //   throw "Invalid credentials";
+  // } else if (resp.code === 400) {
+  //   throw "Invalid email or password format";
+  // }
 
   const data = await resp.json();
 
@@ -51,7 +51,7 @@ export const GETToken = async () => {
   // retrieve token form sessionStorage
   const token = sessionStorage.getItem("jwt-token");
 
-  const resp = await fetch(`${RUTA}/protected`, {
+  const resp = await fetch(`${RUTABACK}/protected`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -59,11 +59,11 @@ export const GETToken = async () => {
     },
   });
 
-  if (!resp.ok) throw Error("There was a problem in the login request");
+  // if (!resp.ok) throw Error("There was a problem in the login request");
 
-  if (resp.status === 403) {
-    throw "Missing or invalid token";
-  } else if (resp.status === 500) throw "Unknown error";
+  // if (resp.code === 403) {
+  //   throw "Missing or invalid token";
+  // } else if (resp.code === 500) throw "Unknown error";
 
   const data = await resp.json();
 

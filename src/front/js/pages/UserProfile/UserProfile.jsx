@@ -40,10 +40,13 @@ const UserProfile = () => {
                             <form>
                                 <h3>Sobre mí:</h3>
                                 <div className="col boxshadow">
-                                    <textarea className="form-control" id="aboutMe" rows="3">
-                                        Breve descripción sobre mí... 🤗 ❤️
-                                        Puedo editar ya todos los campos ❤️ 🤗
-                                    </textarea>
+                                <textarea className="form-control" id="aboutMe" rows="3"
+                                    name="aboutMe"
+                                    value={userInput.aboutMe}
+                                    onChange={handleUserInput}>
+                                </textarea>
+                                {/* Breve descripción sobre mí... 🤗 ❤️
+                                Puedo editar ya todos los campos ❤️ 🤗 */}
                                 </div>
 
 
