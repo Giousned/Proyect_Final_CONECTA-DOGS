@@ -81,19 +81,19 @@ const UserProfile = () => {
 
                                         {/* Información de Usuario */}
                                         <div className="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
-                                            aria-labelledby="home-tab" tabindex="0">
+                                            aria-labelledby="home-tab" tabIndex="0">
                                             <UserInformation />
                                         </div>
 
                                         {/* CUIDADOR: Servicios - Tarifas */}
                                         <div className="tab-pane fade" id="services-tab-pane" role="tabpanel"
-                                            aria-labelledby="services-tab" tabindex="0">
+                                            aria-labelledby="services-tab" tabIndex="0">
                                             <ServicesRates />
                                         </div>
 
                                         {/* Mis Perros */}
                                         <div className="tab-pane fade" id="mydog-tab-pane" role="tabpanel"
-                                            aria-labelledby="mydog-tab" tabindex="0">
+                                            aria-labelledby="mydog-tab" tabIndex="0">
                                             <MyDog />
                                         </div>
                                     </div>

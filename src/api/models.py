@@ -1,4 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship
 
 db = SQLAlchemy()
 
@@ -7,13 +9,13 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(50), unique=False, nullable=False)
-    is_active = db.Column(db.Boolean, unique=False, nullable=False)
     name = db.Column(db.String(30), unique=False, nullable=False)
     last_name = db.Column(db.String(60), unique=False, nullable=False)
     address = db.Column(db.String(150), unique=False, nullable=False)
     city = db.Column(db.String(35), unique=False, nullable=False)
     postal_code = db.Column(db.Integer, unique=False, nullable=False)
     phone = db.Column(db.Integer, unique=False, nullable=False)
+    is_active = db.Column(db.Boolean, unique=False, nullable=False)
     # country = db.Column(db.String(50), unique=False, nullable=False)
     # birthdate = db.Column(db.Date, unique=False, nullable=False)
     # photo = db.Column(db.String(500), unique=True, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GAURDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
@@ -56,7 +58,7 @@ class Dog(db.Model):
     observations = db.Column(db.String(500), unique=False, nullable=True)
 #     photo = db.Column(db.String(500), unique=True, nullable=True)         # USAR API CLOUDINARY, HACER LLAMADA Y GAURDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
 
-    user_id = Column(db.Integer, ForeignKey("User.id"))
+    user_id = db.Column(db.Integer, ForeignKey("User.id"))
 
     def __repr__(self):
         return f'<Dog {self.name}>'
@@ -76,6 +78,7 @@ class Dog(db.Model):
             "microchip": self.microchip,
             "activity_level": self.activity_level,
             "observations": self.observations,
+            "user_id": self.user_id.serialize(),
             # "photo": self.photo,
         }
 
@@ -101,7 +104,7 @@ class Services(db.Model):
             "image": self.image,
             "title": self.title,
             "description": self.description,
-            "user_id": self.user_id,
+            "user_id": self.user_id.serialize(),
         }
 
 
@@ -123,7 +126,7 @@ class Tarifs(db.Model):
         return {
             "id": self.id,
             "price": self.price,
-            "user_id": self.user_id,
+            "user_id": self.user_id.serialize(),
             "services_id": self.services_id,
         }
 
