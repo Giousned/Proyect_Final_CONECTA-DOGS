@@ -14,7 +14,7 @@ const ServicesRates = () => {
     const handleNumDogsChange = (event) => {
         const numDogs = Number(event.target.value);
         if (numDogs >= 11) {
-            alert("Número máximo de perros es 10");
+            alert("Número máximo de perros admitidos por cuidador es de 10");
             return;
         }
         handleUserInput(event);
@@ -22,7 +22,17 @@ const ServicesRates = () => {
 
     return (
         <>
-            <h6 className="mb-4">El usuario admite: {userInput.numDogs} perro/s</h6>
+            <h3 className="my-4">Si quieres convertirte en cuidador activa los servicios y tarifas que ofreces</h3>
+
+            <div className="container py-4">
+                <h5 className="mb-4">El usuario admite: {userInput.numDogs} perro/s</h5>
+                <label htmlFor="numDogs">Elige el número de perros que puedes admitir en tu casa:</label>
+                <input type="number" id="numDogs" min="0" max="10"
+                    name="numDogs" value={userInput.numDogs}
+                    onChange={handleNumDogsChange}
+                />
+            </div>
+
 
             <div className="form-check form-check-inline py-2">
                 <label className="form-check-label" htmlFor="guarderia-diurna">
@@ -81,15 +91,8 @@ const ServicesRates = () => {
                 />
             </div>
 
-            <div className="container py-4">
-                <label htmlFor="numDogs">Número de perros admitidos:</label>
-                <input type="number" id="numDogs" min="0" max="10"
-                    name="numDogs" value={userInput.numDogs}
-                    onChange={handleNumDogsChange}
-                />
-            </div>
 
-            <h4 className="m-4">Preferencias de Cobro ¿?</h4>
+            <h5 className="m-4">Preferencias de Cobro ¿?</h5>
             <input type="checkbox" className="form-check-input"
                 name="transferencia" id="transferencia" />
             <label className="form-check-label px-2 mb-4" htmlFor="transferencia">

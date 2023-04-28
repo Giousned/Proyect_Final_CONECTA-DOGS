@@ -4,7 +4,6 @@ import TabButton from '../UserProfile/components/TabButton.jsx';
 import UserInformation from "./components/UserInformation.jsx";
 import ServicesRates from "./components/ServicesRates.jsx";
 import MyDog from "./components/MyDog.jsx";
-import AddDog from "./components/AddDog.jsx";
 
 import useUserInput from "../../hooks/useUserInput";
 import "./user-profile.css";
@@ -27,12 +26,7 @@ const UserProfile = () => {
 
     return (
         <div className="user-profile">
-            <div className="header">
-                {/* <button className="btn btn-primary">
-                    <div className="text">Cambiar Fondo</div>
-                    <i className="fas fa-images fa-sm"></i>
-                </button> */}
-            </div>
+            <div className="header"></div>
             <div className="container">
                 <div className="row">
                     <div className="col">
