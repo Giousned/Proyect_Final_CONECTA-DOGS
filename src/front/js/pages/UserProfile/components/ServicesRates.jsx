@@ -1,6 +1,8 @@
 import React from "react";
 import useUserInput from "../../../hooks/useUserInput";
 
+import ServiceCard from "../../../component/Services/ServiceCard.jsx"
+
 const ServicesRates = () => {
 
     const {
@@ -23,16 +25,35 @@ const ServicesRates = () => {
     return (
         <>
             <h3 className="my-4">Si quieres convertirte en cuidador activa los servicios y tarifas que ofreces</h3>
+            <div className="row">
+                <ServiceCard
+                    imgSrc="https://cdn.pixabay.com/photo/2017/01/17/16/46/sun-1987414_960_720.png"
+                    title="Guardería de Día"
+                    description="Deja a tu perro con un cuidador hasta un máximo de 10 horas al día. De esta manera puedes relajarte en tu trabajo, o cuando estás fuera de casa la mayor parte del día."
+                    btnText="Buscar ahora"
+                />
+                <ServiceCard
+                    imgSrc="https://cdn.pixabay.com/photo/2016/03/31/21/38/canines-1296551_960_720.png"
+                    title="Paseo"
+                    description="¿No puedes pasear a tu perro tanto como te gustaría? Encuentra un paseador que pueda sacarlo tanto tiempo y tan lejos como sea necesario."
+                    btnText="Buscar ahora"
+                />
+                <ServiceCard
+                    imgSrc="https://cdn.pixabay.com/photo/2017/01/17/16/45/night-1987408_960_720.png"
+                    title="Alojamiento"
+                    description="¿Buscas a alguien para cuidar a tu perro durante la noche? Elije a uno de nuestros cuidadores para que cuide a tu mascota en su casa cuando te vayas."
+                    btnText="Buscar ahora"
+                />
+            </div>
 
-            <div className="container py-4">
+            {/* <div className="container py-4">
                 <h5 className="mb-4">El usuario admite: {userInput.numDogs} perro/s</h5>
                 <label htmlFor="numDogs">Elige el número de perros que puedes admitir en tu casa:</label>
                 <input type="number" id="numDogs" min="0" max="10"
                     name="numDogs" value={userInput.numDogs}
                     onChange={handleNumDogsChange}
                 />
-            </div>
-
+            </div> */}
 
             <div className="form-check form-check-inline py-2">
                 <label className="form-check-label" htmlFor="guarderia-diurna">
