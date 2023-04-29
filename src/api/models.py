@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import ForeignKey
-from sqlalchemy.orm import relationship
+# from sqlalchemy import ForeignKey
+# from sqlalchemy.orm import relationship
 
 db = SQLAlchemy()
 
@@ -17,13 +17,13 @@ class User(db.Model):
     phone = db.Column(db.Integer, unique=False, nullable=False)
     is_active = db.Column(db.Boolean, unique=False, nullable=False)
     about_me = db.Column(db.String(300), unique=False, nullable=True)
-    # country = db.Column(db.String(50), unique=False, nullable=False)
-    # birthdate = db.Column(db.Date, unique=False, nullable=False)
-    # photo = db.Column(db.String(500), unique=True, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GAURDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
+    country = db.Column(db.String(50), unique=False, nullable=False)
+    birthdate = db.Column(db.String(20), unique=False, nullable=False)
+    photo = db.Column(db.String(500), unique=True, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
 
-    dogs = relationship("Dog", back_populates="user")
+    dogs = db.relationship("Dog", back_populates="user")
 
-    tariffs = relationship("Tariffs", back_populates="user")
+    tariffs = db.relationship("Tariffs", back_populates="user")
 
 
     def __repr__(self):
@@ -40,11 +40,11 @@ class User(db.Model):
             "postal_code": self.postal_code,
             "phone": self.phone,
             "about_me": self.about_me,
+            "country": self.country,
+            "birthdate": self.birthdate,
+            "photo": self.photo,
             "dogs": [dog.serialize() for dog in self.dogs],
             "tariffs": [tariff.serialize() for tariff in self.tariffs],
-            # "country": self.country,
-            # "birthday": self.birthday,
-            # "photo": self.photo,
         # ¡¡¡¡DO NOT serialize the password, its a security breach!!!
         }
 
@@ -54,7 +54,7 @@ class Dog(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(35), unique=False, nullable=False)
     breed = db.Column(db.String(50), unique=False, nullable=False)
-    birthdate = db.Column(db.Date, unique=False, nullable=False)
+    birthdate = db.Column(db.String(20), unique=False, nullable=False)
     sex = db.Column(db.String(20), unique=False, nullable=False)
     dog_size = db.Column(db.String(20), unique=False, nullable=True)
     sterilized = db.Column(db.Boolean, unique=False, nullable=False)
@@ -64,11 +64,11 @@ class Dog(db.Model):
     microchip = db.Column(db.Integer, unique=True, nullable=False)
     activity_level = db.Column(db.String(20), unique=False, nullable=True)
     observations = db.Column(db.String(500), unique=False, nullable=True)
-#     photo = db.Column(db.String(500), unique=True, nullable=True)         # USAR API CLOUDINARY, HACER LLAMADA Y GAURDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
+    photo = db.Column(db.String(500), unique=True, nullable=True)         # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
 
-    user_id = db.Column(db.Integer, ForeignKey("User.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("User.id"))
 
-    user = relationship("User", back_populates="dogs")
+    user = db.relationship("User", back_populates="dogs")
 
 
     def __repr__(self):
@@ -89,19 +89,19 @@ class Dog(db.Model):
             "microchip": self.microchip,
             "activity_level": self.activity_level,
             "observations": self.observations,
+            "photo": self.photo,
             "user_id": self.user_id,
-            # "photo": self.photo,
         }
 
 
 class Services(db.Model):
-    __tablename__ = "Services"                                # id = 1 PARA nurseryDay        id = 2 PARA walk        id = 3 PARA nurseryNight
+    __tablename__ = "Services"                                # id = 1 PARA nurseryDay // Alojamiento        id = 2 PARA walk // Paseo       id = 3 PARA nurseryNight // Guardería de Día
     id = db.Column(db.Integer, primary_key=True)
     image = db.Column(db.String(350), unique=True, nullable=False)
     title = db.Column(db.String(35), unique=True, nullable=False)
     description = db.Column(db.String(500), unique=True, nullable=False)
 
-    tariff = relationship("Tariffs", back_populates="service")
+    tariff = db.relationship("Tariffs", back_populates="service")
 
 
     def __repr__(self):
@@ -121,11 +121,11 @@ class Tariffs(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer, unique=False, nullable=False)
 
-    user_id = db.Column(db.Integer, ForeignKey("User.id"))
-    service_id = db.Column(db.Integer, ForeignKey("Services.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("User.id"))
+    service_id = db.Column(db.Integer, db.ForeignKey("Services.id"))
 
-    service = relationship("Services", back_populates="tariff")
-    user = relationship("User", back_populates="tariffs")
+    service = db.relationship("Services", back_populates="tariff")
+    user = db.relationship("User", back_populates="tariffs")
 
 
     def __repr__(self):
@@ -137,8 +137,6 @@ class Tariffs(db.Model):
             "price": self.price,
             "service": self.service.serialize(),
         }
-
-
 
 
 

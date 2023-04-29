@@ -6,6 +6,7 @@ import Logo from "../../../img/conectadogs-logo-white.png";
 import "../NavBar/navbar.css";
 
 const NavBar = () => {
+  
   const { storeAuth, actionsAuth } = useAuthContext();
 
   return (

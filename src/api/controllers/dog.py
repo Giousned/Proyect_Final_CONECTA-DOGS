@@ -1,4 +1,6 @@
 from api.models import db, Dog
+# import requests
+# import json 
 
 def create_dog(body):
 
@@ -6,14 +8,14 @@ def create_dog(body):
 
         claves_dog = body.keys()
 
-        if not "dogName" in claves_dog or not "breed" in claves_dog or not "Date" in claves_dog or not "dogSex" in claves_dog or not "radioSizeDog" in claves_dog or not "neutered" in claves_dog or not "socialCats" in claves_dog or not "socialKids" in claves_dog or not "socialDogs" in claves_dog or not "radioActivity" in claves_dog or not "microchip" in claves_dog or not "observations" in claves_dog:
+        if not "dogName" in claves_dog or not "breed" in claves_dog or not "dogBirth" in claves_dog or not "dogSex" in claves_dog or not "radioSizeDog" in claves_dog or not "neutered" in claves_dog or not "socialCats" in claves_dog or not "socialKids" in claves_dog or not "socialDogs" in claves_dog or not "radioActivity" in claves_dog or not "microchip" in claves_dog or not "observations" in claves_dog:
             return {"code": 400, "msg": "Missing data in the forms"}
 
         # Crear un nuevo usuario en la base de datos
         new_dog = Dog(
             name = body["dogName"],
             breed = body["breed"],
-            birthdate = body["Date"],
+            birthdate = body["dogBirth"],
             sex = body["dogSex"],
             dog_size = body["radioSizeDog"],
             sterilized = body["neutered"],
@@ -23,7 +25,17 @@ def create_dog(body):
             activity_level = body["radioActivity"],
             microchip = int(body["microchip"]),
             observations = body["observations"])
-            # photo = body["dogPhoto"],
+        
+        # if body["dogPhoto"]:
+            #     cloudinary.uploader.upload(dog.name + ".mp4", 
+            #         folder = body["dogPhoto"],                 # "myfolder/mysubfolder/" 
+            #         public_id = dog.name,            # "my_dog"
+            #         overwrite = True, 
+            #         notification_url = "http://res.cloudinary.com/drlf5uatk", 
+            #         resource_type = "photo")
+            #     res = requests.get('https://api.cloudinary.com/v1_1/drlf5uatk')
+            #     response = json.loads(res.text)
+            #     Dog(photo = response)
 
         db.session.add(new_dog)
         id_dog = new_dog.id
@@ -78,7 +90,7 @@ def update_dog(body, id):
         dog = db.get_or_404(Dog, id)
 
         dog.name = body["dogName"]
-        dog.birthdate = body["Date"]
+        dog.birthdate = body["dogBirth"]
         dog.breed = body["breed"]
         dog.sex = body["dogSex"]
         dog.dog_size = body["radioSizeDog"]
@@ -89,6 +101,17 @@ def update_dog(body, id):
         dog.activity_level = body["radioActivity"]
         dog.microchip = int(body["microchip"])
         dog.observations = body["observations"]
+
+        # if body["dogPhoto"]:
+            #     cloudinary.uploader.upload(dog.name + ".mp4", 
+            #         folder = body["dogPhoto"],                 # "myfolder/mysubfolder/" 
+            #         public_id = dog.name,            # "my_dog"
+            #         overwrite = True, 
+            #         notification_url = "http://res.cloudinary.com/drlf5uatk", 
+            #         resource_type = "photo")
+            #     res = requests.get('https://api.cloudinary.com/v1_1/drlf5uatk')
+            #     response = json.loads(res.text)
+            #     dog.photo = response
 
         db.session.commit()
 

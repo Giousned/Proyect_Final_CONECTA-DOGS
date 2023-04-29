@@ -8,11 +8,9 @@ export const POSTLogin = async (email, password) => {
     body: JSON.stringify({ email, password }),
   });
 
+  // HAY QUE PONER UN TRY/CATH PARA QUE FUNCIONE Y LOS MISMOS NOMBRES Y CODIGOS QUE EN EL BACK
   // if (!resp.ok) throw Error("There was a problem in the login request");
-
-  // if (resp.code === 401) {
-  //   throw "Invalid credentials";
-  // } else if (resp.code === 400) {
+  // if (resp.code === 400) {
   //   throw "Invalid email or password format";
   // }
 
@@ -26,41 +24,22 @@ export const POSTLogin = async (email, password) => {
   return data;
 };
 
-export const POSTRegister = async (informacionUsuario) => {
-  const resp = await fetch(`${RUTABACK}/signup`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(informacionUsuario),
-  });
 
-  // if (!resp.ok) throw Error("There was a problem in the register request");
-
-  // if (resp.code === 401) {
-  //   throw "Invalid credentials";
-  // } else if (resp.code === 400) {
-  //   throw "Invalid email or password format";
-  // }
-
-  const data = await resp.json();
-
-  return data;
-};
-
+// EJEMPLO PARA RUTAS PRIVADAS OBTENIENDO TOKEN PRIMERO Y MANDANDOLO AL BACK
 // asumiendo que "/protected" es un endpoint privado
 export const GETToken = async () => {
-  // retrieve token form sessionStorage
+  // Retrieve token form sessionStorage
   const token = sessionStorage.getItem("jwt-token");
 
   const resp = await fetch(`${RUTABACK}/protected`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + token, // ⬅⬅⬅ authorization token
+      Authorization: "Bearer " + token,                 // ⬅⬅⬅ authorization token
     },
   });
 
   // if (!resp.ok) throw Error("There was a problem in the login request");
-
   // if (resp.code === 403) {
   //   throw "Missing or invalid token";
   // } else if (resp.code === 500) throw "Unknown error";
