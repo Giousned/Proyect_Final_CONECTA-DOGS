@@ -1,6 +1,7 @@
 import React from "react";
 import { createContext, useContext, useState, useEffect } from "react";
-import { POSTLogin, GETToken } from "../services/Fetchs.js";
+
+import { POSTLogin, GETToken } from "../services/LOGINFetchs.js";
 import useUserInput from "../hooks/useUserInput.js";
 
 const AuthContext = createContext();
@@ -10,12 +11,14 @@ export const AuthProvider = ({ children }) => {
 
   const [userLog, setUserLog] = useState(false);
   const [token, setToken] = useState("");
+  const [user, setUser] = useState({});
 
   const handleLogIn = (e) => {
     e.preventDefault();
 
     POSTLogin(userInput.logEmail, userInput.logPassword).then((data) => {
       setToken(data.token);
+      setUser(data.user);
       setUserLog(true);
     });
   };
@@ -32,12 +35,14 @@ export const AuthProvider = ({ children }) => {
 
   const storeAuth = {
     token,
+    user,
     userLog,
     userInput,
   };
 
   const actionsAuth = {
     setToken,
+    setUser,
 
     handleLogIn,
     handleLogOut,

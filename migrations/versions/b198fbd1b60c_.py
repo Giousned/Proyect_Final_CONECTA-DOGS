@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 87b4385631bc
+Revision ID: b198fbd1b60c
 Revises: 
-Create Date: 2023-04-28 19:19:04.525661
+Create Date: 2023-04-29 12:02:58.799322
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '87b4385631bc'
+revision = 'b198fbd1b60c'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -40,14 +40,18 @@ def upgrade():
     sa.Column('phone', sa.Integer(), nullable=False),
     sa.Column('is_active', sa.Boolean(), nullable=False),
     sa.Column('about_me', sa.String(length=300), nullable=True),
+    sa.Column('country', sa.String(length=50), nullable=False),
+    sa.Column('birthdate', sa.String(length=20), nullable=False),
+    sa.Column('photo', sa.String(length=500), nullable=True),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('email')
+    sa.UniqueConstraint('email'),
+    sa.UniqueConstraint('photo')
     )
     op.create_table('Dog',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=35), nullable=False),
     sa.Column('breed', sa.String(length=50), nullable=False),
-    sa.Column('birthdate', sa.Date(), nullable=False),
+    sa.Column('birthdate', sa.String(length=20), nullable=False),
     sa.Column('sex', sa.String(length=20), nullable=False),
     sa.Column('dog_size', sa.String(length=20), nullable=True),
     sa.Column('sterilized', sa.Boolean(), nullable=False),
@@ -57,10 +61,12 @@ def upgrade():
     sa.Column('microchip', sa.Integer(), nullable=False),
     sa.Column('activity_level', sa.String(length=20), nullable=True),
     sa.Column('observations', sa.String(length=500), nullable=True),
+    sa.Column('photo', sa.String(length=500), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['User.id'], ),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('microchip')
+    sa.UniqueConstraint('microchip'),
+    sa.UniqueConstraint('photo')
     )
     op.create_table('Tariffs',
     sa.Column('id', sa.Integer(), nullable=False),

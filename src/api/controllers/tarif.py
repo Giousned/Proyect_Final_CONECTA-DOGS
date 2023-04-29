@@ -1,7 +1,7 @@
 from api.models import db, Tariffs
 from flask_jwt_extended import get_jwt_identity
-from flask_jwt_extended import jwt_required
-from flask_jwt_extended import JWTManager
+# from flask_jwt_extended import jwt_required
+# from flask_jwt_extended import JWTManager
 
 def create_tariff(body):
 
@@ -18,12 +18,12 @@ def create_tariff(body):
         user_id = sub_token["id"]
 
         for service in services:
-            service_active = service["serviceActive"]
-            service_id = service["serviceId"]
-            price = service["price"]
+            service_active = service["serviceActive"]               # True or False
+            service_id = service["serviceId"]                       # Id del servicio: id = 1 PARA nurseryDay // Alojamiento        id = 2 PARA walk // Paseo       id = 3 PARA nurseryNight // Guardería de Día
+            price = service["price"]                                # Precio de cada servicio ofrecido por el usuario
 
             query = db.select(Tariffs).filter_by(user_id=user_id, service_id=service_id)
-            tarif = db.session.execute(query).scalars().first()         # first()
+            tarif = db.session.execute(query).scalars().first()         # one() ?????
 
             if service_active and tarif:
                 tarif.price = price
@@ -36,7 +36,6 @@ def create_tariff(body):
                     user_id = user_id,
                     service_id = service_id,
                     )
-
                 db.session.add(new_tarif)                
                 db.session.commit()
                 continue
