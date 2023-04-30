@@ -14,7 +14,7 @@ from api.models import db
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
-from api.models import User, Services, Tariffs, Dog
+from api.models import User, Services, Tariffs, Dog                                         # from models import Person
 from api.controllers.user import create_user, get_users, get_user, update_user, delete_user
 from api.controllers.dog import create_dog, get_dogs, get_dog, update_dog, delete_dog
 from api.controllers.service import create_service, get_services, get_service, update_service, delete_service
@@ -22,28 +22,29 @@ from api.controllers.tarif import create_tariff, get_tariffs, get_tariff, update
 
 
 
-
-#from models import Person
-
 ENV = os.getenv("FLASK_ENV")
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
 app.url_map.strict_slashes = False
+
 
 # database condiguration
 db_url = os.getenv("DATABASE_URL")
 if db_url is not None:
     app.config['SQLALCHEMY_DATABASE_URI'] = db_url.replace("postgres://", "postgresql://")
 else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////tmp/test.db"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://user:pass@localhost/db?charset=utf8"
+    # app.config['SQLALCHEMY_CHARSET'] = 'utf8mb4'
+    # mysql://user:pass@localhost/db?charset=utf8
+    # sqlite:////tmp/test.db        # ORIGINAL CON EL BOILERPLATE
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 MIGRATE = Migrate(app, db, compare_type = True)
 db.init_app(app)
 
 #  Configura la extensión Flask-JWT-Extended
-app.config["JWT_SECRET_KEY"] = os.environ.get('JWT_SECRET') # ESTA PALABRA ES LO QUE GENERA LUEGO LOS TOKENS UNICOS Y LO QUE NO SE DEBE COMPARTIR # ¡Cambia las palabras "super-secret" por otra cosa!
-jwt = JWTManager(app)                               # LA PONGO EN ENV PARA NO SUBIRLO A LA NUBE Y QUE SEA SECRETA
+app.config["JWT_SECRET_KEY"] = os.environ.get('JWT_SECRET') # ESTA PALABRA ES LO QUE GENERA LUEGO LOS TOKENS UNICOS Y LO QUE NO SE DEBE COMPARTIR       (# ¡Cambia las palabras "super-secret" por otra cosa!)
+jwt = JWTManager(app)                                       # LA PONGO EN ENV PARA NO SUBIRLO A LA NUBE Y QUE SEA SECRETA
 
 # Allow CORS requests to this API
 CORS(app)
@@ -84,10 +85,11 @@ def signup_user():
             return jsonify(user_response)
 
         return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
-            
-    except:
+
+    except Exception as error:
+        print(error)
         return jsonify(user_response), user_response["code"]
-        
+
 
 @app.route("/users", methods=["GET"])
 def users():
@@ -101,8 +103,9 @@ def users():
             return jsonify(users_response)
 
         return jsonify(users_response["users"])
-            
-    except:
+
+    except Exception as error:
+        print(error)
         return jsonify(users_response), users_response["code"]
 
 
@@ -127,14 +130,16 @@ def users_id(id):
             return jsonify(user_response)
 
         return jsonify(user_response)
-            
-    except:
+
+    except Exception as error:
+        print(error)
         return jsonify(user_response), user_response["code"]
 
 
 ###################################################################
 # RUTAS PARA EL REGISTRO DE PERROS Y LAS PETICIONES DE DOG(S)/CRUD DESDE EL FRONT
 @app.route("/signup-dog", methods=["POST"])
+@jwt_required()
 def signup_dog():
 
     try:
@@ -147,10 +152,11 @@ def signup_dog():
             return jsonify(dog_response)
 
         return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
-            
-    except:
+
+    except Exception as error:
+        print(error)
         return jsonify(dog_response), dog_response["code"]
-        
+
 
 @app.route("/dogs", methods=["GET"])
 def dogs():
@@ -163,8 +169,9 @@ def dogs():
             return jsonify(dogs_response)
 
         return jsonify(dogs_response["dogs"])
-            
-    except:
+
+    except Exception as error:
+        print(error)
         return jsonify(dogs_response), dogs_response["code"]
 
 
@@ -189,14 +196,16 @@ def dogs_id(id):
             return jsonify(dog_response)
 
         return jsonify(dog_response)
-            
-    except:
+
+    except Exception as error:
+        print(error)
         return jsonify(dog_response), dog_response["code"]
 
 
 ###################################################################
 # RUTAS PARA EL REGISTRO DE SERVICIOS POR PARTE DE LOS "CUIDADORES" Y LAS PETICIONES DE SERVICIO(S)/CRUD DESDE EL FRONT
 @app.route("/signup-service", methods=["POST"])
+@jwt_required()
 def signup_service():
 
     try:
@@ -209,10 +218,11 @@ def signup_service():
             return jsonify(service_response)
 
         return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
-            
-    except:
+
+    except Exception as error:
+        print(error)
         return jsonify(service_response), service_response["code"]
-        
+
 
 @app.route("/services", methods=["GET"])
 def services():
@@ -226,8 +236,9 @@ def services():
             return jsonify(services_response)
 
         return jsonify(services_response["services"])
-            
-    except:
+
+    except Exception as error:
+        print(error)
         return jsonify(services_response), services_response["code"]
 
 
@@ -252,8 +263,9 @@ def services_id(id):
             return jsonify(service_response)
 
         return jsonify(service_response)
-            
-    except:
+
+    except Exception as error:
+        print(error)
         return jsonify(service_response), service_response["code"]
 
 
@@ -261,6 +273,7 @@ def services_id(id):
 ###################################################################
 # RUTAS PARA EL REGISTRO DE TARIFAS POR PARTE DE LOS "CUIDADORES" Y LAS PETICIONES DE TARIFA(S)/CRUD DESDE EL FRONT
 @app.route("/signup-tariff", methods=["POST"])
+@jwt_required()
 def signup_tariff():
 
     try:
@@ -273,10 +286,11 @@ def signup_tariff():
             return jsonify(tariff_response)
 
         return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
-            
-    except:
+
+    except Exception as error:
+        print(error)
         return jsonify(tariff_response), tariff_response["code"]
-        
+
 
 @app.route("/tariffs", methods=["GET"])
 def tariffs():
@@ -290,8 +304,9 @@ def tariffs():
             return jsonify(tariffs_response)
 
         return jsonify(tariffs_response["tariffs"])
-            
-    except:
+
+    except Exception as error:
+        print(error)
         return jsonify(tariffs_response), tariffs_response["code"]
 
 
@@ -316,13 +331,27 @@ def tariffs_id(id):
             return jsonify(tariff_response)
 
         return jsonify(tariff_response)
-            
-    except:
+
+    except Exception as error:
+        print(error)
         return jsonify(tariff_response), tariff_response["code"]
 
 
 
+# RUTA PARA CREAR LOS 3 SERVICIOS EN LA BASE DE DATOS INICIAL CADA VEZ
+@app.route("/config-install", methods=["GET"])
+def config_services():
 
+    try:
+
+        # Rellenar la tabla de la DB, con el registro de Usuario
+        config_response = create_service()
+
+        return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
+
+    except Exception as error:
+        print(error)
+        return jsonify({"code": 500, "msg": "No ha ido bien"})
 
 
 
@@ -331,29 +360,37 @@ def tariffs_id(id):
 # La función create_access_token() se utiliza para generar el JWT.
 @app.route("/token", methods=["POST"])
 def create_token():
-    email = request.json.get("email", None)
-    password = request.json.get("password", None)
 
-    if email == None or password == None:                                               
-        return {"code": 400, "msg": "Insert and email or password"}
+    try:
+        email = request.json.get("email", None)
+        password = request.json.get("password", None)
 
-    # Consulta la base de datos por el nombre de usuario y la contraseña
-    # user = User.filter.query(email=email).first()                   # No sé como hacer esta query segun el metodo de la academia
-    query = db.session.query(User).filter(User.email == email)
+        if email == None or password == None:
+            return {"code": 400, "msg": "Insert and email or password"}
 
-    user = db.session.execute(query).scalars().one()
+        # Consulta la base de datos por el nombre de usuario y la contraseña
+        # user = User.filter.query(email=email).first()                   # No sé como hacer esta query segun el metodo de la academia
+        query = db.session.query(User).filter(User.email == email)
+        user = db.session.execute(query).scalars().one()
 
-    if user is None:
-        # el usuario no se encontró en la base de datos
-        return jsonify({"msg": "Bad email or password"}), 401       # SIEMPRE PONER EMAIL O PASS, NUNCA DECIR 1 SOLA DE LAS 2 ESTÁ MAL, MUCHA INFORMACIÓN GRATIS PARA LOS HACKERS
+        if user is None:
+            # el usuario no se encontró en la base de datos
+            return jsonify({"msg": "Bad email or password"}), 401       # SIEMPRE PONER EMAIL O PASS, NUNCA DECIR 1 SOLA DE LAS 2 ESTÁ MAL, MUCHA INFORMACIÓN GRATIS PARA LOS HACKERS
 
 
-    if password == user.password:
-        # crea un nuevo token con el id de usuario dentro
-        access_token = create_access_token(identity=email)
-        return jsonify({ "token": access_token, "email": email })
-    else:
-        return jsonify({"msg": "Bad email or password"}), 401
+        if password == user.password:
+            # crea un nuevo token con la info del usuario y us id dentro
+            access_token = create_access_token(identity=user.serialize())
+            return jsonify({ "token": access_token, "user": user.serialize() })
+        else:
+            return jsonify({"msg": "Bad email or password"}), 401
+        
+    except Exception as error:
+        print(error)
+        return jsonify({"code": 500, "msg": "Error in server, something was wrong"})
+
+
+
 
 # Protege una ruta con jwt_required, bloquea las peticiones
 # sin un JWT válido presente.
@@ -362,7 +399,7 @@ def create_token():
 def protected():
     # Accede a la identidad del usuario actual con get_jwt_identity
     current_user_email = get_jwt_identity()
-    # user = User.filter.get(current_user_email)        # No sé como hacer esta query segun el metodo de la academia 
+    # user = User.filter.get(current_user_email)        # No sé como hacer esta query segun el metodo de la academia
 
     query = db.session.query(User).filter(User.email == current_user_email)
 

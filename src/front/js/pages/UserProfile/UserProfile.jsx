@@ -5,18 +5,27 @@ import UserInformation from "./components/UserInformation.jsx";
 import ServicesRates from "./components/ServicesRates.jsx";
 import MyDog from "./components/MyDog.jsx";
 
+import { GET_All_Users, GET_User } from "../../services/USERFetchs.js";
+
 import useUserInput from "../../hooks/useUserInput";
+import useAppContext from "../../store/AppContext.js";
 import "./user-profile.css";
 
 const UserProfile = () => {
 
-    const {
-        userInput,
-        resetInput,
-        handleUserInput,
-        handleUserCheck,
-        handleUserSelectDate,
-    } = useUserInput({ name: "Sandra", lastname: "Madarnas" });
+    const { store, actions } = useAppContext();
+
+    // GET_User().then((data) => {
+        
+    // })
+
+    // const {
+    //     userInput,
+    //     resetInput,
+    //     handleUserInput,
+    //     handleUserCheck,
+    //     handleUserSelectDate,
+    // } = useUserInput({ name: "Sandra", lastname: "Madarnas" });
 
     const [activeTab, setActiveTab] = useState('home');
 
@@ -35,17 +44,20 @@ const UserProfile = () => {
                         <div className="avatar-user"></div>
 
                         <div className="tituloperfil text-center">
-                            <h2 className="text-dark">{userInput.name} {userInput.lastname}</h2>
+                            <h2 className="text-dark">{store.userInput.name} {store.userInput.lastname}</h2>
                         </div>
 
                         <div>
                             <form>
                                 <h3>Sobre mí:</h3>
                                 <div className="col boxshadow">
-                                    <textarea className="form-control" id="aboutMe" rows="3">
-                                        Breve descripción sobre mí... 🤗 ❤️
-                                        Puedo editar ya todos los campos ❤️ 🤗
+                                    <textarea className="form-control" id="aboutMe" rows="3"
+                                        name="aboutMe"
+                                        value={store.userInput.aboutMe}
+                                        onChange={actions.handleUserInput}>
                                     </textarea>
+                                    {/* Breve descripción sobre mí... 🤗 ❤️
+                                    Puedo editar ya todos los campos ❤️ 🤗 */}
                                 </div>
 
 

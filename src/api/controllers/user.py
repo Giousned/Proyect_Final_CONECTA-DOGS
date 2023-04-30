@@ -1,12 +1,16 @@
 from api.models import db, User
 
+# import requests
+# import json 
+
+
 def create_user(body):
 
     try:
 
         claves_user = body.keys()
 
-        if not "email" in claves_user or not "password" in claves_user or not "name" in claves_user or not "lastName" in claves_user or not "address" in claves_user or not "province" in claves_user or not "postalCode" in claves_user or not "phone" in claves_user:
+        if not "email" in claves_user or not "password" in claves_user or not "name" in claves_user or not "lastName" in claves_user or not "address" in claves_user or not "province" in claves_user or not "postalCode" in claves_user or not "phone" in claves_user or not "country" in claves_user or not "birthdate" in claves_user:
             return {"code": 400, "msg": "Missing data in the forms"}
 
         # Crear un nuevo usuario en la base de datos
@@ -14,15 +18,14 @@ def create_user(body):
             email = body["email"],
             password = body["password"], 
             name = body["name"], 
-            last_name = body["lastName"], 
+            lastName = body["lastName"], 
             address = body["address"], 
-            city = body["province"], 
-            postal_code = int(body["postalCode"]), 
+            province = body["province"], 
+            postalCode = int(body["postalCode"]), 
             phone = int(body["phone"]),
+            country = body["country"], 
+            birthdate = body["birthdate"],
             is_active = True)
-            # photo = body["userPhoto"],
-            # country = body["country"], 
-            # birthdate = body["birthdate"],
 
         db.session.add(new_user)
         id_user = new_user.id
@@ -93,17 +96,30 @@ def update_user(body, id):
         # Obtener usuario de la base de datos           # NO SE PUEDE PASAR NI ACTUALIZAR UN EMAIL, PORQUE SI MANDAS EL MISMO, COMO ES UNICO DA ERROR
         user = db.get_or_404(User, id)
 
-        user.password = body["password"] 
-        user.name = body["name"] 
-        user.last_name = body["lastName"] 
-        user.address = body["address"] 
-        user.city = body["province"] 
-        user.postal_code = int(body["postalCode"]) 
+        user.password = body["password"]
+        user.name = body["name"]
+        user.lastName = body["lastName"]
+        user.address = body["address"]
+        user.province = body["province"]
+        user.postalCode = int(body["postalCode"])
         user.phone = int(body["phone"])
+        user.country = body["country"]
+        user.birthdate = body["birthdate"]
+        user.aboutMe = body["aboutMe"]
         user.is_active = True
 
+        # if body["userPhoto"]:
+        #     cloudinary.uploader.upload(user.name + ".mp4", 
+        #         folder = body["userPhoto"],                 # "myfolder/mysubfolder/" 
+        #         public_id = user.name,            # "my_dog"
+        #         overwrite = True, 
+        #         notification_url = "http://res.cloudinary.com/drlf5uatk", 
+        #         resource_type = "photo")
+        #     res = requests.get('https://api.cloudinary.com/v1_1/drlf5uatk')
+        #     response = json.loads(res.text)
+        #     user.photo = response
+
         db.session.commit()
-        print(user.name)
 
         return {"code": 200, "msg": "User update ok", "user": user.serialize()}
 

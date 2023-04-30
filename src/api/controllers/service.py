@@ -1,28 +1,46 @@
 from api.models import db, Services
 
-def create_service(body):
+def create_service():
 
     try:
 
-        claves_service = body.keys()
+        query = db.select(Services).order_by(Services.id)
+        services = db.session.execute(query).scalars()
 
-        if not "image" in claves_service or not "title" in claves_service or not "description" in claves_service:
-            return {"code": 400, "msg": "No one service to register"}
+        service_list = [service.serialize() for service in services]
+
+        if len(service_list) != 0:
+            return {"code": 403, "msg": "Servicios ya están creados"}
 
         # Crear un nuevo registro en la base de datos
 
-        new_service = Services(
-            image = body["image"],
-            title = body["title"], 
-            description = body["description"], 
-        )
+        initial_services = [
+        {
+            "image": "https://cdn.pixabay.com/photo/2017/01/17/16/45/night-1987408_960_720.png",
+            "title": "Alojamiento",
+            "description": "¿Buscas a alguien para cuidar a tu perro durante la noche? Elije a uno de nuestros cuidadores para que cuide a tu mascota en su casa cuando te vayas.",
+        },
+        {
+            "image": "https://cdn.pixabay.com/photo/2016/03/31/21/38/canines-1296551_960_720.png",
+            "title": "Paseo",
+            "description": "¿No puedes pasear a tu perro tanto como te gustaría? Encuentra un paseador que pueda sacarlo tanto tiempo y tan lejos como sea necesario.",
+        },
+        {
+            "image": "https://cdn.pixabay.com/photo/2017/01/17/16/46/sun-1987414_960_720.png",
+            "title": "Guardería de Día",
+            "description": "Deja a tu perro con un cuidador hasta un máximo de 10 horas al día. De esta manera puedes relajarte en tu trabajo, o cuando estás fuera de casa la mayor parte del día.",
+        }]
 
-        db.session.add(new_service)
-        id_service = new_service.id
-        
-        db.session.commit()
+        for service in initial_services:
+            new_service = Services(
+                image = service["image"],
+                title = service["title"], 
+                description = service["description"], 
+            )
+            db.session.add(new_service)
+            db.session.commit()
 
-        return {"code": 200, "msg": "All ok", "id": id_service}          #ID para rutas
+        return {"code": 200, "msg": "All ok"}
 
     except Exception as error:
         print(error)

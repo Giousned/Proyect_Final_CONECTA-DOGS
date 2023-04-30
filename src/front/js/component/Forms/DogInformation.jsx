@@ -44,11 +44,17 @@ const DogInformation = () => {
 
                 <div className="input-group">
                     <div className="col me-2">
-                        <label htmlFor="cumple-perro" className="form-label">
+                        <label htmlFor="fecha-nacimiento-dog" className="form-label">
                             Fecha de nacimiento *
                         </label>
                         <br />
-                        <DatePicker
+                        <input className="form-control" type="date" id="fecha-nacimiento-dog"
+                            aria-describedby="fecha-nacimiento-perro"
+                            name="dogBirth"
+                            value={store.userInput.dogBirth}
+                            onChange={actions.handleUserInput}
+                            required />
+                        {/* <DatePicker
                             id="cumple-perro" className="text-center form-control"
                             placeholderText="04-2023"
                             name="dogBirth"
@@ -56,7 +62,7 @@ const DogInformation = () => {
                             onChange={actions.handleUserSelectDate}
                             dateFormat="MM/yyyy"
                             showMonthYearPicker
-                        />
+                        /> */}
                     </div>
 
                     <div className="col ms-2">

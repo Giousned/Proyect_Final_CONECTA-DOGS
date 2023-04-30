@@ -1,23 +1,27 @@
 import React from "react";
-import { createContext, useContext, useState } from "react";
-import { POSTRegister } from "../services/Fetchs.js";
+import { createContext, useContext, useState} from "react";
+
+import { POSTRegister } from "../services/USERFetchs.js";
 import useUserInput from "../hooks/useUserInput.js";
 
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
+
   const {
     userInput,
     resetInput,
     handleUserInput,
     handleUserCheck,
     handleUserSelectDate,
-  } = useUserInput();
+  } = useUserInput(storeAuth.userLog.user);
+
 
   const handleRegister = (e) => {
     e.preventDefault();
 
-    POSTRegister(userInput).then(() => {});
+    POSTRegister(userInput)
+      // .then(() => {});
   };
 
   const store = {
