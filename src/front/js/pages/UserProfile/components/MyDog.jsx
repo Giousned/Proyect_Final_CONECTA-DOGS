@@ -64,7 +64,7 @@ const MyDog = () => {
                         onClick={() => handleTabClick('add-dog')}
                         aria-selected={(activeTab === 'add-dog')}
                     >
-                        <div className="dogCardInformation">
+                        <div className="dog-card-information">
                             <div className="card text-bg-dark">
                                 <img
                                     src="https://img.freepik.com/vector-premium/fondo-invitacion-tarjeta-dia-san-valentin-animales-pareja-perros-enamorados_194708-1801.jpg?w=2000"
@@ -104,7 +104,10 @@ const MyDog = () => {
                     aria-labelledby="add-dog-tab"
                     tabIndex="0"
                 >
-                    <div className="container mt-4"> <DogInformation /> </div>
+                    <div className="container mt-4"> <DogInformation />
+                        <div className="d-grid m-4 d-md-flex justify-content-md-end">
+                            <button type="submit" className="action-button shadow animate blue">Guardar cambios (Perro)</button>
+                        </div></div>
                 </div>
             </div>
         </>

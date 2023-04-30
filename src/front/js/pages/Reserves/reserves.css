@@ -1,0 +1,16 @@
+/* Reservas | Reserves - Styles */
+
+.reserves .header {
+    position: relative;
+    width: 100%;
+    height: 18rem;
+    border-bottom: 3px solid #fff;
+    background-color: black;
+    background-position: center;
+    background-image: url("https://cdn.pixabay.com/photo/2014/04/04/14/55/dog-313357_960_720.jpg");
+    background-size: cover;
+  }
+
+  .reserves .boxshadow {
+    box-shadow: 5px 5px 5px black;
+  }

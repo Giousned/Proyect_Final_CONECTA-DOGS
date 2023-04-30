@@ -26,7 +26,9 @@ const UserProfile = () => {
 
     return (
         <div className="user-profile">
-            <div className="header"></div>
+            <div className="header">
+            <h1 className="text-center p-4">INFORMACIÓN DE USUARIO</h1>
+            </div>
             <div className="container">
                 <div className="row">
                     <div className="col">
@@ -94,10 +96,11 @@ const UserProfile = () => {
                                 </div>
 
                                 <div className="d-grid m-4 d-md-flex justify-content-md-end">
-                                    <button type="button" className="action-button shadow animate red">Cambiar la Contraseña</button>
                                     <button type="submit" className="action-button shadow animate blue">Guardar cambios</button>
                                 </div>
+
                             </form>
+                            
                         </div>
                     </div>
                 </div>

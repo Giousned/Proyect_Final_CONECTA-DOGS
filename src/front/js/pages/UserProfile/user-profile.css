@@ -11,56 +11,11 @@
   background-size: cover;
 }
 
-.user-profile .header button {
-  position: relative;
-  float: right;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 100%;
-  padding: 0px 15px 0px 15px;
-  top: 10rem;
-  margin-right: 2rem;
-  transition: 0.2s;
-  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 2px rgba(0, 0, 0, .2);
-  box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 2px rgba(0, 0, 0, .2);
-}
-
-.user-profile .header button:hover {
-  width: 180px;
-  height: 50px;
-  margin-right: 15px;
-  border-radius: 1000px;
-  padding: 0px 15px 0px 15px;
-  bottom: 5px;
-  right: 5px;
-  transition: 0.2s;
-}
-
-.user-profile .header button i {
-  color: white;
-}
-
-.user-profile .header button:hover i {
-  display: none;
-  transition: 1s;
-}
-
-.user-profile .header button .text {
-  display: none;
-  font-weight: 600;
-  transition: 1s;
-}
-
-.user-profile .header button:hover .text {
-  display: inline-block;
-  transition: 1s;
-}
-
 .user-profile .avatar-user {
   z-index: 1;
   position: relative;
   margin: auto;
-  margin-top: -80px;
+  margin-top: -170px;
   width: 15rem;
   height: 15rem;
   border-radius: 100%;
@@ -101,19 +56,20 @@
 }
 
 /* Ajustes de las tarjetas de los perros */
-.dogCardInformation {
+.dog-card-information {
   width: 400px;
   height: 300px;
 }
 
-.dogCardInformation h5, p {
+.dog-card-information h5,
+p {
   color: #3498db;
 }
 
-.dogCardInformation img {
+.dog-card-information img {
   opacity: 0.2;
 }
 
-.dogCardInformation .card-img-overlay {
+.dog-card-information .card-img-overlay {
   align-items: center;
 }
