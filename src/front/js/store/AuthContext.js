@@ -2,47 +2,48 @@ import React from "react";
 import { createContext, useContext, useState, useEffect } from "react";
 
 import { POSTLogin, GETToken } from "../services/LOGINFetchs.js";
+import { GET_User } from "../services/USERFetchs.js";
 import useUserInput from "../hooks/useUserInput.js";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  
+  const [userLog, setUserLog] = useState({ token: "", user: "" });
+  
   const { userInput, handleUserInput, handleUserCheck } = useUserInput();
 
-  const [userLog, setUserLog] = useState(false);
-  const [token, setToken] = useState("");
-  const [user, setUser] = useState({});
 
   const handleLogIn = (e) => {
     e.preventDefault();
 
-    POSTLogin(userInput.logEmail, userInput.logPassword).then((data) => {
-      setToken(data.token);
-      setUser(data.user);
-      setUserLog(true);
-    });
+    POSTLogin(userInput.logEmail, userInput.logPassword)
+      .then((data) => {
+        setUserLog({token: data.token, user: data.user})
+      });
   };
 
   const handleLogOut = () => {
     sessionStorage.removeItem("jwt-token");
-    setToken("");
-    setUserLog(false);
+    setUserLog({ token: "", user: "" });
   };
 
-  useEffect(() => {
-    if (sessionStorage.getItem("jwt-token")) setUserLog(true);
-  }, []);
+  // ME FALTA SABER LEER EL TOKEN DESDE EL FRONT PARA PODER SACAR SU INFORMACION DE AHI COMO POR EJEMPLO LA ID DEL USUARIO
+  // useEffect(() => {
+  //   if (sessionStorage.getItem("jwt-token")){
+  //     GET_User(user_id)
+  //     .then((data) => {
+  //       setUserLog({token: sessionStorage.getItem("jwt-token"), user: data.user})
+  //     });
+  //   }
+  // }, []);
 
   const storeAuth = {
-    token,
-    user,
     userLog,
     userInput,
   };
 
   const actionsAuth = {
-    setToken,
-    setUser,
 
     handleLogIn,
     handleLogOut,

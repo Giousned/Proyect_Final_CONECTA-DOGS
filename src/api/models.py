@@ -10,15 +10,15 @@ class User(db.Model):
     email = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(50), unique=False, nullable=False)
     name = db.Column(db.String(30), unique=False, nullable=False)
-    last_name = db.Column(db.String(60), unique=False, nullable=False)
+    lastName = db.Column(db.String(60), unique=False, nullable=False)
     address = db.Column(db.String(150), unique=False, nullable=False)
-    city = db.Column(db.String(35), unique=False, nullable=False)
-    postal_code = db.Column(db.Integer, unique=False, nullable=False)
+    province = db.Column(db.String(35), unique=False, nullable=False)
+    postalCode = db.Column(db.Integer, unique=False, nullable=False)
     phone = db.Column(db.Integer, unique=False, nullable=False)
-    is_active = db.Column(db.Boolean, unique=False, nullable=False)
-    about_me = db.Column(db.String(300), unique=False, nullable=True)
     country = db.Column(db.String(50), unique=False, nullable=False)
+    aboutMe = db.Column(db.String(300), unique=False, nullable=True)
     birthdate = db.Column(db.String(20), unique=False, nullable=False)
+    is_active = db.Column(db.Boolean, unique=False, nullable=False)
     photo = db.Column(db.String(500), unique=True, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
 
     dogs = db.relationship("Dog", back_populates="user")
@@ -34,14 +34,14 @@ class User(db.Model):
             "id": self.id,
             "email": self.email,
             "name": self.name,
-            "last_name": self.last_name,
+            "lastName": self.lastName,
             "address": self.address,
-            "city": self.city,
-            "postal_code": self.postal_code,
+            "province": self.province,
+            "postalCode": self.postalCode,
             "phone": self.phone,
-            "about_me": self.about_me,
             "country": self.country,
             "birthdate": self.birthdate,
+            "aboutMe": self.aboutMe,
             "photo": self.photo,
             "dogs": [dog.serialize() for dog in self.dogs],
             "tariffs": [tariff.serialize() for tariff in self.tariffs],

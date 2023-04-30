@@ -379,7 +379,7 @@ def create_token():
 
 
         if password == user.password:
-            # crea un nuevo token con el id de usuario dentro
+            # crea un nuevo token con la info del usuario y us id dentro
             access_token = create_access_token(identity=user.serialize())
             return jsonify({ "token": access_token, "user": user.serialize() })
         else:

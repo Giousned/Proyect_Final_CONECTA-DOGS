@@ -9,14 +9,15 @@ import { GET_All_Users, GET_User } from "../../services/USERFetchs.js";
 
 import useUserInput from "../../hooks/useUserInput";
 import useAppContext from "../../store/AppContext.js";
-import useAuthContext from "../../store/AuthContext.js";
 import "./user-profile.css";
 
 const UserProfile = () => {
 
     const { store, actions } = useAppContext();
 
-    // const token = sessionStorage.getItem("jwt-token");
+    // GET_User().then((data) => {
+        
+    // })
 
     // const {
     //     userInput,

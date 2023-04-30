@@ -18,10 +18,10 @@ def create_user(body):
             email = body["email"],
             password = body["password"], 
             name = body["name"], 
-            last_name = body["lastName"], 
+            lastName = body["lastName"], 
             address = body["address"], 
-            city = body["province"], 
-            postal_code = int(body["postalCode"]), 
+            province = body["province"], 
+            postalCode = int(body["postalCode"]), 
             phone = int(body["phone"]),
             country = body["country"], 
             birthdate = body["birthdate"],
@@ -98,14 +98,14 @@ def update_user(body, id):
 
         user.password = body["password"]
         user.name = body["name"]
-        user.last_name = body["lastName"]
+        user.lastName = body["lastName"]
         user.address = body["address"]
-        user.city = body["province"]
-        user.postal_code = int(body["postalCode"])
+        user.province = body["province"]
+        user.postalCode = int(body["postalCode"])
         user.phone = int(body["phone"])
         user.country = body["country"]
         user.birthdate = body["birthdate"]
-        user.about_me = body["aboutMe"]
+        user.aboutMe = body["aboutMe"]
         user.is_active = True
 
         # if body["userPhoto"]:

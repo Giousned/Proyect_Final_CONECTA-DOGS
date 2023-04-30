@@ -32,7 +32,7 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                {storeAuth.userLog ? (
+                {storeAuth.userLog.token ? (
                   <Link
                     to="/"
                     className="nav-link"

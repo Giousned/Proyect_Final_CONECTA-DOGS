@@ -7,13 +7,15 @@ import useUserInput from "../hooks/useUserInput.js";
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
+
   const {
     userInput,
     resetInput,
     handleUserInput,
     handleUserCheck,
     handleUserSelectDate,
-  } = useUserInput();
+  } = useUserInput(storeAuth.userLog.user);
+
 
   const handleRegister = (e) => {
     e.preventDefault();
