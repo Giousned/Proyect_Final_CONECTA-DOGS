@@ -1,9 +1,15 @@
-import React from "react";
-import useUserInput from "../../../hooks/useUserInput";
+import React, { useState } from "react";
+
+import useUserInput from "../../../hooks/useUserInput.js";
+import useAuthContext from "../../../store/AuthContext.js";
 
 import ServiceCard from "../../../component/Services/ServiceCard.jsx"
 
 const ServicesRates = () => {
+
+    const { storeAuth, actionsAuth } = useAuthContext();
+    
+    const [ datosUsuario, setDatosUsuario ] = useState(storeAuth.userLog.user);
 
     const {
         userInput,
@@ -11,7 +17,7 @@ const ServicesRates = () => {
         handleUserInput,
         handleUserCheck,
         handleUserSelectDate,
-    } = useUserInput({ name: "Sandra", lastname: "Madarnas" });
+    } = useUserInput(datosUsuario);
 
     const handleNumDogsChange = (event) => {
         const numDogs = Number(event.target.value);

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const useUserInput = (initialValue = {}) => {
+
   const [userInput, setUserInput] = useState(initialValue);
 
   const handleUserInput = (event) => {

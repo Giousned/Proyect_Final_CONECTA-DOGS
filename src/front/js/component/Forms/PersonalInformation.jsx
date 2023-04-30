@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 
-import useAppContext from "../../store/AppContext";
+import useAppContext from "../../store/AppContext.js";
+import useAuthContext from "../../store/AuthContext.js";
+import useUserInput from "../../hooks/useUserInput";
+
+
 import "./signup-form.css";
 
 const PersonalInformation = (props) => {
 
-    const { store, actions } = useAppContext();
+    // const { store, actions } = useAppContext();
+
+    const { storeAuth, actionsAuth } = useAuthContext();
+    
+    const [ datosUsuario, setDatosUsuario ] = useState(storeAuth.userLog.user);
+
+    const {
+        userInput,
+        resetInput,
+        handleUserInput,
+        handleUserCheck,
+        handleUserSelectDate,
+    } = useUserInput(datosUsuario);
 
     return (
         <>
@@ -17,8 +33,8 @@ const PersonalInformation = (props) => {
                         </label>
                         <input className="form-control" type="text" id="nombre-usuario"
                             aria-describedby="nombre_usuario" placeholder="Nombre del usuario"
-                            name="name" value={store.userInput.name}
-                            onChange={actions.handleUserInput}
+                            name="name" value={userInput.name}
+                            onChange={handleUserInput}
                             required />
                     </div>
 
@@ -28,8 +44,8 @@ const PersonalInformation = (props) => {
                         </label>
                         <input className="form-control" type="text" id="apellidos-usuario"
                             aria-describedby="apellidos_usuario" placeholder="Apellidos del usuario"
-                            name="lastName" value={store.userInput.lastName}
-                            onChange={actions.handleUserInput}
+                            name="lastName" value={userInput.lastName}
+                            onChange={handleUserInput}
                             required />
                     </div>
                 </div>
@@ -42,8 +58,8 @@ const PersonalInformation = (props) => {
                         <input className="form-control" type="email" id="emailRegistroUser"
                             placeholder="usuario@ejemplo.com"
                             readOnly={props.disable}
-                            name="email" value={store.userInput.email}
-                            onChange={actions.handleUserInput}
+                            name="email" value={userInput.email}
+                            onChange={handleUserInput}
                             required />
                     </div>
 
@@ -53,8 +69,8 @@ const PersonalInformation = (props) => {
                         </label>
                         <input className="form-control" type="password" id="passRegistroUser"
                             placeholder="Contraseña"
-                            name="password" value={store.userInput.password}
-                            onChange={actions.handleUserInput}
+                            name="password" value={userInput.password}
+                            onChange={handleUserInput}
                             required />
                     </div>
                 </div>
@@ -65,8 +81,8 @@ const PersonalInformation = (props) => {
                     </label>
                     <input className="form-control" type="text" id="direccion-usuario"
                         aria-describedby="direccion_usuario" placeholder="Dirección del usuario (Calle y número)"
-                        name="address" value={store.userInput.address}
-                        onChange={actions.handleUserInput}
+                        name="address" value={userInput.address}
+                        onChange={handleUserInput}
                         required />
                 </div>
 
@@ -77,8 +93,8 @@ const PersonalInformation = (props) => {
                         </label>
                         <input className="form-control" type="text" id="codigo-postal-usuario"
                             aria-describedby="codigo_postal_usuario" placeholder="30000"
-                            name="postalCode" value={store.userInput.postalCode}
-                            onChange={actions.handleUserInput}
+                            name="postalCode" value={userInput.postalCode}
+                            onChange={handleUserInput}
                             required />
                     </div>
 
@@ -87,8 +103,8 @@ const PersonalInformation = (props) => {
                             Localidad *
                         </label>
                         <select required id="provincia-user" className="form-select"
-                            name="province" value={store.userInput.province}
-                            onChange={actions.handleUserInput}>
+                            name="province" value={userInput.province}
+                            onChange={handleUserInput}>
                             <option defaultValue="">Elige Provincia</option>
                             <option value="Álava">Álava</option>
                             <option value="Albacete">Albacete</option>
@@ -150,8 +166,8 @@ const PersonalInformation = (props) => {
                             País *
                         </label>
                         <select required id="pais-user" className="form-select"
-                            name="country" value={store.userInput.country}
-                            onChange={actions.handleUserInput}>
+                            name="country" value={userInput.country}
+                            onChange={handleUserInput}>
                             <option value="">Elige País</option>
                             <option value="Albania">Albania</option>
                             <option value="Germany">Alemania</option>
@@ -212,8 +228,8 @@ const PersonalInformation = (props) => {
                         </label>
                         <input className="form-control" type="tel" id="telefono-user"
                             aria-describedby="telefono" placeholder="666123456"
-                            name="phone" value={store.userInput.phone}
-                            onChange={actions.handleUserInput}
+                            name="phone" value={userInput.phone}
+                            onChange={handleUserInput}
                             required />
                     </div>
 
@@ -224,8 +240,8 @@ const PersonalInformation = (props) => {
                         <input className="form-control" type="date" id="fecha-nacimiento-user"
                             aria-describedby="fecha-nacimiento"
                             name="birthdate"
-                            value={store.userInput.birthdate}
-                            onChange={actions.handleUserInput}
+                            value={userInput.birthdate}
+                            onChange={handleUserInput}
                             required />
                     </div>
                 </div>
@@ -244,22 +260,22 @@ export default PersonalInformation;
     <div className="row g-2">
         <div className="col-md">
             <div className="form-floating">
-                <div className={"glowing-register" + ((store.userInput.radioOwnerCarer == "owner") ? " activeGlow" : "")}>
+                <div className={"glowing-register" + ((userInput.radioOwnerCarer == "owner") ? " activeGlow" : "")}>
                     <input type="radio" id="owner"
                         name="radioOwnerCarer" value="owner"
-                        onChange={actions.handleUserInput}
-                        checked={store.userInput.radioOwnerCarer == "owner"} />
+                        onChange={handleUserInput}
+                        checked={userInput.radioOwnerCarer == "owner"} />
                     <label htmlFor="owner">Propietario</label>
                 </div>
             </div>
         </div>
         <div className="col-md">
             <div className="form-floating">
-                <div className={"glowing-register" + ((store.userInput.radioOwnerCarer == "carer") ? " activeGlow" : "")}>
+                <div className={"glowing-register" + ((userInput.radioOwnerCarer == "carer") ? " activeGlow" : "")}>
                     <input type="radio" id="carer"
                         name="radioOwnerCarer" value="carer"
-                        onChange={actions.handleUserInput}
-                        checked={store.userInput.radioOwnerCarer == "carer"} />
+                        onChange={handleUserInput}
+                        checked={userInput.radioOwnerCarer == "carer"} />
                     <label htmlFor="carer">Cuidador</label>
                 </div>
             </div>

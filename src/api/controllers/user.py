@@ -1,5 +1,7 @@
 from api.models import db, User
 
+from datetime import datetime
+
 # import requests
 # import json 
 
@@ -13,6 +15,11 @@ def create_user(body):
         if not "email" in claves_user or not "password" in claves_user or not "name" in claves_user or not "lastName" in claves_user or not "address" in claves_user or not "province" in claves_user or not "postalCode" in claves_user or not "phone" in claves_user or not "country" in claves_user or not "birthdate" in claves_user:
             return {"code": 400, "msg": "Missing data in the forms"}
 
+        
+        date_time_str = body["birthdate"]
+
+        date_time_obj = datetime.strptime(date_time_str, "%d/%m/%Y")
+
         # Crear un nuevo usuario en la base de datos
         new_user = User(
             email = body["email"],
@@ -24,7 +31,7 @@ def create_user(body):
             postalCode = int(body["postalCode"]), 
             phone = int(body["phone"]),
             country = body["country"], 
-            birthdate = body["birthdate"],
+            birthdate = str(date_time_obj),
             is_active = True)
 
         db.session.add(new_user)
