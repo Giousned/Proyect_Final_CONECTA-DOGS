@@ -14,7 +14,7 @@ export const AppProvider = ({ children }) => {
     handleUserInput,
     handleUserCheck,
     handleUserSelectDate,
-  } = useUserInput(storeAuth.userLog.user);
+  } = useUserInput();
 
 
   const handleRegister = (e) => {
