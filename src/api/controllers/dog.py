@@ -1,4 +1,6 @@
 from api.models import db, Dog
+from flask_jwt_extended import get_jwt_identity
+
 # import requests
 # import json 
 
@@ -11,8 +13,12 @@ def create_dog(body):
         if not "dogName" in claves_dog or not "breed" in claves_dog or not "dogBirth" in claves_dog or not "dogSex" in claves_dog or not "radioSizeDog" in claves_dog or not "neutered" in claves_dog or not "socialCats" in claves_dog or not "socialKids" in claves_dog or not "socialDogs" in claves_dog or not "radioActivity" in claves_dog or not "microchip" in claves_dog or not "observations" in claves_dog:
             return {"code": 400, "msg": "Missing data in the forms"}
 
+        sub_token = get_jwt_identity()
+        user_id = sub_token["id"]       
+
         # Crear un nuevo usuario en la base de datos
         new_dog = Dog(
+            user_id = user_id,
             name = body["dogName"],
             breed = body["breed"],
             birthdate = body["dogBirth"],
