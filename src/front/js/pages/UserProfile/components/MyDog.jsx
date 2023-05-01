@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import useUserInput from "../../../hooks/useUserInput.js";
 import useAuthContext from "../../../store/AuthContext.js";
@@ -10,118 +10,125 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const MyDog = () => {
+  const { storeAuth, actionsAuth } = useAuthContext();
 
-    const { storeAuth, actionsAuth } = useAuthContext();
-    
-    const {
-        userInput,
-        resetInput,
-        handleUserInput,
-        handleUserCheck,
-        handleUserSelectDate,
-    } = useUserInput(storeAuth.userLog.user);
+  const {
+    userInput,
+    resetInput,
+    handleUserInput,
+    handleUserCheck,
+    handleUserSelectDate,
+  } = useUserInput(storeAuth.userLog.user);
 
+  const [activeTab, setActiveTab] = useState("");
 
-    const [activeTab, setActiveTab] = useState("");
+  const handleTabClick = (tabId) => {
+    setActiveTab(tabId);
+  };
 
-    const handleTabClick = (tabId) => {
-        setActiveTab(tabId);
-    };
+  return (
+    <>
+      <h3 className="my-4">Mis perros</h3>
+      {/* <div className="avatar-dog my-3"></div> */}
 
-    return (
-        <>
-            <h3 className="my-4">Mis perros</h3>
-            {/* <div className="avatar-dog my-3"></div> */}
-
-            <ul className="nav nav-tabs" id="myTab" role="tablist">
-                <li className="nav-item" role="presentation">
-                    <button
-                        className="nav-link"
-                        id="my-dog1-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#my-dog1-tab"
-                        type="button"
-                        role="tab"
-                        aria-controls="my-dog1-tab"
-                        onClick={() => handleTabClick('my-dog1')}
-                        aria-selected={(activeTab === 'my-dog1')}
-                    >
-                        <DogCardInformation
-                            image="https://img.freepik.com/fotos-premium/perrito-lindo-pequeno-posando-alegre-aislado-gris_155003-42660.jpg"
-                            dogName="Cookie"
-                            dogSex="Macho"
-                            breed="Callejero"
-                            microchip="15454456"
-                        />
-                    </button>
-                </li>
-                <li className="nav-item" role="presentation">
-                    <button
-                        className="nav-link"
-                        id="add-dog-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#add-dog-tab"
-                        type="button"
-                        role="tab"
-                        aria-controls="add-dog-tab"
-                        onClick={() => handleTabClick('add-dog')}
-                        aria-selected={(activeTab === 'add-dog')}
-                    >
-                        <div className="dogCardInformation">
-                            <div className="card text-bg-dark">
-                                <img
-                                    src="https://img.freepik.com/vector-premium/fondo-invitacion-tarjeta-dia-san-valentin-animales-pareja-perros-enamorados_194708-1801.jpg?w=2000"
-                                    className="card-img"
-                                    alt="Tarjeta para añadir un perro nuevo"
-                                />
-                                <div className="card-img-overlay d-flex justify-content-center align-middle">
-                                    <div className="text-center text-warning">
-                                        <h5 className="card-title fw-bold fs-1">Añadir Perro</h5>
-                                        <p className="card-text fs-1">
-                                            <i className="fa-solid fa-circle-plus fa-lg"></i>
-                                        </p>
-                                        <p className="card-text fst-italic fs-4">Pulsa aquí</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </button>
-                </li>
-            </ul>
-            <div className="tab-content" id="myTabContent">
-                <div
-                    className={"tab-pane fade" + ((activeTab === 'my-dog1') ? "show active" : "")}
-                    id="my-dog1"
-                    role="tabpanel"
-                    aria-labelledby="my-dog1-tab"
-                    tabIndex="0"
-                >
-                    <div className="container mt-4"> PERFIL DE MI PERRO
-                        <div className="avatar-dog my-3"></div>
-                    </div>
+      <ul className="nav nav-tabs" id="myTab" role="tablist">
+        <li className="nav-item" role="presentation">
+          <button
+            className="nav-link"
+            id="my-dog1-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#my-dog1-tab"
+            type="button"
+            role="tab"
+            aria-controls="my-dog1-tab"
+            onClick={() => handleTabClick("my-dog1")}
+            aria-selected={activeTab === "my-dog1"}
+          >
+            <DogCardInformation
+              image="https://img.freepik.com/fotos-premium/perrito-lindo-pequeno-posando-alegre-aislado-gris_155003-42660.jpg"
+              dogName="Cookie"
+              dogSex="Macho"
+              breed="Callejero"
+              microchip="15454456"
+            />
+          </button>
+        </li>
+        <li className="nav-item" role="presentation">
+          <button
+            className="nav-link"
+            id="add-dog-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#add-dog-tab"
+            type="button"
+            role="tab"
+            aria-controls="add-dog-tab"
+            onClick={() => handleTabClick("add-dog")}
+            aria-selected={activeTab === "add-dog"}
+          >
+            <div className="dogCardInformation">
+              <div className="card text-bg-dark">
+                <img
+                  src="https://img.freepik.com/vector-premium/fondo-invitacion-tarjeta-dia-san-valentin-animales-pareja-perros-enamorados_194708-1801.jpg?w=2000"
+                  className="card-img"
+                  alt="Tarjeta para añadir un perro nuevo"
+                />
+                <div className="card-img-overlay d-flex justify-content-center align-middle">
+                  <div className="text-center text-warning">
+                    <h5 className="card-title fw-bold fs-1">Añadir Perro</h5>
+                    <p className="card-text fs-1">
+                      <i className="fa-solid fa-circle-plus fa-lg"></i>
+                    </p>
+                    <p className="card-text fst-italic fs-4">Pulsa aquí</p>
+                  </div>
                 </div>
-                <div
-                    className={"tab-pane fade" + ((activeTab === 'add-dog') ? "show active" : "")}
-                    id="add-dog"
-                    role="tabpanel"
-                    aria-labelledby="add-dog-tab"
-                    tabIndex="0"
-                >
-                    <div className="container mt-4"> <DogInformation /> </div>
-                </div>
+              </div>
             </div>
-        </>
-    );
+          </button>
+        </li>
+      </ul>
+      <div className="tab-content" id="myTabContent">
+        <div
+          className={
+            "tab-pane fade" + (activeTab === "my-dog1" ? "show active" : "")
+          }
+          id="my-dog1"
+          role="tabpanel"
+          aria-labelledby="my-dog1-tab"
+          tabIndex="0"
+        >
+          <div className="container mt-4">
+            {" "}
+            PERFIL DE MI PERRO
+            <div className="avatar-dog my-3"></div>
+          </div>
+        </div>
+        <div
+          className={
+            "tab-pane fade" + (activeTab === "add-dog" ? "show active" : "")
+          }
+          id="add-dog"
+          role="tabpanel"
+          aria-labelledby="add-dog-tab"
+          tabIndex="0"
+        >
+          <div className="container mt-4">
+            {" "}
+            <DogInformation />{" "}
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default MyDog;
 
 {
-    /* FORMULARIO CREADO PARA EL PERFIL SI NO QUEREMOS UTILIZAR EL DEL REGISTRO */
+  /* FORMULARIO CREADO PARA EL PERFIL SI NO QUEREMOS UTILIZAR EL DEL REGISTRO */
 }
 
 {
-    /* <h3 className="my-2">Datos del perro</h3>
+  /* <h3 className="my-2">Datos del perro</h3>
       <div className="avatar-dog my-3"></div>
   
       <div className="row my-2">
