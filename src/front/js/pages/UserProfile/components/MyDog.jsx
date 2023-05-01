@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 import useUserInput from "../../../hooks/useUserInput.js";
 import useAuthContext from "../../../store/AuthContext.js";
-import useAppContext from "../../../store/AppContext.js";
 
 import DogInformation from "../../../component/Forms/DogInformation.jsx";
 import DogCardInformation from "./DogCardInformation.jsx";
@@ -14,15 +13,13 @@ const MyDog = () => {
 
     const { storeAuth, actionsAuth } = useAuthContext();
     
-    const [ datosUsuario, setDatosUsuario ] = useState(storeAuth.userLog.user);
-
     const {
         userInput,
         resetInput,
         handleUserInput,
         handleUserCheck,
         handleUserSelectDate,
-    } = useUserInput(datosUsuario);
+    } = useUserInput(storeAuth.userLog.user);
 
 
     const [activeTab, setActiveTab] = useState("");

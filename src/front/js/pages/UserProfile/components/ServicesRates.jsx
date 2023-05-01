@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import useUserInput from "../../../hooks/useUserInput.js";
 import useAuthContext from "../../../store/AuthContext.js";
@@ -9,15 +9,13 @@ const ServicesRates = () => {
 
     const { storeAuth, actionsAuth } = useAuthContext();
     
-    const [ datosUsuario, setDatosUsuario ] = useState(storeAuth.userLog.user);
-
     const {
         userInput,
         resetInput,
         handleUserInput,
         handleUserCheck,
         handleUserSelectDate,
-    } = useUserInput(datosUsuario);
+    } = useUserInput(storeAuth.userLog.user);
 
     const handleNumDogsChange = (event) => {
         const numDogs = Number(event.target.value);

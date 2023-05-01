@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 
-import useAppContext from "../../store/AppContext.js";
 import useAuthContext from "../../store/AuthContext.js";
 import useUserInput from "../../hooks/useUserInput";
 
@@ -9,11 +8,7 @@ import "./signup-form.css";
 
 const PersonalInformation = (props) => {
 
-    // const { store, actions } = useAppContext();
-
     const { storeAuth, actionsAuth } = useAuthContext();
-    
-    const [ datosUsuario, setDatosUsuario ] = useState(storeAuth.userLog.user);
 
     const {
         userInput,
@@ -21,7 +16,7 @@ const PersonalInformation = (props) => {
         handleUserInput,
         handleUserCheck,
         handleUserSelectDate,
-    } = useUserInput(datosUsuario);
+    } = useUserInput(storeAuth.userLog.user);
 
     return (
         <>

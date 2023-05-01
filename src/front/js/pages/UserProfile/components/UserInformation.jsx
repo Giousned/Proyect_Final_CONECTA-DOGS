@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import useAppContext from "../../../store/AppContext.js";
 import useAuthContext from "../../../store/AuthContext.js";
@@ -8,19 +8,15 @@ import PersonalInformation from "../../../component/Forms/PersonalInformation.js
 
 const UserInformation = () => {
 
-    const { store, actions } = useAppContext();
-
     const { storeAuth, actionsAuth } = useAuthContext();
     
-    const [ datosUsuario, setDatosUsuario ] = useState(storeAuth.userLog.user);
-
     const {
         userInput,
         resetInput,
         handleUserInput,
         handleUserCheck,
         handleUserSelectDate,
-    } = useUserInput(datosUsuario);
+    } = useUserInput(storeAuth.userLog.user);
 
 
     return (
