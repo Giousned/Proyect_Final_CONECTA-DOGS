@@ -84,7 +84,7 @@ def signup_user():
         if user_response["code"] != 200:
             return jsonify(user_response)
 
-        return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
+        return jsonify(user_response), 200
 
     except Exception as error:
         print(error)
