@@ -1,29 +1,16 @@
-import React, { useState } from "react";
-
-import useUserInput from "../../../hooks/useUserInput.js";
-import useAuthContext from "../../../store/AuthContext.js";
-import useAppContext from "../../../store/AppContext.js";
+import React, {useState} from "react";
 
 import DogInformation from "../../../component/Forms/DogInformation.jsx";
 import DogCardInformation from "./DogCardInformation.jsx";
+
+import useAppContext from "../../../store/AppContext.js";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const MyDog = () => {
 
-    const { storeAuth, actionsAuth } = useAuthContext();
-    
-    const [ datosUsuario, setDatosUsuario ] = useState(storeAuth.userLog.user);
-
-    const {
-        userInput,
-        resetInput,
-        handleUserInput,
-        handleUserCheck,
-        handleUserSelectDate,
-    } = useUserInput(datosUsuario);
-
+    const { store, actions } = useAppContext();
 
     const [activeTab, setActiveTab] = useState("");
 
@@ -110,10 +97,10 @@ const MyDog = () => {
                     aria-labelledby="add-dog-tab"
                     tabIndex="0"
                 >
-                    <div className="container mt-4"> <DogInformation />
-                        <div className="d-grid m-4 d-md-flex justify-content-md-end">
-                            <button type="submit" className="action-button shadow animate blue">Guardar cambios (Perro)</button>
-                        </div></div>
+                    <div className="container mt-4"> 
+                        <DogInformation />
+                        <button type="submit" className="action-button shadow animate blue" onClick={actions.handleRegisterDog}> Registrar Perro </button>
+                    </div>
                 </div>
             </div>
         </>
