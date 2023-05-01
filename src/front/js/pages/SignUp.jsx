@@ -2,7 +2,6 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import PersonalInformation from "../component/Forms/PersonalInformation.jsx";
-import useAppContext from "../store/AppContext.js";
 
 const formUser = {
     imageSrc: "https://cdn.pixabay.com/photo/2017/09/08/03/49/couple-2727559_960_720.png",
@@ -14,8 +13,6 @@ const formUser = {
 
 
 const SingUpForm = () => {
-
-  const { store, actions } = useAppContext();
 
   const navigate = useNavigate();
 
