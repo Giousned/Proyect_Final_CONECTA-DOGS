@@ -3,10 +3,14 @@ import React, {useState} from "react";
 import DogInformation from "../../../component/Forms/DogInformation.jsx";
 import DogCardInformation from "./DogCardInformation.jsx";
 
+import useAppContext from "../../../store/AppContext.js";
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const MyDog = () => {
+
+    const { store, actions } = useAppContext();
 
     const [activeTab, setActiveTab] = useState("");
 
@@ -93,7 +97,10 @@ const MyDog = () => {
                     aria-labelledby="add-dog-tab"
                     tabIndex="0"
                 >
-                    <div className="container mt-4"> <DogInformation /> </div>
+                    <div className="container mt-4"> 
+                        <DogInformation />
+                        <button type="submit" className="action-button shadow animate blue" onClick={actions.handleRegisterDog}> Registrar Perro </button>
+                    </div>
                 </div>
             </div>
         </>

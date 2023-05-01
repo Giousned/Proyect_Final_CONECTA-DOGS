@@ -2,6 +2,7 @@ import React from "react";
 import { createContext, useContext, useState} from "react";
 
 import { POSTRegister } from "../services/USERFetchs.js";
+import { UPDATE_User } from "../services/USERFetchs.js";
 import useAuthContext from "./AuthContext.js";
 import useUserInput from "../hooks/useUserInput.js";
 
@@ -24,8 +25,15 @@ export const AppProvider = ({ children }) => {
     e.preventDefault();
 
     POSTRegister(userInput)
-      // .then(() => {});
+      .then(() => {resetInput});
   };
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+
+    UPDATE_User(userInput, storeAuth.userLog.user.id);
+
+  }
 
   const store = {
     userInput,
@@ -38,6 +46,7 @@ export const AppProvider = ({ children }) => {
     handleUserSelectDate,
 
     handleRegister,
+    handleUpdate,
   };
 
   return (
