@@ -16,10 +16,7 @@ export const POSTLogin = async (email, password) => {
 
   const data = await resp.json();
 
-  // save your token in the sessionStorage
-  // also you should set your user into the store using the setStore function
-
-  sessionStorage.setItem("jwt-token", data.token); // cookies. .... CASI MEJOR, PERO CASI NUNCA USAR LOCALSTORAGE QUIZAS EN TIENDAS...
+  // sessionStorage.setItem("jwt-token", data.token); // MEJOR EN EL CONTEXTO AUTENTIFICACION
 
   return data;
 };
