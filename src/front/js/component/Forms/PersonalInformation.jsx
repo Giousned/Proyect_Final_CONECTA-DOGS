@@ -1,22 +1,13 @@
 import React from "react";
 
-import useAuthContext from "../../store/AuthContext.js";
-import useUserInput from "../../hooks/useUserInput";
-
+import useAppContext from "../../store/AppContext.js";
 
 import "./signup-form.css";
 
+
 const PersonalInformation = (props) => {
 
-    const { storeAuth, actionsAuth } = useAuthContext();
-
-    const {
-        userInput,
-        resetInput,
-        handleUserInput,
-        handleUserCheck,
-        handleUserSelectDate,
-    } = useUserInput(storeAuth.userLog.user);
+    const { store, actions } = useAppContext();
 
     return (
         <>
@@ -28,8 +19,8 @@ const PersonalInformation = (props) => {
                         </label>
                         <input className="form-control" type="text" id="nombre-usuario"
                             aria-describedby="nombre_usuario" placeholder="Nombre del usuario"
-                            name="name" value={userInput.name}
-                            onChange={handleUserInput}
+                            name="name" value={store.userInput.name}
+                            onChange={actions.handleUserInput}
                             required />
                     </div>
 
@@ -39,8 +30,8 @@ const PersonalInformation = (props) => {
                         </label>
                         <input className="form-control" type="text" id="apellidos-usuario"
                             aria-describedby="apellidos_usuario" placeholder="Apellidos del usuario"
-                            name="lastName" value={userInput.lastName}
-                            onChange={handleUserInput}
+                            name="lastName" value={store.userInput.lastName}
+                            onChange={actions.handleUserInput}
                             required />
                     </div>
                 </div>
@@ -53,8 +44,8 @@ const PersonalInformation = (props) => {
                         <input className="form-control" type="email" id="emailRegistroUser"
                             placeholder="usuario@ejemplo.com"
                             readOnly={props.disable}
-                            name="email" value={userInput.email}
-                            onChange={handleUserInput}
+                            name="email" value={store.userInput.email}
+                            onChange={actions.handleUserInput}
                             required />
                     </div>
 
@@ -64,8 +55,8 @@ const PersonalInformation = (props) => {
                         </label>
                         <input className="form-control" type="password" id="passRegistroUser"
                             placeholder="Contraseña"
-                            name="password" value={userInput.password}
-                            onChange={handleUserInput}
+                            name="password" value={store.userInput.password}
+                            onChange={actions.handleUserInput}
                             required />
                     </div>
                 </div>
@@ -76,8 +67,8 @@ const PersonalInformation = (props) => {
                     </label>
                     <input className="form-control" type="text" id="direccion-usuario"
                         aria-describedby="direccion_usuario" placeholder="Dirección del usuario (Calle y número)"
-                        name="address" value={userInput.address}
-                        onChange={handleUserInput}
+                        name="address" value={store.userInput.address}
+                        onChange={actions.handleUserInput}
                         required />
                 </div>
 
@@ -88,8 +79,8 @@ const PersonalInformation = (props) => {
                         </label>
                         <input className="form-control" type="text" id="codigo-postal-usuario"
                             aria-describedby="codigo_postal_usuario" placeholder="30000"
-                            name="postalCode" value={userInput.postalCode}
-                            onChange={handleUserInput}
+                            name="postalCode" value={store.userInput.postalCode}
+                            onChange={actions.handleUserInput}
                             required />
                     </div>
 
@@ -98,8 +89,8 @@ const PersonalInformation = (props) => {
                             Localidad *
                         </label>
                         <select required id="provincia-user" className="form-select"
-                            name="province" value={userInput.province}
-                            onChange={handleUserInput}>
+                            name="province" value={store.userInput.province}
+                            onChange={actions.handleUserInput}>
                             <option defaultValue="">Elige Provincia</option>
                             <option value="Álava">Álava</option>
                             <option value="Albacete">Albacete</option>
@@ -161,8 +152,8 @@ const PersonalInformation = (props) => {
                             País *
                         </label>
                         <select required id="pais-user" className="form-select"
-                            name="country" value={userInput.country}
-                            onChange={handleUserInput}>
+                            name="country" value={store.userInput.country}
+                            onChange={actions.handleUserInput}>
                             <option value="">Elige País</option>
                             <option value="Albania">Albania</option>
                             <option value="Germany">Alemania</option>
@@ -223,8 +214,8 @@ const PersonalInformation = (props) => {
                         </label>
                         <input className="form-control" type="tel" id="telefono-user"
                             aria-describedby="telefono" placeholder="666123456"
-                            name="phone" value={userInput.phone}
-                            onChange={handleUserInput}
+                            name="phone" value={store.userInput.phone}
+                            onChange={actions.handleUserInput}
                             required />
                     </div>
 
@@ -235,8 +226,8 @@ const PersonalInformation = (props) => {
                         <input className="form-control" type="date" id="fecha-nacimiento-user"
                             aria-describedby="fecha-nacimiento"
                             name="birthdate"
-                            value={userInput.birthdate}
-                            onChange={handleUserInput}
+                            value={store.userInput.birthdate}
+                            onChange={actions.handleUserInput}
                             required />
                     </div>
                 </div>
@@ -258,7 +249,7 @@ export default PersonalInformation;
                 <div className={"glowing-register" + ((userInput.radioOwnerCarer == "owner") ? " activeGlow" : "")}>
                     <input type="radio" id="owner"
                         name="radioOwnerCarer" value="owner"
-                        onChange={handleUserInput}
+                        onChange={actions.handleUserInput}
                         checked={userInput.radioOwnerCarer == "owner"} />
                     <label htmlFor="owner">Propietario</label>
                 </div>
@@ -269,7 +260,7 @@ export default PersonalInformation;
                 <div className={"glowing-register" + ((userInput.radioOwnerCarer == "carer") ? " activeGlow" : "")}>
                     <input type="radio" id="carer"
                         name="radioOwnerCarer" value="carer"
-                        onChange={handleUserInput}
+                        onChange={actions.handleUserInput}
                         checked={userInput.radioOwnerCarer == "carer"} />
                     <label htmlFor="carer">Cuidador</label>
                 </div>
@@ -281,6 +272,6 @@ export default PersonalInformation;
 
 // Checkbox.propTypes = {
 // value: PropTypes.bool,
-// handleClick: PropTypes.func,
+// actions.handleClick: PropTypes.func,
 // label: PropTypes.string,
 // };

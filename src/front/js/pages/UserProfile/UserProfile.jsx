@@ -7,24 +7,15 @@ import MyDog from "./components/MyDog.jsx";
 
 import { GET_All_Users, GET_User } from "../../services/USERFetchs.js";
 
-import useUserInput from "../../hooks/useUserInput";
-import useAuthContext from "../../store/AuthContext.js";
+import useAppContext from "../../store/AppContext.js";
+
 import "./user-profile.css";
 
 const UserProfile = () => {
    
-    const { storeAuth, actionsAuth } = useAuthContext();
+    const { store, actions } = useAppContext();
     
     const [activeTab, setActiveTab] = useState('home');
-
-    const {
-        userInput,
-        resetInput,
-        handleUserInput,
-        handleUserCheck,
-        handleUserSelectDate,
-    } = useUserInput(storeAuth.userLog.user);
-
 
     const handleTabClick = (tabId) => {
         setActiveTab(tabId);
@@ -39,7 +30,7 @@ const UserProfile = () => {
                         <div className="avatar-user"></div>
 
                         <div className="tituloperfil text-center">
-                            <h2 className="text-dark">{userInput.name} {userInput.lastName}</h2>
+                            <h2 className="text-dark">{store.userInput.name} {store.userInput.lastName}</h2>
                         </div>
 
                         <div>
@@ -48,8 +39,8 @@ const UserProfile = () => {
                                 <div className="col boxshadow">
                                     <textarea className="form-control" id="aboutMe" rows="3"
                                         name="aboutMe"
-                                        value={userInput.aboutMe}
-                                        onChange={handleUserInput}>
+                                        value={store.userInput.aboutMe}
+                                        onChange={actions.handleUserInput}>
                                     </textarea>
                                     {/* Breve descripción sobre mí... 🤗 ❤️
                                     Puedo editar ya todos los campos ❤️ 🤗 */}
