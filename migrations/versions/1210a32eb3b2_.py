@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: be8c5c955711
+Revision ID: 1210a32eb3b2
 Revises: 
-Create Date: 2023-05-01 11:06:40.504203
+Create Date: 2023-05-01 15:28:45.249864
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'be8c5c955711'
+revision = '1210a32eb3b2'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -49,17 +49,17 @@ def upgrade():
     )
     op.create_table('Dog',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=35), nullable=False),
+    sa.Column('dogName', sa.String(length=35), nullable=False),
     sa.Column('breed', sa.String(length=50), nullable=False),
-    sa.Column('birthdate', sa.String(length=20), nullable=False),
-    sa.Column('sex', sa.String(length=20), nullable=False),
-    sa.Column('dog_size', sa.String(length=20), nullable=True),
-    sa.Column('sterilized', sa.Boolean(), nullable=False),
-    sa.Column('social_cats', sa.Boolean(), nullable=False),
-    sa.Column('social_kids', sa.Boolean(), nullable=False),
-    sa.Column('social_dogs', sa.Boolean(), nullable=False),
+    sa.Column('dogBirth', sa.String(length=20), nullable=False),
+    sa.Column('dogSex', sa.String(length=20), nullable=False),
+    sa.Column('dogSize', sa.String(length=20), nullable=True),
+    sa.Column('neutered', sa.Boolean(), nullable=False),
+    sa.Column('socialCats', sa.Boolean(), nullable=False),
+    sa.Column('socialKids', sa.Boolean(), nullable=False),
+    sa.Column('socialDogs', sa.Boolean(), nullable=False),
     sa.Column('microchip', sa.Integer(), nullable=False),
-    sa.Column('activity_level', sa.String(length=20), nullable=True),
+    sa.Column('dogActivity', sa.String(length=20), nullable=True),
     sa.Column('observations', sa.String(length=500), nullable=True),
     sa.Column('photo', sa.String(length=500), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),

@@ -8,25 +8,14 @@ import MyDog from "./components/MyDog.jsx";
 import { GET_All_Users, GET_User } from "../../services/USERFetchs.js";
 
 import useUserInput from "../../hooks/useUserInput";
-import useAppContext from "../../store/AppContext.js";
 import useAuthContext from "../../store/AuthContext.js";
 import "./user-profile.css";
 
 const UserProfile = () => {
-
-    
-    const { store, actions } = useAppContext();
-    
+   
     const { storeAuth, actionsAuth } = useAuthContext();
     
-    const [ datosUsuario, setDatosUsuario ] = useState(storeAuth.userLog.user);
     const [activeTab, setActiveTab] = useState('home');
-
-    // console.log("datos usuario", datosUsuario)
-
-    // GET_User().then((data) => {
-        
-    // })
 
     const {
         userInput,
@@ -34,7 +23,7 @@ const UserProfile = () => {
         handleUserInput,
         handleUserCheck,
         handleUserSelectDate,
-    } = useUserInput(datosUsuario);
+    } = useUserInput(storeAuth.userLog.user);
 
 
     const handleTabClick = (tabId) => {
@@ -114,8 +103,8 @@ const UserProfile = () => {
                                 </div>
 
                                 <div className="d-grid m-4 d-md-flex justify-content-md-end">
-                                    <button type="button" className="action-button shadow animate red">Cambiar la Contraseña</button>
-                                    <button type="submit" className="action-button shadow animate blue">Guardar cambios</button>
+                                    <button type="button" className="action-button shadow animate red"> Cambiar la Contraseña </button>
+                                    <button type="submit" className="action-button shadow animate blue"> Guardar cambios </button>
                                 </div>
                             </form>
                         </div>

@@ -19,7 +19,9 @@ export const AuthProvider = ({ children }) => {
 
     POSTLogin(userInput.logEmail, userInput.logPassword)
       .then((data) => {
-        setUserLog({token: data.token, user: data.user})
+        setUserLog({token: data.token, user: data.user});             // save your token in the sessionStorage
+                                                                      // also you should set your user into the store using the setStore function
+        sessionStorage.setItem("jwt-token", data.token);              // cookies. .... CASI MEJOR, PERO CASI NUNCA USAR LOCALSTORAGE QUIZAS EN TIENDAS...
       });
   };
 
@@ -31,8 +33,6 @@ export const AuthProvider = ({ children }) => {
   // ME FALTA SABER LEER EL TOKEN DESDE EL FRONT PARA PODER SACAR SU INFORMACION DE AHI COMO POR EJEMPLO LA ID DEL USUARIO
   // useEffect(() => {
   //   if (sessionStorage.getItem("jwt-token")){
-  //     GET_User(user_id)
-  //     .then((data) => {
   //       setUserLog({token: sessionStorage.getItem("jwt-token"), user: data.user})
   //     });
   //   }
