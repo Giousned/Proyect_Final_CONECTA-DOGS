@@ -94,8 +94,7 @@ const UserProfile = () => {
                                 </div>
 
                                 <div className="d-grid m-4 d-md-flex justify-content-md-end">
-                                    <button type="button" className="action-button shadow animate red"> Cambiar la Contraseña </button>
-                                    <button type="submit" className="action-button shadow animate blue"> Guardar cambios </button>
+                                    <button type="submit" className="action-button shadow animate blue" onClick={actions.handleUpdate}> Guardar cambios </button>
                                 </div>
                             </form>
                         </div>
