@@ -2,7 +2,6 @@ import React from "react";
 import { createContext, useContext, useState, useEffect } from "react";
 
 import { POSTLogin, GETToken } from "../services/LOGINFetchs.js";
-import { GET_User } from "../services/USERFetchs.js";
 import useUserInput from "../hooks/useUserInput.js";
 
 const AuthContext = createContext();

@@ -20,12 +20,14 @@ export const AppProvider = ({ children }) => {
     handleUserSelectDate,
   } = useUserInput(storeAuth.userLog.user);
 
+  console.log("input", userInput)
+
 
   const handleRegister = (e) => {
     e.preventDefault();
 
     POSTRegister(userInput)
-      .then(() => {resetInput});
+      // .then(() => {resetInput()});
   };
 
   const handleUpdate = (e) => {

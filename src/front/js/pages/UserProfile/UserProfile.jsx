@@ -5,8 +5,6 @@ import UserInformation from "./components/UserInformation.jsx";
 import ServicesRates from "./components/ServicesRates.jsx";
 import MyDog from "./components/MyDog.jsx";
 
-import { GET_All_Users, GET_User } from "../../services/USERFetchs.js";
-
 import useAppContext from "../../store/AppContext.js";
 
 import "./user-profile.css";
