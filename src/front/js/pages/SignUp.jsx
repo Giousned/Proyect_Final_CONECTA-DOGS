@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import useAppContext from "../store/AppContext.js";
+
 import PersonalInformation from "../component/Forms/PersonalInformation.jsx";
 
 const formUser = {
@@ -13,6 +15,8 @@ const formUser = {
 
 
 const SingUpForm = () => {
+
+  const { store, actions } =useAppContext();
 
   const navigate = useNavigate();
 
