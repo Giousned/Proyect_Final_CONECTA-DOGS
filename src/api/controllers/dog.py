@@ -19,16 +19,16 @@ def create_dog(body):
         # Crear un nuevo usuario en la base de datos
         new_dog = Dog(
             user_id = user_id,
-            name = body["dogName"],
+            dogName = body["dogName"],
             breed = body["breed"],
-            birthdate = body["dogBirth"],
-            sex = body["dogSex"],
-            dog_size = body["radioSizeDog"],
-            sterilized = body["neutered"],
-            social_cats = body["socialCats"],
-            social_kids = body["socialKids"],
-            social_dogs = body["socialDogs"],
-            activity_level = body["radioActivity"],
+            dogBirth = body["dogBirth"],
+            dogSex = body["dogSex"],
+            sizeDog = body["dogSize"],
+            neutered = body["neutered"],
+            socialCats = body["socialCats"],
+            socialKids = body["socialKids"],
+            socialDogs = body["socialDogs"],
+            activity_level = body["dogActivity"],
             microchip = int(body["microchip"]),
             observations = body["observations"])
         
@@ -95,16 +95,16 @@ def update_dog(body, id):
         # Obtener usuario de la base de datos
         dog = db.get_or_404(Dog, id)
 
-        dog.name = body["dogName"]
-        dog.birthdate = body["dogBirth"]
+        dog.dogName = body["dogName"]
+        dog.dogBirth = body["dogBirth"]
         dog.breed = body["breed"]
-        dog.sex = body["dogSex"]
-        dog.dog_size = body["radioSizeDog"]
-        dog.sterilized = body["neutered"]
-        dog.social_cats = body["socialCats"]
-        dog.social_kids = body["socialKids"]
-        dog.social_dogs = body["socialDogs"]
-        dog.activity_level = body["radioActivity"]
+        dog.dogSex = body["dogSex"]
+        dog.dogSize = body["dogSize"]
+        dog.neutered = body["neutered"]
+        dog.socialCats = body["socialCats"]
+        dog.socialKids = body["socialKids"]
+        dog.socialDogs = body["socialDogs"]
+        dog.dogActivity = body["dogActivity"]
         dog.microchip = int(body["microchip"])
         dog.observations = body["observations"]
 
