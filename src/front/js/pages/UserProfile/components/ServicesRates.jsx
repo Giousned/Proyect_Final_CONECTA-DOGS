@@ -1,21 +1,13 @@
 import React from "react";
 
-import useUserInput from "../../../hooks/useUserInput.js";
-import useAuthContext from "../../../store/AuthContext.js";
+import useAppContext from "../../../store/AppContext.js";
 
 import ServiceCard from "../../../component/Services/ServiceCard.jsx"
 
+
 const ServicesRates = () => {
 
-    const { storeAuth, actionsAuth } = useAuthContext();
-    
-    const {
-        userInput,
-        resetInput,
-        handleUserInput,
-        handleUserCheck,
-        handleUserSelectDate,
-    } = useUserInput(storeAuth.userLog.user);
+    const { store, actions } = useAppContext();
 
     const handleNumDogsChange = (event) => {
         const numDogs = Number(event.target.value);
@@ -23,7 +15,7 @@ const ServicesRates = () => {
             alert("Número máximo de perros admitidos por cuidador es de 10");
             return;
         }
-        handleUserInput(event);
+        actions.handleUserInput(event);
     };
 
     return (
@@ -65,16 +57,16 @@ const ServicesRates = () => {
                 </label>
                 <input type="checkbox" className="form-check-input"
                     name="nurseryDay" id="guarderia-diurna"
-                    value={userInput.nurseryDay}
-                    onChange={handleUserCheck}
-                    checked={userInput.nurseryDay}
+                    value={store.userInput.nurseryDay}
+                    onChange={actions.handleUserCheck}
+                    checked={store.userInput.nurseryDay}
                 />
                 <input type="text" className="form-control"
                     id="precio-guarderia-diurna" aria-describedby="precio_guarderia_diurna"
                     placeholder="Precio en €"
                     name="priceNurseryDay"
-                    value={userInput.priceNurseryDay}
-                    onChange={handleUserInput}
+                    value={store.userInput.priceNurseryDay}
+                    onChange={actions.handleUserInput}
                 />
             </div>
 
@@ -84,16 +76,16 @@ const ServicesRates = () => {
                 </label>
                 <input type="checkbox" className="form-check-input"
                     name="walk" id="paseo"
-                    value={userInput.walk}
-                    onChange={handleUserCheck}
-                    checked={userInput.walk}
+                    value={store.userInput.walk}
+                    onChange={actions.handleUserCheck}
+                    checked={store.userInput.walk}
                 />
                 <input type="text" className="form-control"
                     id="precio-paseo" aria-describedby="precio_paseo"
                     placeholder="Precio en €"
                     name="priceWalk"
-                    value={userInput.priceWalk}
-                    onChange={handleUserInput}
+                    value={store.userInput.priceWalk}
+                    onChange={actions.handleUserInput}
                 />
             </div>
 
@@ -103,16 +95,16 @@ const ServicesRates = () => {
                 </label>
                 <input type="checkbox" className="form-check-input"
                     name="nurseryNight" id="guarderia-nocturna"
-                    value={userInput.nurseryNight}
-                    onChange={handleUserCheck}
-                    checked={userInput.nurseryNight}
+                    value={store.userInput.nurseryNight}
+                    onChange={actions.handleUserCheck}
+                    checked={store.userInput.nurseryNight}
                 />
                 <input type="text" className="form-control"
                     id="precio-guarderia-nocturna" aria-describedby="precio_guarderia_nocturna"
                     placeholder="Precio en €"
                     name="priceNurseryNight"
-                    value={userInput.priceNurseryNight}
-                    onChange={handleUserInput}
+                    value={store.userInput.priceNurseryNight}
+                    onChange={actions.handleUserInput}
                 />
             </div>
 
