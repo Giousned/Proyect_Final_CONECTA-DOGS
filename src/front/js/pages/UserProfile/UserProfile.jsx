@@ -9,25 +9,33 @@ import { GET_All_Users, GET_User } from "../../services/USERFetchs.js";
 
 import useUserInput from "../../hooks/useUserInput";
 import useAppContext from "../../store/AppContext.js";
+import useAuthContext from "../../store/AuthContext.js";
 import "./user-profile.css";
 
 const UserProfile = () => {
 
+    
     const { store, actions } = useAppContext();
+    
+    const { storeAuth, actionsAuth } = useAuthContext();
+    
+    const [ datosUsuario, setDatosUsuario ] = useState(storeAuth.userLog.user);
+    const [activeTab, setActiveTab] = useState('home');
+
+    // console.log("datos usuario", datosUsuario)
 
     // GET_User().then((data) => {
         
     // })
 
-    // const {
-    //     userInput,
-    //     resetInput,
-    //     handleUserInput,
-    //     handleUserCheck,
-    //     handleUserSelectDate,
-    // } = useUserInput({ name: "Sandra", lastname: "Madarnas" });
+    const {
+        userInput,
+        resetInput,
+        handleUserInput,
+        handleUserCheck,
+        handleUserSelectDate,
+    } = useUserInput(datosUsuario);
 
-    const [activeTab, setActiveTab] = useState('home');
 
     const handleTabClick = (tabId) => {
         setActiveTab(tabId);
@@ -44,7 +52,7 @@ const UserProfile = () => {
                         <div className="avatar-user"></div>
 
                         <div className="tituloperfil text-center">
-                            <h2 className="text-dark">{store.userInput.name} {store.userInput.lastname}</h2>
+                            <h2 className="text-dark">{userInput.name} {userInput.lastName}</h2>
                         </div>
 
                         <div>
@@ -53,8 +61,8 @@ const UserProfile = () => {
                                 <div className="col boxshadow">
                                     <textarea className="form-control" id="aboutMe" rows="3"
                                         name="aboutMe"
-                                        value={store.userInput.aboutMe}
-                                        onChange={actions.handleUserInput}>
+                                        value={userInput.aboutMe}
+                                        onChange={handleUserInput}>
                                     </textarea>
                                     {/* Breve descripción sobre mí... 🤗 ❤️
                                     Puedo editar ya todos los campos ❤️ 🤗 */}

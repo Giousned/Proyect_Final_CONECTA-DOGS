@@ -52,17 +52,17 @@ class User(db.Model):
 class Dog(db.Model):
     __tablename__ = "Dog"
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(35), unique=False, nullable=False)
+    dogName = db.Column(db.String(35), unique=False, nullable=False)
     breed = db.Column(db.String(50), unique=False, nullable=False)
-    birthdate = db.Column(db.String(20), unique=False, nullable=False)
-    sex = db.Column(db.String(20), unique=False, nullable=False)
-    dog_size = db.Column(db.String(20), unique=False, nullable=True)
-    sterilized = db.Column(db.Boolean, unique=False, nullable=False)
-    social_cats = db.Column(db.Boolean, unique=False, nullable=False)
-    social_kids = db.Column(db.Boolean, unique=False, nullable=False)
-    social_dogs = db.Column(db.Boolean, unique=False, nullable=False)
+    dogBirth = db.Column(db.String(20), unique=False, nullable=False)
+    dogSex = db.Column(db.String(20), unique=False, nullable=False)
+    dogSize = db.Column(db.String(20), unique=False, nullable=True)
+    neutered = db.Column(db.Boolean, unique=False, nullable=False)
+    socialCats = db.Column(db.Boolean, unique=False, nullable=False)
+    socialKids = db.Column(db.Boolean, unique=False, nullable=False)
+    socialDogs = db.Column(db.Boolean, unique=False, nullable=False)
     microchip = db.Column(db.Integer, unique=True, nullable=False)
-    activity_level = db.Column(db.String(20), unique=False, nullable=True)
+    dogActivity = db.Column(db.String(20), unique=False, nullable=True)
     observations = db.Column(db.String(500), unique=False, nullable=True)
     photo = db.Column(db.String(500), unique=True, nullable=True)         # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
 
@@ -77,17 +77,17 @@ class Dog(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "name": self.name,
+            "dogName": self.dogName,
             "breed": self.breed,
-            "birthdate": self.birthdate,
-            "sex": self.sex,
-            "dog_size": self.dog_size,    
-            "sterilized": self.sterilized,
-            "social_cats": self.social_cats,
-            "social_kids": self.social_kids,
-            "social_dogs": self.social_dogs,
+            "dogBirth": self.dogBirth,
+            "dogSex": self.dogSex,
+            "dogSize": self.dogSize,    
+            "neutered": self.neutered,
+            "socialCats": self.socialCats,
+            "socialKids": self.socialKids,
+            "socialDogs": self.socialDogs,
             "microchip": self.microchip,
-            "activity_level": self.activity_level,
+            "dogActivity": self.dogActivity,
             "observations": self.observations,
             "photo": self.photo,
             "user_id": self.user_id,

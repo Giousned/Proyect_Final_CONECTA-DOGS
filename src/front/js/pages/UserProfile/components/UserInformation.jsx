@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 
 import useAppContext from "../../../store/AppContext.js";
+import useAuthContext from "../../../store/AuthContext.js";
+import useUserInput from "../../../hooks/useUserInput.js";
 
 import PersonalInformation from "../../../component/Forms/PersonalInformation.jsx";
 
 const UserInformation = () => {
 
     const { store, actions } = useAppContext();
+
+    const { storeAuth, actionsAuth } = useAuthContext();
+    
+    const [ datosUsuario, setDatosUsuario ] = useState(storeAuth.userLog.user);
+
+    const {
+        userInput,
+        resetInput,
+        handleUserInput,
+        handleUserCheck,
+        handleUserSelectDate,
+    } = useUserInput(datosUsuario);
 
 
     return (
@@ -15,8 +29,8 @@ const UserInformation = () => {
             <label htmlFor="foto-usuario" className="form-label">
                 Foto de perfil
                 <input className="form-control" type="file" id="foto-usuario"
-                    name="userPhoto" value={store.userInput.userPhoto}
-                    onChange={actions.handleUserInput} />
+                    name="userPhoto" value={userInput.userPhoto}
+                    onChange={handleUserInput} />
             </label>
             <PersonalInformation disable={true} />
         </div>

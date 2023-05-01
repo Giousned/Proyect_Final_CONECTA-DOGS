@@ -13,6 +13,7 @@ def create_user(body):
         if not "email" in claves_user or not "password" in claves_user or not "name" in claves_user or not "lastName" in claves_user or not "address" in claves_user or not "province" in claves_user or not "postalCode" in claves_user or not "phone" in claves_user or not "country" in claves_user or not "birthdate" in claves_user:
             return {"code": 400, "msg": "Missing data in the forms"}
 
+
         # Crear un nuevo usuario en la base de datos
         new_user = User(
             email = body["email"],
@@ -28,9 +29,9 @@ def create_user(body):
             is_active = True)
 
         db.session.add(new_user)
-        id_user = new_user.id
-        
         db.session.commit()
+        
+        id_user = new_user.id
 
         return {"code": 200, "msg": "All ok", "id": id_user}          #ID para rutas
 
@@ -47,8 +48,6 @@ def get_users():
         # Obtener usuarios de la base de datos
         query = db.select(User).order_by(User.id)
         users = db.session.execute(query).scalars()
-        
-        # print(users)
 
         user_list = [user.serialize() for user in users]
 

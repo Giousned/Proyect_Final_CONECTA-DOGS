@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { useState } from "react";
+import useUserInput from "../../../hooks/useUserInput.js";
+import useAuthContext from "../../../store/AuthContext.js";
+import useAppContext from "../../../store/AppContext.js";
 
-import useUserInput from "../../../hooks/useUserInput";
-import useAppContext from "../../../store/AppContext";
 import DogInformation from "../../../component/Forms/DogInformation.jsx";
 import DogCardInformation from "./DogCardInformation.jsx";
 
@@ -11,13 +11,19 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const MyDog = () => {
+
+    const { storeAuth, actionsAuth } = useAuthContext();
+    
+    const [ datosUsuario, setDatosUsuario ] = useState(storeAuth.userLog.user);
+
     const {
         userInput,
         resetInput,
         handleUserInput,
         handleUserCheck,
         handleUserSelectDate,
-    } = useUserInput({ name: "Guillermo", lastname: "Hola" });
+    } = useUserInput(datosUsuario);
+
 
     const [activeTab, setActiveTab] = useState("");
 
