@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import ForeignKey
-from sqlalchemy.orm import relationship
+# from sqlalchemy import ForeignKey
+# from sqlalchemy.orm import relationship
 
 db = SQLAlchemy()
 
@@ -10,15 +10,20 @@ class User(db.Model):
     email = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(50), unique=False, nullable=False)
     name = db.Column(db.String(30), unique=False, nullable=False)
-    last_name = db.Column(db.String(60), unique=False, nullable=False)
+    lastName = db.Column(db.String(60), unique=False, nullable=False)
     address = db.Column(db.String(150), unique=False, nullable=False)
-    city = db.Column(db.String(35), unique=False, nullable=False)
-    postal_code = db.Column(db.Integer, unique=False, nullable=False)
+    province = db.Column(db.String(35), unique=False, nullable=False)
+    postalCode = db.Column(db.Integer, unique=False, nullable=False)
     phone = db.Column(db.Integer, unique=False, nullable=False)
+    country = db.Column(db.String(50), unique=False, nullable=False)
+    aboutMe = db.Column(db.String(300), unique=False, nullable=True)
+    birthdate = db.Column(db.String(20), unique=False, nullable=False)
     is_active = db.Column(db.Boolean, unique=False, nullable=False)
-    # country = db.Column(db.String(50), unique=False, nullable=False)
-    # birthdate = db.Column(db.Date, unique=False, nullable=False)
-    # photo = db.Column(db.String(500), unique=True, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GAURDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
+    photo = db.Column(db.String(500), unique=True, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
+
+    dogs = db.relationship("Dog", back_populates="user")
+
+    tariffs = db.relationship("Tariffs", back_populates="user")
 
 
     def __repr__(self):
@@ -29,14 +34,17 @@ class User(db.Model):
             "id": self.id,
             "email": self.email,
             "name": self.name,
-            "last_name": self.last_name,
+            "lastName": self.lastName,
             "address": self.address,
-            "city": self.city,
-            "postal_code": self.postal_code,
+            "province": self.province,
+            "postalCode": self.postalCode,
             "phone": self.phone,
-            # "country": self.country,
-            # "birthday": self.birthday,
-            # "photo": self.photo,
+            "country": self.country,
+            "birthdate": self.birthdate,
+            "aboutMe": self.aboutMe,
+            "photo": self.photo,
+            "dogs": [dog.serialize() for dog in self.dogs],
+            "tariffs": [tariff.serialize() for tariff in self.tariffs],
         # ¡¡¡¡DO NOT serialize the password, its a security breach!!!
         }
 
@@ -44,21 +52,24 @@ class User(db.Model):
 class Dog(db.Model):
     __tablename__ = "Dog"
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(35), unique=False, nullable=False)
+    dogName = db.Column(db.String(35), unique=False, nullable=False)
     breed = db.Column(db.String(50), unique=False, nullable=False)
-    birthdate = db.Column(db.Date, unique=False, nullable=False)
-    sex = db.Column(db.String(20), unique=False, nullable=False)
-    dog_size = db.Column(db.String(20), unique=False, nullable=True)
-    sterilized = db.Column(db.Boolean, unique=False, nullable=False)
-    social_cats = db.Column(db.Boolean, unique=False, nullable=False)
-    social_kids = db.Column(db.Boolean, unique=False, nullable=False)
-    social_dogs = db.Column(db.Boolean, unique=False, nullable=False)
+    dogBirth = db.Column(db.String(20), unique=False, nullable=False)
+    dogSex = db.Column(db.String(20), unique=False, nullable=False)
+    dogSize = db.Column(db.String(20), unique=False, nullable=True)
+    neutered = db.Column(db.Boolean, unique=False, nullable=False)
+    socialCats = db.Column(db.Boolean, unique=False, nullable=False)
+    socialKids = db.Column(db.Boolean, unique=False, nullable=False)
+    socialDogs = db.Column(db.Boolean, unique=False, nullable=False)
     microchip = db.Column(db.Integer, unique=True, nullable=False)
-    activity_level = db.Column(db.String(20), unique=False, nullable=True)
+    dogActivity = db.Column(db.String(20), unique=False, nullable=True)
     observations = db.Column(db.String(500), unique=False, nullable=True)
-#     photo = db.Column(db.String(500), unique=True, nullable=True)         # USAR API CLOUDINARY, HACER LLAMADA Y GAURDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
+    photo = db.Column(db.String(500), unique=True, nullable=True)         # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
 
-    user_id = db.Column(db.Integer, ForeignKey("User.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("User.id"))
+
+    user = db.relationship("User", back_populates="dogs")
+
 
     def __repr__(self):
         return f'<Dog {self.name}>'
@@ -66,33 +77,31 @@ class Dog(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "name": self.name,
+            "dogName": self.dogName,
             "breed": self.breed,
-            "birthdate": self.birthdate,
-            "sex": self.sex,
-            "dog_size": self.dog_size,    
-            "sterilized": self.sterilized,
-            "social_cats": self.social_cats,
-            "social_kids": self.social_kids,
-            "social_dogs": self.social_dogs,
+            "dogBirth": self.dogBirth,
+            "dogSex": self.dogSex,
+            "dogSize": self.dogSize,    
+            "neutered": self.neutered,
+            "socialCats": self.socialCats,
+            "socialKids": self.socialKids,
+            "socialDogs": self.socialDogs,
             "microchip": self.microchip,
-            "activity_level": self.activity_level,
+            "dogActivity": self.dogActivity,
             "observations": self.observations,
-            "user_id": self.user_id.serialize(),
-            # "photo": self.photo,
+            "photo": self.photo,
+            "user_id": self.user_id,
         }
 
 
 class Services(db.Model):
-    __tablename__ = "Services"                                # id = 1 PARA nurseryDay        id = 2 PARA walk        id = 3 PARA nurseryNight
+    __tablename__ = "Services"                                # id = 1 PARA nurseryDay // Alojamiento        id = 2 PARA walk // Paseo       id = 3 PARA nurseryNight // Guardería de Día
     id = db.Column(db.Integer, primary_key=True)
     image = db.Column(db.String(350), unique=True, nullable=False)
     title = db.Column(db.String(35), unique=True, nullable=False)
     description = db.Column(db.String(500), unique=True, nullable=False)
 
-    user_id = db.Column(db.Integer, ForeignKey("User.id"))
-
-    tarif = relationship("Tarifs", back_populates="service")
+    tariff = db.relationship("Tariffs", back_populates="service")
 
 
     def __repr__(self):
@@ -104,33 +113,30 @@ class Services(db.Model):
             "image": self.image,
             "title": self.title,
             "description": self.description,
-            "user_id": self.user_id.serialize(),
         }
 
 
-class Tarifs(db.Model):
-    __tablename__ = "Tarifs"
+class Tariffs(db.Model):
+    __tablename__ = "Tariffs"
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer, unique=False, nullable=False)
 
-    user_id = db.Column(db.Integer, ForeignKey("User.id"))
-    services_id = db.Column(db.Integer, ForeignKey("Services.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("User.id"))
+    service_id = db.Column(db.Integer, db.ForeignKey("Services.id"))
 
-    service = relationship("Services", back_populates="tarif")
+    service = db.relationship("Services", back_populates="tariff")
+    user = db.relationship("User", back_populates="tariffs")
 
 
     def __repr__(self):
-        return f'<Tarifas {self.price}>'
+        return f'<Tariffs {self.price}>'
 
     def serialize(self):
         return {
             "id": self.id,
             "price": self.price,
-            "user_id": self.user_id.serialize(),
-            "services_id": self.services_id,
+            "service": self.service.serialize(),
         }
-
-
 
 
 

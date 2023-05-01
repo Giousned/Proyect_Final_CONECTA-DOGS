@@ -9,7 +9,7 @@ const formUser = {
     mainTitle: "REGISTRO DE USUARIOS",
     secondaryTitle: "Información personal",
     description: "Cuéntanos un poquito acerca de ti.",
-    component: <PersonalInformation />
+    component: <PersonalInformation disable={false} />
 }
 
 

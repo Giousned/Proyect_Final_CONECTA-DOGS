@@ -44,11 +44,17 @@ const DogInformation = () => {
 
                 <div className="input-group">
                     <div className="col me-2">
-                        <label htmlFor="cumple-perro" className="form-label">
+                        <label htmlFor="fecha-nacimiento-dog" className="form-label">
                             Fecha de nacimiento *
                         </label>
                         <br />
-                        <DatePicker
+                        <input className="form-control" type="date" id="fecha-nacimiento-dog"
+                            aria-describedby="fecha-nacimiento-perro"
+                            name="dogBirth"
+                            value={store.userInput.dogBirth}
+                            onChange={actions.handleUserInput}
+                            required />
+                        {/* <DatePicker
                             id="cumple-perro" className="text-center form-control"
                             placeholderText="04-2023"
                             name="dogBirth"
@@ -56,7 +62,7 @@ const DogInformation = () => {
                             onChange={actions.handleUserSelectDate}
                             dateFormat="MM/yyyy"
                             showMonthYearPicker
-                        />
+                        /> */}
                     </div>
 
                     <div className="col ms-2">
@@ -78,39 +84,39 @@ const DogInformation = () => {
                         Tamaño del perro *
                     </label>
                     <br />
-                    <div className={"form-check form-check-inline dog-size" + ((store.userInput.radioSizeDog == "sizeSmall") ? " activeGlow" : "")}>
+                    <div className={"form-check form-check-inline dog-size" + ((store.userInput.dogSize == "sizeSmall") ? " activeGlow" : "")}>
                         <input type="radio" className="form-check-input"
-                            name="radioSizeDog" id="sizeSmall" value="sizeSmall"
+                            name="dogSize" id="sizeSmall" value="sizeSmall"
                             onChange={actions.handleUserInput}
-                            checked={store.userInput.radioSizeDog == "sizeSmall"}
+                            checked={store.userInput.dogSize == "sizeSmall"}
                         />
                         <label htmlFor="sizeSmall" className="form-check-label">
                             <i className="fas fa-paw"></i> Pequeño (0kg - 7kg)
                         </label>
                     </div>
-                    <div className={"form-check form-check-inline dog-size" + ((store.userInput.radioSizeDog == "sizeMedium") ? " activeGlow" : "")}>
+                    <div className={"form-check form-check-inline dog-size" + ((store.userInput.dogSize == "sizeMedium") ? " activeGlow" : "")}>
                         <input type="radio" className="form-check-input"
-                            name="radioSizeDog" id="sizeMedium" value="sizeMedium"
+                            name="dogSize" id="sizeMedium" value="sizeMedium"
                             onChange={actions.handleUserInput}
-                            checked={store.userInput.radioSizeDog == "sizeMedium"} />
+                            checked={store.userInput.dogSize == "sizeMedium"} />
                         <label htmlFor="sizeMedium" className="form-check-label">
                             <i className="fas fa-paw"></i> Mediano (8kg - 18kg)
                         </label>
                     </div>
-                    <div className={"form-check form-check-inline dog-size" + ((store.userInput.radioSizeDog == "sizeBig") ? " activeGlow" : "")}>
+                    <div className={"form-check form-check-inline dog-size" + ((store.userInput.dogSize == "sizeBig") ? " activeGlow" : "")}>
                         <input type="radio" className="form-check-input"
-                            name="radioSizeDog" id="sizeBig" value="sizeBig"
+                            name="dogSize" id="sizeBig" value="sizeBig"
                             onChange={actions.handleUserInput}
-                            checked={store.userInput.radioSizeDog == "sizeBig"} />
+                            checked={store.userInput.dogSize == "sizeBig"} />
                         <label htmlFor="sizeBig" className="form-check-label">
                             <i className="fas fa-paw"></i> Grande (19kg - 45kg)
                         </label>
                     </div>
-                    <div className={"form-check form-check-inline dog-size" + ((store.userInput.radioSizeDog == "sizeHuge") ? " activeGlow" : "")}>
+                    <div className={"form-check form-check-inline dog-size" + ((store.userInput.dogSize == "sizeHuge") ? " activeGlow" : "")}>
                         <input type="radio" className="form-check-input"
-                            name="radioSizeDog" id="sizeHuge"
+                            name="dogSize" id="sizeHuge"
                             value="sizeHuge" onChange={actions.handleUserInput}
-                            checked={store.userInput.radioSizeDog == "sizeHuge"} />
+                            checked={store.userInput.dogSize == "sizeHuge"} />
                         <label htmlFor="sizeHuge" className="form-check-label">
                             <i className="fas fa-paw"></i> Gigante (+46kg)
                         </label>
@@ -182,32 +188,32 @@ const DogInformation = () => {
                         Nivel de actividad de tu perro
                     </label>
                     <br />
-                    <div className={"form-check form-check-inline dog-mtn" + ((store.userInput.radioActivity == "activityLow") ? " activeGlow" : "")}>
+                    <div className={"form-check form-check-inline dog-mtn" + ((store.userInput.dogActivity == "activityLow") ? " activeGlow" : "")}>
                         <input type="radio" className="form-check-input"
-                            name="radioActivity" id="activityLow"
+                            name="dogActivity" id="activityLow"
                             value="activityLow"
                             onChange={actions.handleUserInput}
-                            checked={store.userInput.radioActivity == "activityLow"} />
+                            checked={store.userInput.dogActivity == "activityLow"} />
                         <label className="form-check-label" htmlFor="activityLow">
                             Baja
                         </label>
                     </div>
-                    <div className={"form-check form-check-inline dog-mtn" + ((store.userInput.radioActivity == "activityMedium") ? " activeGlow" : "")}>
+                    <div className={"form-check form-check-inline dog-mtn" + ((store.userInput.dogActivity == "activityMedium") ? " activeGlow" : "")}>
                         <input type="radio" className="form-check-input"
-                            name="radioActivity" id="activityMedium"
+                            name="dogActivity" id="activityMedium"
                             value="activityMedium"
                             onChange={actions.handleUserInput}
-                            checked={store.userInput.radioActivity == "activityMedium"} />
+                            checked={store.userInput.dogActivity == "activityMedium"} />
                         <label className="form-check-label" htmlFor="activityMedium">
                             Media
                         </label>
                     </div>
-                    <div className={"form-check form-check-inline dog-mtn" + ((store.userInput.radioActivity == "activityHigh") ? " activeGlow" : "")}>
+                    <div className={"form-check form-check-inline dog-mtn" + ((store.userInput.dogActivity == "activityHigh") ? " activeGlow" : "")}>
                         <input type="radio" className="form-check-input"
-                            name="radioActivity" id="activityHigh"
+                            name="dogActivity" id="activityHigh"
                             value="activityHigh"
                             onChange={actions.handleUserInput}
-                            checked={store.userInput.radioActivity == "activityHigh"} />
+                            checked={store.userInput.dogActivity == "activityHigh"} />
                         <label className="form-check-label" htmlFor="activityHigh">
                             Alta
                         </label>

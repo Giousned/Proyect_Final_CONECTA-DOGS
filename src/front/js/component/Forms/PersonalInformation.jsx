@@ -1,22 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 
-import useAppContext from "../../store/AppContext";
+import useAppContext from "../../store/AppContext.js";
+import useAuthContext from "../../store/AuthContext.js";
+import useUserInput from "../../hooks/useUserInput";
+
+
 import "./signup-form.css";
 
-const PersonalInformation = () => {
+const PersonalInformation = (props) => {
 
-    const { store, actions } = useAppContext();
+    // const { store, actions } = useAppContext();
+
+    const { storeAuth, actionsAuth } = useAuthContext();
+    
+    const [ datosUsuario, setDatosUsuario ] = useState(storeAuth.userLog.user);
+
+    const {
+        userInput,
+        resetInput,
+        handleUserInput,
+        handleUserCheck,
+        handleUserSelectDate,
+    } = useUserInput(datosUsuario);
 
     return (
         <>
             <div className="d-grid row g-3">
-                <label htmlFor="foto-usuario" className="form-label">
-                    Foto de perfil
-                    <input className="form-control" type="file" id="foto-usuario"
-                        name="userPhoto" value={store.userInput.userPhoto}
-                        onChange={actions.handleUserInput} />
-                </label>
-
                 <div className="input-group">
                     <div className="col me-2">
                         <label htmlFor="nombre-usuario" className="form-label">
@@ -24,8 +33,8 @@ const PersonalInformation = () => {
                         </label>
                         <input className="form-control" type="text" id="nombre-usuario"
                             aria-describedby="nombre_usuario" placeholder="Nombre del usuario"
-                            name="name" value={store.userInput.name}
-                            onChange={actions.handleUserInput}
+                            name="name" value={userInput.name}
+                            onChange={handleUserInput}
                             required />
                     </div>
 
@@ -35,8 +44,8 @@ const PersonalInformation = () => {
                         </label>
                         <input className="form-control" type="text" id="apellidos-usuario"
                             aria-describedby="apellidos_usuario" placeholder="Apellidos del usuario"
-                            name="lastName" value={store.userInput.lastName}
-                            onChange={actions.handleUserInput}
+                            name="lastName" value={userInput.lastName}
+                            onChange={handleUserInput}
                             required />
                     </div>
                 </div>
@@ -48,8 +57,9 @@ const PersonalInformation = () => {
                         </label>
                         <input className="form-control" type="email" id="emailRegistroUser"
                             placeholder="usuario@ejemplo.com"
-                            name="email" value={store.userInput.email}
-                            onChange={actions.handleUserInput}
+                            readOnly={props.disable}
+                            name="email" value={userInput.email}
+                            onChange={handleUserInput}
                             required />
                     </div>
 
@@ -59,8 +69,8 @@ const PersonalInformation = () => {
                         </label>
                         <input className="form-control" type="password" id="passRegistroUser"
                             placeholder="Contraseña"
-                            name="password" value={store.userInput.password}
-                            onChange={actions.handleUserInput}
+                            name="password" value={userInput.password}
+                            onChange={handleUserInput}
                             required />
                     </div>
                 </div>
@@ -71,20 +81,20 @@ const PersonalInformation = () => {
                     </label>
                     <input className="form-control" type="text" id="direccion-usuario"
                         aria-describedby="direccion_usuario" placeholder="Dirección del usuario (Calle y número)"
-                        name="address" value={store.userInput.address}
-                        onChange={actions.handleUserInput}
+                        name="address" value={userInput.address}
+                        onChange={handleUserInput}
                         required />
                 </div>
 
                 <div className="input-group">
-                    <div className="col me-2">
+                    <div className="col">
                         <label htmlFor="codigo-postal-usuario" className="form-label">
                             Código Postal *
                         </label>
                         <input className="form-control" type="text" id="codigo-postal-usuario"
                             aria-describedby="codigo_postal_usuario" placeholder="30000"
-                            name="postalCode" value={store.userInput.postalCode}
-                            onChange={actions.handleUserInput}
+                            name="postalCode" value={userInput.postalCode}
+                            onChange={handleUserInput}
                             required />
                     </div>
 
@@ -93,8 +103,8 @@ const PersonalInformation = () => {
                             Localidad *
                         </label>
                         <select required id="provincia-user" className="form-select"
-                            name="province" value={store.userInput.province}
-                            onChange={actions.handleUserInput}>
+                            name="province" value={userInput.province}
+                            onChange={handleUserInput}>
                             <option defaultValue="">Elige Provincia</option>
                             <option value="Álava">Álava</option>
                             <option value="Albacete">Albacete</option>
@@ -150,47 +160,91 @@ const PersonalInformation = () => {
                             <option value="Zaragoza">Zaragoza</option>
                         </select>
                     </div>
-                </div>
 
-                <div className="col">
-                    <label htmlFor="telefono-user" className="form-label">
-                        Teléfono *
-                    </label>
-                    <input className="form-control" type="tel" id="telefono-user"
-                        aria-describedby="telefono" placeholder="666123456"
-                        name="phone" value={store.userInput.phone}
-                        onChange={actions.handleUserInput}
-                        required />
-                </div>
-
-                {/* <div className="my-3">
-                    <h5>¿Cómo quieres registrarte?</h5>
-                    <p>Elige una opción</p>
-                    <div className="row g-2">
-                        <div className="col-md">
-                            <div className="form-floating">
-                                <div className={"glowing-register" + ((store.userInput.radioOwnerCarer == "owner") ? " activeGlow" : "")}>
-                                    <input type="radio" id="owner"
-                                        name="radioOwnerCarer" value="owner"
-                                        onChange={actions.handleUserInput}
-                                        checked={store.userInput.radioOwnerCarer == "owner"} />
-                                    <label htmlFor="owner">Propietario</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md">
-                            <div className="form-floating">
-                                <div className={"glowing-register" + ((store.userInput.radioOwnerCarer == "carer") ? " activeGlow" : "")}>
-                                    <input type="radio" id="carer"
-                                        name="radioOwnerCarer" value="carer"
-                                        onChange={actions.handleUserInput}
-                                        checked={store.userInput.radioOwnerCarer == "carer"} />
-                                    <label htmlFor="carer">Cuidador</label>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="col ms-2">
+                        <label htmlFor="pais-user" className="form-label">
+                            País *
+                        </label>
+                        <select required id="pais-user" className="form-select"
+                            name="country" value={userInput.country}
+                            onChange={handleUserInput}>
+                            <option value="">Elige País</option>
+                            <option value="Albania">Albania</option>
+                            <option value="Germany">Alemania</option>
+                            <option value="Andorra">Andorra</option>
+                            <option value="Austria">Austria</option>
+                            <option value="Belarus">Bielorrusia</option>
+                            <option value="Belgium">Bélgica</option>
+                            <option value="Bosnia and Herzegovina">Bosnia y Herzegovina</option>
+                            <option value="Bulgaria">Bulgaria</option>
+                            <option value="Croatia">Croacia</option>
+                            <option value="Denmark">Dinamarca</option>
+                            <option value="Slovakia">Eslovaquia</option>
+                            <option value="Slovenia">Eslovenia</option>
+                            <option value="Spain">España</option>
+                            <option value="Vatican">Estado Vaticano</option>
+                            <option value="Estonia">Estonia</option>
+                            <option value="Finland">Finlandia</option>
+                            <option value="France">Francia</option>
+                            <option value="Gibraltar">Gibraltar</option>
+                            <option value="Greece">Grecia</option>
+                            <option value="Guernsey">Guernsey</option>
+                            <option value="Hungary">Hungría</option>
+                            <option value="Iceland">Islandia</option>
+                            <option value="Ireland">Irlanda</option>
+                            <option value="Isle of Man">Isla del hombre</option>
+                            <option value="Italy">Italia</option>
+                            <option value="Jersey">Jersey</option>
+                            <option value="Kosovo">Kosovo</option>
+                            <option value="Latvia">Letonia</option>
+                            <option value="Liechtenstein">Liechtenstein</option>
+                            <option value="Lithuania">Lituania</option>
+                            <option value="Luxembourg">Luxemburgo</option>
+                            <option value="Macedonia">Macedonia</option>
+                            <option value="Malta">Malta</option>
+                            <option value="Moldova">Moldavia</option>
+                            <option value="Monaco">Mónaco</option>
+                            <option value="Montenegro">Montenegro</option>
+                            <option value="Norway">Noruega</option>
+                            <option value="Netherlands">Países Bajos</option>
+                            <option value="Poland">Polonia</option>
+                            <option value="Portugal">Portugal</option>
+                            <option value="United Kingdom">Reino Unido</option>
+                            <option value="Czech Republic">Republica Checa</option>
+                            <option value="Romania">Rumania</option>
+                            <option value="San Marino">San Marino</option>
+                            <option value="Serbia">Serbia</option>
+                            <option value="Sweden">Suecia</option>
+                            <option value="Switzerland">Suiza</option>
+                            <option value="Ukraine">Ucrania</option>
+                        </select>
                     </div>
-                </div> */}
+                </div>
+
+                <div className="input-group">
+                    <div className="col me-2">
+                        <label htmlFor="telefono-user" className="form-label">
+                            Teléfono *
+                        </label>
+                        <input className="form-control" type="tel" id="telefono-user"
+                            aria-describedby="telefono" placeholder="666123456"
+                            name="phone" value={userInput.phone}
+                            onChange={handleUserInput}
+                            required />
+                    </div>
+
+                    <div className="col ms-2">
+                        <label htmlFor="fecha-nacimiento-user" className="form-label">
+                            Fecha Nacimiento *
+                        </label>
+                        <input className="form-control" type="date" id="fecha-nacimiento-user"
+                            aria-describedby="fecha-nacimiento"
+                            name="birthdate"
+                            value={userInput.birthdate}
+                            onChange={handleUserInput}
+                            required />
+                    </div>
+                </div>
             </div>
         </>
     );
@@ -199,6 +253,35 @@ const PersonalInformation = () => {
 export default PersonalInformation;
 
 
+
+{/* <div className="my-3">
+    <h5>¿Cómo quieres registrarte?</h5>
+    <p>Elige una opción</p>
+    <div className="row g-2">
+        <div className="col-md">
+            <div className="form-floating">
+                <div className={"glowing-register" + ((userInput.radioOwnerCarer == "owner") ? " activeGlow" : "")}>
+                    <input type="radio" id="owner"
+                        name="radioOwnerCarer" value="owner"
+                        onChange={handleUserInput}
+                        checked={userInput.radioOwnerCarer == "owner"} />
+                    <label htmlFor="owner">Propietario</label>
+                </div>
+            </div>
+        </div>
+        <div className="col-md">
+            <div className="form-floating">
+                <div className={"glowing-register" + ((userInput.radioOwnerCarer == "carer") ? " activeGlow" : "")}>
+                    <input type="radio" id="carer"
+                        name="radioOwnerCarer" value="carer"
+                        onChange={handleUserInput}
+                        checked={userInput.radioOwnerCarer == "carer"} />
+                    <label htmlFor="carer">Cuidador</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> */}
 
 
 // Checkbox.propTypes = {
