@@ -1,4 +1,6 @@
 import React from "react";
+import ReserveCard from "./ReserveCard.jsx";
+import ReserveCard2 from "./ReserveCard2.jsx";
 import "./reserves.css"
 
 const Reserves = () => {
@@ -7,25 +9,40 @@ const Reserves = () => {
             <div className="header">
                 <h1 className="text-center p-4">RESERVAS</h1>
             </div>
-            
-            <div className="col m-3 border rounded p-2 boxshadow">
-            <div className="container">
-                <div className="row">
-                    <div className="col">
-                        <div class="d-flex align-items-start">
-                            <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</button>
-                                <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</button>
-                            </div>
-                            <div class="tab-content" id="v-pills-tabContent">
-                                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">...</div>
-                                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">...</div>
-                            </div>
-                        </div>
+
+            <nav>
+                <div class="nav nav-tabs bg-light" id="reserves-tab" role="tablist">
+                    <button class="nav-link active" id="nearby-reserves-tab" data-bs-toggle="tab" data-bs-target="#nearby-reserves"
+                        type="button" role="tab" aria-controls="nearby-reserves" aria-selected="true">
+                        Reservas próximas
+                    </button>
+                    <button class="nav-link" id="past-reserves-tab" data-bs-toggle="tab" data-bs-target="#past-reserves"
+                        type="button" role="tab" aria-controls="past-reserves" aria-selected="false">
+                        Reservas pasadas
+                    </button>
+                </div>
+            </nav>
+
+            <div class="tab-content" id="nav-tabContent">
+                <div class="container tab-pane fade show active" id="nearby-reserves" role="tabpanel" aria-labelledby="nearby-reserves-tab" tabindex="0">
+                    <div className="row">
+                        <ReserveCard />
+                        <ReserveCard />
+                    </div>
+                </div>
+                <div class="container tab-pane fade" id="past-reserves" role="tabpanel" aria-labelledby="past-reserves-tab" tabindex="0">
+                    <div className="row">
+                        <ReserveCard2 />
+                        <ReserveCard2 />
                     </div>
                 </div>
             </div>
-            </div>
+
+
+
+
+
+
         </div>
     );
 }
