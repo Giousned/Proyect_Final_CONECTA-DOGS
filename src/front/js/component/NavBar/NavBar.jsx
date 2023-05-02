@@ -61,13 +61,22 @@ const NavBar = () => {
 
                   <li>
                     <Link to="/user-profile" className="dropdown-item">
-                      <i className="fas fa-user-circle"></i> Ver Perfil
+                      <i class="far fa-user pe-2"></i> Ver Perfil
                     </Link>
                   </li>
 
                   <li>
                     <Link to="/notifications" className="dropdown-item">
-                      <i className="fas fa-bell"></i> Notificaciones
+                      <i class="far fa-comment-alt pe-2"></i> Notificaciones
+                    </Link>
+                  </li>
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+
+                  <li>
+                    <Link to="/reserves" className="dropdown-item">
+                      <i class="far fa-bell pe-2"></i> Reservas
                     </Link>
                   </li>
                   <li>
@@ -76,7 +85,7 @@ const NavBar = () => {
 
                   <li>
                     <Link to="/home" className="dropdown-item">
-                      <i className="fas fa-sign-out-alt"></i> Cerrar Sesión
+                      <i className="fas fa-sign-out-alt pe-2"></i> Cerrar Sesión
                     </Link>
                   </li>
 
