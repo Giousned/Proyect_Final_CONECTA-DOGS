@@ -77,6 +77,12 @@
   align-items: center;
 }
 
+.imagen-tarjeta-perrito-user{
+  width: 60%;
+  height: 70%;
+  margin: auto;
+}
+
 .boton-registro-perro{
   display: flex;
   justify-content: center;

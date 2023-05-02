@@ -15,30 +15,41 @@ export const AppProvider = ({ children }) => {
 
   const { userInput, resetInput, handleUserInput, handleUserCheck, handleUserSelectDate } = useUserInput();
 
+  const handleObteinInputsTariffs = (tarifasUsuario) => {
+
+    const newObjTariffs = {}
+
+    for (let servicio of tarifasUsuario) {
+      if (servicio.service.id == 1) {
+        newObjTariffs["nurseryDay"] = true
+        newObjTariffs["priceNurseryDay"] = servicio.price
+      }
+      if (servicio.service.id == 2) {
+        newObjTariffs["walk"] = true
+        newObjTariffs["priceWalk"] = servicio.price
+      }
+      if (servicio.service.id == 3) {
+        newObjTariffs["nurseryNight"] = true
+        newObjTariffs["priceNurseryNight"] = servicio.price
+      }
+      continue
+    }
+    return newObjTariffs;
+  }
+
   useEffect(() => {
 
-    const newObj = []
-    const newObjTarrifs = {}
+    let newObjTariffs = {}
+    
+    if(!(storeAuth.userLog.user.tariffs) || (storeAuth.userLog.user.tariffs).length == 0) return;
+    else newObjTariffs = handleObteinInputsTariffs(storeAuth.userLog.user.tariffs)
 
-    if((storeAuth.userLog.user.tariffs) && (storeAuth.userLog.user.tariffs).length != 0){
-      for (let servicio of storeAuth.userLog.user.tariffs) {
-        if (servicio.service.id == 1) {
-          newObjTarrifs["nurseryDay"] = true
-          newObjTarrifs["priceNurseryDay"] = servicio.price
-        }
-        if (servicio.service.id == 2) {
-          newObjTarrifs["walk"] = true
-          newObjTarrifs["priceWalk"] = servicio.price
-        }
-        if (servicio.service.id == 3) {
-          newObjTarrifs["nurseryNight"] = true
-          newObjTarrifs["priceNurseryNight"] = servicio.price
-        }
-        console.log(newObjTarrifs)
+    let newObj = {...storeAuth.userLog.user}
 
-        for (let tarifa in newObjTarrifs) {console.log(tarifa)}
-        
-      }
+    for (let servicio in newObjTariffs) {
+
+      newObj[servicio] = newObjTariffs[servicio]
+
     }
 
     resetInput(newObj)
