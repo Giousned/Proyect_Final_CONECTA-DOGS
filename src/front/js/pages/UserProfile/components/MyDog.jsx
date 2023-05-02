@@ -24,27 +24,31 @@ const MyDog = () => {
             {/* <div className="avatar-dog my-3"></div> */}
 
             <ul className="nav nav-tabs" id="myTab" role="tablist">
-                <li className="nav-item" role="presentation">
-                    <button
-                        className="nav-link"
-                        id="my-dog1-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#my-dog1-tab"
-                        type="button"
-                        role="tab"
-                        aria-controls="my-dog1-tab"
-                        onClick={() => handleTabClick('my-dog1')}
-                        aria-selected={(activeTab === 'my-dog1')}
-                    >
-                        <DogCardInformation
-                            image="https://img.freepik.com/fotos-premium/perrito-lindo-pequeno-posando-alegre-aislado-gris_155003-42660.jpg"
-                            dogName="Cookie"
-                            dogSex="Macho"
-                            breed="Callejero"
-                            microchip="15454456"
-                        />
-                    </button>
-                </li>
+                {(store.userInput.dogs).length != 0
+                    ? store.userInput.dogs.map((dogInfo, index) => {
+                        return (
+                            <li className="nav-item" role="presentation" key={index}>
+                                <button
+                                    className="nav-link d-flex"
+                                    id={`${dogInfo["dogName"]}-tab`}
+                                    data-bs-toggle="tab"
+                                    data-bs-target={`#${dogInfo["dogName"]}-tab`}
+                                    type="button"
+                                    role="tab"
+                                    aria-controls={`${dogInfo["dogName"]}-tab`}
+                                    onClick={() => handleTabClick(`${dogInfo["dogName"]}`)}
+                                    aria-selected={(activeTab === `${dogInfo["dogName"]}`)}
+                                >
+                                    <DogCardInformation
+                                        image="https://cdn-icons-png.flaticon.com/512/3636/3636172.png"
+                                        dogInfo={dogInfo}
+                                        />
+                                </button>
+                            </li>
+                        );
+                    })
+                    : null
+                }
                 <li className="nav-item" role="presentation">
                     <button
                         className="nav-link"
@@ -80,11 +84,11 @@ const MyDog = () => {
             </ul>
             <div className="tab-content" id="myTabContent">
                 <div
-                    className={"tab-pane fade" + ((activeTab === 'my-dog1') ? "show active" : "")}
-                    id="my-dog1"
+                    className={"tab-pane fade" + ((activeTab === `${store.userInput.dogs["dogName"]}`) ? "show active" : "")}
+                    id={`${store.userInput.dogs["dogName"]}-tab`}
                     role="tabpanel"
-                    aria-labelledby="my-dog1-tab"
-                    tabIndex="0"
+                    aria-labelledby={`${store.userInput.dogs["dogName"]}-tab`}
+                    tabIndex={`${store.userInput.dogs["id"]}-tab`}
                 >
                     <div className="container mt-4"> PERFIL DE MI PERRO
                         <div className="avatar-dog my-3"></div>
@@ -99,7 +103,7 @@ const MyDog = () => {
                 >
                     <div className="container mt-4"> 
                         <DogInformation />
-                        <button type="submit" className="action-button shadow animate blue" onClick={actions.handleRegisterDog}> Registrar Perro </button>
+                        <button type="submit" className="boton-registro-perro action-button shadow animate my-2 mx-auto" onClick={actions.handleRegisterDog}> Registrar Perro </button>
                     </div>
                 </div>
             </div>
@@ -109,10 +113,14 @@ const MyDog = () => {
 
 export default MyDog;
 
-{
-    /* FORMULARIO CREADO PARA EL PERFIL SI NO QUEREMOS UTILIZAR EL DEL REGISTRO */
-}
-
+{/* <DogCardInformation
+key={index}
+image="https://img.freepik.com/fotos-premium/perrito-lindo-pequeno-posando-alegre-aislado-gris_155003-42660.jpg"
+dogName="Cookie"
+dogSex="Macho"
+breed="Callejero"
+microchip="15454456"
+/> */}
 {
     /* <h3 className="my-2">Datos del perro</h3>
       <div className="avatar-dog my-3"></div>

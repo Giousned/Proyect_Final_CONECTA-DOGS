@@ -76,3 +76,16 @@
 .dog-card-information .card-img-overlay {
   align-items: center;
 }
+
+.imagen-tarjeta-perrito-user{
+  width: 60%;
+  height: 70%;
+  margin: auto;
+}
+
+.boton-registro-perro{
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  background-color: blue;
+}

@@ -14,13 +14,12 @@ def create_tariff(body):
         services = body["services"]
 
         sub_token = get_jwt_identity()
-
         user_id = sub_token["id"]
 
         for service in services:
             service_active = service["serviceActive"]               # True or False
             service_id = service["serviceId"]                       # Id del servicio: id = 1 PARA nurseryDay // Alojamiento        id = 2 PARA walk // Paseo       id = 3 PARA nurseryNight // Guardería de Día
-            price = service["price"]                                # Precio de cada servicio ofrecido por el usuario
+            price = int(service["price"])                                # Precio de cada servicio ofrecido por el usuario
 
             query = db.select(Tariffs).filter_by(user_id=user_id, service_id=service_id)
             tarif = db.session.execute(query).scalars().first()         # one() ?????
