@@ -2,7 +2,7 @@ import React from "react";
 
 const DogCardInformation = (props) => {
   return (
-    <div className="dogCardInformation">
+    <div className="dog-card-information">
       <div className="card text-bg-dark">
         <img
           src={props.image}

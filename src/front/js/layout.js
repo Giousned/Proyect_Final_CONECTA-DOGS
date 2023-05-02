@@ -11,6 +11,7 @@ import LogInForm from "../js/component/LogInForm/LogInForm.jsx";
 import SignUpForm from "./pages/SignUp.jsx";
 import Contact from "./component/Contact/Contact.jsx";
 import UserProfile from "./pages/UserProfile/UserProfile.jsx";
+import Reserves from "./pages/Reserves/Reserves.jsx";
 import Notifications from "./pages/Notifications/Notifications.jsx";
 import Footer from "./component/Footer/Footer.jsx";
 
@@ -36,6 +37,7 @@ const Layout = () => {
               <Route element={<SignUpForm />} path="/sign-up-form" />
               <Route element={<UserProfile />} path="/user-profile" />
               <Route element={<Notifications />} path="/notifications" />
+              <Route element={<Reserves />} path="/reserves" />
               <Route element={<h1>Not found!</h1>} />
             </Routes>
             <Footer />

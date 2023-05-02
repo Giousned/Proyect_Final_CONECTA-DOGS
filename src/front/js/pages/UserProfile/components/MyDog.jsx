@@ -57,7 +57,7 @@ const MyDog = () => {
                         onClick={() => handleTabClick('add-dog')}
                         aria-selected={(activeTab === 'add-dog')}
                     >
-                        <div className="dogCardInformation">
+                        <div className="dog-card-information">
                             <div className="card text-bg-dark">
                                 <img
                                     src="https://img.freepik.com/vector-premium/fondo-invitacion-tarjeta-dia-san-valentin-animales-pareja-perros-enamorados_194708-1801.jpg?w=2000"
