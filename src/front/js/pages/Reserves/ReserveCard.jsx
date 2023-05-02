@@ -3,7 +3,6 @@ import React from "react";
 const ReserveCard = () => {
     return (
         <>
-
             <div class="wrapper" id="app">
                 <div class="card-form">
                     <div class="card-list">
