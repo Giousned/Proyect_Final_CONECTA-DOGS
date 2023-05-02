@@ -1,5 +1,6 @@
 import React from "react";
 import "../Contact/contact.css";
+import Logo from "../../../img/conectadogs-logo.black.png";
 
 const Contact = () => {
   return (
@@ -8,26 +9,35 @@ const Contact = () => {
                 CONTACTO
             </button> */}
       <div className="modal fade" id="exampleModal" tabIndex="-1"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        aria-labelledby="contactForm" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
-                CONTACTO
-              </h1>
+            <div className="container text-center">
+              <img src={Logo} className="logo" />
+              </div>
               <button type="button" className="btn-close"
                 data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div className="modal-body">FORMULARIO DE CONTACTO</div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-secondary"
-                data-bs-dismiss="modal">
-                CERRAR
-              </button>
-              <button type="button" className="btn btn-primary">
-                ENVIAR
-              </button>
-            </div>
+  
+            <form id="contact" class="contact" action="" method="post">
+            <h3>Formulario de Contacto</h3>
+              <h4>Póngase en contacto con nosotros hoy mismo y le responderemos en menos de 24 horas.</h4>
+              <fieldset>
+                <input placeholder="Nombre" type="text" tabindex="1" required autofocus />
+              </fieldset>
+              <fieldset>
+                <input placeholder="Correo Electrónico" type="email" tabindex="2" required />
+              </fieldset>
+              <fieldset>
+                <textarea placeholder="Escriba su mensaje aquí...." tabindex="5" required></textarea>
+              </fieldset>
+              <fieldset>
+              <div className="container text-center m-3">
+                <button type="submit" name="submit" className="action-button shadow animate blue" data-submit="...Sending">Enviar</button>
+              </div>
+              </fieldset>
+            </form>
           </div>
         </div>
       </div>
