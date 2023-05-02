@@ -76,3 +76,10 @@
 .dog-card-information .card-img-overlay {
   align-items: center;
 }
+
+.boton-registro-perro{
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  background-color: blue;
+}

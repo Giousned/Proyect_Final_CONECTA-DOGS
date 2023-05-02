@@ -99,7 +99,7 @@ const MyDog = () => {
                 >
                     <div className="container mt-4"> 
                         <DogInformation />
-                        <button type="submit" className="action-button shadow animate blue" onClick={actions.handleRegisterDog}> Registrar Perro </button>
+                        <button type="submit" className="boton-registro-perro action-button shadow animate my-2 mx-auto" onClick={actions.handleRegisterDog}> Registrar Perro </button>
                     </div>
                 </div>
             </div>
