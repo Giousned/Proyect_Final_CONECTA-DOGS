@@ -86,12 +86,16 @@ export const DELETE_Dog = (dog_id) => {                        // token
 
 
 
-export const POST_dog = (nuevoPerro) => {
+export const POST_Dog = (nuevoPerro) => {
+
+    const token = sessionStorage.getItem("jwt-token");
+
     return (fetch(`${RUTABACK}/signup-dog`, {
         method: "POST",
         body: JSON.stringify(nuevoPerro),
         headers: {
           "Content-Type": "application/json",
+          "Authorization": "Bearer " + token,
         }
       })
       .then((resp) => {

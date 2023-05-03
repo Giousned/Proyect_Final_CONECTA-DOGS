@@ -1,9 +1,10 @@
 import React from "react";
 import { createContext, useContext, useState, useEffect} from "react";
 
-import { POSTRegister } from "../services/USERFetchs.js";
-import { UPDATE_User } from "../services/USERFetchs.js";
+import { POSTRegister, UPDATE_User, GET_User } from "../services/USERFetchs.js";
 import { POST_Tariff } from "../services/TARIFFFetchs.js";
+import { POST_Dog } from "../services/DOGFetchs.js";
+
 import useAuthContext from "./AuthContext.js";
 import useUserInput from "../hooks/useUserInput.js";
 
@@ -40,25 +41,36 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
 
     let newObjTariffs = {}
-    
-    if(!(storeAuth.userLog.user.tariffs) || (storeAuth.userLog.user.tariffs).length == 0) return;
-    else newObjTariffs = handleObteinInputsTariffs(storeAuth.userLog.user.tariffs)
-
     let newObj = {...storeAuth.userLog.user}
 
+    resetInput(newObj)
+    
+    if(!(storeAuth.userLog.user.tariffs) || (storeAuth.userLog.user.tariffs).length == 0) return
+    
+    newObjTariffs = handleObteinInputsTariffs(storeAuth.userLog.user.tariffs)
+
     for (let servicio in newObjTariffs) {
-
       newObj[servicio] = newObjTariffs[servicio]
-
     }
 
     resetInput(newObj)
+
   }, [storeAuth.userLog.user])
 
   const handleRegister = (e) => {
     e.preventDefault();
 
     POSTRegister(userInput)
+      .then(() => {
+        GET_User(storeAuth.userLog.user.id)
+          .then((data) => {resetInput(data.user)})
+      });
+  };
+
+  const handleRegisterDog = (e) => {
+    e.preventDefault();
+
+    POST_Dog(userInput)
       .then(() => {resetInput});
   };
 
@@ -100,6 +112,7 @@ export const AppProvider = ({ children }) => {
 
     handleRegister,
     handleUpdate,
+    handleRegisterDog,
   };
 
   return (
