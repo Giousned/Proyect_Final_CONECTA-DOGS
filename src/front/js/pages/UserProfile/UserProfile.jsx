@@ -57,10 +57,10 @@ const UserProfile = () => {
                                             onClick={() => handleTabClick('home')}
                                         />
                                         <TabButton
-                                            id="mydog-tab"
+                                            id="mydogs-tab"
                                             label="MIS PERROS"
-                                            isActive={activeTab === 'mydog-tab-pane'}
-                                            onClick={() => handleTabClick('mydog-tab-pane')}
+                                            isActive={activeTab === 'mydogs'}
+                                            onClick={() => handleTabClick('mydogs')}
                                         />
                                         <TabButton
                                             id="services-tab"
@@ -86,16 +86,19 @@ const UserProfile = () => {
                                         </div>
 
                                         {/* Mis Perros */}
-                                        <div className="tab-pane fade" id="mydog-tab-pane" role="tabpanel"
+                                        <div className="tab-pane fade" id="mydogs-tab-pane" role="tabpanel"
                                             aria-labelledby="mydog-tab" tabIndex="0">
                                             <MyDog />
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="d-grid m-4 d-md-flex justify-content-md-end">
-                                    <button type="submit" className="action-button shadow animate blue" onClick={actions.handleUpdate}> Guardar cambios </button>
-                                </div>
+                                {(activeTab !== 'mydogs') 
+                                    ? <div className="d-grid m-4 d-md-flex justify-content-md-end">
+                                        <button type="submit" className="action-button shadow animate blue" onClick={actions.handleUpdate}> Guardar cambios </button>
+                                      </div>
+                                    : null
+                                }
 
                             </form>
                             

@@ -61,7 +61,7 @@ class Dog(db.Model):
     socialCats = db.Column(db.Boolean, unique=False, nullable=False)
     socialKids = db.Column(db.Boolean, unique=False, nullable=False)
     socialDogs = db.Column(db.Boolean, unique=False, nullable=False)
-    microchip = db.Column(db.Integer, unique=True, nullable=False)
+    microchip = db.Column(db.BigInteger, unique=True, nullable=False)
     dogActivity = db.Column(db.String(20), unique=False, nullable=True)
     observations = db.Column(db.String(500), unique=False, nullable=True)
     photo = db.Column(db.String(500), unique=True, nullable=True)         # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
