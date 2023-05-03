@@ -61,11 +61,7 @@
   height: 300px;
 }
 
-.dog-card-information h5 {
-  color: #7a472f;
-}
-
-.dog-card-information p {
+.dog-card-information h5, p {
   color: #7a472f;
 }
 
