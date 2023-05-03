@@ -22,16 +22,16 @@ export const AppProvider = ({ children }) => {
 
     for (let servicio of tarifasUsuario) {
       if (servicio.service.id == 1) {
-        newObjTariffs["nurseryDay"] = true
-        newObjTariffs["priceNurseryDay"] = servicio.price
+        newObjTariffs.nurseryDay = true
+        newObjTariffs.priceNurseryDay = servicio.price
       }
       if (servicio.service.id == 2) {
-        newObjTariffs["walk"] = true
-        newObjTariffs["priceWalk"] = servicio.price
+        newObjTariffs.walk = true
+        newObjTariffs.priceWalk = servicio.price
       }
       if (servicio.service.id == 3) {
-        newObjTariffs["nurseryNight"] = true
-        newObjTariffs["priceNurseryNight"] = servicio.price
+        newObjTariffs.nurseryNight = true
+        newObjTariffs.priceNurseryNight = servicio.price
       }
       continue
     }
@@ -40,6 +40,7 @@ export const AppProvider = ({ children }) => {
 
   useEffect(() => {
 
+    if(!(storeAuth.userLog.user)) return
     let newObjTariffs = {}
     let newObj = {...storeAuth.userLog.user}
 
@@ -61,17 +62,14 @@ export const AppProvider = ({ children }) => {
     e.preventDefault();
 
     POSTRegister(userInput)
-      .then(() => {
-        GET_User(storeAuth.userLog.user.id)
-          .then((data) => {resetInput(data.user)})
-      });
+      .then(() => resetInput)
   };
 
   const handleRegisterDog = (e) => {
     e.preventDefault();
 
     POST_Dog(userInput)
-      .then(() => {resetInput});
+      .then(() => {actionsAuth.handleUpdateUser()});
   };
 
   const handleUpdate = (e) => {

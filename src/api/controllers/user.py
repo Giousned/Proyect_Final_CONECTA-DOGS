@@ -1,4 +1,6 @@
 from api.models import db, User
+from flask_jwt_extended import create_access_token, get_jwt_identity
+
 
 # import requests
 # import json 
@@ -82,6 +84,25 @@ def get_user(id):
         # user = db.session.execute(db.select(User).filter_by(id)).scalars().one()
         
         return {"code": 200, "msg": "All ok", "user": user.serialize()}
+
+    except Exception as error:
+        print(error)
+        return {"code": 500, "msg": "Error in server, something was wrong"}
+
+
+def update_me_user():
+
+    try:
+
+        sub_token = get_jwt_identity()
+        user_id = sub_token["id"]
+    
+        # Obtener usuario de la base de datos
+        user = db.get_or_404(User, user_id)
+
+        access_token = create_access_token(identity=user.serialize())
+        
+        return {"code": 200, "msg": "All ok", "user": user.serialize(), "token": access_token}
 
     except Exception as error:
         print(error)

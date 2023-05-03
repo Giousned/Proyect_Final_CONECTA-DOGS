@@ -15,7 +15,7 @@ from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
 from api.models import User, Services, Tariffs, Dog                                         # from models import Person
-from api.controllers.user import create_user, get_users, get_user, update_user, delete_user
+from api.controllers.user import create_user, get_users, get_user, update_user, delete_user, update_me_user
 from api.controllers.dog import create_dog, get_dogs, get_dog, update_dog, delete_dog
 from api.controllers.service import create_service, get_services, get_service, update_service, delete_service
 from api.controllers.tarif import create_tariff, get_tariffs, get_tariff, update_tariff, delete_tariff
@@ -354,6 +354,22 @@ def config_services():
         return jsonify({"code": 500, "msg": "No ha ido bien"})
 
 
+
+############################################################
+# Actualizar mi usuario
+@app.route("/update-user", methods=["GET"])
+@jwt_required()
+def get_me_user():
+
+    try:
+
+        user_response = update_me_user()
+
+        return jsonify(user_response)
+        
+    except Exception as error:
+        print(error)
+        return jsonify({"code": 500, "msg": "Error in server, something was wrong"})
 
 #############################################################
 # Crea una ruta para autenticar a los usuarios y devolver el token JWT.

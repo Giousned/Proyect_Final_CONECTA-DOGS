@@ -22,21 +22,21 @@ const MyDog = () => {
       <h3 className="my-4">Mis perros</h3>
       {/* <div className="avatar-dog my-3"></div> */}
 
-      <ul className="nav nav-tabs" id="myTab" role="tablist">
+      <ul className="nav nav-tabs" id="myDogsInfoTab" role="tablist">
         {(store.userInput.dogs.length != 0)
           ? store.userInput.dogs.map((dogInfo, index) => {
               return (
                 <li className="nav-item" role="presentation" key={index}>
                   <button
                     className="nav-link d-flex"
-                    id={`${dogInfo["dogName"]}-tab`}
+                    id={`${dogInfo.dogName}-tab`}
                     data-bs-toggle="tab"
-                    data-bs-target={`#${dogInfo["dogName"]}-tab`}
+                    data-bs-target={`#${dogInfo.dogName}-tab`}
                     type="button"
                     role="tab"
-                    aria-controls={`${dogInfo["dogName"]}-tab`}
-                    onClick={() => handleTabClick(`${dogInfo["dogName"]}`)}
-                    aria-selected={activeTab === `${dogInfo["dogName"]}`}
+                    aria-controls={`${dogInfo.dogName}-tab`}
+                    onClick={() => handleTabClick(`${dogInfo.dogName}`)}
+                    aria-selected={activeTab === `${dogInfo.dogName}`}
                   >
                     <DogCardInformation
                       image="https://cdn-icons-png.flaticon.com/512/3636/3636172.png"
@@ -80,7 +80,7 @@ const MyDog = () => {
           </button>
         </li>
       </ul>
-      <div className="tab-content" id="myTabContent">
+      <div className="tab-content" id="myDogsInfoTabContent">
         {(store.userInput.dogs.length != 0)
             ? store.userInput.dogs.map((dogInfo, index) => {
               return(
@@ -88,13 +88,13 @@ const MyDog = () => {
                 key={index}
                 className={
                   "tab-pane fade" +
-                  (activeTab === `${dogInfo["dogName"]}`
+                  (activeTab === `${dogInfo.dogName}`
                     ? "show active"
                     : "")
                 }
-                id={`${dogInfo["dogName"]}-tab`}
+                id={`${dogInfo.dogName}-tab`}
                 role="tabpanel"
-                aria-labelledby={`${dogInfo["dogName"]}-tab`}
+                aria-labelledby={`${dogInfo.dogName}-tab`}
                 tabIndex="0"
               >
                 <div className="container mt-4">
@@ -104,15 +104,15 @@ const MyDog = () => {
                   <div className="d-flex my-2">
 
                     <ul>
-                      <li>Nombre: {dogInfo["dogName"]}</li>
-                      <li>Raza: {dogInfo["breed"]}</li>
-                      <li>Género: {dogInfo["dogSex"]}</li>
-                      <li>Tamaño: {dogInfo["dogSize"]}</li>
-                      <li>Esterilizado: {(dogInfo["neutered"]) ? "Sí" : "No"}</li>
-                      <li>Fecha Nacimiento: {dogInfo["dogBirth"]}</li>
-                      <li>Actividad: {dogInfo["dogActivity"]}</li>
-                      <li>Microchip: {dogInfo["microchip"]}</li>
-                      <li>Observaciones: {dogInfo["observations"]}</li>
+                      <li>Nombre: {dogInfo.dogName}</li>
+                      <li>Raza: {dogInfo.breed}</li>
+                      <li>Género: {dogInfo.dogSex}</li>
+                      <li>Tamaño: {dogInfo.dogSize}</li>
+                      <li>Esterilizado: {(dogInfo.neutered) ? "Sí" : "No"}</li>
+                      <li>Fecha Nacimiento: {dogInfo.dogBirth}</li>
+                      <li>Actividad: {dogInfo.dogActivity}</li>
+                      <li>Microchip: {dogInfo.microchip}</li>
+                      <li>Observaciones: {dogInfo.observations}</li>
                     </ul>
 
                     <div className="avatar-dog my-3"></div>
