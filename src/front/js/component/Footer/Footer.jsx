@@ -7,7 +7,9 @@ import Logo from "../../../img/conectadogs-logo-white.png";
 const Footer = () => {
   return (
     <section className="contact bg-dark py-4">
-      <Link to="#navbar" className="text-danger" spy={true} smooth={true} duration={800}><h2>IR ARRIBAAAAAAA</h2></Link>
+      <Link to="#navbar" className="text-warning align-items-center justify-content-center" spy={true} smooth={true} duration={800}>
+    <h2><i class="fas fa-arrow-circle-up"></i> Ir arriba </h2>
+  </Link>
       <footer className="bg-dark text-center text-lg-start text-white">
         <div className="container p-2">
           <div className="row my-4">
@@ -76,6 +78,9 @@ const Footer = () => {
         </div>
 
         <div className="text-center">
+          <Link to="#navbar" className="text-warning" spy={true} smooth={true} duration={800}>
+            <h2><i class="fas fa-arrow-circle-up"></i> Ir arriba </h2>
+          </Link>
           © 2023 Conecta-Dogs.
           <br />
           Proyecto Final - Full Stack Developer - 4Geeks Academy
