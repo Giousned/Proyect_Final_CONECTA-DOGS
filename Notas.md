@@ -55,3 +55,25 @@ import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scro
 
 Añada el componente de enlace. El componente <Link /> apuntará a un área concreta de su aplicación:
 <Link to="section1">
+
+# USAR SERVICIO CLOUDINARY (API) PARA SUBIR FOTOS A LA BASE DE DATOS
+  INSTALAR
+pip install cloudinary
+
+// Import
+from cloudinary.uploader import upload
+from cloudinary.utils import cloudinary_url
+
+// Config
+cloudinary.config(
+  cloud_name = "drlf5uatk",
+  api_key = "***************",
+  api_secret = "****************",
+  secure = true
+)
+
+// Upload
+upload("https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg", public_id="olympic_flag")
+
+// Transform
+url, options = cloudinary_url("olympic_flag", width=100, height=150, crop="fill")

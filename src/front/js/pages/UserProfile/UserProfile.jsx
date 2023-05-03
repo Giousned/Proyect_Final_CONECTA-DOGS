@@ -4,21 +4,15 @@ import TabButton from '../UserProfile/components/TabButton.jsx';
 import UserInformation from "./components/UserInformation.jsx";
 import ServicesRates from "./components/ServicesRates.jsx";
 import MyDog from "./components/MyDog.jsx";
-import AddDog from "./components/AddDog.jsx";
 
-import useUserInput from "../../hooks/useUserInput";
+import useAppContext from "../../store/AppContext.js";
+
 import "./user-profile.css";
 
 const UserProfile = () => {
-
-    const {
-        userInput,
-        resetInput,
-        handleUserInput,
-        handleUserCheck,
-        handleUserSelectDate,
-    } = useUserInput({ name: "Sandra", lastname: "Madarnas" });
-
+   
+    const { store, actions } = useAppContext();
+    
     const [activeTab, setActiveTab] = useState('home');
 
     const handleTabClick = (tabId) => {
@@ -28,10 +22,7 @@ const UserProfile = () => {
     return (
         <div className="user-profile">
             <div className="header">
-                {/* <button className="btn btn-primary">
-                    <div className="text">Cambiar Fondo</div>
-                    <i className="fas fa-images fa-sm"></i>
-                </button> */}
+            <h1 className="text-center p-4">INFORMACIÓN DE USUARIO</h1>
             </div>
             <div className="container">
                 <div className="row">
@@ -39,17 +30,20 @@ const UserProfile = () => {
                         <div className="avatar-user"></div>
 
                         <div className="tituloperfil text-center">
-                            <h2 className="text-dark">{userInput.name} {userInput.lastname}</h2>
+                            <h2 className="text-dark">{store.userInput.name} {store.userInput.lastName}</h2>
                         </div>
 
                         <div>
                             <form>
                                 <h3>Sobre mí:</h3>
                                 <div className="col boxshadow">
-                                    <textarea className="form-control" id="aboutMe" rows="3">
-                                        Breve descripción sobre mí... 🤗 ❤️
-                                        Puedo editar ya todos los campos ❤️ 🤗
+                                    <textarea className="form-control" id="aboutMe" rows="3"
+                                        name="aboutMe"
+                                        value={store.userInput.aboutMe}
+                                        onChange={actions.handleUserInput}>
                                     </textarea>
+                                    {/* Breve descripción sobre mí... 🤗 ❤️
+                                    Puedo editar ya todos los campos ❤️ 🤗 */}
                                 </div>
 
 
@@ -81,29 +75,30 @@ const UserProfile = () => {
 
                                         {/* Información de Usuario */}
                                         <div className="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
-                                            aria-labelledby="home-tab" tabindex="0">
+                                            aria-labelledby="home-tab" tabIndex="0">
                                             <UserInformation />
                                         </div>
 
                                         {/* CUIDADOR: Servicios - Tarifas */}
                                         <div className="tab-pane fade" id="services-tab-pane" role="tabpanel"
-                                            aria-labelledby="services-tab" tabindex="0">
+                                            aria-labelledby="services-tab" tabIndex="0">
                                             <ServicesRates />
                                         </div>
 
                                         {/* Mis Perros */}
                                         <div className="tab-pane fade" id="mydog-tab-pane" role="tabpanel"
-                                            aria-labelledby="mydog-tab" tabindex="0">
+                                            aria-labelledby="mydog-tab" tabIndex="0">
                                             <MyDog />
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="d-grid m-4 d-md-flex justify-content-md-end">
-                                    <button type="button" className="action-button shadow animate red">Cambiar la Contraseña</button>
-                                    <button type="submit" className="action-button shadow animate blue">Guardar cambios</button>
+                                    <button type="submit" className="action-button shadow animate blue" onClick={actions.handleUpdate}> Guardar cambios </button>
                                 </div>
+
                             </form>
+                            
                         </div>
                     </div>
                 </div>

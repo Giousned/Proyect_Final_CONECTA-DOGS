@@ -17,10 +17,15 @@ const NavBar = () => {
               <img src={Logo} className="logo" />
             </strong>
           </Link>
-          <button type="button" className="navbar-toggler"
-            data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
+          <button
+            type="button"
+            className="navbar-toggler"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -31,7 +36,7 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                {storeAuth.userLog ? (
+                {storeAuth.userLog.token ? (
                   <Link
                     to="/"
                     className="nav-link"
@@ -41,45 +46,78 @@ const NavBar = () => {
                   </Link>
                 ) : (
                   <Link to="/log-in-form" className="nav-link">
-                    INGRESAR
+                    LOGIN
                   </Link>
                 )}
               </li>
               <li className="nav-item">
-                <button type="button" className="btn text-light me-2"
-                  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button
+                  type="button"
+                  className="btn text-light me-2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                >
                   CONTACTO
                 </button>
               </li>
               <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle border rounded px-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a
+                  className="nav-link dropdown-toggle border rounded px-3"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
                   <i className="fas fa-user-circle"></i>
                 </a>
 
-                <ul className="dropdown-menu">
+                {storeAuth.userLog.token 
+                  ? <ul className="dropdown-menu">
+                      <li>
+                        <Link to="/user-profile" className="dropdown-item">
+                          <i className="far fa-user pe-2"></i> Ver Perfil
+                        </Link>
+                      </li>
 
-                  <li>
-                    <Link to="/user-profile" className="dropdown-item">
-                      <i className="fas fa-user-circle"></i> Ver Perfil
-                    </Link>
-                  </li>
+                      <li>
+                        <Link to="/notifications" className="dropdown-item">
+                          <i className="far fa-comment-alt pe-2"></i> Notificaciones
+                        </Link>
+                      </li>
+                      <li>
+                        <hr className="dropdown-divider" />
+                      </li>
 
-                  <li>
-                    <Link to="/notifications" className="dropdown-item">
-                      <i className="fas fa-bell"></i> Notificaciones
-                    </Link>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
+                      <li>
+                        <Link to="/reserves" className="dropdown-item">
+                          <i className="far fa-bell pe-2"></i> Reservas
+                        </Link>
+                      </li>
+                      <li>
+                        <hr className="dropdown-divider" />
+                      </li>
 
-                  <li>
-                    <Link to="/home" className="dropdown-item">
-                      <i className="fas fa-sign-out-alt"></i> Cerrar Sesión
-                    </Link>
-                  </li>
+                      <li>
+                        <Link to="/" className="dropdown-item" onClick={actionsAuth.handleLogOut}>
+                          <i className="fas fa-sign-out-alt pe-2"></i> Cerrar Sesión
+                        </Link>
+                      </li>
+                    </ul>
+                  : <ul className="dropdown-menu">
+                      <li>
+                        <Link to="/sign-up-form" className="dropdown-item">
+                          <i className="far fa-user pe-2"></i> Registrarse
+                        </Link>
+                      </li>
 
-                </ul>
+                      <li>
+                        <Link to="/log-in-form" className="dropdown-item">
+                          <i className="far fa-comment-alt pe-2"></i> Iniciar Sesión
+                        </Link>
+                      </li>
+                    </ul>
+                }
+
               </li>
             </ul>
           </div>
