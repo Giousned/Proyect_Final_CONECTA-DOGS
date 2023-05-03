@@ -43,8 +43,8 @@ MIGRATE = Migrate(app, db, compare_type = True)
 db.init_app(app)
 
 #  Configura la extensión Flask-JWT-Extended
-app.config["JWT_SECRET_KEY"] = os.environ.get('JWT_SECRET') # ESTA PALABRA ES LO QUE GENERA LUEGO LOS TOKENS UNICOS Y LO QUE NO SE DEBE COMPARTIR       (# ¡Cambia las palabras "super-secret" por otra cosa!)
-jwt = JWTManager(app)                                       # LA PONGO EN ENV PARA NO SUBIRLO A LA NUBE Y QUE SEA SECRETA
+app.config["JWT_SECRET_KEY"] = os.environ.get('JWT_SECRET') # ESTA PALABRA GENERA LOS TOKENS UNICOS Y NO SE DEBE COMPARTIR!!!           (# ¡Cambia las palabras "super-secret" por otra cosa!)
+jwt = JWTManager(app)                                       # SE PONE EN ENV PARA NO SUBIRSE A LA NUBE Y QUE SEA SECRETA
 
 # Allow CORS requests to this API
 CORS(app)
