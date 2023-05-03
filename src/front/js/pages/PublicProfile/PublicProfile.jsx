@@ -12,8 +12,10 @@ const PublicProfile = (props) => {
         alt="..." //{prop.userImage + props.UserName}
       />
       <div className="card-body">
-        <h5 className="nombre">Claudia (aqui meto el props.userName)</h5>
-        <h6 className="Localizacion">Sevilla (aqui el props.userLocation)</h6>
+        <h4 className="nombre">Claudia{props.userName}</h4>
+        <h6 className="Localizacion">
+          <i class="fas fa-map-marker-alt"></i> Madrid{props.userLocation}
+        </h6>
         <button
           type="button"
           className="btn btn-success"
