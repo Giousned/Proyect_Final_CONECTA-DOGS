@@ -32,8 +32,10 @@ const Reserves = () => {
       <div className="tab-content" id="nav-tabContent">
         <div className="tab-pane fade show active" id="nearby-reserves"
           role="tabpanel" aria-labelledby="nearby-reserves-tab" tabIndex="0">
+          <div className="d-flex">
             <ReserveCard />
             <ReserveCard />
+          </div>
         </div>
         <div className="tab-pane fade" id="past-reserves"
           role="tabpanel" aria-labelledby="past-reserves-tab" tabIndex="0">
