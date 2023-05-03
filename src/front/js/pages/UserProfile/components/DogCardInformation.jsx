@@ -2,12 +2,12 @@ import React from "react";
 
 const DogCardInformation = (props) => {
   return (
-    <div className="dogCardInformation">
+    <div className="dog-card-information">
       <div className="card text-bg-dark">
         <img
           src={props.image}
-          className="card-img"
-          alt={"Imagen de mi perrito" + props.dogName}
+          className="imagen-tarjeta-perrito-user card-img"
+          alt={"Imagen de mi perrito" + props.dogInfo.dogName}
         />
         <div className="card-img-overlay d-flex justify-content-center">
           <div className="text-center text-info">
@@ -16,10 +16,10 @@ const DogCardInformation = (props) => {
               <i className="fa-solid fa-dog fa-2xl"></i>
             </p>
             <p className="card-text">
-              {props.dogSex} - {props.breed}
+              {props.dogInfo.dogSex} - {props.dogInfo.breed}
             </p>
             <p className="card-text fst-italic fs-4">
-              <i className="fa-solid fa-shield-dog"></i> {props.microchip}
+              <i className="fa-solid fa-shield-dog"></i> {props.dogInfo.microchip}
             </p>
           </div>
         </div>

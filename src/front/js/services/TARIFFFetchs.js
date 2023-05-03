@@ -69,7 +69,7 @@ export const DELETE_Tariff = (tariff_id) => {                        // token
         method: "DELETE",
         headers: {
           "Content-Type": "application/json"
-        //     Authorization: "Bearer " + token,                 // ⬅⬅⬅ authorization token
+        //     "Authorization": "Bearer " + token,                 // ⬅⬅⬅ authorization token
       }
       })
       .then(resp => {
@@ -86,12 +86,16 @@ export const DELETE_Tariff = (tariff_id) => {                        // token
 
 
 
-export const POST_Tariff = (nuevoUsuario) => {
+export const POST_Tariff = (objServicioYTarifa) => {
+
+    const token = sessionStorage.getItem("jwt-token");
+
     return (fetch(`${RUTABACK}/signup-tariff`, {
         method: "POST",
-        body: JSON.stringify(nuevoUsuario),
+        body: JSON.stringify(objServicioYTarifa),
         headers: {
           "Content-Type": "application/json",
+          "Authorization": "Bearer " + token,                 // ⬅⬅⬅ authorization token
         }
       })
       .then((resp) => {

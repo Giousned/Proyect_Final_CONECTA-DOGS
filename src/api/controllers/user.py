@@ -95,7 +95,11 @@ def update_user(body, id):
         # Obtener usuario de la base de datos           # NO SE PUEDE PASAR NI ACTUALIZAR UN EMAIL, PORQUE SI MANDAS EL MISMO, COMO ES UNICO DA ERROR
         user = db.get_or_404(User, id)
 
-        user.password = body["password"]
+        claves_user = body.keys()
+
+        if "password" in claves_user:
+            user.password = body["password"]
+ 
         user.name = body["name"]
         user.lastName = body["lastName"]
         user.address = body["address"]

@@ -6,7 +6,6 @@ import Logo from "../../../img/conectadogs-logo-white.png";
 import "../NavBar/navbar.css";
 
 const NavBar = () => {
-  
   const { storeAuth, actionsAuth } = useAuthContext();
 
   return (
@@ -36,6 +35,17 @@ const NavBar = () => {
                   INICIO
                 </Link>
               </li>
+              {/* VISTA DE RESERVAS */}
+              <li className="nav-item">
+                <Link
+                  to="/public-profile"
+                  className="nav-link "
+                  aria-current="page"
+                >
+                  Public profile
+                </Link>
+              </li>
+              {/* VISTA DE RESERVAS */}
               <li className="nav-item">
                 {storeAuth.userLog.token ? (
                   <Link
@@ -47,7 +57,7 @@ const NavBar = () => {
                   </Link>
                 ) : (
                   <Link to="/log-in-form" className="nav-link">
-                    INGRESAR
+                    LOGIN
                   </Link>
                 )}
               </li>
@@ -72,33 +82,60 @@ const NavBar = () => {
                   <i className="fas fa-user-circle"></i>
                 </a>
 
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link to="/user-profile" className="dropdown-item">
-                      <i className="fas fa-user-circle"></i> Ver Perfil
-                    </Link>
-                  </li>
+                {storeAuth.userLog.token ? (
+                  <ul className="dropdown-menu">
+                    <li>
+                      <Link to="/user-profile" className="dropdown-item">
+                        <i className="far fa-user pe-2"></i> Ver Perfil
+                      </Link>
+                    </li>
 
-                  <li>
-                    <Link to="/notifications" className="dropdown-item">
-                      <i className="fas fa-bell"></i> Notificaciones
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/public-profile" className="dropdown-item">
-                      <i className="fas fa-bell"></i> Perfil publico
-                    </Link>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
+                    <li>
+                      <Link to="/notifications" className="dropdown-item">
+                        <i className="far fa-comment-alt pe-2"></i>{" "}
+                        Notificaciones
+                      </Link>
+                    </li>
+                    <li>
+                      <hr className="dropdown-divider" />
+                    </li>
 
-                  <li>
-                    <Link to="/home" className="dropdown-item">
-                      <i className="fas fa-sign-out-alt"></i> Cerrar Sesión
-                    </Link>
-                  </li>
-                </ul>
+                    <li>
+                      <Link to="/reserves" className="dropdown-item">
+                        <i className="far fa-bell pe-2"></i> Reservas
+                      </Link>
+                    </li>
+                    <li>
+                      <hr className="dropdown-divider" />
+                    </li>
+
+                    <li>
+                      <Link
+                        to="/"
+                        className="dropdown-item"
+                        onClick={actionsAuth.handleLogOut}
+                      >
+                        <i className="fas fa-sign-out-alt pe-2"></i> Cerrar
+                        Sesión
+                      </Link>
+                    </li>
+                  </ul>
+                ) : (
+                  <ul className="dropdown-menu">
+                    <li>
+                      <Link to="/sign-up-form" className="dropdown-item">
+                        <i className="far fa-user pe-2"></i> Registrarse
+                      </Link>
+                    </li>
+
+                    <li>
+                      <Link to="/log-in-form" className="dropdown-item">
+                        <i className="far fa-comment-alt pe-2"></i> Iniciar
+                        Sesión
+                      </Link>
+                    </li>
+                  </ul>
+                )}
               </li>
             </ul>
           </div>

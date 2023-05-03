@@ -10,7 +10,7 @@ def create_dog(body):
 
         claves_dog = body.keys()
 
-        if not "dogName" in claves_dog or not "breed" in claves_dog or not "dogBirth" in claves_dog or not "dogSex" in claves_dog or not "radioSizeDog" in claves_dog or not "neutered" in claves_dog or not "socialCats" in claves_dog or not "socialKids" in claves_dog or not "socialDogs" in claves_dog or not "radioActivity" in claves_dog or not "microchip" in claves_dog or not "observations" in claves_dog:
+        if not "dogName" in claves_dog or not "breed" in claves_dog or not "dogBirth" in claves_dog or not "dogSex" in claves_dog or not "neutered" in claves_dog or not "socialCats" in claves_dog or not "socialKids" in claves_dog or not "socialDogs" in claves_dog or not "microchip" in claves_dog:
             return {"code": 400, "msg": "Missing data in the forms"}
 
         sub_token = get_jwt_identity()
@@ -23,12 +23,12 @@ def create_dog(body):
             breed = body["breed"],
             dogBirth = body["dogBirth"],
             dogSex = body["dogSex"],
-            sizeDog = body["dogSize"],
-            neutered = body["neutered"],
-            socialCats = body["socialCats"],
-            socialKids = body["socialKids"],
-            socialDogs = body["socialDogs"],
-            activity_level = body["dogActivity"],
+            dogSize = body["dogSize"],
+            neutered = bool(body["neutered"]),
+            socialCats = bool(body["socialCats"]),
+            socialKids = bool(body["socialKids"]),
+            socialDogs = bool(body["socialDogs"]),
+            dogActivity = body["dogActivity"],
             microchip = int(body["microchip"]),
             observations = body["observations"])
         
@@ -100,10 +100,10 @@ def update_dog(body, id):
         dog.breed = body["breed"]
         dog.dogSex = body["dogSex"]
         dog.dogSize = body["dogSize"]
-        dog.neutered = body["neutered"]
-        dog.socialCats = body["socialCats"]
-        dog.socialKids = body["socialKids"]
-        dog.socialDogs = body["socialDogs"]
+        neutered = bool(body["neutered"])
+        socialCats = bool(body["socialCats"])
+        socialKids = bool(body["socialKids"])
+        socialDogs = bool(body["socialDogs"])
         dog.dogActivity = body["dogActivity"]
         dog.microchip = int(body["microchip"])
         dog.observations = body["observations"]
