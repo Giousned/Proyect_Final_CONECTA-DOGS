@@ -45,7 +45,7 @@ const Reserves = () => {
           id="nearby-reserves"
           role="tabpanel"
           aria-labelledby="nearby-reserves-tab"
-          tabindex="0"
+          tabIndex="0"
         >
           <div className="row">
             <ReserveCard />
@@ -57,7 +57,7 @@ const Reserves = () => {
           id="past-reserves"
           role="tabpanel"
           aria-labelledby="past-reserves-tab"
-          tabindex="0"
+          tabIndex="0"
         >
           <div className="row">
             <ReserveCard2 />
