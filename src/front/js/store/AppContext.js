@@ -62,14 +62,17 @@ export const AppProvider = ({ children }) => {
     e.preventDefault();
 
     POSTRegister(userInput)
-      .then(() => resetInput)
+      .then(() => resetInput({}))
   };
 
   const handleRegisterDog = (e) => {
     e.preventDefault();
 
     POST_Dog(userInput)
-      .then(() => {actionsAuth.handleUpdateUser()});
+      .then(() => {
+        resetInput();
+        actionsAuth.handleUpdateUser();
+      });
   };
 
   const handleUpdate = (e) => {

@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import DogInformation from "../../../component/Forms/DogInformation.jsx";
 import DogCardInformation from "./DogCardInformation.jsx";
 
 import useAppContext from "../../../store/AppContext.js";
+import useAuthContext from "../../../store/AuthContext.js";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const MyDog = () => {
   const { store, actions } = useAppContext();
+  const { storeAuth, actionsAuth } = useAuthContext();
+
 
   const [activeTab, setActiveTab] = useState("");
+
+  useEffect(() => {
+    setActiveTab("");
+  }, [storeAuth.userLog.user])
 
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);
@@ -23,8 +30,8 @@ const MyDog = () => {
       {/* <div className="avatar-dog my-3"></div> */}
 
       <ul className="nav nav-tabs" id="myDogsInfoTab" role="tablist">
-        {(store.userInput.dogs.length != 0)
-          ? store.userInput.dogs.map((dogInfo, index) => {
+        {(storeAuth.userLog.user.dogs.length != 0)
+          ? storeAuth.userLog.user.dogs.map((dogInfo, index) => {
               return (
                 <li className="nav-item" role="presentation" key={index}>
                   <button
@@ -81,8 +88,8 @@ const MyDog = () => {
         </li>
       </ul>
       <div className="tab-content" id="myDogsInfoTabContent">
-        {(store.userInput.dogs.length != 0)
-            ? store.userInput.dogs.map((dogInfo, index) => {
+        {(storeAuth.userLog.user.dogs.length != 0)
+            ? storeAuth.userLog.user.dogs.map((dogInfo, index) => {
               return(
                 <div
                 key={index}

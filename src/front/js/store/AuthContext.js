@@ -26,9 +26,8 @@ export const AuthProvider = ({ children }) => {
     e.preventDefault();
 
     POSTLogin(userInput.logEmail, userInput.logPassword)
-      .then((data) => {
-        setUserLog({token: data.token, user: data.user});             // save your token in the sessionStorage
-                                                                      // also you should set your user into the store using the setStore function
+      .then((data) => {                                               // save your token in the sessionStorage
+        setUserLog({token: data.token, user: data.user});             // also you should set your user into the store using the setStore function 
         sessionStorage.setItem("jwt-token", data.token);              // cookies. .... CASI MEJOR, PERO CASI NUNCA USAR LOCALSTORAGE QUIZAS EN TIENDAS...
       });
   };
