@@ -25,6 +25,9 @@ const MoreAbout = () => {
         <li>Guarderia de noche//precio</li>
         <li>Paseos (por hora)//precio</li>
         <button onClick={() => navigate(-1)}>Cuidadores</button>
+        <button type="button" class="btn btn-success">
+          Contratar
+        </button>
       </div>
     </div>
   );
