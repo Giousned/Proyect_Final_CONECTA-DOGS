@@ -29,14 +29,14 @@ const MyDog = () => {
                 <li className="nav-item" role="presentation" key={index}>
                   <button
                     className="nav-link d-flex"
-                    id={`${dogInfo["dogName"]}-tab`}
+                    id={`${dogInfo.dogName}-tab`}
                     data-bs-toggle="tab"
-                    data-bs-target={`#${dogInfo["dogName"]}-tab`}
+                    data-bs-target={`#${dogInfo.dogName}-tab`}
                     type="button"
                     role="tab"
-                    aria-controls={`${dogInfo["dogName"]}-tab`}
-                    onClick={() => handleTabClick(`${dogInfo["dogName"]}`)}
-                    aria-selected={activeTab === `${dogInfo["dogName"]}`}
+                    aria-controls={`${dogInfo.dogName}-tab`}
+                    onClick={() => handleTabClick(`${dogInfo.dogName}`)}
+                    aria-selected={activeTab === `${dogInfo.dogName}`}
                   >
                     <DogCardInformation
                       image="https://cdn-icons-png.flaticon.com/512/3636/3636172.png"

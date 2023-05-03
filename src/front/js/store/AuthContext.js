@@ -2,6 +2,7 @@ import React from "react";
 import { createContext, useContext, useState, useEffect } from "react";
 
 import { POSTLogin, GETToken } from "../services/LOGINFetchs.js";
+import { UPDATE_Me_User } from "../services/USERFetchs.js";
 import useUserInput from "../hooks/useUserInput.js";
 
 const AuthContext = createContext();
@@ -12,6 +13,14 @@ export const AuthProvider = ({ children }) => {
   
   const { userInput, handleUserInput, handleUserCheck } = useUserInput();
 
+  const handleUpdateUser = () => {
+
+    UPDATE_Me_User()
+      .then((data) => {
+        setUserLog({token: data.token, user: data.user});
+        sessionStorage.setItem("jwt-token", data.token);        
+      });
+  }
 
   const handleLogIn = (e) => {
     e.preventDefault();
@@ -48,6 +57,7 @@ export const AuthProvider = ({ children }) => {
     handleLogOut,
     handleUserInput,
     handleUserCheck,
+    handleUpdateUser,
   };
 
   return (
