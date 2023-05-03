@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 const ReserveCard2 = () => {
   return (
     <>
-
       <div className="card card-reserves my-3">
         <Link to="/" className="nav-link " aria-current="page">
           <div className="row">

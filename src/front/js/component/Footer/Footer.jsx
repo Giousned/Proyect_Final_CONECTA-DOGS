@@ -1,10 +1,13 @@
 import React from "react";
+import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
+
 import "../Footer/footer.css";
 import Logo from "../../../img/conectadogs-logo-white.png";
 
 const Footer = () => {
   return (
     <section className="contact bg-dark py-4">
+      <Link to="#navbar" className="text-danger" spy={true} smooth={true} duration={800}><h2>IR ARRIBAAAAAAA</h2></Link>
       <footer className="bg-dark text-center text-lg-start text-white">
         <div className="container p-2">
           <div className="row my-4">
