@@ -38,11 +38,11 @@ def create_user(body):
         
         id_user = new_user.id
 
-        return {"code": 200, "msg": "All ok", "id": id_user}          #ID para rutas
+        return {"code": 200, "msg": "¡Usuario creado correctamente!" }         # "id": id_user # ID para rutas
 
     except Exception as error:
         print(error)
-        return {"code": 500, "msg": "Error in server, something was wrong"}
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
 
 
 def get_users():
@@ -56,11 +56,11 @@ def get_users():
 
         user_list = [user.serialize() for user in users]
 
-        return {"code": 200, "msg": "All ok", "users": user_list}
+        return {"code": 200, "msg": "Usuarios existentes obtenidos", "users": user_list}
 
     except Exception as error:
         print(error)
-        return {"code": 500, "msg": "Error in server, something was wrong"}
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
 
 
     # users = db.session.execute(db.select(User.email).order_by(User.id)).scalars()
@@ -86,11 +86,11 @@ def get_user(id):
         user = db.get_or_404(User, id)
         # user = db.session.execute(db.select(User).filter_by(id)).scalars().one()
         
-        return {"code": 200, "msg": "All ok", "user": user.serialize()}
+        return {"code": 200, "msg": "Usuario requerido obtenido", "user": user.serialize()}
 
     except Exception as error:
         print(error)
-        return {"code": 500, "msg": "Error in server, something was wrong"}
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
 
 
 def update_me_user():
@@ -105,11 +105,11 @@ def update_me_user():
 
         access_token = create_access_token(identity=user.serialize())
         
-        return {"code": 200, "msg": "All ok", "user": user.serialize(), "token": access_token}
+        return {"code": 200, "msg": "¡Usuario actualizado correctamente!", "user": user.serialize(), "token": access_token}
 
     except Exception as error:
         print(error)
-        return {"code": 500, "msg": "Error in server, something was wrong"}
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
 
 
 def update_user(body, id):
@@ -126,7 +126,7 @@ def update_user(body, id):
  
         user.name = body["name"]
         user.lastName = body["lastName"]
-        user.email = body["email"]
+        # user.email = body["email"]        # ESTA DISABLED PARA CAMBIAR EN EL FRONT
         user.address = body["address"]
         user.province = body["province"]
         user.postalCode = int(body["postalCode"])
@@ -152,11 +152,11 @@ def update_user(body, id):
 
         db.session.commit()
 
-        return {"code": 200, "msg": "User update ok", "user": user.serialize()}
+        return {"code": 200, "msg": "¡Datos del usuario actualizados correctamente!", "user": user.serialize()}
 
     except Exception as error:
         print(error)
-        return {"code": 500, "msg": "Error in server, something was wrong"}
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
 
 
 def delete_user(id):
@@ -173,11 +173,11 @@ def delete_user(id):
         # users = db.session.execute(query).scalars()
 
 
-        return {"code": 200, "msg": "Delete user ok"}
+        return {"code": 200, "msg": "¡Usuario eliminado correctamente!"}
 
     except Exception as error:
         print(error)
-        return {"code": 500, "msg": "Error in server, something was wrong"}
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
 
 
 
