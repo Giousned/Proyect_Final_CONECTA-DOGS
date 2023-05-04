@@ -12,7 +12,7 @@ def create_user(body):
 
         claves_user = body.keys()
 
-        if not "email" in claves_user or not "password" in claves_user or not "name" in claves_user or not "lastName" in claves_user or not "address" in claves_user or not "province" in claves_user or not "postalCode" in claves_user or not "phone" in claves_user or not "country" in claves_user or not "birthdate" in claves_user:
+        if not "email" in claves_user or not "password" in claves_user or not "name" in claves_user or not "lastName" in claves_user or not "address" in claves_user or not "province" in claves_user or not "postalCode" in claves_user or not "phone" in claves_user or not "country" in claves_user or not "birthdate" in claves_user:           # or not "latitude" in claves_user or not "longitude" in claves_user        
             return {"code": 400, "msg": "Missing data in the forms"}
 
 
@@ -29,6 +29,9 @@ def create_user(body):
             country = body["country"], 
             birthdate = body["birthdate"],
             is_active = True)
+
+            # latitude = int(body["latitude"]),
+            # longitude = body["longitude"], 
 
         db.session.add(new_user)
         db.session.commit()
@@ -113,7 +116,7 @@ def update_user(body, id):
 
     try:
     
-        # Obtener usuario de la base de datos           # NO SE PUEDE PASAR NI ACTUALIZAR UN EMAIL, PORQUE SI MANDAS EL MISMO, COMO ES UNICO DA ERROR
+        # Obtener usuario de la base de datos
         user = db.get_or_404(User, id)
 
         claves_user = body.keys()
@@ -123,6 +126,7 @@ def update_user(body, id):
  
         user.name = body["name"]
         user.lastName = body["lastName"]
+        user.email = body["email"]
         user.address = body["address"]
         user.province = body["province"]
         user.postalCode = int(body["postalCode"])
@@ -131,6 +135,9 @@ def update_user(body, id):
         user.birthdate = body["birthdate"]
         user.aboutMe = body["aboutMe"]
         user.is_active = True
+
+        # latitude = int(body["latitude"])
+        # longitude = body["longitude"]
 
         # if body["userPhoto"]:
         #     cloudinary.uploader.upload(user.name + ".mp4", 

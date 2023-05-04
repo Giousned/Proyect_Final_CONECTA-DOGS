@@ -1,8 +1,8 @@
-import { RUTABACK } from "../constants/RutaBack.jsx";
+import { RUTABACK } from "../constants/RutaBack.js";
 
 
 export const GET_Dog = (dog_id) => {
-    return (fetch(`${RUTABACK}/dogs/${dog_id}`, {
+    return (fetch(`${RUTABACK}/api/dogs/${dog_id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
@@ -20,7 +20,7 @@ export const GET_Dog = (dog_id) => {
   };
 
 export const GET_All_Dogs = () => {
-    return (fetch(`${RUTABACK}/dogs`, {
+    return (fetch(`${RUTABACK}/api/dogs`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
@@ -41,7 +41,7 @@ export const UPDATE_Dog = (newObj, dog_id) => {
 
     // const token = sessionStorage.getItem("jwt-token");
 
-    return (fetch(`${RUTABACK}/dogs/${dog_id}`, {
+    return (fetch(`${RUTABACK}/api/dogs/${dog_id}`, {
         method: "PUT",
         body: JSON.stringify(newObj),
         headers: {
@@ -65,7 +65,7 @@ export const DELETE_Dog = (dog_id) => {                        // token
 
     // const token = sessionStorage.getItem("jwt-token");
 
-    return (fetch(`${RUTABACK}/dogs/${dog_id}`, {
+    return (fetch(`${RUTABACK}/api/dogs/${dog_id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json"
@@ -90,7 +90,7 @@ export const POST_Dog = (nuevoPerro) => {
 
     const token = sessionStorage.getItem("jwt-token");
 
-    return (fetch(`${RUTABACK}/signup-dog`, {
+    return (fetch(`${RUTABACK}/api/signup-dog`, {
         method: "POST",
         body: JSON.stringify(nuevoPerro),
         headers: {

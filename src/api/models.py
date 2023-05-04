@@ -20,6 +20,8 @@ class User(db.Model):
     birthdate = db.Column(db.String(20), unique=False, nullable=False)
     is_active = db.Column(db.Boolean, unique=False, nullable=False)
     photo = db.Column(db.String(500), unique=True, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
+    # latitude = db.Column(db.String(40), unique=False, nullable=False)
+    # longitude = db.Column(db.String(40), unique=False, nullable=False)
 
     dogs = db.relationship("Dog", back_populates="user")
 
@@ -43,6 +45,8 @@ class User(db.Model):
             "birthdate": self.birthdate,
             "aboutMe": self.aboutMe,
             "photo": self.photo,
+            # "latitude": self.latitude,
+            # "longitude": self.longitude,
             "dogs": [dog.serialize() for dog in self.dogs],
             "tariffs": [tariff.serialize() for tariff in self.tariffs],
         # ¡¡¡¡DO NOT serialize the password, its a security breach!!!
@@ -103,7 +107,6 @@ class Services(db.Model):
 
     tariff = db.relationship("Tariffs", back_populates="service")
 
-
     def __repr__(self):
         return f'<Services {self.title}>'
 
@@ -126,6 +129,7 @@ class Tariffs(db.Model):
 
     service = db.relationship("Services", back_populates="tariff")
     user = db.relationship("User", back_populates="tariffs")
+    book = db.relationship("Books", back_populates="tariff")
 
 
     def __repr__(self):
@@ -139,7 +143,38 @@ class Tariffs(db.Model):
         }
 
 
+class Books(db.Model):
+    __tablename__ = "Books"
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String, unique=False, nullable=False)
+    hourPick = db.Column(db.String, unique=False, nullable=False)
+    hourDeliver = db.Column(db.String, unique=False, nullable=False)
+    dogsAcepted = db.Column(db.Integer, unique=False, nullable=False)
+    dogIdAcepted = db.Column(db.Integer, unique=False, nullable=False)
+    acepted = db.Column(db.Boolean, unique=False, nullable=False, default=False)
 
+    user_from_id = db.Column(db.Integer, db.ForeignKey("User.id"))
+    tarif_id = db.Column(db.Integer, db.ForeignKey("Tariffs.id"))
+
+    tariff = db.relationship("Tariffs", back_populates="book")
+
+
+    def __repr__(self):
+        return f'<Book {self.id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "date": self.date,
+            "hourPick": self.hourPick,
+            "hourDeliver": self.hourDeliver,
+            "dogsAcepted": self.dogsAcepted,
+            "dogIdAcepted": self.dogIdAcepted,
+            "acepted": self.acepted,
+            "user_from_id": self.user_from_id,
+            "tarif_id": self.tarif_id,
+            # "tariff": self.tariff.serialize(),
+        }
 
 
 

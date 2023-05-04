@@ -3,7 +3,7 @@ import { createContext, useContext, useState, useEffect} from "react";
 
 import { POSTRegister, UPDATE_User, GET_User } from "../services/USERFetchs.js";
 import { POST_Tariff } from "../services/TARIFFFetchs.js";
-import { POST_Dog } from "../services/DOGFetchs.js";
+import { POST_Dog, UPDATE_Dog, DELETE_Dog } from "../services/DOGFetchs.js";
 
 import useAuthContext from "./AuthContext.js";
 import useUserInput from "../hooks/useUserInput.js";
@@ -65,12 +65,29 @@ export const AppProvider = ({ children }) => {
       .then(() => resetInput({}))
   };
 
-  const handleRegisterDog = (e) => {
+  const handleRegisterDog = (e, dogInput) => {
     e.preventDefault();
 
-    POST_Dog(userInput)
+    POST_Dog(dogInput)
       .then(() => {
-        resetInput();
+        actionsAuth.handleUpdateUser();
+      });
+  };
+
+  const handleUpdateDog = (e, dogInput, dogId) => {
+    e.preventDefault();
+
+    UPDATE_Dog(dogInput, dogId)
+      .then(() => {
+        actionsAuth.handleUpdateUser();
+      });
+  };
+
+  const handleDeleteDog = (e, dogId) => {
+    e.preventDefault();
+
+    DELETE_Dog(dogId)
+      .then(() => {
         actionsAuth.handleUpdateUser();
       });
   };
@@ -114,6 +131,8 @@ export const AppProvider = ({ children }) => {
     handleRegister,
     handleUpdate,
     handleRegisterDog,
+    handleUpdateDog,
+    handleDeleteDog,
   };
 
   return (

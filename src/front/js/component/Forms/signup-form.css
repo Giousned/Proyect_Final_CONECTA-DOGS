@@ -90,6 +90,16 @@
     0 0 30px currentColor;
 }
 
+
+.boton-registro-perro{
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  background-color: blue;
+}
+
+
+
 /* @media (min-width: 600px) and (max-width: 1280px) {
   .dog-mtn label {
     padding: 0.5rem;
