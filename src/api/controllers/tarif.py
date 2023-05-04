@@ -11,6 +11,8 @@ def create_tariff(body):
         # if not "price" in claves_tariff:
         #     return {"code": 400, "msg": "No one tariff to register"}
 
+
+        # Crear una nueva tarifa en la base de datos
         services = body["services"]
 
         sub_token = get_jwt_identity()

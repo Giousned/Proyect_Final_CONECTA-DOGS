@@ -12,8 +12,8 @@ def create_service():
         if len(service_list) != 0:
             return {"code": 403, "msg": "Servicios ya están creados"}
 
-        # Crear un nuevo registro en la base de datos
 
+        # Crear los servicios en la base de datos
         initial_services = [
         {
             "image": "https://cdn.pixabay.com/photo/2017/01/17/16/45/night-1987408_960_720.png",

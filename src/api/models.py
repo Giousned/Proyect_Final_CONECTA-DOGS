@@ -160,7 +160,7 @@ class Books(db.Model):
 
 
     def __repr__(self):
-        return f'<Book {self.id}>'
+        return f'<Book {self.date}>'
 
     def serialize(self):
         return {
@@ -170,11 +170,16 @@ class Books(db.Model):
             "hourDeliver": self.hourDeliver,
             "dogsAcepted": self.dogsAcepted,
             "dogIdAcepted": self.dogIdAcepted,
-            "acepted": self.acepted,
             "user_from_id": self.user_from_id,
             "tarif_id": self.tarif_id,
-            # "tariff": self.tariff.serialize(),
+            "acepted": self.acepted,
+            "tariff": self.tariff.serialize(),
         }
+
+
+
+
+
 
 
 
