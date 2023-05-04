@@ -1,7 +1,7 @@
 import React from "react";
 import { createContext, useContext, useState, useEffect} from "react";
 
-import { POSTRegister, UPDATE_User, GET_User } from "../services/USERFetchs.js";
+import { POSTRegister, UPDATE_User } from "../services/USERFetchs.js";
 import { POST_Tariff } from "../services/TARIFFFetchs.js";
 import { POST_Dog, UPDATE_Dog, DELETE_Dog } from "../services/DOGFetchs.js";
 

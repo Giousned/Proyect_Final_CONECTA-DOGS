@@ -48,11 +48,11 @@ def create_dog(body):
         
         db.session.commit()
 
-        return {"code": 200, "msg": "All ok", "id": id_dog}          #ID para rutas
+        return {"code": 200, "msg": "Perro creado correctamente!"}         # "id": id_dog #ID para rutas
 
     except Exception as error:
         print(error)
-        return {"code": 500, "msg": "Error in server, something was wrong"}
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
 
 
 def get_dogs():
@@ -66,11 +66,11 @@ def get_dogs():
 
         dog_list = [dog.serialize() for dog in dogs]
 
-        return {"code": 200, "msg": "All ok", "dogs": dog_list}
+        return {"code": 200, "msg": "Perros existentes obtenidos", "dogs": dog_list}
 
     except Exception as error:
         print(error)
-        return {"code": 500, "msg": "Error in server, something was wrong"}
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
 
 
 def get_dog(id):
@@ -81,11 +81,11 @@ def get_dog(id):
         dog = db.get_or_404(Dog, id)
         # dog = db.session.execute(db.select(dog).filter_by(id)).scalars().one()
         
-        return {"code": 200, "msg": "All ok", "dog": dog.serialize()}
+        return {"code": 200, "msg": "Perro requerido obtenido", "dog": dog.serialize()}
 
     except Exception as error:
         print(error)
-        return {"code": 500, "msg": "Error in server, something was wrong"}
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
 
 
 def update_dog(body, id):
@@ -105,7 +105,7 @@ def update_dog(body, id):
         socialKids = bool(body["socialKids"])
         socialDogs = bool(body["socialDogs"])
         dog.dogActivity = body["dogActivity"]
-        dog.microchip = int(body["microchip"])
+        # dog.microchip = int(body["microchip"])        # ESTA DISABLED PARA CAMBIAR EN EL FRONT
         dog.observations = body["observations"]
 
         # if body["dogPhoto"]:
@@ -121,11 +121,11 @@ def update_dog(body, id):
 
         db.session.commit()
 
-        return {"code": 200, "msg": "dog update ok", "dog": dog.serialize()}
+        return {"code": 200, "msg": "¡Datos del perro actualizados correctamente!", "dog": dog.serialize()}
 
     except Exception as error:
         print(error)
-        return {"code": 500, "msg": "Error in server, something was wrong"}
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
 
 
 def delete_dog(id):
@@ -141,8 +141,8 @@ def delete_dog(id):
         # query = db.select(dog).order_by(dog.id)                 # SI DESPUES SE NECESITA UNA LISTA COMPLETA ACTUALIZADA POR PARTE DEL FRONT
         # dogs = db.session.execute(query).scalars()
 
-        return {"code": 200, "msg": "Delete dog ok"}
+        return {"code": 200, "msg": "¡Perro eliminado correctamente!"}
 
     except Exception as error:
         print(error)
-        return {"code": 500, "msg": "Error in server, something was wrong"}
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
