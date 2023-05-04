@@ -20,6 +20,8 @@ class User(db.Model):
     birthdate = db.Column(db.String(20), unique=False, nullable=False)
     is_active = db.Column(db.Boolean, unique=False, nullable=False)
     photo = db.Column(db.String(500), unique=True, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
+    # latitude = db.Column(db.String(40), unique=False, nullable=False)
+    # longitude = db.Column(db.String(40), unique=False, nullable=False)
 
     dogs = db.relationship("Dog", back_populates="user")
 
@@ -43,6 +45,8 @@ class User(db.Model):
             "birthdate": self.birthdate,
             "aboutMe": self.aboutMe,
             "photo": self.photo,
+            # "latitude": self.latitude,
+            # "longitude": self.longitude,
             "dogs": [dog.serialize() for dog in self.dogs],
             "tariffs": [tariff.serialize() for tariff in self.tariffs],
         # ¡¡¡¡DO NOT serialize the password, its a security breach!!!

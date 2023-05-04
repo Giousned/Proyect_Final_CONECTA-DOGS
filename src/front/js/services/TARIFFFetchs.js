@@ -2,7 +2,7 @@ import { RUTABACK } from "../constants/RutaBack.jsx";
 
 
 export const GET_Tariff = (tariff_id) => {
-    return (fetch(`${RUTABACK}/tariffs/${tariff_id}`, {
+    return (fetch(`${RUTABACK}/api/tariffs/${tariff_id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
@@ -20,7 +20,7 @@ export const GET_Tariff = (tariff_id) => {
   };
 
 export const GET_All_Tariffs = () => {
-    return (fetch(`${RUTABACK}/tariffs`, {
+    return (fetch(`${RUTABACK}/api/tariffs`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
@@ -41,7 +41,7 @@ export const UPDATE_Tariff = (newObj, tariff_id) => {
 
     // const token = sessionStorage.getItem("jwt-token");
 
-    return (fetch(`${RUTABACK}/tariffs/${tariff_id}`, {
+    return (fetch(`${RUTABACK}/api/tariffs/${tariff_id}`, {
         method: "PUT",
         body: JSON.stringify(newObj),
         headers: {
@@ -65,7 +65,7 @@ export const DELETE_Tariff = (tariff_id) => {                        // token
 
     // const token = sessionStorage.getItem("jwt-token");
 
-    return (fetch(`${RUTABACK}/tariffs/${tariff_id}`, {
+    return (fetch(`${RUTABACK}/api/tariffs/${tariff_id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json"
@@ -90,7 +90,7 @@ export const POST_Tariff = (objServicioYTarifa) => {
 
     const token = sessionStorage.getItem("jwt-token");
 
-    return (fetch(`${RUTABACK}/signup-tariff`, {
+    return (fetch(`${RUTABACK}/api/signup-tariff`, {
         method: "POST",
         body: JSON.stringify(objServicioYTarifa),
         headers: {

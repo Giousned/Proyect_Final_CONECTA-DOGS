@@ -31,9 +31,13 @@ const NavBar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-end">
               <li className="nav-item">
-                <Link to="/" className="nav-link " aria-current="page">
-                  INICIO
-                </Link>
+                {storeAuth.userLog.token 
+                  ? ( <Link to="/" className="nav-link " aria-current="page">
+                        INICIO
+                      </Link>) 
+                  : null
+                }
+
               </li>
               <li className="nav-item">
                 {storeAuth.userLog.token ? (
@@ -105,14 +109,14 @@ const NavBar = () => {
                     </ul>
                   : <ul className="dropdown-menu">
                       <li>
-                        <Link to="/sign-up-form" className="dropdown-item">
-                          <i className="far fa-user pe-2"></i> Registrarse
+                        <Link to="/log-in-form" className="dropdown-item">
+                          <i className="far fa-comment-alt pe-2"></i> Iniciar Sesión
                         </Link>
                       </li>
 
                       <li>
-                        <Link to="/log-in-form" className="dropdown-item">
-                          <i className="far fa-comment-alt pe-2"></i> Iniciar Sesión
+                        <Link to="/sign-up-form" className="dropdown-item">
+                          <i className="far fa-user pe-2"></i> Registrarse
                         </Link>
                       </li>
                     </ul>

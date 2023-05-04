@@ -2,7 +2,7 @@ import { RUTABACK } from "../constants/RutaBack.jsx";
 
 
 export const POSTLogin = async (email, password) => {
-  const resp = await fetch(`${RUTABACK}/token`, {
+  const resp = await fetch(`${RUTABACK}/api/token`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
@@ -28,7 +28,7 @@ export const GETToken = async () => {
   // Retrieve token form sessionStorage
   const token = sessionStorage.getItem("jwt-token");
 
-  const resp = await fetch(`${RUTABACK}/protected`, {
+  const resp = await fetch(`${RUTABACK}/api/protected`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

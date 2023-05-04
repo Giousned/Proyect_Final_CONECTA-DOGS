@@ -2,7 +2,7 @@ import { RUTABACK } from "../constants/RutaBack.jsx";
 
 
 export const GET_User = (user_id) => {
-    return (fetch(`${RUTABACK}/users/${user_id}`, {
+    return (fetch(`${RUTABACK}/api/users/${user_id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
@@ -20,7 +20,7 @@ export const GET_User = (user_id) => {
   };
 
 export const GET_All_Users = () => {
-    return (fetch(`${RUTABACK}/users`, {
+    return (fetch(`${RUTABACK}/api/users`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
@@ -42,7 +42,7 @@ export const UPDATE_User = (newObj, user_id) => {
 
     // const token = sessionStorage.getItem("jwt-token");
 
-    return (fetch(`${RUTABACK}/users/${user_id}`, {
+    return (fetch(`${RUTABACK}/api/users/${user_id}`, {
         method: "PUT",
         body: JSON.stringify(newObj),
         headers: {
@@ -66,7 +66,7 @@ export const DELETE_User = (user_id) => {                        // token
 
     // const token = sessionStorage.getItem("jwt-token");
 
-    return (fetch(`${RUTABACK}/users/${user_id}`, {
+    return (fetch(`${RUTABACK}/api/users/${user_id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json"
@@ -89,7 +89,7 @@ export const UPDATE_Me_User = () => {
 
   const token = sessionStorage.getItem("jwt-token");
 
-  return (fetch(`${RUTABACK}/update-user`, {
+  return (fetch(`${RUTABACK}/api/update-user`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -110,7 +110,7 @@ export const UPDATE_Me_User = () => {
 
 
 export const POSTRegister = async (informacionUsuario) => {
-    const resp = await fetch(`${RUTABACK}/signup`, {
+    const resp = await fetch(`${RUTABACK}/api/signup`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(informacionUsuario),
@@ -129,7 +129,7 @@ export const POSTRegister = async (informacionUsuario) => {
 
 // OTRO EJEMPLO DE HACER EL FETCH PARA EL REGISTRO DE USUARIO
 // export const POST_User = (nuevoUsuario) => {
-//     return (fetch(`${RUTABACK}/signup`, {
+//     return (fetch(`${RUTABACK}/api/signup`, {
 //         method: "POST",
 //         body: JSON.stringify(nuevoUsuario),
 //         headers: {
