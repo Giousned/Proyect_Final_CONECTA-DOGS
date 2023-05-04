@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import "../Footer/footer.css";
 import Logo from "../../../img/conectadogs-logo-white.png";
 
@@ -11,7 +13,11 @@ const Footer = () => {
             {/* 1era Columna */}
             <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
               <div className="shadow-1-strong d-flex align-items-center justify-content-center mb-3 mx-auto">
-                <img src={Logo} className="logo logo-footer" />
+                <Link to="/" className="navbar-brand">
+                  <strong>
+                    <img src={Logo} className="logo logo-footer" />
+                  </strong>
+                </Link>
               </div>
               <p className="text-center">Conectamos Cuidadores con Propietarios de Perros</p>
             </div>
