@@ -280,23 +280,6 @@ def tariffs_id(id):
 
 
 
-# RUTA PARA CREAR LOS 3 SERVICIOS EN LA BASE DE DATOS INICIAL CADA VEZ
-@api.route("/config-install", methods=["GET"])
-def config_services():
-
-    try:
-
-        # Rellenar la tabla de la DB, con el registro de Usuario
-        config_response = create_service()
-
-        return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
-
-    except Exception as error:
-        print(error)
-        return jsonify({"code": 500, "msg": "No ha ido bien"})
-
-
-
 ############################################################
 # Actualizar mi usuario
 @api.route("/update-user", methods=["GET"])
@@ -350,6 +333,45 @@ def create_token():
         return jsonify({"code": 500, "msg": "Error in server, something was wrong"})
 
 
+# EJEMPLO DE RUTA PROTEGIDA - PARA PODER HACER USEEFFECT EN FRONT Y SEGUIR LOGUEADO
+# Protege una ruta con jwt_required, bloquea las peticiones sin un JWT válido presente.
+@api.route("/protected", methods=["GET"])
+@jwt_required()
+def protected():
+    # Accede a la identidad del usuario actual con get_jwt_identity
+    current_user = get_jwt_identity()
+    # user = User.filter.get(current_user_email)        # No sé como hacer esta query segun el metodo de la academia
+
+    query = db.session.query(User).filter(User.email == current_user["email"])
+    user = db.session.execute(query).scalars().one()
+
+    access_token = create_access_token(identity=user.serialize())
+
+    return jsonify({ "token": access_token, "user": user.serialize() }), 200
+
+
+# return jsonify({"id": user.id, "email": user.email }), 200
+# HARCODEANDO PRUEBA FACIL DE EMAIL
+# if email != "test" or password != "test":
+#     return jsonify({"msg": "Bad email or password"}), 401
+
+
+
+
+# RUTA PARA CREAR LOS 3 SERVICIOS EN LA BASE DE DATOS INICIAL CADA VEZ
+@api.route("/config-install", methods=["GET"])
+def config_services():
+
+    try:
+
+        # Rellenar la tabla de la DB, con el registro de Usuario
+        config_response = create_service()
+
+        return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
+
+    except Exception as error:
+        print(error)
+        return jsonify({"code": 500, "msg": "No ha ido bien"})
 
 
 

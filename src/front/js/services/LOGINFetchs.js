@@ -1,7 +1,7 @@
 import { RUTABACK } from "../constants/RutaBack.js";
 
 
-export const POSTLogin = async (email, password) => {
+export const POST_Login = async (email, password) => {
   const resp = await fetch(`${RUTABACK}/api/token`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -24,7 +24,7 @@ export const POSTLogin = async (email, password) => {
 
 // EJEMPLO PARA RUTAS PRIVADAS OBTENIENDO TOKEN PRIMERO Y MANDANDOLO AL BACK
 // asumiendo que "/protected" es un endpoint privado
-export const GETToken = async () => {
+export const GET_Token = async () => {
   // Retrieve token form sessionStorage
   const token = sessionStorage.getItem("jwt-token");
 
@@ -32,7 +32,7 @@ export const GETToken = async () => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + token,                 // ⬅⬅⬅ authorization token
+      "Authorization": "Bearer " + token,                 // ⬅⬅⬅ authorization token
     },
   });
 

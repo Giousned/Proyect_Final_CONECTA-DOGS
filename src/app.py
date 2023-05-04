@@ -80,26 +80,6 @@ def serve_any_other_file(path):
 
 
 
-# # EJEMPLO DE RUTA PROTEGIDA
-# # Protege una ruta con jwt_required, bloquea las peticiones sin un JWT válido presente.
-# @app.route("/protected", methods=["GET"])
-# @jwt_required()
-# def protected():
-#     # Accede a la identidad del usuario actual con get_jwt_identity
-#     current_user_email = get_jwt_identity()
-#     # user = User.filter.get(current_user_email)        # No sé como hacer esta query segun el metodo de la academia
-
-#     query = db.session.query(User).filter(User.email == current_user_email)
-#     user = db.session.execute(query).scalars().one()
-
-#     return jsonify({"id": user.id, "email": user.email }), 200
-
-# HARCODEANDO PRUEBA FACIL DE EMAIL
-# if email != "test" or password != "test":
-#     return jsonify({"msg": "Bad email or password"}), 401
-
-
-
 
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
