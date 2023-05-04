@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
+import {
+  Button,
+  Element,
+  Events,
+  animateScroll as scroll,
+  scrollSpy,
+  scroller,
+} from "react-scroll";
 
 import useAuthContext from "../../store/AuthContext";
 import Logo from "../../../img/conectadogs-logo-white.png";
@@ -11,7 +18,10 @@ const NavBar = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-dark navbar-dark navbar-custom" id="#navbar">
+      <nav
+        className="navbar navbar-expand-lg bg-dark navbar-dark navbar-custom"
+        id="#navbar"
+      >
         <div className="container">
           <Link to="/" className="navbar-brand">
             <strong>
@@ -32,13 +42,11 @@ const NavBar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-end">
               <li className="nav-item">
-                {storeAuth.userLog.token 
-                  ? ( <Link to="/" className="nav-link " aria-current="page">
-                        INICIO
-                      </Link>) 
-                  : null
-                }
-
+                {storeAuth.userLog.token ? (
+                  <Link to="/" className="nav-link " aria-current="page">
+                    INICIO
+                  </Link>
+                ) : null}
               </li>
               <li className="nav-item">
                 {storeAuth.userLog.token ? (
@@ -65,6 +73,15 @@ const NavBar = () => {
                   CONTACTO
                 </button>
               </li>
+              <li className="nav-item">
+                <Link
+                  to="/public-profile"
+                  className="nav-link "
+                  aria-current="page"
+                >
+                  Public profile
+                </Link>
+              </li>
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle border rounded px-3"
@@ -76,8 +93,8 @@ const NavBar = () => {
                   <i className="fas fa-user-circle"></i>
                 </a>
 
-                {storeAuth.userLog.token
-                  ? <ul className="dropdown-menu">
+                {storeAuth.userLog.token ? (
+                  <ul className="dropdown-menu">
                     <li>
                       <Link to="/user-profile" className="dropdown-item">
                         <i className="far fa-user pe-2"></i> Ver Perfil
@@ -86,7 +103,8 @@ const NavBar = () => {
 
                     <li>
                       <Link to="/notifications" className="dropdown-item">
-                        <i className="far fa-comment-alt pe-2"></i> Notificaciones
+                        <i className="far fa-comment-alt pe-2"></i>{" "}
+                        Notificaciones
                       </Link>
                     </li>
                     <li>
@@ -103,26 +121,32 @@ const NavBar = () => {
                     </li>
 
                     <li>
-                      <Link to="/" className="dropdown-item" onClick={actionsAuth.handleLogOut}>
-                        <i className="fas fa-sign-out-alt pe-2"></i> Cerrar Sesión
+                      <Link
+                        to="/"
+                        className="dropdown-item"
+                        onClick={actionsAuth.handleLogOut}
+                      >
+                        <i className="fas fa-sign-out-alt pe-2"></i> Cerrar
+                        Sesión
                       </Link>
                     </li>
                   </ul>
-                  : <ul className="dropdown-menu">
-                      <li>
-                        <Link to="/log-in-form" className="dropdown-item">
-                          <i className="far fa-comment-alt pe-2"></i> Iniciar Sesión
-                        </Link>
-                      </li>
+                ) : (
+                  <ul className="dropdown-menu">
+                    <li>
+                      <Link to="/log-in-form" className="dropdown-item">
+                        <i className="far fa-comment-alt pe-2"></i> Iniciar
+                        Sesión
+                      </Link>
+                    </li>
 
-                      <li>
-                        <Link to="/sign-up-form" className="dropdown-item">
-                          <i className="far fa-user pe-2"></i> Registrarse
-                        </Link>
-                      </li>
-                    </ul>
-                }
-
+                    <li>
+                      <Link to="/sign-up-form" className="dropdown-item">
+                        <i className="far fa-user pe-2"></i> Registrarse
+                      </Link>
+                    </li>
+                  </ul>
+                )}
               </li>
             </ul>
           </div>
