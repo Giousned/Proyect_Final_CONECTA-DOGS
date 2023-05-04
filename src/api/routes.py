@@ -95,7 +95,7 @@ def signup_dog():
         if dog_response["code"] != 200:
             return jsonify(dog_response)
 
-        return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
+        return jsonify(dog_response), 200
 
     except Exception as error:
         print(error)
@@ -161,7 +161,7 @@ def signup_service():
         if service_response["code"] != 200:
             return jsonify(service_response)
 
-        return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
+        return jsonify(service_response), 200
 
     except Exception as error:
         print(error)
@@ -228,7 +228,7 @@ def signup_tariff():
         if tariff_response["code"] != 200:
             return jsonify(tariff_response)
 
-        return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
+        return jsonify(tariff_response), 200
 
     except Exception as error:
         print(error)
@@ -294,7 +294,7 @@ def get_me_user():
         
     except Exception as error:
         print(error)
-        return jsonify({"code": 500, "msg": "Error in server, something was wrong"})
+        return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
 
 
 
@@ -309,7 +309,7 @@ def create_token():
         password = request.json.get("password", None)
 
         if email == None or password == None:
-            return {"code": 400, "msg": "Insert and email or password"}
+            return {"code": 400, "msg": "Introduzca un email o una contraseña"}
 
         # Consulta la base de datos por el nombre de usuario y la contraseña
         # user = User.filter.query(email=email).first()                   # No sé como hacer esta query segun el metodo de la academia
@@ -318,19 +318,19 @@ def create_token():
 
         if user is None:
             # el usuario no se encontró en la base de datos
-            return jsonify({"msg": "Bad email or password"}), 401       # SIEMPRE PONER EMAIL O PASS, NUNCA DECIR 1 SOLA DE LAS 2 ESTÁ MAL, MUCHA INFORMACIÓN GRATIS PARA LOS HACKERS
+            return jsonify({"msg": "Error en el email o en la contraseña"}), 401       # SIEMPRE PONER EMAIL O PASS, NUNCA DECIR 1 SOLA DE LAS 2 ESTÁ MAL, MUCHA INFORMACIÓN GRATIS PARA LOS HACKERS
 
 
         if password == user.password:
             # crea un nuevo token con la info del usuario y us id dentro
             access_token = create_access_token(identity=user.serialize())
-            return jsonify({ "token": access_token, "user": user.serialize() })
+            return jsonify({"code": 200, "msg": "Inicio de sesión correcto", "token": access_token, "user": user.serialize() })
         else:
-            return jsonify({"msg": "Bad email or password"}), 401
+            return jsonify({"msg": "Error en el email o en la contraseña"}), 401
         
     except Exception as error:
         print(error)
-        return jsonify({"code": 500, "msg": "Error in server, something was wrong"})
+        return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
 
 
 # EJEMPLO DE RUTA PROTEGIDA - PARA PODER HACER USEEFFECT EN FRONT Y SEGUIR LOGUEADO
@@ -347,7 +347,7 @@ def protected():
 
     access_token = create_access_token(identity=user.serialize())
 
-    return jsonify({ "token": access_token, "user": user.serialize() }), 200
+    return jsonify({ "code": 200, "msg": "Inicio de sesión correcto", "token": access_token, "user": user.serialize() }), 200
 
 
 # return jsonify({"id": user.id, "email": user.email }), 200
@@ -367,7 +367,7 @@ def config_services():
         # Rellenar la tabla de la DB, con el registro de Usuario
         config_response = create_service()
 
-        return jsonify({"code": 200, "msg": "Todo ha ido bien"}), 200
+        return jsonify(config_response), 200
 
     except Exception as error:
         print(error)

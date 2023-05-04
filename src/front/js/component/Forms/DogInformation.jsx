@@ -245,10 +245,11 @@ const DogInformation = (props) => {
                     </label>
                     <input type="text" className="form-control"
                         id={`microchip${props.dogInfo.id}`} aria-describedby="micro-chip"
-                        placeholder="Microchip del perro" name="microchip"
+                        name="microchip"
                         value={userInput.microchip}
-                        onChange={handleUserInput}
-                        required />
+                        // placeholder="Microchip del perro"
+                        // onChange={handleUserInput}
+                        disabled />
                 </div>
 
                 <div className="col">

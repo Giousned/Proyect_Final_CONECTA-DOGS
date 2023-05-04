@@ -48,11 +48,11 @@ def create_tariff(body):
                 continue
 
 
-        return {"code": 200, "msg": "All ok"}
+        return {"code": 200, "msg": "¡Tarifa creada correctamente!"}
 
     except Exception as error:
         print(error)
-        return {"code": 500, "msg": "Error in server, something was wrong"}
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
 
 
 def get_tariffs():
@@ -66,11 +66,11 @@ def get_tariffs():
 
         tariff_list = [tariff.serialize() for tariff in tariffs]
 
-        return {"code": 200, "msg": "All ok", "tariffs": tariff_list}
+        return {"code": 200, "msg": "Tarifas existentes obtenidas", "tariffs": tariff_list}
 
     except Exception as error:
         print(error)
-        return {"code": 500, "msg": "Error in server, something was wrong"}
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
         
 
 def get_tariff(id):
@@ -81,11 +81,11 @@ def get_tariff(id):
         tariff = db.get_or_404(Tariffs, id)
         # tariff = db.session.execute(db.select(Tariff).filter_by(id)).scalars().one()
         
-        return {"code": 200, "msg": "All ok", "tariff": tariff.serialize()}
+        return {"code": 200, "msg": "Tarifa requerida obtenida", "tariff": tariff.serialize()}
 
     except Exception as error:
         print(error)
-        return {"code": 500, "msg": "Error in server, something was wrong"}
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
 
 
 def update_tariff(body, id):
@@ -100,11 +100,11 @@ def update_tariff(body, id):
 
         db.session.commit()
 
-        return {"code": 200, "msg": "tariff update ok", "tariff": tarif.serialize()}
+        return {"code": 200, "msg": "¡Tarifa actualizada correctamente!", "tariff": tarif.serialize()}
 
     except Exception as error:
         print(error)
-        return {"code": 500, "msg": "Error in server, something was wrong"}
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
 
 
 def delete_tariff(id):
@@ -120,9 +120,9 @@ def delete_tariff(id):
         # query = db.select(Tariff).order_by(Tariff.id)                 # SI DESPUES SE NECESITA UNA LISTA COMPLETA ACTUALIZADA POR PARTE DEL FRONT
         # tariffs = db.session.execute(query).scalars()
 
-        return {"code": 200, "msg": "Delete tariff ok"}
+        return {"code": 200, "msg": "¡Tarifa eliminada correctamente!"}
 
     except Exception as error:
         print(error)
-        return {"code": 500, "msg": "Error in server, something was wrong"}
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
 

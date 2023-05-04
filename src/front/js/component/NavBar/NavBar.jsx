@@ -1,5 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  Button,
+  Element,
+  Events,
+  animateScroll as scroll,
+  scrollSpy,
+  scroller,
+} from "react-scroll";
 
 import useAuthContext from "../../store/AuthContext";
 import Logo from "../../../img/conectadogs-logo-white.png";
@@ -10,7 +18,10 @@ const NavBar = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-dark navbar-dark navbar-custom">
+      <nav
+        className="navbar navbar-expand-lg bg-dark navbar-dark navbar-custom"
+        id="#navbar"
+      >
         <div className="container">
           <Link to="/" className="navbar-brand">
             <strong>
@@ -126,15 +137,6 @@ const NavBar = () => {
                       <Link to="/log-in-form" className="dropdown-item">
                         <i className="far fa-comment-alt pe-2"></i> Iniciar
                         Sesión
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link
-                        to="/public-profile"
-                        className="nav-link "
-                        aria-current="page"
-                      >
-                        Public profile
                       </Link>
                     </li>
 
