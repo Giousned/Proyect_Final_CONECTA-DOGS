@@ -46,7 +46,7 @@ export const AppProvider = ({ children }) => {
 
     resetInput(newObj)
     
-    if(!(storeAuth.userLog.user.tariffs) || (storeAuth.userLog.user.tariffs).length == 0) return
+    if((storeAuth.userLog.user.tariffs).length == 0) return
     
     newObjTariffs = handleObteinInputsTariffs(storeAuth.userLog.user.tariffs)
 
