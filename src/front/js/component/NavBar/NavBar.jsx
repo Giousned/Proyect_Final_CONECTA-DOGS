@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
 
 import useAuthContext from "../../store/AuthContext";
 import Logo from "../../../img/conectadogs-logo-white.png";
@@ -10,7 +11,7 @@ const NavBar = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-dark navbar-dark navbar-custom">
+      <nav className="navbar navbar-expand-lg bg-dark navbar-dark navbar-custom" id="#navbar">
         <div className="container">
           <Link to="/" className="navbar-brand">
             <strong>
@@ -75,38 +76,38 @@ const NavBar = () => {
                   <i className="fas fa-user-circle"></i>
                 </a>
 
-                {storeAuth.userLog.token 
+                {storeAuth.userLog.token
                   ? <ul className="dropdown-menu">
-                      <li>
-                        <Link to="/user-profile" className="dropdown-item">
-                          <i className="far fa-user pe-2"></i> Ver Perfil
-                        </Link>
-                      </li>
+                    <li>
+                      <Link to="/user-profile" className="dropdown-item">
+                        <i className="far fa-user pe-2"></i> Ver Perfil
+                      </Link>
+                    </li>
 
-                      <li>
-                        <Link to="/notifications" className="dropdown-item">
-                          <i className="far fa-comment-alt pe-2"></i> Notificaciones
-                        </Link>
-                      </li>
-                      <li>
-                        <hr className="dropdown-divider" />
-                      </li>
+                    <li>
+                      <Link to="/notifications" className="dropdown-item">
+                        <i className="far fa-comment-alt pe-2"></i> Notificaciones
+                      </Link>
+                    </li>
+                    <li>
+                      <hr className="dropdown-divider" />
+                    </li>
 
-                      <li>
-                        <Link to="/reserves" className="dropdown-item">
-                          <i className="far fa-bell pe-2"></i> Reservas
-                        </Link>
-                      </li>
-                      <li>
-                        <hr className="dropdown-divider" />
-                      </li>
+                    <li>
+                      <Link to="/reserves" className="dropdown-item">
+                        <i className="far fa-bell pe-2"></i> Reservas
+                      </Link>
+                    </li>
+                    <li>
+                      <hr className="dropdown-divider" />
+                    </li>
 
-                      <li>
-                        <Link to="/" className="dropdown-item" onClick={actionsAuth.handleLogOut}>
-                          <i className="fas fa-sign-out-alt pe-2"></i> Cerrar Sesión
-                        </Link>
-                      </li>
-                    </ul>
+                    <li>
+                      <Link to="/" className="dropdown-item" onClick={actionsAuth.handleLogOut}>
+                        <i className="fas fa-sign-out-alt pe-2"></i> Cerrar Sesión
+                      </Link>
+                    </li>
+                  </ul>
                   : <ul className="dropdown-menu">
                       <li>
                         <Link to="/log-in-form" className="dropdown-item">
