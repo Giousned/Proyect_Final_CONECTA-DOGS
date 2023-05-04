@@ -8,12 +8,12 @@ const ReserveCard = () => {
           <div className="card-list">
             <div className="card-item -front">
               <div className="card-item__side">
-                <div className="card-item__cover">
+               
                   <img
                     src="https://cdn.pixabay.com/photo/2019/02/06/15/18/puppy-3979350_960_720.jpg"
                     className="card-item__bg"
                   />
-                </div>
+                
               </div>
             </div>
           </div>

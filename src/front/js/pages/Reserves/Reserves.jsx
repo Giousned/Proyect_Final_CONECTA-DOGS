@@ -35,6 +35,7 @@ const Reserves = () => {
           <div className="d-flex">
             <ReserveCard />
             <ReserveCard />
+            <ReserveCard />
           </div>
         </div>
         <div className="tab-pane fade" id="past-reserves"
