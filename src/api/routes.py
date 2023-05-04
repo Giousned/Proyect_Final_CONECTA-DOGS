@@ -6,7 +6,7 @@ from api.models import db
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from api.utils import generate_sitemap, APIException
-from api.models import User, Services, Tariffs, Dog                                         # from models import Person
+from api.models import User, Services, Tariffs, Dog, Books                                       # from models import Person
 from api.controllers.user import create_user, get_users, get_user, update_user, delete_user, update_me_user
 from api.controllers.dog import create_dog, get_dogs, get_dog, update_dog, delete_dog
 from api.controllers.service import create_service, get_services, get_service, update_service, delete_service
@@ -59,14 +59,13 @@ def users_id(id):
 
     try:
 
-        body = request.json
-
         # Obtener, actualizar y borrar info de las tablas de la DB
+        if request.method == "PUT":
+            body = request.json
+            user_response = update_user(body, id)
+
         if request.method == "GET":
             user_response = get_user(id)
-
-        if request.method == "PUT":
-            user_response = update_user(body, id)
 
         if request.method == "DELETE":
             user_response = delete_user(id)
@@ -107,7 +106,8 @@ def signup_dog():
 def dogs():
 
     try:
-         # Obtener info de las tablas de la DB
+        
+        # Obtener info de las tablas de la DB
         dogs_response = get_dogs()
 
         if dogs_response["code"] != 200:
@@ -124,15 +124,14 @@ def dogs():
 def dogs_id(id):
 
     try:
-
-        body = request.json
-
+        
         # Obtener, actualizar y borrar info de las tablas de la DB
+        if request.method == "PUT":
+            body = request.json
+            dog_response = update_dog(body, id)
+
         if request.method == "GET":
             dog_response = get_dog(id)
-
-        if request.method == "PUT":
-            dog_response = update_dog(body, id)
 
         if request.method == "DELETE":
             dog_response = delete_dog(id)
@@ -174,7 +173,7 @@ def services():
 
     try:
 
-         # Obtener info de las tablas de la DB
+        # Obtener info de las tablas de la DB
         services_response = get_services()
 
         if services_response["code"] != 200:
@@ -192,14 +191,13 @@ def services_id(id):
 
     try:
 
-        body = request.json
-
         # Obtener, actualizar y borrar info de las tablas de la DB
+        if request.method == "PUT":
+            body = request.json
+            service_response = update_service(body, id)
+
         if request.method == "GET":
             service_response = get_service(id)
-
-        if request.method == "PUT":
-            service_response = update_service(body, id)
 
         if request.method == "DELETE":
             service_response = delete_service(id)
@@ -242,7 +240,7 @@ def tariffs():
 
     try:
 
-         # Obtener info de las tablas de la DB
+        # Obtener info de las tablas de la DB
         tariffs_response = get_tariffs()
 
         if tariffs_response["code"] != 200:
@@ -260,14 +258,13 @@ def tariffs_id(id):
 
     try:
 
-        body = request.json
-
         # Obtener, actualizar y borrar info de las tablas de la DB
+        if request.method == "PUT":
+            body = request.json
+            tariff_response = update_tariff(body, id)
+
         if request.method == "GET":
             tariff_response = get_tariff(id)
-
-        if request.method == "PUT":
-            tariff_response = update_tariff(body, id)
 
         if request.method == "DELETE":
             tariff_response = delete_tariff(id)
@@ -316,6 +313,8 @@ def get_me_user():
         print(error)
         return jsonify({"code": 500, "msg": "Error in server, something was wrong"})
 
+
+
 #############################################################
 # Crea una ruta para autenticar a los usuarios y devolver el token JWT.
 # La función create_access_token() se utiliza para generar el JWT.
@@ -349,6 +348,9 @@ def create_token():
     except Exception as error:
         print(error)
         return jsonify({"code": 500, "msg": "Error in server, something was wrong"})
+
+
+
 
 
 

@@ -116,7 +116,7 @@ def update_user(body, id):
 
     try:
     
-        # Obtener usuario de la base de datos           # NO SE PUEDE PASAR NI ACTUALIZAR UN EMAIL, PORQUE SI MANDAS EL MISMO, COMO ES UNICO DA ERROR
+        # Obtener usuario de la base de datos
         user = db.get_or_404(User, id)
 
         claves_user = body.keys()
@@ -126,6 +126,7 @@ def update_user(body, id):
  
         user.name = body["name"]
         user.lastName = body["lastName"]
+        user.email = body["email"]
         user.address = body["address"]
         user.province = body["province"]
         user.postalCode = int(body["postalCode"])

@@ -1,4 +1,4 @@
-import { RUTABACK } from "../constants/RutaBack.jsx";
+import { RUTABACK } from "../constants/RutaBack.js";
 
 
 export const GET_Tariff = (tariff_id) => {
