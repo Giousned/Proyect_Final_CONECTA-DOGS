@@ -11,6 +11,8 @@ from api.controllers.user import create_user, get_users, get_user, update_user, 
 from api.controllers.dog import create_dog, get_dogs, get_dog, update_dog, delete_dog
 from api.controllers.service import create_service, get_services, get_service, update_service, delete_service
 from api.controllers.tarif import create_tariff, get_tariffs, get_tariff, update_tariff, delete_tariff
+from api.controllers.book import create_book, get_books, get_book, update_book, delete_book, acepted_book
+
 
 
 api = Blueprint('api', __name__)
@@ -277,6 +279,92 @@ def tariffs_id(id):
     except Exception as error:
         print(error)
         return jsonify(tariff_response), tariff_response["code"]
+
+
+
+###################################################################
+# RUTAS PARA EL REGISTRO DE RESERVAS POR PARTE DE LOS "PROPIETARIOS" Y LAS PETICIONES DE RESERVA(S)/CRUD DESDE EL FRONT
+@api.route("/signup-book", methods=["POST"])
+@jwt_required()
+def signup_book():
+
+    try:
+
+        body = request.json
+
+        # Rellenar la tabla de la DB, con el registro de 1 Reserva nueva por parte de los "propietarios"
+        book_response = create_book(body)
+        if book_response["code"] != 200:
+            return jsonify(book_response)
+
+        return jsonify(book_response), 200
+
+    except Exception as error:
+        print(error)
+        return jsonify(book_response), book_response["code"]
+
+
+@api.route("/books", methods=["GET"])
+def books():
+
+    try:
+
+        # Obtener info de las tablas de la DB
+        books_response = get_books()
+
+        if books_response["code"] != 200:
+            return jsonify(books_response)
+
+        return jsonify(books_response["books"])
+
+    except Exception as error:
+        print(error)
+        return jsonify(books_response), books_response["code"]
+
+
+@api.route("/books/<int:id>", methods=["GET","PUT","DELETE"])
+def books_id(id):
+
+    try:
+
+        # Obtener, actualizar y borrar info de las tablas de la DB
+        if request.method == "PUT":
+            body = request.json
+            book_response = update_book(body, id)
+
+        if request.method == "GET":
+            book_response = get_book(id)
+
+        if request.method == "DELETE":
+            book_response = delete_book(id)
+
+        if book_response["code"] != 200:
+            return jsonify(book_response)
+
+        return jsonify(book_response)
+
+    except Exception as error:
+        print(error)
+        return jsonify(book_response), book_response["code"]
+
+
+@api.route("/acepted-book/<int:id>", methods=["GET"])
+def confirm_book(id):
+
+    try:
+
+        # Obtener info de las tablas de la DB
+        books_response = acepted_book(id)
+
+        if books_response["code"] != 200:
+            return jsonify(books_response)
+
+        return jsonify(books_response["books"])
+
+    except Exception as error:
+        print(error)
+        return jsonify(books_response), books_response["code"]
+
 
 
 

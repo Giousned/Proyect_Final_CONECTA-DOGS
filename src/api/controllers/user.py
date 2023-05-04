@@ -13,7 +13,7 @@ def create_user(body):
         claves_user = body.keys()
 
         if not "email" in claves_user or not "password" in claves_user or not "name" in claves_user or not "lastName" in claves_user or not "address" in claves_user or not "province" in claves_user or not "postalCode" in claves_user or not "phone" in claves_user or not "country" in claves_user or not "birthdate" in claves_user:           # or not "latitude" in claves_user or not "longitude" in claves_user        
-            return {"code": 400, "msg": "Missing data in the forms"}
+            return {"code": 400, "msg": "¡Información recibida en el Back insuficiente, falta información!"}
 
 
         # Crear un nuevo usuario en la base de datos
@@ -36,7 +36,7 @@ def create_user(body):
         db.session.add(new_user)
         db.session.commit()
         
-        id_user = new_user.id
+        # id_user = new_user.id
 
         return {"code": 200, "msg": "¡Usuario creado correctamente!" }         # "id": id_user # ID para rutas
 

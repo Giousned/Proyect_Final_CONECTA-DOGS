@@ -11,12 +11,12 @@ def create_dog(body):
         claves_dog = body.keys()
 
         if not "dogName" in claves_dog or not "breed" in claves_dog or not "dogBirth" in claves_dog or not "dogSex" in claves_dog or not "neutered" in claves_dog or not "socialCats" in claves_dog or not "socialKids" in claves_dog or not "socialDogs" in claves_dog or not "microchip" in claves_dog:
-            return {"code": 400, "msg": "Missing data in the forms"}
+            return {"code": 400, "msg": "¡Información recibida en el Back insuficiente, falta información!"}
 
         sub_token = get_jwt_identity()
         user_id = sub_token["id"]       
 
-        # Crear un nuevo usuario en la base de datos
+        # Crear un nuevo perro en la base de datos
         new_dog = Dog(
             user_id = user_id,
             dogName = body["dogName"],
@@ -44,9 +44,9 @@ def create_dog(body):
             #     Dog(photo = response)
 
         db.session.add(new_dog)
-        id_dog = new_dog.id
-        
         db.session.commit()
+
+        # id_dog = new_dog.id
 
         return {"code": 200, "msg": "Perro creado correctamente!"}         # "id": id_dog #ID para rutas
 
