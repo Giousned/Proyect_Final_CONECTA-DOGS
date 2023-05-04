@@ -6,8 +6,8 @@ const Alert = (props) => {
   if (props.data.code != 200) color = danger;
 
   return (
-    <div aria-live="polite" aria-atomic="true" class="position-relative">
-      <div class="toast-container top-0 end-0 p-3">
+    <div aria-live="polite" aria-atomic="true" className="position-relative">
+      <div className="toast-container top-0 end-0 p-3">
         <div
           className={`toast text-bg-${color} position-fixed bottom-0 end-0`}
           role="alert"
