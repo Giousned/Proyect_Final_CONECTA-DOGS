@@ -29,3 +29,26 @@ const DogCardInformation = (props) => {
 };
 
 export default DogCardInformation;
+
+
+
+{/* <div className="container mt-4">
+<div className="d-flex justify-content-center fs-2 fw-bold"> PERFIL DE MI PERRO </div>
+<div className="d-flex my-2">
+
+  <ul>
+    <li>Nombre: {dogInfo.dogName}</li>
+    <li>Raza: {dogInfo.breed}</li>
+    <li>Género: {dogInfo.dogSex}</li>
+    <li>Tamaño: {dogInfo.dogSize}</li>
+    <li>Esterilizado: {(dogInfo.neutered) ? "Sí" : "No"}</li>
+    <li>Fecha Nacimiento: {dogInfo.dogBirth}</li>
+    <li>Actividad: {dogInfo.dogActivity}</li>
+    <li>Microchip: {dogInfo.microchip}</li>
+    <li>Observaciones: {dogInfo.observations}</li>
+  </ul>
+
+  <div className="avatar-dog my-3"></div>
+</div>
+</div>
+</div> */}

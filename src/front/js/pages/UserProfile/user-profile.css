@@ -78,10 +78,3 @@
   height: 70%;
   margin: auto;
 }
-
-.boton-registro-perro{
-  display: flex;
-  justify-content: center;
-  width: 50%;
-  background-color: blue;
-}

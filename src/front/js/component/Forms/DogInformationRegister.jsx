@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
@@ -8,53 +8,45 @@ import useUserInput from "../../hooks/useUserInput.js";
 
 import "./signup-form.css";
 
-const DogInformation = (props) => {
+const DogInformationRegister = () => {
 
     const { store, actions } = useAppContext();
 
-    const { userInput, resetInput, handleUserInput, handleUserCheck } = useUserInput(props.dogInfo);
-
-    const handleUpdate = (e) => {
+    const { userInput, handleUserInput } = useUserInput();
+    
+    const handleSubmit = (e) => {
         e.preventDefault();
 
-        actions.handleUpdateDog(e, userInput, props.dogInfo.id);
-
-    }
-
-    const handleDelete = (e) => {
-        e.preventDefault();
-
-        actions.handleDeleteDog(e, props.dogInfo.id);
-
+        actions.handleRegisterDog(e, userInput);
     }
 
 
     return (
         <>
             <div className="d-grid gap-2">
-                <label htmlFor={`foto-perro${props.dogInfo.id}`} className="form-label">
+                <label htmlFor="foto-perro" className="form-label">
                     Foto del perro
                 </label>
-                <input className="form-control" type="file" id={`foto-perro${props.dogInfo.id}`}
+                <input className="form-control" type="file" id="foto-perro"
                     name="dogPhoto" value={userInput.dogPhoto}
                     onChange={handleUserInput} />
 
                 <div className="input-group">
                     <div className="col me-2">
-                        <label htmlFor={`nombre-perro${props.dogInfo.id}`} className="form-label">
+                        <label htmlFor="nombre-perro" className="form-label">
                             Nombre *
                         </label>
-                        <input type="text" className="form-control" id={`nombre-perro${props.dogInfo.id}`}
+                        <input type="text" className="form-control" id="nombre-perro"
                             aria-describedby="nombre_perro" placeholder="Nombre del perro"
                             name="dogName" value={userInput.dogName}
                             onChange={handleUserInput} required />
                     </div>
 
                     <div className="col ms-2">
-                        <label htmlFor={`raza-perro${props.dogInfo.id}`} className="form-label">
+                        <label htmlFor="raza-perro" className="form-label">
                             Raza *
                         </label>
-                        <input type="text" className="form-control" id={`raza-perro${props.dogInfo.id}`}
+                        <input type="text" className="form-control" id="raza-perro"
                             aria-describedby="raza_perro" placeholder="Raza del perro"
                             name="breed" value={userInput.breed}
                             onChange={handleUserInput} required />
@@ -63,18 +55,18 @@ const DogInformation = (props) => {
 
                 <div className="input-group">
                     <div className="col me-2">
-                        <label htmlFor={`fecha-nacimiento-dog${props.dogInfo.id}`} className="form-label">
+                        <label htmlFor="fecha-nacimiento-dog" className="form-label">
                             Fecha de nacimiento *
                         </label>
                         <br />
-                        <input className="form-control" type="date" id={`fecha-nacimiento-dog${props.dogInfo.id}`}
+                        <input className="form-control" type="date" id="fecha-nacimiento-dog"
                             aria-describedby="fecha-nacimiento-perro"
                             name="dogBirth"
                             value={userInput.dogBirth}
                             onChange={handleUserInput}
                             required />
                         {/* <DatePicker
-                            id={`cumple-perro${props.dogInfo.id}`} className="text-center form-control"
+                            id="cumple-perro" className="text-center form-control"
                             placeholderText="04-2023"
                             name="dogBirth"
                             selected={userInput.Date}
@@ -85,7 +77,7 @@ const DogInformation = (props) => {
                     </div>
 
                     <div className="col ms-2">
-                        <label htmlFor={`sexo-dog${props.dogInfo.id}`} className="form-label">
+                        <label htmlFor="sexo-dog" className="form-label">
                             Sexo *
                         </label>
                         <select className="form-select" aria-label="Sexo del perro"
@@ -99,44 +91,44 @@ const DogInformation = (props) => {
                 </div>
 
                 <div className="col">
-                    <label htmlFor={`tamañoPerro${props.dogInfo.id}`} className="form-label">
+                    <label htmlFor="tamañoPerro" className="form-label">
                         Tamaño del perro *
                     </label>
                     <br />
                     <div className={"form-check form-check-inline dog-size" + ((userInput.dogSize == "Pequeño") ? " activeGlow" : "")}>
                         <input type="radio" className="form-check-input"
-                            name="dogSize" id={`sizeSmall${props.dogInfo.id}`} value="Pequeño"
+                            name="dogSize" id="sizeSmall" value="Pequeño"
                             onChange={handleUserInput}
                             checked={userInput.dogSize == "Pequeño"}
                         />
-                        <label htmlFor={`sizeSmall${props.dogInfo.id}`} className="form-check-label">
+                        <label htmlFor="sizeSmall" className="form-check-label">
                             <i className="fas fa-paw"></i> Pequeño (0kg - 7kg)
                         </label>
                     </div>
                     <div className={"form-check form-check-inline dog-size" + ((userInput.dogSize == "Mediano") ? " activeGlow" : "")}>
                         <input type="radio" className="form-check-input"
-                            name="dogSize" id={`sizeMedium${props.dogInfo.id}`} value="Mediano"
+                            name="dogSize" id="sizeMedium" value="Mediano"
                             onChange={handleUserInput}
                             checked={userInput.dogSize == "Mediano"} />
-                        <label htmlFor={`sizeMedium${props.dogInfo.id}`} className="form-check-label">
+                        <label htmlFor="sizeMedium" className="form-check-label">
                             <i className="fas fa-paw"></i> Mediano (8kg - 18kg)
                         </label>
                     </div>
                     <div className={"form-check form-check-inline dog-size" + ((userInput.dogSize == "Grande") ? " activeGlow" : "")}>
                         <input type="radio" className="form-check-input"
-                            name="dogSize" id={`sizeBig${props.dogInfo.id}`} value="Grande"
+                            name="dogSize" id="sizeBig" value="Grande"
                             onChange={handleUserInput}
                             checked={userInput.dogSize == "Grande"} />
-                        <label htmlFor={`sizeBig${props.dogInfo.id}`} className="form-check-label">
+                        <label htmlFor="sizeBig" className="form-check-label">
                             <i className="fas fa-paw"></i> Grande (19kg - 45kg)
                         </label>
                     </div>
                     <div className={"form-check form-check-inline dog-size" + ((userInput.dogSize == "Gigante") ? " activeGlow" : "")}>
                         <input type="radio" className="form-check-input"
-                            name="dogSize" id={`sizeHuge${props.dogInfo.id}`}
+                            name="dogSize" id="sizeHuge"
                             value="Gigante" onChange={handleUserInput}
                             checked={userInput.dogSize == "Gigante"} />
-                        <label htmlFor={`sizeHuge${props.dogInfo.id}`} className="form-check-label">
+                        <label htmlFor="sizeHuge" className="form-check-label">
                             <i className="fas fa-paw"></i> Gigante (+46kg)
                         </label>
                     </div>
@@ -148,7 +140,7 @@ const DogInformation = (props) => {
                     <div className="row my-2">
 
                         <div className="col-12 col-md-6">
-                            <label htmlFor={`estirilizado${props.dogInfo.id}`} className="form-label">
+                            <label htmlFor="estirilizado" className="form-label">
                                 ¿Tu perro está esterilizado? *
                             </label>
                             <select className="form-select" aria-label="estirilizado"
@@ -161,7 +153,7 @@ const DogInformation = (props) => {
                         </div>
 
                         <div className="col-12 col-md-6">
-                            <label htmlFor={`sociable-gatos${props.dogInfo.id}`} className="form-label">
+                            <label htmlFor="sociable-gatos" className="form-label">
                                 ¿Tu perro es sociable con gatos? *
                             </label>
                             <select className="form-select" aria-label="sociable-gatos"
@@ -175,7 +167,7 @@ const DogInformation = (props) => {
 
 
                         <div className="col-12 col-md-6">
-                            <label htmlFor={`sociable-niños${props.dogInfo.id}`} className="form-label">
+                            <label htmlFor="sociable-niños" className="form-label">
                                 ¿Tu perro es sociable con niños? *
                             </label>
                             <select className="form-select" aria-label="sociable-niños"
@@ -188,7 +180,7 @@ const DogInformation = (props) => {
                         </div>
 
                         <div className="col-12 col-md-6">
-                            <label htmlFor={`sociable-perros${props.dogInfo.id}`} className="form-label">
+                            <label htmlFor="sociable-perros" className="form-label">
                                 ¿Tu perro es sociable con otros perros? *
                             </label>
                             <select className="form-select" aria-label="sociable-perros"
@@ -203,92 +195,78 @@ const DogInformation = (props) => {
                 </div>
 
                 <div className="col text-center py-1">
-                    <label htmlFor={`actividad${props.dogInfo.id}`} className="form-label">
+                    <label htmlFor="actividad" className="form-label">
                         Nivel de actividad de tu perro
                     </label>
                     <br />
                     <div className={"form-check form-check-inline dog-mtn" + ((userInput.dogActivity == "Baja") ? " activeGlow" : "")}>
                         <input type="radio" className="form-check-input"
-                            name="dogActivity" id={`activityLow${props.dogInfo.id}`}
+                            name="dogActivity" id="activityLow"
                             value="Baja"
                             onChange={handleUserInput}
                             checked={userInput.dogActivity == "Baja"} />
-                        <label className="form-check-label" htmlFor={`activityLow${props.dogInfo.id}`}>
+                        <label className="form-check-label" htmlFor="activityLow">
                             Baja
                         </label>
                     </div>
                     <div className={"form-check form-check-inline dog-mtn" + ((userInput.dogActivity == "Media") ? " activeGlow" : "")}>
                         <input type="radio" className="form-check-input"
-                            name="dogActivity" id={`activityMedium${props.dogInfo.id}`}
+                            name="dogActivity" id="activityMedium"
                             value="Media"
                             onChange={handleUserInput}
                             checked={userInput.dogActivity == "Media"} />
-                        <label className="form-check-label" htmlFor={`activityMedium${props.dogInfo.id}`}>
+                        <label className="form-check-label" htmlFor="activityMedium">
                             Media
                         </label>
                     </div>
                     <div className={"form-check form-check-inline dog-mtn" + ((userInput.dogActivity == "Alta") ? " activeGlow" : "")}>
                         <input type="radio" className="form-check-input"
-                            name="dogActivity" id={`activityHigh${props.dogInfo.id}`}
+                            name="dogActivity" id="activityHigh"
                             value="Alta"
                             onChange={handleUserInput}
                             checked={userInput.dogActivity == "Alta"} />
-                        <label className="form-check-label" htmlFor={`activityHigh${props.dogInfo.id}`}>
+                        <label className="form-check-label" htmlFor="activityHigh">
                             Alta
                         </label>
                     </div>
                 </div>
 
                 <div className="col">
-                    <label htmlFor={`microchip${props.dogInfo.id}`} className="form-label">
+                    <label htmlFor="microchip" className="form-label">
                         Microchip *
                     </label>
                     <input type="text" className="form-control"
-                        id={`microchip${props.dogInfo.id}`} aria-describedby="micro-chip"
-                        placeholder="Microchip del perro" name="microchip"
+                        id="microchip" aria-describedby="micro-chip"
+                        placeholder="Microchip del perro (15 dígitos únicos)" name="microchip"
                         value={userInput.microchip}
                         onChange={handleUserInput}
                         required />
                 </div>
 
                 <div className="col">
-                    <label htmlFor={`FormControlTextarea${props.dogInfo.id}`} className="form-label">
+                    <label htmlFor="FormControlTextarea1" className="form-label">
                         Observaciones
                     </label>
-                    <textarea className="form-control" id={`FormControlTextarea${props.dogInfo.id}`} rows="3"
+                    <textarea className="form-control" id="FormControlTextarea1" rows="3"
                         name="observations"
                         value={userInput.observations}
                         onChange={handleUserInput}></textarea>
                 </div>
 
-                <div className="d-flex justify-content-evenly">
-
-                    <button
-                        type="submit"
-                        className="action-button shadow animate my-2 mx-auto btn-primary"
-                        onClick={handleUpdate}
-                    >
-                    Actualizar Perro
-                    </button>
-
-                    <button
-                        type="submit"
-                        className="action-button shadow animate my-2 mx-auto btn-danger"
-                        onClick={handleDelete}
-                    >
-                    Eliminar Perro
-                    </button>
-
-                </div>
-
-
+                <button
+                    type="submit"
+                    className="boton-registro-perro action-button shadow animate my-2 mx-auto"
+                    onClick={handleSubmit}
+                >
+                Registrar Perro
+                </button>
 
             </div>
         </>
     );
 }
 
-export default DogInformation;
+export default DogInformationRegister;
 
 
 
