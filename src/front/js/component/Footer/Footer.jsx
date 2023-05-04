@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
+import { Link } from "react-router-dom";
 
 import "../Footer/footer.css";
 import Logo from "../../../img/conectadogs-logo-white.png";
@@ -7,16 +7,17 @@ import Logo from "../../../img/conectadogs-logo-white.png";
 const Footer = () => {
   return (
     <section className="contact bg-dark py-4">
-      <Link to="#navbar" className="text-warning align-items-center justify-content-center" spy={true} smooth={true} duration={800}>
-    <h2><i class="fas fa-arrow-circle-up"></i> Ir arriba </h2>
-  </Link>
       <footer className="bg-dark text-center text-lg-start text-white">
         <div className="container p-2">
           <div className="row my-4">
             {/* 1era Columna */}
             <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
               <div className="shadow-1-strong d-flex align-items-center justify-content-center mb-3 mx-auto">
-                <img src={Logo} className="logo logo-footer" />
+                <Link to="/" className="navbar-brand">
+                  <strong>
+                    <img src={Logo} className="logo logo-footer" />
+                  </strong>
+                </Link>
               </div>
               <p className="text-center">Conectamos Cuidadores con Propietarios de Perros</p>
             </div>
@@ -78,9 +79,6 @@ const Footer = () => {
         </div>
 
         <div className="text-center">
-          <Link to="#navbar" className="text-warning" spy={true} smooth={true} duration={800}>
-            <h2><i class="fas fa-arrow-circle-up"></i> Ir arriba </h2>
-          </Link>
           © 2023 Conecta-Dogs.
           <br />
           Proyecto Final - Full Stack Developer - 4Geeks Academy
