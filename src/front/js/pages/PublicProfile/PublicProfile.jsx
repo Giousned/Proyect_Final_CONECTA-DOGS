@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import "./public-profile.css";
+import "../PublicProfile/PublicProfileStyles.css";
+
 import { useNavigate } from "react-router-dom";
 import { GET_All_Users } from "../../services/USERFetchs";
-import PublicCard from "../../component/PublicCard/PubliCard";
+import PublicCard from "../../component/PublicCard/PubliCard.jsx";
 
 const PublicProfile = () => {
   useEffect(() => {

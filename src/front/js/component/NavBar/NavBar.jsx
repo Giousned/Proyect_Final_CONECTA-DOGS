@@ -73,15 +73,6 @@ const NavBar = () => {
                   CONTACTO
                 </button>
               </li>
-              <li className="nav-item">
-                <Link
-                  to="/public-profile"
-                  className="nav-link "
-                  aria-current="page"
-                >
-                  Public profile
-                </Link>
-              </li>
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle border rounded px-3"
@@ -114,6 +105,17 @@ const NavBar = () => {
                     <li>
                       <Link to="/reserves" className="dropdown-item">
                         <i className="far fa-bell pe-2"></i> Reservas
+                      </Link>
+                    </li>
+                    <li>
+                      <hr className="dropdown-divider" />
+                    </li>
+                    <li className="nav-item">
+                      <Link
+                        to="/public-profile"
+                        className="dropdown-item"
+                      >
+                        Public Profile
                       </Link>
                     </li>
                     <li>

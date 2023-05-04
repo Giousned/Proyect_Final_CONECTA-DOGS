@@ -14,7 +14,7 @@ const PublicCard = (props) => {
       <div className="card-body">
         <h4 className="nombre">Claudia{props.userName}</h4>
         <h6 className="Localizacion">
-          <i class="fas fa-map-marker-alt"></i> Madrid{props.userLocation}
+          <i className="fas fa-map-marker-alt"></i> Madrid{props.userLocation}
         </h6>
         <button
           type="button"

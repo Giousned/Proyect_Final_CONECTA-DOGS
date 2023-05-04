@@ -1,5 +1,5 @@
 import React from "react";
-import "./public-profile.css";
+import "../pages/PublicProfile/PublicProfileStyles.css";
 import { useNavigate } from "react-router-dom";
 
 const MoreAbout = () => {
@@ -13,19 +13,19 @@ const MoreAbout = () => {
         alt="..."
       />
       <div className="card-body-more-about">
-        <hh4 className="name">Claudia</hh4>
+        <h4 className="name">Claudia</h4>
         <h6 className="Localizacion">Sevilla</h6>
         <p className="more-about-me">
           Me encantan los perros.Disfruto mucho sacndolos de paseo.Tengo
           experiencia trabajando en una perrera que lleva la ONG "perritos sin
-          casa"<div className=""></div>
+          casa"
         </p>
         <h6 className="Servicios y Tarifas">Servicios y Tarifas</h6>
         <li>Guarderia de dia//precio</li>
         <li>Guarderia de noche//precio</li>
         <li>Paseos (por hora)//precio</li>
         <button onClick={() => navigate(-1)}>Cuidadores</button>
-        <button type="button" class="btn btn-success">
+        <button type="button" className="btn btn-success">
           Contratar
         </button>
       </div>
