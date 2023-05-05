@@ -6,6 +6,7 @@ import { POST_Tariff } from "../services/TARIFFFetchs.js";
 import { POST_Dog, UPDATE_Dog, DELETE_Dog } from "../services/DOGFetchs.js";
 
 import useAuthContext from "./AuthContext.js";
+import useToastsContext from "./ToastsContext.js";
 import useUserInput from "../hooks/useUserInput.js";
 
 const AppContext = createContext();
@@ -13,6 +14,7 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
 
   const { storeAuth, actionsAuth } = useAuthContext();
+  const { storeToast, actionsToast } = useToastsContext();
 
   const { userInput, resetInput, handleUserInput, handleUserCheck, handleUserSelectDate } = useUserInput();
 
@@ -62,14 +64,18 @@ export const AppProvider = ({ children }) => {
     e.preventDefault();
 
     POSTRegister(userInput)
-      .then(() => resetInput({}))
+      .then((data) => {
+        resetInput({});
+        actionsToast.handleShownToast(data);
+      })
   };
 
   const handleRegisterDog = (e, dogInput) => {
     e.preventDefault();
 
     POST_Dog(dogInput)
-      .then(() => {
+      .then((data) => {
+        actionsToast.handleShownToast(data);
         actionsAuth.handleUpdateUser();
       });
   };
@@ -78,7 +84,8 @@ export const AppProvider = ({ children }) => {
     e.preventDefault();
 
     UPDATE_Dog(dogInput, dogId)
-      .then(() => {
+      .then((data) => {
+        actionsToast.handleShownToast(data);
         actionsAuth.handleUpdateUser();
       });
   };
@@ -87,7 +94,8 @@ export const AppProvider = ({ children }) => {
     e.preventDefault();
 
     DELETE_Dog(dogId)
-      .then(() => {
+      .then((data) => {
+        actionsToast.handleShownToast(data);
         actionsAuth.handleUpdateUser();
       });
   };
@@ -113,8 +121,15 @@ export const AppProvider = ({ children }) => {
     }
     else newarrayTarrif.push({serviceActive: false, serviceId: 3, price: 0})
     
-    POST_Tariff(newObjTarrifs);
-    UPDATE_User(userInput, storeAuth.userLog.user.id);
+    POST_Tariff(newObjTarrifs)
+      .then((data) => {
+        actionsToast.handleShownToast(data);
+      });
+
+    UPDATE_User(userInput, storeAuth.userLog.user.id)
+      .then((data) => {
+        actionsToast.handleShownToast(data);
+      });
 
   }
 

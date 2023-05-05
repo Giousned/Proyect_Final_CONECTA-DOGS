@@ -56,6 +56,7 @@ export const UPDATE_Book = (newObj, book_id) => {
     .then(data => {
         //here is were your code should start after the fetch finishes
         console.log(data); //this will print on the console the exact object received from the server
+        return data;
     })
     .catch(error => {console.log(error);}));  //Error handling
 };
@@ -79,6 +80,7 @@ export const DELETE_Book = (book_id) => {
       .then(data => {
           //here is were your code should start after the fetch finishes
           console.log(data); //this will print on the console the exact object received from the server
+          return data;
         })
       .catch(error => {console.log(error);}));  //Error handling
 };
@@ -102,7 +104,7 @@ export const GET_Confirm_Book = (book_id) => {
     .then(data => {
         //here is were your code should start after the fetch finishes
         console.log(data); //this will print on the console the exact object received from the server
-        return data
+        return data;
       })
     .catch(error => {console.log(error);}));  //Error handling
 };
@@ -128,6 +130,7 @@ export const POST_book = (nuevoPerro) => {
       .then((data) => {
         //here is were your code should start after the fetch finishes
         console.log(data); //this will print on the console the exact object received from the server
+        return data;
       })
       .catch(error => {console.log(error);}));  //Error handling
 };

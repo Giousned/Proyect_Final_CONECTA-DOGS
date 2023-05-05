@@ -154,7 +154,7 @@ const PersonalInformation = (props) => {
                         <select required id="pais-user" className="form-select"
                             name="country" value={store.userInput.country}
                             onChange={actions.handleUserInput}>
-                            <option value="">Elige País</option>
+                            <option defaultValue="">Elige País</option>
                             <option value="Albania">Albania</option>
                             <option value="Germany">Alemania</option>
                             <option value="Andorra">Andorra</option>
@@ -167,7 +167,6 @@ const PersonalInformation = (props) => {
                             <option value="Denmark">Dinamarca</option>
                             <option value="Slovakia">Eslovaquia</option>
                             <option value="Slovenia">Eslovenia</option>
-                            <option value="Spain">España</option>
                             <option value="Vatican">Estado Vaticano</option>
                             <option value="Estonia">Estonia</option>
                             <option value="Finland">Finlandia</option>

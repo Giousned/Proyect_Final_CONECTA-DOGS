@@ -57,6 +57,7 @@ export const UPDATE_User = (newObj, user_id) => {
     .then(data => {
         //here is were your code should start after the fetch finishes
         console.log(data); //this will print on the console the exact object received from the server
+        return data;
     })
     .catch(error => {console.log(error);}));  //Error handling
 };
@@ -80,6 +81,7 @@ export const DELETE_User = (user_id) => {                        // token
       .then(data => {
           //here is were your code should start after the fetch finishes
           console.log(data); //this will print on the console the exact object received from the server
+          return data;
         })
         .catch(error => {console.log(error);}));  //Error handling
 };
