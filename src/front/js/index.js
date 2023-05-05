@@ -9,12 +9,7 @@ import "../styles/index.css";
 import Layout from "./layout";
 
 //import context
-import { AuthProvider } from "./store/AuthContext.js";
+import { ToastsProvider } from "./store/ToastsContext.js";
 
 //render your react application
-ReactDOM.render(
-  <AuthProvider>
-    <Layout />
-  </AuthProvider>,
-  document.querySelector("#app")
-);
+ReactDOM.render(<ToastsProvider> <Layout /> </ToastsProvider>,document.querySelector("#app"));

@@ -1,7 +1,10 @@
 import React from "react";
 import { createContext, useContext, useState, useEffect } from "react";
 
-import { POSTLogin, GETToken } from "../services/LOGINFetchs.js";
+import { POST_Login, GET_Token } from "../services/LOGINFetchs.js";
+import { UPDATE_Me_User } from "../services/USERFetchs.js";
+
+import useToastsContext from "./ToastsContext.js";
 import useUserInput from "../hooks/useUserInput.js";
 
 const AuthContext = createContext();
@@ -11,16 +14,26 @@ export const AuthProvider = ({ children }) => {
   const [userLog, setUserLog] = useState({ token: "", user: "" });
   
   const { userInput, handleUserInput, handleUserCheck } = useUserInput();
+  const { storeToast, actionsToast } = useToastsContext();
 
+  const handleUpdateUser = () => {
+
+    UPDATE_Me_User()
+      .then((data) => {
+        setUserLog({token: data.token, user: data.user});
+        sessionStorage.setItem("jwt-token", data.token);
+        actionsToast.handleShownToast(data);     
+      });
+  }
 
   const handleLogIn = (e) => {
     e.preventDefault();
 
-    POSTLogin(userInput.logEmail, userInput.logPassword)
-      .then((data) => {
-        setUserLog({token: data.token, user: data.user});             // save your token in the sessionStorage
-                                                                      // also you should set your user into the store using the setStore function
+    POST_Login(userInput.logEmail, userInput.logPassword)
+      .then((data) => {                                               // save your token in the sessionStorage
+        setUserLog({token: data.token, user: data.user});             // also you should set your user into the store using the setStore function 
         sessionStorage.setItem("jwt-token", data.token);              // cookies. .... CASI MEJOR, PERO CASI NUNCA USAR LOCALSTORAGE QUIZAS EN TIENDAS...
+        actionsToast.handleShownToast(data);
       });
   };
 
@@ -29,13 +42,21 @@ export const AuthProvider = ({ children }) => {
     setUserLog({ token: "", user: "" });
   };
 
-  // ME FALTA SABER LEER EL TOKEN DESDE EL FRONT PARA PODER SACAR SU INFORMACION DE AHI COMO POR EJEMPLO LA ID DEL USUARIO
-  // useEffect(() => {
-  //   if (sessionStorage.getItem("jwt-token")){
-  //       setUserLog({token: sessionStorage.getItem("jwt-token"), user: data.user})
-  //     });
-  //   }
-  // }, []);
+  // SI EXISTE UN TOKEN ACTIVO, HAGO UNA LLAMADA AL BACK Y BUSCO ESE USUARIO Y DEVUELVO SU TOKEN Y SU INFORMACION NUEVA
+  // Y SETEO EL ESTADO DE INICIO DE USUARIOLOG
+  useEffect(() => {
+
+    if (!sessionStorage.getItem("jwt-token")) return
+
+    GET_Token()
+      .then((data) => {
+        setUserLog({token: data.token, user: data.user});
+        actionsToast.handleShownToast(data);
+      });
+
+  },[]);
+
+
 
   const storeAuth = {
     userLog,
@@ -48,6 +69,7 @@ export const AuthProvider = ({ children }) => {
     handleLogOut,
     handleUserInput,
     handleUserCheck,
+    handleUpdateUser,
   };
 
   return (

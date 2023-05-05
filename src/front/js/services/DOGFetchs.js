@@ -1,8 +1,8 @@
-import { RUTABACK } from "../constants/RutaBack.jsx";
+import { RUTABACK } from "../constants/RutaBack.js";
 
 
 export const GET_Dog = (dog_id) => {
-    return (fetch(`${RUTABACK}/dogs/${dog_id}`, {
+    return (fetch(`${RUTABACK}/api/dogs/${dog_id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
@@ -20,7 +20,7 @@ export const GET_Dog = (dog_id) => {
   };
 
 export const GET_All_Dogs = () => {
-    return (fetch(`${RUTABACK}/dogs`, {
+    return (fetch(`${RUTABACK}/api/dogs`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
@@ -39,14 +39,14 @@ export const GET_All_Dogs = () => {
       
 export const UPDATE_Dog = (newObj, dog_id) => {
 
-    // const token = sessionStorage.getItem("jwt-token");
+    const token = sessionStorage.getItem("jwt-token");
 
-    return (fetch(`${RUTABACK}/dogs/${dog_id}`, {
+    return (fetch(`${RUTABACK}/api/dogs/${dog_id}`, {
         method: "PUT",
         body: JSON.stringify(newObj),
         headers: {
-          "Content-Type": "application/json"
-        //     Authorization: "Bearer " + token,                 // ⬅⬅⬅ authorization token
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + token,                 // ⬅⬅⬅ authorization token
         }
     })
     .then(resp => {
@@ -56,20 +56,21 @@ export const UPDATE_Dog = (newObj, dog_id) => {
     .then(data => {
         //here is were your code should start after the fetch finishes
         console.log(data); //this will print on the console the exact object received from the server
+        return data;
     })
     .catch(error => {console.log(error);}));  //Error handling
 };
 
 
-export const DELETE_Dog = (dog_id) => {                        // token
+export const DELETE_Dog = (dog_id) => {
 
-    // const token = sessionStorage.getItem("jwt-token");
+    const token = sessionStorage.getItem("jwt-token");
 
-    return (fetch(`${RUTABACK}/dogs/${dog_id}`, {
+    return (fetch(`${RUTABACK}/api/dogs/${dog_id}`, {
         method: "DELETE",
         headers: {
-          "Content-Type": "application/json"
-        //     Authorization: "Bearer " + token,                 // ⬅⬅⬅ authorization token
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + token,                 // ⬅⬅⬅ authorization token
       }
       })
       .then(resp => {
@@ -79,6 +80,7 @@ export const DELETE_Dog = (dog_id) => {                        // token
       .then(data => {
           //here is were your code should start after the fetch finishes
           console.log(data); //this will print on the console the exact object received from the server
+          return data;
         })
         .catch(error => {console.log(error);}));  //Error handling
 };
@@ -90,7 +92,7 @@ export const POST_Dog = (nuevoPerro) => {
 
     const token = sessionStorage.getItem("jwt-token");
 
-    return (fetch(`${RUTABACK}/signup-dog`, {
+    return (fetch(`${RUTABACK}/api/signup-dog`, {
         method: "POST",
         body: JSON.stringify(nuevoPerro),
         headers: {
@@ -105,6 +107,7 @@ export const POST_Dog = (nuevoPerro) => {
       .then((data) => {
         //here is were your code should start after the fetch finishes
         console.log(data); //this will print on the console the exact object received from the server
+        return data;
       })
       .catch(error => {console.log(error);}));  //Error handling
 };

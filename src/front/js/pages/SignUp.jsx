@@ -26,7 +26,7 @@ const SingUpForm = () => {
 
     actions.handleRegister(e)
 
-    navigate("/");
+    navigate("/log-in-form");
   };
 
 

@@ -77,3 +77,9 @@ upload("https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg", p
 
 // Transform
 url, options = cloudinary_url("olympic_flag", width=100, height=150, crop="fill")
+
+# PRUEBAS SIN FUNCIONAR UTF-8
+
+En .env
+DATABASE_URL= mysql://root:root@localhost:3306/project       
+              postgresql://pmg:pmg@postgres/pmg_test?client_encoding=utf8

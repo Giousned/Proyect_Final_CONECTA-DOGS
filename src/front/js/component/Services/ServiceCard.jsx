@@ -13,9 +13,6 @@ const ServiceCard = ({ imgSrc, title, description, btnText }) => {
                         <h4 className="card-title font-weight-bold">{title}</h4>
                         <hr />
                         <p>{description}</p>
-                        {/* <a href="#" className="btn btn-primary">
-                            {btnText}
-                        </a> */}
                     </div>
                 </div>
             </section>
@@ -24,3 +21,8 @@ const ServiceCard = ({ imgSrc, title, description, btnText }) => {
 };
 
 export default ServiceCard;
+
+
+{/* <a href="#" className="btn btn-primary">
+{btnText}
+</a> */}

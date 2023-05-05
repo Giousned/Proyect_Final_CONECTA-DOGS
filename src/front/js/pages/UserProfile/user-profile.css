@@ -61,12 +61,8 @@
   height: 300px;
 }
 
-.dog-card-information h5 {
-  color: #7a472f;
-}
-
-.dog-card-information p {
-  color: #7a472f;
+.dog-card-information h5, .dog-card-information p {
+  color: #3f51b5;
 }
 
 .dog-card-information img {
@@ -81,11 +77,4 @@
   width: 60%;
   height: 70%;
   margin: auto;
-}
-
-.boton-registro-perro{
-  display: flex;
-  justify-content: center;
-  width: 50%;
-  background-color: blue;
 }

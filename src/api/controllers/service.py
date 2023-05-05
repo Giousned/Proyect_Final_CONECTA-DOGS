@@ -12,8 +12,8 @@ def create_service():
         if len(service_list) != 0:
             return {"code": 403, "msg": "Servicios ya están creados"}
 
-        # Crear un nuevo registro en la base de datos
 
+        # Crear los servicios en la base de datos
         initial_services = [
         {
             "image": "https://cdn.pixabay.com/photo/2017/01/17/16/45/night-1987408_960_720.png",
@@ -40,11 +40,11 @@ def create_service():
             db.session.add(new_service)
             db.session.commit()
 
-        return {"code": 200, "msg": "All ok"}
+        return {"code": 200, "msg": "¡Servicios creados correctamente!"}
 
     except Exception as error:
         print(error)
-        return {"code": 500, "msg": "Error in server, something was wrong"}
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
 
 
 def get_services():
@@ -58,11 +58,11 @@ def get_services():
 
         service_list = [service.serialize() for service in services]
 
-        return {"code": 200, "msg": "All ok", "services": service_list}
+        return {"code": 200, "msg": "Servicios existentes obtenidos", "services": service_list}
 
     except Exception as error:
         print(error)
-        return {"code": 500, "msg": "Error in server, something was wrong"}
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
 
 
 
@@ -74,11 +74,11 @@ def get_service(id):
         service = db.get_or_404(Services, id)
         # service = db.session.execute(db.select(service).filter_by(id)).scalars().one()
         
-        return {"code": 200, "msg": "All ok", "service": service.serialize()}
+        return {"code": 200, "msg": "Servicio requerido obtenido", "service": service.serialize()}
 
     except Exception as error:
         print(error)
-        return {"code": 500, "msg": "Error in server, something was wrong"}
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
 
 
 def update_service(body, id):
@@ -94,11 +94,11 @@ def update_service(body, id):
 
         db.session.commit()
 
-        return {"code": 200, "msg": "service update ok", "service": service.serialize()}
+        return {"code": 200, "msg": "¡Servicio actualizado correctamente!", "service": service.serialize()}
 
     except Exception as error:
         print(error)
-        return {"code": 500, "msg": "Error in server, something was wrong"}
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
 
 
 def delete_service(id):
@@ -114,8 +114,8 @@ def delete_service(id):
         # query = db.select(service).order_by(service.id)                 # SI DESPUES SE NECESITA UNA LISTA COMPLETA ACTUALIZADA POR PARTE DEL FRONT
         # services = db.session.execute(query).scalars()
 
-        return {"code": 200, "msg": "Delete service ok"}
+        return {"code": 200, "msg": "¡Servicio eliminado correctamente!"}
 
     except Exception as error:
         print(error)
-        return {"code": 500, "msg": "Error in server, something was wrong"}
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}

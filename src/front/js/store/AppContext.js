@@ -1,11 +1,12 @@
 import React from "react";
 import { createContext, useContext, useState, useEffect} from "react";
 
-import { POSTRegister, UPDATE_User, GET_User } from "../services/USERFetchs.js";
+import { POSTRegister, UPDATE_User } from "../services/USERFetchs.js";
 import { POST_Tariff } from "../services/TARIFFFetchs.js";
-import { POST_Dog } from "../services/DOGFetchs.js";
+import { POST_Dog, UPDATE_Dog, DELETE_Dog } from "../services/DOGFetchs.js";
 
 import useAuthContext from "./AuthContext.js";
+import useToastsContext from "./ToastsContext.js";
 import useUserInput from "../hooks/useUserInput.js";
 
 const AppContext = createContext();
@@ -13,6 +14,7 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
 
   const { storeAuth, actionsAuth } = useAuthContext();
+  const { storeToast, actionsToast } = useToastsContext();
 
   const { userInput, resetInput, handleUserInput, handleUserCheck, handleUserSelectDate } = useUserInput();
 
@@ -22,16 +24,16 @@ export const AppProvider = ({ children }) => {
 
     for (let servicio of tarifasUsuario) {
       if (servicio.service.id == 1) {
-        newObjTariffs["nurseryDay"] = true
-        newObjTariffs["priceNurseryDay"] = servicio.price
+        newObjTariffs.nurseryDay = true
+        newObjTariffs.priceNurseryDay = servicio.price
       }
       if (servicio.service.id == 2) {
-        newObjTariffs["walk"] = true
-        newObjTariffs["priceWalk"] = servicio.price
+        newObjTariffs.walk = true
+        newObjTariffs.priceWalk = servicio.price
       }
       if (servicio.service.id == 3) {
-        newObjTariffs["nurseryNight"] = true
-        newObjTariffs["priceNurseryNight"] = servicio.price
+        newObjTariffs.nurseryNight = true
+        newObjTariffs.priceNurseryNight = servicio.price
       }
       continue
     }
@@ -40,12 +42,13 @@ export const AppProvider = ({ children }) => {
 
   useEffect(() => {
 
+    if(!(storeAuth.userLog.user)) return
     let newObjTariffs = {}
     let newObj = {...storeAuth.userLog.user}
 
     resetInput(newObj)
     
-    if(!(storeAuth.userLog.user.tariffs) || (storeAuth.userLog.user.tariffs).length == 0) return
+    if((storeAuth.userLog.user.tariffs).length == 0) return
     
     newObjTariffs = handleObteinInputsTariffs(storeAuth.userLog.user.tariffs)
 
@@ -61,17 +64,40 @@ export const AppProvider = ({ children }) => {
     e.preventDefault();
 
     POSTRegister(userInput)
-      .then(() => {
-        GET_User(storeAuth.userLog.user.id)
-          .then((data) => {resetInput(data.user)})
+      .then((data) => {
+        resetInput({});
+        actionsToast.handleShownToast(data);
+      })
+  };
+
+  const handleRegisterDog = (e, dogInput) => {
+    e.preventDefault();
+
+    POST_Dog(dogInput)
+      .then((data) => {
+        actionsToast.handleShownToast(data);
+        actionsAuth.handleUpdateUser();
       });
   };
 
-  const handleRegisterDog = (e) => {
+  const handleUpdateDog = (e, dogInput, dogId) => {
     e.preventDefault();
 
-    POST_Dog(userInput)
-      .then(() => {resetInput});
+    UPDATE_Dog(dogInput, dogId)
+      .then((data) => {
+        actionsToast.handleShownToast(data);
+        actionsAuth.handleUpdateUser();
+      });
+  };
+
+  const handleDeleteDog = (e, dogId) => {
+    e.preventDefault();
+
+    DELETE_Dog(dogId)
+      .then((data) => {
+        actionsToast.handleShownToast(data);
+        actionsAuth.handleUpdateUser();
+      });
   };
 
   const handleUpdate = (e) => {
@@ -95,8 +121,15 @@ export const AppProvider = ({ children }) => {
     }
     else newarrayTarrif.push({serviceActive: false, serviceId: 3, price: 0})
     
-    POST_Tariff(newObjTarrifs);
-    UPDATE_User(userInput, storeAuth.userLog.user.id);
+    POST_Tariff(newObjTarrifs)
+      .then((data) => {
+        actionsToast.handleShownToast(data);
+      });
+
+    UPDATE_User(userInput, storeAuth.userLog.user.id)
+      .then((data) => {
+        actionsToast.handleShownToast(data);
+      });
 
   }
 
@@ -113,6 +146,8 @@ export const AppProvider = ({ children }) => {
     handleRegister,
     handleUpdate,
     handleRegisterDog,
+    handleUpdateDog,
+    handleDeleteDog,
   };
 
   return (

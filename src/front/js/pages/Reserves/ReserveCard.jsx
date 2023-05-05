@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ReserveCard = () => {
   return (
@@ -8,12 +9,12 @@ const ReserveCard = () => {
           <div className="card-list">
             <div className="card-item -front">
               <div className="card-item__side">
-                <div className="card-item__cover">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2019/02/06/15/18/puppy-3979350_960_720.jpg"
-                    className="card-item__bg"
-                  />
-                </div>
+
+                <img
+                  src="https://cdn.pixabay.com/photo/2022/03/30/11/12/dog-7101015_960_720.jpg"
+                  className="card-item__bg"
+                />
+
               </div>
             </div>
           </div>
@@ -23,11 +24,11 @@ const ReserveCard = () => {
             </h5>
             <h6 className="m-2 p-2">
               <i className="fas fa-sun fa-xl"></i> Guardería de día
-              <i className="fas fa-user fa-xl ps-4"></i> Dueño: Luis
+              <i className="fas fa-user fa-xl ps-4"></i> Propietario: Luis
             </h6>
             <h6 className="m-2 p-2">
               <i className="fas fa-money-check-alt fa-xl ps-4"></i> Monto
-              pagado: 20<i className="fas fa-euro-sign"></i>
+              a pagar: 20<i className="fas fa-euro-sign"></i>
             </h6>
             <p className="card-text m-2">
               <small className="text-muted">
@@ -35,9 +36,12 @@ const ReserveCard = () => {
               </small>
             </p>
 
-            <button className="action-button shadow animate blue">
-              Ver más información
-            </button>
+            <Link to="/reserve-information" className="nav-link">
+              <button className="action-button shadow animate blue">
+                Ver más información
+              </button>
+            </Link>
+
           </div>
         </div>
       </div>
