@@ -121,6 +121,7 @@ class Services(db.Model):
 
 class Tariffs(db.Model):
     __tablename__ = "Tariffs"
+    # id: Mapped[int] = db.mapped_column(primary_key=True)
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer, unique=False, nullable=False)
 
@@ -143,8 +144,19 @@ class Tariffs(db.Model):
         }
 
 
+# note for a Core table, we use the sqlalchemy.Column construct,
+# not sqlalchemy.orm.mapped_column
+association_table = db.Table(
+    "association_table",
+    # Base.metadata,
+    db.Column("Books", db.ForeignKey("Books.id")),
+    db.Column("Tariffs", db.ForeignKey("Tariffs.id")),
+)
+
+
 class Books(db.Model):
     __tablename__ = "Books"
+    # id: Mapped[int] = db.mapped_column(primary_key=True)
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String, unique=False, nullable=False)
     hourPick = db.Column(db.String, unique=False, nullable=False)
@@ -159,6 +171,9 @@ class Books(db.Model):
     tariff = db.relationship("Tariffs", back_populates="book")
 
     # relacion segundaria y + perros
+    # children: Mapped[List[Child]] = relationship(secondary=association_table)
+    
+    asociation = db.relationship("Tariffs", secondary=association_table, backref=db.backref("Books"))
 
 
     def __repr__(self):

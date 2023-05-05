@@ -2,11 +2,9 @@ import React, { useState } from "react";
 
 import useToastsContext from "../../store/ToastsContext.js";
 
-const Alert = (props) => {
+const Alert = () => {
 
   const { storeToast, actionsToast } = useToastsContext();
-
-  console.log(storeToast)
 
   return (
     <div className="toast-container position-fixed bottom-0 end-0 p-3">

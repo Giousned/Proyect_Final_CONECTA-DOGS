@@ -5,7 +5,7 @@ const ToastsContext = createContext();
 
 export const ToastsProvider = ({ children }) => {
   
-  const [toastInfo, setToastInfo] = useState({ active: "hide", msg: "", color: "" });       // , autoclose: false // if autoclose, si quiero que a veces se cierre solo y otras
+  const [toastInfo, setToastInfo] = useState({ active: "hide", msg: "", color: "" });      // , autoclose: false  // if autoclose, si quiero que a veces se cierre solo y otras
 
   const handleTimeOutHide = () => {
     setTimeout(() => setToastInfo({ active: "hide", msg: "", color: "" }), 2500);
