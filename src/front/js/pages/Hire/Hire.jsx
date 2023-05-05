@@ -124,10 +124,10 @@ const Hire = () => {
                                 value="fechaReserva"
                                 required />
                             <br />
-                            <label for="appt">Elige una hora: </label>
+                            <label for="appt">Elige una hora: &nbsp;</label>
                             <input type="time" id="appt" name="appt"
                                 min="07:00" max="23:00" required />
-                            <small>Elige una hora entre las 7:00 y las 23:00</small>
+                            <small>&nbsp;Elige una hora entre las 7:00 y las 23:00</small>
                         </div>
 
                         <div className="col-6 ms-2">
@@ -141,10 +141,10 @@ const Hire = () => {
                                 value="fechaReserva"
                                 required />
                             <br />
-                            <label for="appt">Elige una hora: </label>
+                            <label for="appt">Elige una hora: &nbsp;</label>
                             <input type="time" id="appt" name="appt"
                                 min="07:00" max="23:00" required />
-                            <small>Elige una hora entre las 7:00 y las 23:00</small>
+                            <small>&nbsp;Elige una hora entre las 7:00 y las 23:00</small>
 
                         </div>
                     </div>
