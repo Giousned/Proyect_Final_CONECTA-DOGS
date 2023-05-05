@@ -1,6 +1,7 @@
 import React from "react";
 import "../pages/PublicProfile/PublicProfileStyles.css";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const MoreAbout = () => {
   const navigate = useNavigate();
@@ -25,9 +26,15 @@ const MoreAbout = () => {
         <li>Guarderia de noche//precio</li>
         <li>Paseos (por hora)//precio</li>
         <button onClick={() => navigate(-1)}>Cuidadores</button>
-        <button type="button" className="btn btn-success">
-          Contratar
-        </button>
+
+        <br />
+
+        <Link to="/hire-caregiver" className="nav-link">
+          <button className="action-button shadow animate blue">
+            Contratar
+          </button>
+        </Link>
+
       </div>
     </div>
   );

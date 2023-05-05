@@ -19,7 +19,7 @@ const NavBar = () => {
   return (
     <>
       <nav
-        className="navbar navbar-expand-lg bg-dark navbar-dark navbar-custom"
+        className="navbar navbar-expand-lg bg-dark navbar-dark navbar-custom navbar-scroll"
         id="#navbar"
       >
         <div className="container">
