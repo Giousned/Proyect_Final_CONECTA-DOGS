@@ -1,31 +1,32 @@
 import React, { useState } from "react";
 
+import useToastsContext from "../../store/ToastsContext.js";
+
 const Alert = (props) => {
-  const [color, setColor] = useState("primary");
 
-  // if (props?.data?.code != 200) setColor("danger");
+  const { storeToast, actionsToast } = useToastsContext();
 
-  const show = "show"
+  console.log(storeToast)
 
   return (
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div className="toast-container position-fixed bottom-0 end-0 p-3">
       <div
-        class={`toast fade ${show}`}
+        className={`toast fade ${storeToast.toastInfo.active} bg-${storeToast.toastInfo.color}`}
         role="alert"
         aria-live="assertive"
         aria-atomic="true"
       >
-        <div class="toast-header">
-          <strong class="me-auto">Bootstrap</strong>
-          <small>11 mins ago</small>
+        <div className="toast-header">
+          <strong className="me-auto">Mensaje</strong>
+          <small>Now</small>
           <button
             type="button"
-            class="btn-close"
+            className="btn-close"
             data-bs-dismiss="toast"
             aria-label="Close"
           ></button>
         </div>
-        <div class="toast-body">Hello, world! This is a toast message.</div>
+        <div className="toast-body">{storeToast.toastInfo.msg}</div>
       </div>
     </div>
   );

@@ -1,12 +1,3 @@
-// handle 
-// setEstado {}
-
-// * si da guerra
-// handle
-// setEstado a false
-
-// if autoclose
-
 import React from "react";
 import { createContext, useContext, useState } from "react";
 
@@ -14,17 +5,24 @@ const ToastsContext = createContext();
 
 export const ToastsProvider = ({ children }) => {
   
-  const [toastInfo, setToastInfo] = useState({ active: "hide", msg: "", color: "info-subtle" });
+  const [toastInfo, setToastInfo] = useState({ active: "hide", msg: "", color: "" });       // , autoclose: false // if autoclose, si quiero que a veces se cierre solo y otras
+
+  const handleTimeOutHide = () => {
+    setTimeout(() => setToastInfo({ active: "hide", msg: "", color: "" }), 2500);
+  }
   
 
-  const handle = () => {
+  const handleShownToast = (data) => {
 
+    if (data.code != 200) {
+        setToastInfo({ active: "show", msg: data.msg, color: "danger-subtle" });
+        handleTimeOutHide();
+    }
+    else {
+        setToastInfo({ active: "show", msg: data.msg, color: "info-subtle" });
+        handleTimeOutHide();
+    }
   }
-
-  const handle2 = (e) => {
-    e.preventDefault();
-
-  };
 
 
   const storeToast = {
@@ -34,8 +32,7 @@ export const ToastsProvider = ({ children }) => {
   const actionsToast = {
     setToastInfo,
 
-    handle,
-    handle2,
+    handleShownToast,
   };
 
   return (

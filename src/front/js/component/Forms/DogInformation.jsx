@@ -266,7 +266,7 @@ const DogInformation = (props) => {
 
                     <button
                         type="submit"
-                        className="action-button shadow animate my-2 mx-auto btn-primary"
+                        className="action-button shadow animate my-2 mx-auto blue"
                         onClick={handleUpdate}
                     >
                     Actualizar Perro
@@ -274,7 +274,7 @@ const DogInformation = (props) => {
 
                     <button
                         type="submit"
-                        className="action-button shadow animate my-2 mx-auto btn-danger"
+                        className="action-button shadow animate my-2 mx-auto red"
                         onClick={handleDelete}
                     >
                     Eliminar Perro
