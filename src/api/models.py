@@ -158,6 +158,8 @@ class Books(db.Model):
 
     tariff = db.relationship("Tariffs", back_populates="book")
 
+    # relacion segundaria y + perros
+
 
     def __repr__(self):
         return f'<Book {self.date}>'

@@ -48,8 +48,7 @@ def create_user(body):
 def get_users():
 
     try:
-
-    
+        
         # Obtener usuarios de la base de datos
         query = db.select(User).order_by(User.id)
         users = db.session.execute(query).scalars()

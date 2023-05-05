@@ -16,6 +16,7 @@ import Notifications from "./pages/Notifications/Notifications.jsx";
 import Footer from "./component/Footer/Footer.jsx";
 import PublicProfile from "./pages/PublicProfile/PublicProfile.jsx";
 import MoreAbout from "./pages/MoreAbout.jsx";
+import Alert from "./component/Alerts/Alert.jsx";
 
 //import context
 import { AppProvider } from "../js/store/AppContext.js";
@@ -31,6 +32,7 @@ const Layout = () => {
       <BrowserRouter basename={basename}>
         <ScrollToTop>
           <AppProvider>
+            <Alert />
             <NavBar />
             <Contact />
             <Routes>

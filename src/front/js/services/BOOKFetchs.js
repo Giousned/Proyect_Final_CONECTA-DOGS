@@ -1,8 +1,8 @@
 import { RUTABACK } from "../constants/RutaBack.js";
 
 
-export const GET_Dog = (dog_id) => {
-    return (fetch(`${RUTABACK}/api/dogs/${dog_id}`, {
+export const GET_Book = (book_id) => {
+    return (fetch(`${RUTABACK}/api/books/${book_id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
@@ -19,8 +19,8 @@ export const GET_Dog = (dog_id) => {
       .catch(error => {console.log(error);}));  //Error handling
   };
 
-export const GET_All_Dogs = () => {
-    return (fetch(`${RUTABACK}/api/dogs`, {
+export const GET_All_Books = () => {
+    return (fetch(`${RUTABACK}/api/books`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
@@ -37,11 +37,11 @@ export const GET_All_Dogs = () => {
       .catch(error => {console.log(error);}));  //Error handling
 };
       
-export const UPDATE_Dog = (newObj, dog_id) => {
+export const UPDATE_Book = (newObj, book_id) => {
 
     const token = sessionStorage.getItem("jwt-token");
 
-    return (fetch(`${RUTABACK}/api/dogs/${dog_id}`, {
+    return (fetch(`${RUTABACK}/api/books/${book_id}`, {
         method: "PUT",
         body: JSON.stringify(newObj),
         headers: {
@@ -61,11 +61,11 @@ export const UPDATE_Dog = (newObj, dog_id) => {
 };
 
 
-export const DELETE_Dog = (dog_id) => {
+export const DELETE_Book = (book_id) => { 
 
     const token = sessionStorage.getItem("jwt-token");
 
-    return (fetch(`${RUTABACK}/api/dogs/${dog_id}`, {
+    return (fetch(`${RUTABACK}/api/books/${book_id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -80,17 +80,40 @@ export const DELETE_Dog = (dog_id) => {
           //here is were your code should start after the fetch finishes
           console.log(data); //this will print on the console the exact object received from the server
         })
-        .catch(error => {console.log(error);}));  //Error handling
+      .catch(error => {console.log(error);}));  //Error handling
+};
+
+
+export const GET_Confirm_Book = (book_id) => { 
+
+  const token = sessionStorage.getItem("jwt-token");
+
+  return (fetch(`${RUTABACK}/api/acepted-book/${book_id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + token,                 // ⬅⬅⬅ authorization token
+    }
+    })
+    .then(resp => {
+        console.log(resp.status); // the status code = 200 or code = 400 etc.
+        return resp.json(); // (returns promise) will try to parse the result as json as return a promise that you can .then for results
+    })
+    .then(data => {
+        //here is were your code should start after the fetch finishes
+        console.log(data); //this will print on the console the exact object received from the server
+        return data
+      })
+    .catch(error => {console.log(error);}));  //Error handling
 };
 
 
 
-
-export const POST_Dog = (nuevoPerro) => {
+export const POST_book = (nuevoPerro) => {
 
     const token = sessionStorage.getItem("jwt-token");
 
-    return (fetch(`${RUTABACK}/api/signup-dog`, {
+    return (fetch(`${RUTABACK}/api/signup-book`, {
         method: "POST",
         body: JSON.stringify(nuevoPerro),
         headers: {
