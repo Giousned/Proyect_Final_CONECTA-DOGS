@@ -30,7 +30,7 @@ function renderCalendar() {
     let day = i - startWeekDay;
     if (i <= startWeekDay) {
       // adding previous month days
-      calendarDays.innerHTML += `<div class='padding-day'>${
+      calendarDays.innerHTML += `<div className='padding-day'>${
         prevLastDay - i
       }</div>`;
     } else if (i <= startWeekDay + totalMonthDay) {
@@ -39,10 +39,10 @@ function renderCalendar() {
       date.setHours(0, 0, 0, 0);
       let dayClass =
         date.getTime() === today.getTime() ? "current-day" : "month-day";
-      calendarDays.innerHTML += `<div class='${dayClass}'>${day}</div>`;
+      calendarDays.innerHTML += `<div className='${dayClass}'>${day}</div>`;
     } else {
       // adding next month days
-      calendarDays.innerHTML += `<div class='padding-day'>${
+      calendarDays.innerHTML += `<div className='padding-day'>${
         day - totalMonthDay
       }</div>`;
     }
