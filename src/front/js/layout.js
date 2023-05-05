@@ -20,7 +20,8 @@ import MoreAbout from "./pages/MoreAbout.jsx";
 import Hire from "./pages/Hire/Hire.jsx";
 import Alert from "./component/Alerts/Alert.jsx";
 
-//import context
+//import contexts
+import { AuthProvider } from "./store/AuthContext.js";
 import { AppProvider } from "../js/store/AppContext.js";
 
 //create your first component
@@ -33,25 +34,27 @@ const Layout = () => {
     <div>
       <BrowserRouter basename={basename}>
         <ScrollToTop>
-          <AppProvider>
-            <Alert />
-            <NavBar />
-            <Contact />
-            <Routes>
-              <Route element={<Home />} path="/" />
-              <Route element={<LogInForm />} path="/log-in-form" />
-              <Route element={<SignUpForm />} path="/sign-up-form" />
-              <Route element={<UserProfile />} path="/user-profile" />
-              <Route element={<Notifications />} path="/notifications" />
-              <Route element={<PublicProfile />} path="/public-profile" />
-              <Route element={<MoreAbout />} path="/more-about" />
-              <Route element={<Hire />} path="/hire-caregiver" />
-              <Route element={<Reserves />} path="/reserves" />
-              <Route element={<ReserveInformation />} path="/reserve-information" />
-              <Route element={<h1>Not found!</h1>} />
-            </Routes>
-            <Footer />
-          </AppProvider>
+          <AuthProvider>
+            <AppProvider>
+              <Alert />
+              <NavBar />
+              <Contact />
+              <Routes>
+                <Route element={<Home />} path="/" />
+                <Route element={<LogInForm />} path="/log-in-form" />
+                <Route element={<SignUpForm />} path="/sign-up-form" />
+                <Route element={<UserProfile />} path="/user-profile" />
+                <Route element={<Notifications />} path="/notifications" />
+                <Route element={<PublicProfile />} path="/public-profile" />
+                <Route element={<MoreAbout />} path="/more-about" />
+                <Route element={<Hire />} path="/hire-caregiver" />
+                <Route element={<Reserves />} path="/reserves" />
+                <Route element={<ReserveInformation />} path="/reserve-information" />
+                <Route element={<h1>Not found!</h1>} />
+              </Routes>
+              <Footer />
+            </AppProvider>
+          </AuthProvider>
         </ScrollToTop>
       </BrowserRouter>
     </div>

@@ -24,12 +24,15 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 
-# database condiguration
+# Database Configuration
 db_url = os.getenv("DATABASE_URL")
-if db_url is not None:
-    app.config['SQLALCHEMY_DATABASE_URI'] = db_url.replace("postgres://", "postgresql://")
-else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////tmp/test.db"
+# COMENTO ESTAS LINEAS PARA USAR SQLITE
+# if db_url is not None:
+#     app.config['SQLALCHEMY_DATABASE_URI'] = db_url.replace("postgres://", "postgresql://")
+# else:
+
+# AQUI USO SQLITE
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////tmp/test.db"
     # app.config['SQLALCHEMY_CHARSET'] = 'utf8mb4'
     # mysql://user:pass@localhost/db?charset=utf8
     # sqlite:////tmp/test.db        # ORIGINAL CON EL BOILERPLATE
@@ -37,6 +40,9 @@ else:
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 MIGRATE = Migrate(app, db, compare_type = True)
 db.init_app(app)
+# AQUI SE CREAN LAS TABLAS A PARTIR DE SQLITE, Y SE GENERA UNA CARPETA TMP Y UN ARCHIVO TEST.DB, DONDE DENTRO ESTA LA DB CON LAS TABLAS Y ES COMPARTIDA 
+with app.app_context():
+    db.create_all()
 
 #  Configura la extensión Flask-JWT-Extended
 app.config["JWT_SECRET_KEY"] = os.environ.get('JWT_SECRET') # ESTA PALABRA GENERA LOS TOKENS UNICOS Y NO SE DEBE COMPARTIR!!!           (# ¡Cambia las palabras "super-secret" por otra cosa!)
