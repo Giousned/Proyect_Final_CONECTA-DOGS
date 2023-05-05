@@ -5,7 +5,7 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
-    min-height: 50vh;
+    /* min-height: 50vh; */
     background-size: cover;
     background-blend-mode: overlay;
     background-color: rgba(0, 0, 0, 0.4);
@@ -27,7 +27,6 @@
     }
     .custom-reviews {
         font-size: 0.5rem;
-        margin: 0.5rem;
     }
 
     /* .carousel-item {
