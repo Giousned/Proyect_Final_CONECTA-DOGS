@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Link,
-  Button,
-  Element,
-  Events,
-  animateScroll as scroll,
-  scrollSpy,
-  scroller,
-} from "react-scroll";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 import "../Blog/blog.css";
 import BlogPost from "./BlogPost.jsx";
@@ -71,13 +63,8 @@ const Blog = () => {
         </div>
       </section>
 
-      <Link
-        to="#navbar"
-        className="simplescrollup__button simplescrollup__button--hide"
-        spy={true}
-        smooth={true}
-        duration={800}
-      >
+      <Link to="#navbar" className="simplescrollup__button simplescrollup__button--hide"
+        spy={true} smooth={true} duration={800}>
         <h2>
           <i className="fas fa-arrow-circle-up"></i>
         </h2>

@@ -12,10 +12,12 @@ import SignUpForm from "./pages/SignUp.jsx";
 import Contact from "./component/Contact/Contact.jsx";
 import UserProfile from "./pages/UserProfile/UserProfile.jsx";
 import Reserves from "./pages/Reserves/Reserves.jsx";
+import ReserveInformation from "./pages/Reserves/ReserveInformation.jsx";
 import Notifications from "./pages/Notifications/Notifications.jsx";
 import Footer from "./component/Footer/Footer.jsx";
 import PublicProfile from "./pages/PublicProfile/PublicProfile.jsx";
 import MoreAbout from "./pages/MoreAbout.jsx";
+import Hire from "./pages/Hire/Hire.jsx";
 
 //import context
 import { AppProvider } from "../js/store/AppContext.js";
@@ -41,7 +43,9 @@ const Layout = () => {
               <Route element={<Notifications />} path="/notifications" />
               <Route element={<PublicProfile />} path="/public-profile" />
               <Route element={<MoreAbout />} path="/more-about" />
+              <Route element={<Hire />} path="/hire-caregiver" />
               <Route element={<Reserves />} path="/reserves" />
+              <Route element={<ReserveInformation />} path="/reserve-information" />
               <Route element={<h1>Not found!</h1>} />
             </Routes>
             <Footer />
