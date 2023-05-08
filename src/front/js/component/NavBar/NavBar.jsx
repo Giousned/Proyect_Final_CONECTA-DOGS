@@ -93,7 +93,7 @@ const NavBar = () => {
                     </li>
 
                     <li>
-                      <Link to="/notifications" className="dropdown-item">
+                      <Link to="/notifications" data-notifications="2" className="dropdown-item">
                         <i className="far fa-comment-alt pe-2"></i>{" "}
                         Notificaciones
                       </Link>

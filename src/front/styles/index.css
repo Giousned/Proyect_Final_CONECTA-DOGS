@@ -61,15 +61,16 @@ h1 {
 
 .go-up {
   /* display:none; */
-	padding:20px;
-	background:#024959;
-	font-size:20px;
-	color:#fff;
-	cursor:pointer;
-	position: fixed;
-	bottom:20px;
-	right:20px;
+  padding: 20px;
+  background: #024959;
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 }
+
 .simplescrollup__button {
   position: fixed;
   bottom: 0.5rem;
@@ -77,9 +78,32 @@ h1 {
   transition: 1s all;
   z-index: 10000;
 }
+
 .simplescrollup__button--show {
   transform: translateX(0);
 }
+
 .simplescrollup__button--hide {
   transform: translateX(100px);
+}
+
+
+/* *+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+* */
+/* NOTIFICACIONES - DOT */
+/* *+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+* */
+[data-notifications] {
+  position: relative;
+}
+
+[data-notifications]:after {
+  content: attr(data-notifications);
+  background: #3f51b5;
+  border-radius: 50px;
+  display: inline-block;
+  padding: 0.3em;
+  margin: 0.3em;
+  color: #f2f2f2;
+  /* position: absolute; */
+  /* right: -5px; */
+  /* top: -20px; */
 }

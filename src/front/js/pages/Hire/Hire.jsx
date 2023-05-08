@@ -31,7 +31,7 @@ const Hire = () => {
             </div>
 
             <div className="container my-4">
-                <div className=" bg-body-tertiary rounded-3">
+                <div className=" bg-body-tertiary p-4 rounded-3">
                     <h3 className="text-body-emphasis text-center pb-4">Contacta con: Sandra M</h3>
                     {/* SERVICIO */}
                     <h4>Selecciona el servicio:</h4>
@@ -123,11 +123,11 @@ const Hire = () => {
                         <div className="col-md">
                             <div className="form-floating">
                                 <div className="glowing-register m-2">
-                                    <input type="radio" id="perro1"
+                                    <input type="checkbox" id="perro1"
                                         name="perro" value="perro1" />
                                     <label htmlFor="perro1">
                                         <img src="https://cdn.pixabay.com/photo/2022/03/30/11/12/dog-7101015_960_720.jpg"
-                                            className="img-fluid w-50" />
+                                            className="img-fluid" />
                                     </label>
                                     <p className="text-center">Perro 1</p>
                                 </div>
@@ -137,13 +137,27 @@ const Hire = () => {
                         <div className="col-md">
                             <div className="form-floating">
                                 <div className="glowing-register m-2">
-                                    <input type="radio" id="perro2"
+                                    <input type="checkbox" id="perro2"
                                         name="perro" value="perro2" />
                                     <label htmlFor="perro2">
-                                        <img src="https://cdn.pixabay.com/photo/2017/10/02/21/56/dog-2810484_960_720.jpg"
-                                            className="img-fluid w-50" />
+                                        <img src="https://cdn.pixabay.com/photo/2019/12/31/23/20/puppy-4732766_960_720.jpg"
+                                            className="img-fluid" />
                                     </label>
                                     <p className="text-center">Perro 2</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-md">
+                            <div className="form-floating">
+                                <div className="glowing-register m-2">
+                                    <input type="checkbox" id="perro3"
+                                        name="perro" value="perro3" />
+                                    <label htmlFor="perro3">
+                                        <img src="https://cdn.pixabay.com/photo/2016/02/25/10/31/puppy-1221791_960_720.jpg"
+                                            className="img-fluid" />
+                                    </label>
+                                    <p className="text-center">Perro 3</p>
                                 </div>
                             </div>
                         </div>
