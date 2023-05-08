@@ -1,5 +1,6 @@
 from api.models import db, User
 from flask_jwt_extended import create_access_token, get_jwt_identity
+from api.checks.checks_user import check_user
 
 
 # import requests
@@ -9,6 +10,10 @@ from flask_jwt_extended import create_access_token, get_jwt_identity
 def create_user(body):
 
     try:
+
+        # checks_response = check_user(body)
+        # if checks_response["code"] != 200:
+        #     return checks_response["msg"]
 
         claves_user = body.keys()
 
@@ -134,6 +139,8 @@ def update_user(body, id):
         user.birthdate = body["birthdate"]
         user.aboutMe = body["aboutMe"]
         user.is_active = True
+
+        # print(body["userPhoto"])
 
         # latitude = int(body["latitude"])
         # longitude = body["longitude"]

@@ -16,8 +16,8 @@ def create_book(body):
 
         service_id = body["serviceId"]
 
-        query = db.select(Books).filter_by(user_from_id=user_id, service_id=service_id)
-        book = db.session.execute(query).scalars().first()
+        # query = db.select(Books).filter_by(user_from_id=user_id, service_id=service_id)
+        # book = db.session.execute(query).scalars().first()
 
         # Crear una nueva reserva en la base de datos
         new_book = book(
