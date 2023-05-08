@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
@@ -8,7 +8,7 @@ import ModalDelete from "../Modals/ModalDelete.jsx";
 import useAppContext from "../../store/AppContext.js";
 import useUserInput from "../../hooks/useUserInput.js";
 
-import "./signup-form.css";
+import "./FormsStyles.css";
 
 const DogInformation = (props) => {
 
@@ -254,7 +254,7 @@ const DogInformation = (props) => {
                         className="action-button shadow animate my-2 mx-auto blue"
                         onClick={handleUpdate}
                     >
-                    Actualizar Perro
+                        Actualizar Perro
                     </button>
 
                     <button
@@ -263,7 +263,7 @@ const DogInformation = (props) => {
                         data-bs-toggle="modal"
                         data-bs-target={`#modal-${props.dogInfo.id}`}
                     >
-                    Eliminar Perro
+                        Eliminar Perro
                     </button>
 
                     <ModalDelete id={props.dogInfo.id} name={props.dogInfo.dogName} />

@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../AboutUs/about-us.css";
+import "../AboutUs/AboutUsStyles.css";
 
 const AboutUsItem = ({ icon, title, description }) => {
     return (<>

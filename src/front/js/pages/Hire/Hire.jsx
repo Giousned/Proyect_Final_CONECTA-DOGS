@@ -6,7 +6,7 @@ import useAuthContext from "../../store/AuthContext.js";
 
 {/* import { Link, animateScroll as scroll } from "react-scroll"; */ }
 {/* import "./hire.js"; */ }
-import "./hire.css";
+import "./HireStyles.css";
 
 const Hire = () => {
 

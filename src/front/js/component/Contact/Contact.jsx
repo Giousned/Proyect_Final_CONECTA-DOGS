@@ -1,5 +1,5 @@
 import React from "react";
-import "../Contact/contact.css";
+import "../Contact/ContactStyles.css";
 import Logo from "../../../img/conectadogs-logo.black.png";
 
 const Contact = () => {

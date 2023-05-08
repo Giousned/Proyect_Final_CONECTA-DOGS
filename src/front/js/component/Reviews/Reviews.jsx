@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../Reviews/reviews.css";
+import "../Reviews/ReviewsStyles.css";
 
 const Reviews = () => {
   return (

@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useAppContext from "../../store/AppContext.js";
 
-import "../SignUpForm/signup-form.css";
+import "../SignUpForm/FormsStyles.css";
 
 const SignUpForm2 = () => {
 
