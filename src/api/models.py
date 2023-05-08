@@ -19,7 +19,7 @@ class User(db.Model):
     aboutMe = db.Column(db.String(300), unique=False, nullable=True)
     birthdate = db.Column(db.String(20), unique=False, nullable=False)
     is_active = db.Column(db.Boolean, unique=False, nullable=False)
-    photo = db.Column(db.String(500), unique=True, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
+    userPhoto = db.Column(db.String(500), unique=True, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
     # latitude = db.Column(db.String(40), unique=False, nullable=False)
     # longitude = db.Column(db.String(40), unique=False, nullable=False)
 
@@ -44,7 +44,7 @@ class User(db.Model):
             "country": self.country,
             "birthdate": self.birthdate,
             "aboutMe": self.aboutMe,
-            "photo": self.photo,
+            "userPhoto": self.userPhoto,
             # "latitude": self.latitude,
             # "longitude": self.longitude,
             "dogs": [dog.serialize() for dog in self.dogs],
@@ -68,7 +68,7 @@ class Dog(db.Model):
     microchip = db.Column(db.BigInteger, unique=True, nullable=False)
     dogActivity = db.Column(db.String(20), unique=False, nullable=True)
     observations = db.Column(db.String(500), unique=False, nullable=True)
-    photo = db.Column(db.String(500), unique=True, nullable=True)         # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
+    dogPhoto = db.Column(db.String(500), unique=True, nullable=True)         # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
 
     user_id = db.Column(db.Integer, db.ForeignKey("User.id"))
 
@@ -93,7 +93,7 @@ class Dog(db.Model):
             "microchip": self.microchip,
             "dogActivity": self.dogActivity,
             "observations": self.observations,
-            "photo": self.photo,
+            "dogPhoto": self.dogPhoto,
             "user_id": self.user_id,
         }
 
@@ -130,6 +130,7 @@ class Tariffs(db.Model):
 
     service = db.relationship("Services", back_populates="tariff")
     user = db.relationship("User", back_populates="tariffs")
+
     book = db.relationship("Books", back_populates="tariff")
 
 
@@ -145,18 +146,16 @@ class Tariffs(db.Model):
 
 
 # note for a Core table, we use the sqlalchemy.Column construct,
-# not sqlalchemy.orm.mapped_column
-association_table = db.Table(
-    "association_table",
-    # Base.metadata,
-    db.Column("Books", db.ForeignKey("Books.id")),
-    db.Column("Tariffs", db.ForeignKey("Tariffs.id")),
+# not sqlalchemy.orm.mapped_column                  # Base.metadata,
+books_dogs = db.Table(
+    "books_dogs",
+    db.Column("Books", db.Integer, db.ForeignKey("Books.id"), primary_key=True),
+    db.Column("Dog", db.Integer, db.ForeignKey("Dog.id"), primary_key=True),
 )
 
 
 class Books(db.Model):
     __tablename__ = "Books"
-    # id: Mapped[int] = db.mapped_column(primary_key=True)
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String, unique=False, nullable=False)
     hourPick = db.Column(db.String, unique=False, nullable=False)
@@ -169,12 +168,8 @@ class Books(db.Model):
     tarif_id = db.Column(db.Integer, db.ForeignKey("Tariffs.id"))
 
     tariff = db.relationship("Tariffs", back_populates="book")
-
-    # relacion segundaria y + perros
-    # children: Mapped[List[Child]] = relationship(secondary=association_table)
+    dogs = db.relationship("Dog", secondary=books_dogs, backref=db.backref("Books"))
     
-    asociation = db.relationship("Tariffs", secondary=association_table, backref=db.backref("Books"))
-
 
     def __repr__(self):
         return f'<Book {self.date}>'
@@ -191,6 +186,7 @@ class Books(db.Model):
             "tarif_id": self.tarif_id,
             "acepted": self.acepted,
             "tariff": self.tariff.serialize(),
+            "dogs": [dog.serialize() for dog in self.dogs]
         }
 
 

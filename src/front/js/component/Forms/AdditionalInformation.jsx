@@ -1,7 +1,7 @@
 import React from "react";
 
 import useAppContext from "../../store/AppContext";
-import "./signup-form.css";
+import "./FormsStyles.css";
 
 const AdditionalInformation = () => {
 

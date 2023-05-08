@@ -1,7 +1,7 @@
 import React from "react";
 import ReserveCard from "./ReserveCard.jsx";
 import ReserveCard2 from "./ReserveCard2.jsx";
-import "./reserves.css";
+import "./ReservesStyles.css";
 
 const Reserves = () => {
   return (

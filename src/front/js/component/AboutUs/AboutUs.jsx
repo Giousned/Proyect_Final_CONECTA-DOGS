@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../AboutUs/about-us.css";
+import "../AboutUs/AboutUsStyles.css";
 import AboutUsSection from "./AboutUsSection.jsx";
 import AboutUsItem from "./AboutUsItem.jsx";
 import Benefits from "./Benefits.jsx";

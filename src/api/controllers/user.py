@@ -1,5 +1,6 @@
 from api.models import db, User
 from flask_jwt_extended import create_access_token, get_jwt_identity
+from api.checks.checks_user import check_user
 
 
 # import requests
@@ -9,6 +10,10 @@ from flask_jwt_extended import create_access_token, get_jwt_identity
 def create_user(body):
 
     try:
+
+        # checks_response = check_user(body)
+        # if checks_response["code"] != 200:
+        #     return checks_response["msg"]
 
         claves_user = body.keys()
 
@@ -133,21 +138,11 @@ def update_user(body, id):
         user.country = body["country"]
         user.birthdate = body["birthdate"]
         user.aboutMe = body["aboutMe"]
+        user.userPhoto = body["userPhoto"]
         user.is_active = True
 
         # latitude = int(body["latitude"])
         # longitude = body["longitude"]
-
-        # if body["userPhoto"]:
-        #     cloudinary.uploader.upload(user.name + ".mp4", 
-        #         folder = body["userPhoto"],                 # "myfolder/mysubfolder/" 
-        #         public_id = user.name,            # "my_dog"
-        #         overwrite = True, 
-        #         notification_url = "http://res.cloudinary.com/drlf5uatk", 
-        #         resource_type = "photo")
-        #     res = requests.get('https://api.cloudinary.com/v1_1/drlf5uatk')
-        #     response = json.loads(res.text)
-        #     user.photo = response
 
         db.session.commit()
 

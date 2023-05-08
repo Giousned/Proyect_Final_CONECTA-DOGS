@@ -6,14 +6,17 @@ import React from "react";
 import useAppContext from "../../store/AppContext.js";
 import useUserInput from "../../hooks/useUserInput.js";
 
-import "./signup-form.css";
+import CloudinaryUpload from "../Widgets/CloudinaryUpload.js";
+
+
+import "./FormsStyles.css";
 
 const DogInformationRegister = () => {
 
     const { store, actions } = useAppContext();
 
     const { userInput, handleUserInput } = useUserInput();
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -27,9 +30,11 @@ const DogInformationRegister = () => {
                 <label htmlFor="foto-perro" className="form-label">
                     Foto del perro
                 </label>
-                <input className="form-control" type="file" id="foto-perro"
+                <CloudinaryUpload idName="dogRegister" setEstado={actions.setDogPhoto} />
+
+                {/* <input className="form-control" type="file" id="foto-perro"
                     name="dogPhoto" value={userInput.dogPhoto}
-                    onChange={handleUserInput} />
+                    onChange={handleUserInput} /> */}
 
                 <div className="input-group">
                     <div className="col me-2">
@@ -258,7 +263,7 @@ const DogInformationRegister = () => {
                     className="boton-registro-perro action-button shadow animate my-2 mx-auto"
                     onClick={handleSubmit}
                 >
-                Registrar Perro
+                    Registrar Perro
                 </button>
 
             </div>
