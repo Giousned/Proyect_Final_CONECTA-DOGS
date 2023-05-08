@@ -19,7 +19,7 @@ class User(db.Model):
     aboutMe = db.Column(db.String(300), unique=False, nullable=True)
     birthdate = db.Column(db.String(20), unique=False, nullable=False)
     is_active = db.Column(db.Boolean, unique=False, nullable=False)
-    photo = db.Column(db.String(500), unique=True, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
+    userPhoto = db.Column(db.String(500), unique=True, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
     # latitude = db.Column(db.String(40), unique=False, nullable=False)
     # longitude = db.Column(db.String(40), unique=False, nullable=False)
 
@@ -44,7 +44,7 @@ class User(db.Model):
             "country": self.country,
             "birthdate": self.birthdate,
             "aboutMe": self.aboutMe,
-            "photo": self.photo,
+            "userPhoto": self.userPhoto,
             # "latitude": self.latitude,
             # "longitude": self.longitude,
             "dogs": [dog.serialize() for dog in self.dogs],
@@ -68,7 +68,7 @@ class Dog(db.Model):
     microchip = db.Column(db.BigInteger, unique=True, nullable=False)
     dogActivity = db.Column(db.String(20), unique=False, nullable=True)
     observations = db.Column(db.String(500), unique=False, nullable=True)
-    photo = db.Column(db.String(500), unique=True, nullable=True)         # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
+    dogPhoto = db.Column(db.String(500), unique=True, nullable=True)         # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
 
     user_id = db.Column(db.Integer, db.ForeignKey("User.id"))
 
@@ -93,7 +93,7 @@ class Dog(db.Model):
             "microchip": self.microchip,
             "dogActivity": self.dogActivity,
             "observations": self.observations,
-            "photo": self.photo,
+            "dogPhoto": self.dogPhoto,
             "user_id": self.user_id,
         }
 

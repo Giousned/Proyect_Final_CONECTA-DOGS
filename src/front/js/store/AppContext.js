@@ -13,6 +13,9 @@ const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
 
+  const [ userPhoto, setUserPhoto ] = useState("");
+  const [ dogPhoto, setDogPhoto ] = useState("");
+
   const { storeAuth, actionsAuth } = useAuthContext();
   const { storeToast, actionsToast } = useToastsContext();
 
@@ -73,6 +76,8 @@ export const AppProvider = ({ children }) => {
   const handleRegisterDog = (e, dogInput) => {
     e.preventDefault();
 
+    dogInput["dogPhoto"] = dogPhoto;
+
     POST_Dog(dogInput)
       .then((data) => {
         actionsToast.handleShownToast(data);
@@ -82,6 +87,8 @@ export const AppProvider = ({ children }) => {
 
   const handleUpdateDog = (e, dogInput, dogId) => {
     e.preventDefault();
+
+    dogInput["dogPhoto"] = dogPhoto;
 
     UPDATE_Dog(dogInput, dogId)
       .then((data) => {
@@ -106,7 +113,7 @@ export const AppProvider = ({ children }) => {
     const newarrayTarrif = []
     const newObjTarrifs = { services: newarrayTarrif}
 
-    if ( userInput.nurseryDay) {
+    if ( userInput.nurseryDay ) {
       newarrayTarrif.push({serviceActive: true, serviceId: 1, price: userInput.priceNurseryDay})
     }
     else newarrayTarrif.push({serviceActive: false, serviceId: 1, price: 0})
@@ -126,6 +133,9 @@ export const AppProvider = ({ children }) => {
         actionsToast.handleShownToast(data);
       });
 
+
+    userInput["userPhoto"] = dogPhoto;
+
     UPDATE_User(userInput, storeAuth.userLog.user.id)
       .then((data) => {
         actionsToast.handleShownToast(data);
@@ -138,6 +148,9 @@ export const AppProvider = ({ children }) => {
   };
 
   const actions = {
+    setUserPhoto,
+    setDogPhoto,
+
     resetInput,
     handleUserInput,
     handleUserCheck,
