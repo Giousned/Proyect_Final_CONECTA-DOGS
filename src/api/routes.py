@@ -404,9 +404,9 @@ def create_token():
         query = db.session.query(User).filter(User.email == email)
         user = db.session.execute(query).scalars().one()
 
-        if user is None:
+        if user == None:        # user is None
             # el usuario no se encontró en la base de datos
-            return jsonify({"msg": "Error en el email o en la contraseña"}), 401       # SIEMPRE PONER EMAIL O PASS, NUNCA DECIR 1 SOLA DE LAS 2 ESTÁ MAL, MUCHA INFORMACIÓN GRATIS PARA LOS HACKERS
+            return jsonify({"msg": "No hay coincidencias en la base de datos"}), 401       # SIEMPRE PONER EMAIL O PASS, NUNCA DECIR 1 SOLA DE LAS 2 ESTÁ MAL, MUCHA INFORMACIÓN GRATIS PARA LOS HACKERS
 
 
         if password == user.password:
@@ -459,7 +459,7 @@ def config_services():
 
     except Exception as error:
         print(error)
-        return jsonify({"code": 500, "msg": "No ha ido bien"})
+        return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
 
 
 

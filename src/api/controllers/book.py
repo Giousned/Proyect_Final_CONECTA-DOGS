@@ -11,26 +11,40 @@ def create_book(body):
         if not "bookDate" in claves_book or not "serviceId" in claves_book or not "hourPick" in claves_book or not "hourDeliver" in claves_book or not "hourDeliver" in claves_book or not "dogsAcepted" in claves_book or not "dogIdAcepted" in claves_book:
             return {"code": 400, "msg": "¡Información recibida en el Back insuficiente, falta información!"}
 
+        books = body["books"]
+
         sub_token = get_jwt_identity()
         user_id = sub_token["id"]
 
-        service_id = body["serviceId"]
+        for book in books:
+            carer_id = book["carerId"]
+            service_id = book["serviceId"]                # Id del servicio: id = 1 PARA nurseryDay // Alojamiento        id = 2 PARA walk // Paseo       id = 3 PARA nurseryNight // Guardería de Día
+            price = int(book["price"])                          # Precio de cada servicio ofrecido por el usuario
 
-        # query = db.select(Books).filter_by(user_from_id=user_id, service_id=service_id)
-        # book = db.session.execute(query).scalars().first()
+            query = db.select(Tariffs).filter_by(user_id=carer_id, service_id=service_id)
+            tarif = db.session.execute(query).scalars().first()
 
-        # Crear una nueva reserva en la base de datos
-        new_book = book(
-            date = body["bookDate"],
-            hourPick = body["hourPick"],
-            hourDeliver = body["hourDeliver"],
-            dogsAcepted = int(body["dogsAcepted"]),
-            dogIdAcepted = int(body["dogIdAcepted"]),
-            acepted = False)
+            # query = db.select(Books).filter_by(user_from_id=user_id, service_id=service_id)
+            # book = db.session.execute(query).scalars().first()
+
+            for dog in book["dogs"]:
+                # query = db.select(Dogs).filter_by(user_id=user_id, dog_id=dog_id)
+                # dog = db.session.execute(query).scalars().first()
+
+                # Crear una nueva reserva en la base de datos
+                new_book = Book(
+                    date = body["bookDate"],
+                    hourPick = body["hourPick"],
+                    hourDeliver = body["hourDeliver"],
+                    dogsAcepted = int(body["dogsAcepted"]),
+                    dogIdAcepted = int(book["dogId"]),
+                    user_from_id = user_id,
+                    tarif_id = tarif,
+                    acepted = False)
 
 
-        db.session.add(new_book)
-        db.session.commit()
+                db.session.add(new_book)
+                db.session.commit()
 
         return {"code": 200, "msg": "Reserva creada correctamente!"}
 

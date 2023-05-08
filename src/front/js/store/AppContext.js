@@ -13,6 +13,9 @@ const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
 
+  const [ userPhoto, setUserPhoto ] = useState("");
+  const [ dogPhoto, setDogPhoto ] = useState("");
+
   const { storeAuth, actionsAuth } = useAuthContext();
   const { storeToast, actionsToast } = useToastsContext();
 
@@ -100,13 +103,15 @@ export const AppProvider = ({ children }) => {
       });
   };
 
+  console.log(userPhoto);
+
   const handleUpdate = (e) => {
     e.preventDefault();
 
     const newarrayTarrif = []
     const newObjTarrifs = { services: newarrayTarrif}
 
-    if ( userInput.nurseryDay) {
+    if ( userInput.nurseryDay ) {
       newarrayTarrif.push({serviceActive: true, serviceId: 1, price: userInput.priceNurseryDay})
     }
     else newarrayTarrif.push({serviceActive: false, serviceId: 1, price: 0})
@@ -135,9 +140,13 @@ export const AppProvider = ({ children }) => {
 
   const store = {
     userInput,
+    userPhoto,
   };
 
   const actions = {
+    setUserPhoto,
+    setDogPhoto,
+
     resetInput,
     handleUserInput,
     handleUserCheck,
