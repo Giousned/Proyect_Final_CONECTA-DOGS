@@ -8,24 +8,24 @@ const Alert = (props) => {
   const show = "show"
 
   return (
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div className="toast-container position-fixed bottom-0 end-0 p-3">
       <div
-        class={`toast fade ${show}`}
+        className={`toast fade ${show}`}
         role="alert"
         aria-live="assertive"
         aria-atomic="true"
       >
-        <div class="toast-header">
-          <strong class="me-auto">Bootstrap</strong>
+        <div className="toast-header">
+          <strong className="me-auto">Bootstrap</strong>
           <small>11 mins ago</small>
           <button
             type="button"
-            class="btn-close"
+            className="btn-close"
             data-bs-dismiss="toast"
             aria-label="Close"
           ></button>
         </div>
-        <div class="toast-body">Hello, world! This is a toast message.</div>
+        <div className="toast-body">Hello, world! This is a toast message.</div>
       </div>
     </div>
   );
