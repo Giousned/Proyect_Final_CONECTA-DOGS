@@ -138,23 +138,11 @@ def update_user(body, id):
         user.country = body["country"]
         user.birthdate = body["birthdate"]
         user.aboutMe = body["aboutMe"]
+        user.userPhoto = body["userPhoto"]
         user.is_active = True
-
-        # print(body["userPhoto"])
 
         # latitude = int(body["latitude"])
         # longitude = body["longitude"]
-
-        # if body["userPhoto"]:
-        #     cloudinary.uploader.upload(user.name + ".mp4", 
-        #         folder = body["userPhoto"],                 # "myfolder/mysubfolder/" 
-        #         public_id = user.name,            # "my_dog"
-        #         overwrite = True, 
-        #         notification_url = "http://res.cloudinary.com/drlf5uatk", 
-        #         resource_type = "photo")
-        #     res = requests.get('https://api.cloudinary.com/v1_1/drlf5uatk')
-        #     response = json.loads(res.text)
-        #     user.photo = response
 
         db.session.commit()
 

@@ -30,18 +30,9 @@ def create_dog(body):
             socialDogs = bool(body["socialDogs"]),
             dogActivity = body["dogActivity"],
             microchip = int(body["microchip"]),
+            dogPhoto = body["dogPhoto"],
             observations = body["observations"])
         
-        # if body["dogPhoto"]:
-            #     cloudinary.uploader.upload(dog.name + ".mp4", 
-            #         folder = body["dogPhoto"],                 # "myfolder/mysubfolder/" 
-            #         public_id = dog.name,            # "my_dog"
-            #         overwrite = True, 
-            #         notification_url = "http://res.cloudinary.com/drlf5uatk", 
-            #         resource_type = "photo")
-            #     res = requests.get('https://api.cloudinary.com/v1_1/drlf5uatk')
-            #     response = json.loads(res.text)
-            #     Dog(photo = response)
 
         db.session.add(new_dog)
         db.session.commit()
@@ -107,17 +98,8 @@ def update_dog(body, id):
         dog.dogActivity = body["dogActivity"]
         # dog.microchip = int(body["microchip"])        # ESTA DISABLED PARA CAMBIAR EN EL FRONT
         dog.observations = body["observations"]
+        dog.dogPhoto = body["dogPhoto"]
 
-        # if body["dogPhoto"]:
-            #     cloudinary.uploader.upload(dog.name + ".mp4", 
-            #         folder = body["dogPhoto"],                 # "myfolder/mysubfolder/" 
-            #         public_id = dog.name,            # "my_dog"
-            #         overwrite = True, 
-            #         notification_url = "http://res.cloudinary.com/drlf5uatk", 
-            #         resource_type = "photo")
-            #     res = requests.get('https://api.cloudinary.com/v1_1/drlf5uatk')
-            #     response = json.loads(res.text)
-            #     dog.photo = response
 
         db.session.commit()
 

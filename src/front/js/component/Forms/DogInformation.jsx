@@ -5,6 +5,8 @@ import React, { useEffect } from "react";
 
 import ModalDelete from "../Modals/ModalDelete.jsx";
 
+import CloudinaryUpload from "../Widgets/CloudinaryUpload.js";
+
 import useAppContext from "../../store/AppContext.js";
 import useUserInput from "../../hooks/useUserInput.js";
 
@@ -27,11 +29,12 @@ const DogInformation = (props) => {
         <>
             <div className="d-grid gap-2">
                 <label htmlFor={`foto-perro${props.dogInfo.id}`} className="form-label">
-                    Foto del perro
+                    Foto del perro:
                 </label>
-                <input className="form-control" type="file" id={`foto-perro${props.dogInfo.id}`}
+                <CloudinaryUpload idName="dogInfo" setEstado={actions.setDogPhoto} />
+                {/* <input className="form-control" type="file" id={`foto-perro${props.dogInfo.id}`}
                     name="dogPhoto" value={userInput.dogPhoto}
-                    onChange={handleUserInput} />
+                    onChange={handleUserInput} /> */}
 
                 <div className="input-group">
                     <div className="col me-2">

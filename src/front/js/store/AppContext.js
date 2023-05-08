@@ -76,6 +76,8 @@ export const AppProvider = ({ children }) => {
   const handleRegisterDog = (e, dogInput) => {
     e.preventDefault();
 
+    dogInput["dogPhoto"] = dogPhoto;
+
     POST_Dog(dogInput)
       .then((data) => {
         actionsToast.handleShownToast(data);
@@ -85,6 +87,8 @@ export const AppProvider = ({ children }) => {
 
   const handleUpdateDog = (e, dogInput, dogId) => {
     e.preventDefault();
+
+    dogInput["dogPhoto"] = dogPhoto;
 
     UPDATE_Dog(dogInput, dogId)
       .then((data) => {
@@ -102,8 +106,6 @@ export const AppProvider = ({ children }) => {
         actionsAuth.handleUpdateUser();
       });
   };
-
-  console.log(userPhoto);
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -131,6 +133,9 @@ export const AppProvider = ({ children }) => {
         actionsToast.handleShownToast(data);
       });
 
+
+    userInput["userPhoto"] = dogPhoto;
+
     UPDATE_User(userInput, storeAuth.userLog.user.id)
       .then((data) => {
         actionsToast.handleShownToast(data);
@@ -140,7 +145,6 @@ export const AppProvider = ({ children }) => {
 
   const store = {
     userInput,
-    userPhoto,
   };
 
   const actions = {

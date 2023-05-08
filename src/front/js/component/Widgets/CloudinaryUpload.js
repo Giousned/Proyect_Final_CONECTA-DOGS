@@ -1,9 +1,13 @@
-import React, { Component } from "react";
+import React, { useEffect} from "react";
 
-class CloudinaryUpload extends Component {
+import useToastsContext from "../../store/ToastsContext.js";
 
-  componentDidMount() {
 
+const CloudinaryUpload = (props) => {
+
+  const { storeToast, actionsToast } = useToastsContext();
+
+  useEffect(() => { 
     let myWidget = window.cloudinary.createUploadWidget(
       {
         cloudName: "dx764kyct",
@@ -12,26 +16,26 @@ class CloudinaryUpload extends Component {
       (error, result) => {
         if (!error && result && result.event === "success") {
           console.log("Done! Here is the image info: ", result.info);
+          props.setEstado(result.info.url);
+          actionsToast.handleShownToast({ code: 200, msg: "¡Foto subida a la nube correctamente!" });
         }
       }
     );
 
-    document.getElementById("upload_widget").addEventListener(
+    document.getElementById(`upload_widget_${props.idName}`).addEventListener(
       "click",
       function () {
         myWidget.open();
       },
       false
     );
-  }
+  }, [])
 
-  render() {
     return (
-      <button id="upload_widget" className="cloudinary-button">
+      <button id={`upload_widget_${props.idName}`} className="cloudinary-button w-50">
         Upload Photo
       </button>
     );
-  }
 }
 
 export default CloudinaryUpload;

@@ -1,8 +1,8 @@
 import React from "react";
-import CloudinaryUpload from "../../../component/Widgets/CloudinaryUpload.js";
 
 import useAppContext from "../../../store/AppContext.js";
 
+import CloudinaryUpload from "../../../component/Widgets/CloudinaryUpload.js";
 import PersonalInformation from "../../../component/Forms/PersonalInformation.jsx";
 
 
@@ -17,13 +17,15 @@ const UserInformation = () => {
     return (
         <div className="my-4">
             <h3 className="my-4">Información personal</h3>
-            <label htmlFor="foto-usuario" className="form-label me-2">
+            <label htmlFor="foto-usuario" className="form-label">
                 Foto de perfil:
                 {/* <input className="form-control" type="file" id="foto-usuario"
                     name="userPhoto" value={store.userInput.userPhoto}
                     onChange={actions.handleUserInput} /> */}
             </label>
-            <CloudinaryUpload />
+            <div className="mb-2">
+            <CloudinaryUpload idName="user" setEstado={actions.setUserPhoto} />
+            </div>
 
             <PersonalInformation disable={true} />
         </div>

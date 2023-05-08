@@ -6,6 +6,9 @@ import React from "react";
 import useAppContext from "../../store/AppContext.js";
 import useUserInput from "../../hooks/useUserInput.js";
 
+import CloudinaryUpload from "../Widgets/CloudinaryUpload.js";
+
+
 import "./FormsStyles.css";
 
 const DogInformationRegister = () => {
@@ -27,9 +30,11 @@ const DogInformationRegister = () => {
                 <label htmlFor="foto-perro" className="form-label">
                     Foto del perro
                 </label>
-                <input className="form-control" type="file" id="foto-perro"
+                <CloudinaryUpload idName="dogRegister" setEstado={actions.setDogPhoto} />
+
+                {/* <input className="form-control" type="file" id="foto-perro"
                     name="dogPhoto" value={userInput.dogPhoto}
-                    onChange={handleUserInput} />
+                    onChange={handleUserInput} /> */}
 
                 <div className="input-group">
                     <div className="col me-2">
