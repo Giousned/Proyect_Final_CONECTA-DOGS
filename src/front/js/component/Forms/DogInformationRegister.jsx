@@ -6,14 +6,14 @@ import React from "react";
 import useAppContext from "../../store/AppContext.js";
 import useUserInput from "../../hooks/useUserInput.js";
 
-import "./signup-form.css";
+import "./FormsStyles.css";
 
 const DogInformationRegister = () => {
 
     const { store, actions } = useAppContext();
 
     const { userInput, handleUserInput } = useUserInput();
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -258,7 +258,7 @@ const DogInformationRegister = () => {
                     className="boton-registro-perro action-button shadow animate my-2 mx-auto"
                     onClick={handleSubmit}
                 >
-                Registrar Perro
+                    Registrar Perro
                 </button>
 
             </div>

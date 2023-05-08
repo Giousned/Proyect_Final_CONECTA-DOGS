@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import Logo from "../../../img/conectadogs-logo.black.png";
 import useAuthContext from "../../store/AuthContext.js";
-import "../LogInForm/login-form.css";
+import "../LogInForm/LoginStyles.css";
 
 const LogInForm = () => {
 

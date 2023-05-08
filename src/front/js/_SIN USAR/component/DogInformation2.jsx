@@ -1,7 +1,7 @@
 import React from "react";
 // import useAppContext from "../../store/AppContext.js";
 
-import "./signup-form.css";
+import "./FormsStyles.css";
 
 export const DogInformation2 = () => {
 

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import useAuthContext from "../../store/AuthContext.js";
 import useAppContext from "../../store/AppContext.js";
 
-import "../Header/header.css";
+import "../Header/HeaderStyles.css";
 
 const Header = () => {
 

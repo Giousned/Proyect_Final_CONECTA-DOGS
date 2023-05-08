@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "../Footer/footer.css";
+import "../Footer/FooterStyles.css";
 import Logo from "../../../img/conectadogs-logo-white.png";
 
 const Footer = () => {

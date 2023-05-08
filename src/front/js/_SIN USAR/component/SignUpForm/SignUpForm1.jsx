@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import useAppContext from "../../store/AppContext.js";
 
-import "./signup-form.css";
+import "./FormsStyles.css";
 
 const SignUpForm1 = () => {
 

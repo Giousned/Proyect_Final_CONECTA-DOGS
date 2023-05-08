@@ -7,12 +7,12 @@ import MyDog from "./components/MyDog.jsx";
 
 import useAppContext from "../../store/AppContext.js";
 
-import "./user-profile.css";
+import "./UserProfileStyles.css";
 
 const UserProfile = () => {
-   
+
     const { store, actions } = useAppContext();
-    
+
     const [activeTab, setActiveTab] = useState('home');
 
     const handleTabClick = (tabId) => {
@@ -22,7 +22,7 @@ const UserProfile = () => {
     return (
         <div className="user-profile">
             <div className="header">
-            <h1 className="text-center p-4">INFORMACIÓN DE USUARIO</h1>
+                <h1 className="text-center p-4">INFORMACIÓN DE USUARIO</h1>
             </div>
             <div className="container">
                 <div className="row">
@@ -93,15 +93,15 @@ const UserProfile = () => {
                                     </div>
                                 </div>
 
-                                {(activeTab !== 'mydogs') 
+                                {(activeTab !== 'mydogs')
                                     ? <div className="d-grid m-4 d-md-flex justify-content-md-end">
                                         <button type="submit" className="action-button shadow animate blue" onClick={actions.handleUpdate}> Guardar cambios </button>
-                                      </div>
+                                    </div>
                                     : null
                                 }
 
                             </form>
-                            
+
                         </div>
                     </div>
                 </div>
