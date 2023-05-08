@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import MyDog from "../UserProfile/components/MyDog.jsx";
+import DogCardInformation from "../UserProfile/components/DogCardInformation.jsx";
+import useAuthContext from "../../store/AuthContext.js";
+
 {/* import { Link, animateScroll as scroll } from "react-scroll"; */ }
 {/* import "./hire.js"; */ }
 import "./hire.css";
 
 const Hire = () => {
+
+    const { storeAuth, actionsAuth } = useAuthContext();
+
+    const [activeTab, setActiveTab] = useState("");
+
+    useEffect(() => {
+        setActiveTab("");
+    }, [storeAuth.userLog.user])
+
+    const handleTabClick = (tabId) => {
+        setActiveTab(tabId);
+    };
+
     return (
         <div className="hire">
             <div className="reserves">
@@ -16,6 +33,7 @@ const Hire = () => {
             <div className="container my-4">
                 <div className=" bg-body-tertiary rounded-3">
                     <h3 className="text-body-emphasis text-center pb-4">Contacta con: Sandra M</h3>
+                    {/* SERVICIO */}
                     <h4>Selecciona el servicio:</h4>
                     <div className="row g-2">
                         <div className="col-md">
@@ -56,61 +74,6 @@ const Hire = () => {
                             </div>
                         </div>
                     </div>
-
-
-                    {/* CALENDARIO ---> NO SE COMO HACERLO */}
-                    <div className="container d-flex">
-                        <div className="p-5 col-6">
-                            <div className="softcard">
-                                <div className="calendar-bar">
-                                    <button className="prev soft-btn"><i className="fas fa-chevron-left"></i></button>
-                                    <div className="current-month"></div>
-                                    <button className="next soft-btn"><i className="fas fa-chevron-right"></i></button>
-                                </div>
-                                <div className="calendar">
-                                    <div className="weekdays-name">
-                                        <div className="days-name">Sab</div>
-                                        <div className="days-name">Dom</div>
-                                        <div className="days-name">Lun</div>
-                                        <div className="days-name">Mar</div>
-                                        <div className="days-name">Mie</div>
-                                        <div className="days-name">Jue</div>
-                                        <div className="days-name">Vie</div>
-                                    </div>
-                                    <div className="calendar-days"></div>
-                                </div>
-                                <div className="goto-buttons">
-                                    ENTREGA:
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="p-5 col-6">
-                            <div className="softcard">
-                                <div className="calendar-bar">
-                                    <button className="prev soft-btn"><i className="fas fa-chevron-left"></i></button>
-                                    <div className="current-month"></div>
-                                    <button className="next soft-btn"><i className="fas fa-chevron-right"></i></button>
-                                </div>
-                                <div className="calendar">
-                                    <div className="weekdays-name">
-                                        <div className="days-name">Sab</div>
-                                        <div className="days-name">Dom</div>
-                                        <div className="days-name">Lun</div>
-                                        <div className="days-name">Mar</div>
-                                        <div className="days-name">Mie</div>
-                                        <div className="days-name">Jue</div>
-                                        <div className="days-name">Vie</div>
-                                    </div>
-                                    <div className="calendar-days"></div>
-                                </div>
-                                <div className="goto-buttons">
-                                    RECOGIDA:
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     {/* CALENDARIO */}
                     <div className="d-flex">
                         <div className="col-6 me-2">
@@ -148,17 +111,51 @@ const Hire = () => {
 
                         </div>
                     </div>
-
+                    {/* TUS PERROS */}
                     <h3 className="mt-4 pt-4">Tus Perros</h3>
                     <p className="lead">
-                        Tu Perro o Añadir otro Perro
+                        Tu Perro Aquí (No me funciona traerme el componente con .map)
+                        <br />
+                        Selecciona el perro para el que quieres contratar este servicio:
                     </p>
 
+                    <div className="container d-flex">
+                        <div className="col-md">
+                            <div className="form-floating">
+                                <div className="glowing-register m-2">
+                                    <input type="radio" id="perro1"
+                                        name="perro" value="perro1" />
+                                    <label htmlFor="perro1">
+                                        <img src="https://cdn.pixabay.com/photo/2022/03/30/11/12/dog-7101015_960_720.jpg"
+                                            className="img-fluid w-50" />
+                                    </label>
+                                    <p className="text-center">Perro 1</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-md">
+                            <div className="form-floating">
+                                <div className="glowing-register m-2">
+                                    <input type="radio" id="perro2"
+                                        name="perro" value="perro2" />
+                                    <label htmlFor="perro2">
+                                        <img src="https://cdn.pixabay.com/photo/2017/10/02/21/56/dog-2810484_960_720.jpg"
+                                            className="img-fluid w-50" />
+                                    </label>
+                                    <p className="text-center">Perro 2</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {/* TU TELEFONO */}
                     <h3 className="mt-4 pt-4">Tu Teléfono</h3>
                     <p className="lead">
                         666 123 456
                     </p>
-
+                    {/* MENSAJE */}
                     <h3 className="mt-4 pt-4">Mensaje</h3>
                     <div className="mb-3">
                         <label for="MensajeACuidador" className="form-label">
