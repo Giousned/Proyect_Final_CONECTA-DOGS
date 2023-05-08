@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "./notifications.css";
+import "./NotificationsStyles.css";
 
 const Notifications = () => {
   return (

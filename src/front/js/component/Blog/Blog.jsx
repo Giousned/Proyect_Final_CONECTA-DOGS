@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, animateScroll as scroll } from "react-scroll";
 
-import "../Blog/blog.css";
+import "../Blog/BlogStyles.css";
 import BlogPost from "./BlogPost.jsx";
 
 const blogPosts = [
