@@ -1,23 +1,22 @@
 import React, { useState } from "react";
 
-const Alert = (props) => {
-  const [color, setColor] = useState("primary");
+import useToastsContext from "../../store/ToastsContext.js";
 
-  // if (props?.data?.code != 200) setColor("danger");
+const Alert = () => {
 
-  const show = "show"
+  const { storeToast, actionsToast } = useToastsContext();
 
   return (
     <div className="toast-container position-fixed bottom-0 end-0 p-3">
       <div
-        className={`toast fade ${show}`}
+        className={`toast fade ${storeToast.toastInfo.active} bg-${storeToast.toastInfo.color}`}
         role="alert"
         aria-live="assertive"
         aria-atomic="true"
       >
         <div className="toast-header">
-          <strong className="me-auto">Bootstrap</strong>
-          <small>11 mins ago</small>
+          <strong className="me-auto">Mensaje</strong>
+          <small>Now</small>
           <button
             type="button"
             className="btn-close"
@@ -25,7 +24,7 @@ const Alert = (props) => {
             aria-label="Close"
           ></button>
         </div>
-        <div className="toast-body">Hello, world! This is a toast message.</div>
+        <div className="toast-body">{storeToast.toastInfo.msg}</div>
       </div>
     </div>
   );

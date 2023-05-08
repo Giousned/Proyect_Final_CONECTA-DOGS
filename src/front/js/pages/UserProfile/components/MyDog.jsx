@@ -63,7 +63,7 @@ const MyDog = () => {
             aria-selected={activeTab === "add-dog"}
           >
             <div className="dog-card-information">
-              <div className="card text-bg-dark">
+              <div className="card">
                 <img
                   src="https://img.freepik.com/vector-premium/fondo-invitacion-tarjeta-dia-san-valentin-animales-pareja-perros-enamorados_194708-1801.jpg?w=2000"
                   className="card-img"

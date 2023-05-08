@@ -3,6 +3,8 @@ import React, {useEffect} from "react";
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
 
+import ModalDelete from "../Modals/ModalDelete.jsx";
+
 import useAppContext from "../../store/AppContext.js";
 import useUserInput from "../../hooks/useUserInput.js";
 
@@ -12,20 +14,12 @@ const DogInformation = (props) => {
 
     const { store, actions } = useAppContext();
 
-    const { userInput, resetInput, handleUserInput, handleUserCheck } = useUserInput(props.dogInfo);
+    const { userInput, handleUserInput, handleUserCheck } = useUserInput(props.dogInfo);
 
     const handleUpdate = (e) => {
         e.preventDefault();
 
         actions.handleUpdateDog(e, userInput, props.dogInfo.id);
-
-    }
-
-    const handleDelete = (e) => {
-        e.preventDefault();
-
-        actions.handleDeleteDog(e, props.dogInfo.id);
-
     }
 
 
@@ -73,15 +67,6 @@ const DogInformation = (props) => {
                             value={userInput.dogBirth}
                             onChange={handleUserInput}
                             required />
-                        {/* <DatePicker
-                            id={`cumple-perro${props.dogInfo.id}`} className="text-center form-control"
-                            placeholderText="04-2023"
-                            name="dogBirth"
-                            selected={userInput.Date}
-                            onChange={handleUserSelectDate}
-                            dateFormat="MM/yyyy"
-                            showMonthYearPicker
-                        /> */}
                     </div>
 
                     <div className="col ms-2">
@@ -266,7 +251,7 @@ const DogInformation = (props) => {
 
                     <button
                         type="submit"
-                        className="action-button shadow animate my-2 mx-auto btn-primary"
+                        className="action-button shadow animate my-2 mx-auto blue"
                         onClick={handleUpdate}
                     >
                     Actualizar Perro
@@ -274,15 +259,16 @@ const DogInformation = (props) => {
 
                     <button
                         type="submit"
-                        className="action-button shadow animate my-2 mx-auto btn-danger"
-                        onClick={handleDelete}
+                        className="action-button shadow animate my-2 mx-auto red"
+                        data-bs-toggle="modal"
+                        data-bs-target={`#modal-${props.dogInfo.id}`}
                     >
                     Eliminar Perro
                     </button>
 
+                    <ModalDelete id={props.dogInfo.id} name={props.dogInfo.dogName} />
+
                 </div>
-
-
 
             </div>
         </>
@@ -292,10 +278,19 @@ const DogInformation = (props) => {
 export default DogInformation;
 
 
+{/* <DatePicker
+id={`cumple-perro${props.dogInfo.id}`} className="text-center form-control"
+placeholderText="04-2023"
+name="dogBirth"
+selected={userInput.Date}
+onChange={handleUserSelectDate}
+dateFormat="MM/yyyy"
+showMonthYearPicker
+/> */}
+
 
 // Checkbox.propTypes = {
 // value: PropTypes.bool,
 // handleClick: PropTypes.func,
 // label: PropTypes.string,
 // };
-

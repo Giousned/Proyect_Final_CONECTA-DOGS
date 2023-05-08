@@ -56,6 +56,7 @@ export const UPDATE_Dog = (newObj, dog_id) => {
     .then(data => {
         //here is were your code should start after the fetch finishes
         console.log(data); //this will print on the console the exact object received from the server
+        return data;
     })
     .catch(error => {console.log(error);}));  //Error handling
 };
@@ -79,6 +80,7 @@ export const DELETE_Dog = (dog_id) => {
       .then(data => {
           //here is were your code should start after the fetch finishes
           console.log(data); //this will print on the console the exact object received from the server
+          return data;
         })
         .catch(error => {console.log(error);}));  //Error handling
 };
@@ -105,6 +107,7 @@ export const POST_Dog = (nuevoPerro) => {
       .then((data) => {
         //here is were your code should start after the fetch finishes
         console.log(data); //this will print on the console the exact object received from the server
+        return data;
       })
       .catch(error => {console.log(error);}));  //Error handling
 };

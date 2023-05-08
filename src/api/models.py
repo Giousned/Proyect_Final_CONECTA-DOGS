@@ -121,6 +121,7 @@ class Services(db.Model):
 
 class Tariffs(db.Model):
     __tablename__ = "Tariffs"
+    # id: Mapped[int] = db.mapped_column(primary_key=True)
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer, unique=False, nullable=False)
 
@@ -129,6 +130,7 @@ class Tariffs(db.Model):
 
     service = db.relationship("Services", back_populates="tariff")
     user = db.relationship("User", back_populates="tariffs")
+
     book = db.relationship("Books", back_populates="tariff")
 
 
@@ -141,6 +143,15 @@ class Tariffs(db.Model):
             "price": self.price,
             "service": self.service.serialize(),
         }
+
+
+# note for a Core table, we use the sqlalchemy.Column construct,
+# not sqlalchemy.orm.mapped_column                  # Base.metadata,
+books_dogs = db.Table(
+    "books_dogs",
+    db.Column("Books", db.Integer, db.ForeignKey("Books.id"), primary_key=True),
+    db.Column("Dog", db.Integer, db.ForeignKey("Dog.id"), primary_key=True),
+)
 
 
 class Books(db.Model):
@@ -157,9 +168,8 @@ class Books(db.Model):
     tarif_id = db.Column(db.Integer, db.ForeignKey("Tariffs.id"))
 
     tariff = db.relationship("Tariffs", back_populates="book")
-
-    # relacion segundaria y + perros
-
+    dogs = db.relationship("Dog", secondary=books_dogs, backref=db.backref("Books"))
+    
 
     def __repr__(self):
         return f'<Book {self.date}>'
@@ -176,6 +186,7 @@ class Books(db.Model):
             "tarif_id": self.tarif_id,
             "acepted": self.acepted,
             "tariff": self.tariff.serialize(),
+            "dogs": [dog.serialize() for dog in self.dogs]
         }
 
 
