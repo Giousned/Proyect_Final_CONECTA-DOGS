@@ -1,5 +1,6 @@
 import React from "react";
-import { Link, animateScroll as scroll } from "react-scroll";
+// import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-router-dom";
 
 const ReserveInformation = () => {
     return (
@@ -53,13 +54,18 @@ const ReserveInformation = () => {
                             <i className="fas fa-clock"></i> Recogida: 20:00 - 21:00
                         </p>
                         <div className="d-grid gap-2 m-4">
-                            <button className="action-button shadow animate blue" type="button">Mensaje</button>
+                            <button className="action-button shadow animate blue" type="button">Enviar Correo Electrónico</button>
                         </div>
 
                         <div className="d-grid gap-2 d-md-flex justify-content-md-start">
                             <button type="button" className="action-button shadow animate blue">Aceptar Reserva</button>
                             <button type="button" className="action-button shadow animate red">Rechazar Reserva</button>
                         </div>
+
+                        <div className="d-grid gap-2 m-4">
+                            <Link to="/reserves" className="action-button shadow animate yellow text-center">Ir Atrás</Link>
+                        </div>
+
                     </div>
 
                 </div>

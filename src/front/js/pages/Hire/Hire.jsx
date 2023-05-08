@@ -115,28 +115,41 @@ const Hire = () => {
                     <h3 className="mt-4 pt-4">Tus Perros</h3>
                     <p className="lead">
                         Tu Perro Aquí (No me funciona traerme el componente con .map)
-
-                        <img src="https://m.media-amazon.com/images/I/618mX33ERmL.jpg" className="img-fluid" />
-
-                 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                        <br />
+                        Selecciona el perro para el que quieres contratar este servicio:
                     </p>
+
+                    <div className="container d-flex">
+                        <div className="col-md">
+                            <div className="form-floating">
+                                <div className="glowing-register m-2">
+                                    <input type="radio" id="perro1"
+                                        name="perro" value="perro1" />
+                                    <label htmlFor="perro1">
+                                        <img src="https://cdn.pixabay.com/photo/2022/03/30/11/12/dog-7101015_960_720.jpg"
+                                            className="img-fluid w-50" />
+                                    </label>
+                                    <p className="text-center">Perro 1</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-md">
+                            <div className="form-floating">
+                                <div className="glowing-register m-2">
+                                    <input type="radio" id="perro2"
+                                        name="perro" value="perro2" />
+                                    <label htmlFor="perro2">
+                                        <img src="https://cdn.pixabay.com/photo/2017/10/02/21/56/dog-2810484_960_720.jpg"
+                                            className="img-fluid w-50" />
+                                    </label>
+                                    <p className="text-center">Perro 2</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                     {/* TU TELEFONO */}
                     <h3 className="mt-4 pt-4">Tu Teléfono</h3>
                     <p className="lead">
