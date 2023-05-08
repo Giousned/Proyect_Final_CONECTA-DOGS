@@ -27,7 +27,7 @@ const UserProfile = () => {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <div className="avatar-user"></div>
+                        <img className="avatar-user" src={(store.userInput.userPhoto) ? store.userInput.userPhoto : "https://cdn.pixabay.com/photo/2021/01/19/10/17/man-5930748_960_720.jpg"} alt="Avatar de mi perfil"  />
 
                         <div className="tituloperfil text-center">
                             <h2 className="text-dark">{store.userInput.name} {store.userInput.lastName}</h2>
@@ -39,7 +39,7 @@ const UserProfile = () => {
                                 <div className="col boxshadow">
                                     <textarea className="form-control" id="aboutMe" rows="3"
                                         name="aboutMe"
-                                        value={store.userInput.aboutMe}
+                                        value={(store.userInput.aboutMe) ? store.userInput.aboutMe : ""}
                                         onChange={actions.handleUserInput}>
                                     </textarea>
                                     {/* Breve descripción sobre mí... 🤗 ❤️
