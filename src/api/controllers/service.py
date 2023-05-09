@@ -10,7 +10,7 @@ def create_service():
         service_list = [service.serialize() for service in services]
 
         if len(service_list) != 0:
-            return {"code": 403, "msg": "Servicios ya están creados"}
+            return {"code": 403, "msg": "Los servicios ya existen en la Base de Datos"}
 
 
         # Crear los servicios en la base de datos

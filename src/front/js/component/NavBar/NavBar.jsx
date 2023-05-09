@@ -93,7 +93,11 @@ const NavBar = () => {
                     </li>
 
                     <li>
-                      <Link to="/notifications" data-notifications="2" className="dropdown-item">
+                      <Link
+                        to="/notifications"
+                        data-notifications="2"
+                        className="dropdown-item"
+                      >
                         <i className="far fa-comment-alt pe-2"></i>{" "}
                         Notificaciones
                       </Link>
@@ -112,17 +116,15 @@ const NavBar = () => {
                     </li>
                     <li className="nav-item">
                       <Link to="/caregivers-list" className="dropdown-item">
-                        <i class="fas fa-search-location"></i> Buscar Cuidadores
+                        <i className="fas fa-search-location"></i> Buscar
+                        Cuidadores
                       </Link>
                     </li>
                     <li>
                       <hr className="dropdown-divider" />
                     </li>
                     <li className="nav-item">
-                      <Link
-                        to="/public-profile"
-                        className="dropdown-item"
-                      >
+                      <Link to="/public-profile" className="dropdown-item">
                         Public Profile
                       </Link>
                     </li>

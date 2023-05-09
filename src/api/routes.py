@@ -7,7 +7,7 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from api.utils import generate_sitemap, APIException
 from api.models import User, Services, Tariffs, Dog, Books                                       # from models import Person
-from api.controllers.user import create_user, get_users, get_user, update_user, delete_user, update_me_user
+from api.controllers.user import create_user, get_users, get_user, get_carers, update_user, delete_user, update_me_user
 from api.controllers.dog import create_dog, get_dogs, get_dog, update_dog, delete_dog
 from api.controllers.service import create_service, get_services, get_service, update_service, delete_service
 from api.controllers.tarif import create_tariff, get_tariffs, get_tariff, update_tariff, delete_tariff
@@ -50,6 +50,23 @@ def users():
             return jsonify(users_response)
 
         return jsonify(users_response["users"])
+
+    except Exception as error:
+        print(error)
+        return jsonify(users_response), users_response["code"]
+
+@api.route("/carers", methods=["GET"])
+def carers():
+
+    try:
+
+         # Obtener info de las tablas de la DB
+        users_response = get_carers()
+
+        if users_response["code"] != 200:
+            return jsonify(users_response)
+
+        return jsonify(users_response["users_carers"])
 
     except Exception as error:
         print(error)
@@ -455,7 +472,10 @@ def config_services():
         # Rellenar la tabla de la DB, con el registro de Usuario
         config_response = create_service()
 
-        return jsonify(config_response), 200
+        if config_response["code"] != 200:
+            return jsonify(config_response)
+
+        return jsonify(config_response)
 
     except Exception as error:
         print(error)

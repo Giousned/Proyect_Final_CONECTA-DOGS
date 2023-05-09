@@ -111,13 +111,13 @@ export const GET_Confirm_Book = (book_id) => {
 
 
 
-export const POST_book = (nuevoPerro) => {
+export const POST_Book = (nuevaReserva) => {
 
     const token = sessionStorage.getItem("jwt-token");
 
     return (fetch(`${RUTABACK}/api/signup-book`, {
         method: "POST",
-        body: JSON.stringify(nuevoPerro),
+        body: JSON.stringify(nuevaReserva),
         headers: {
           "Content-Type": "application/json",
           "Authorization": "Bearer " + token,
