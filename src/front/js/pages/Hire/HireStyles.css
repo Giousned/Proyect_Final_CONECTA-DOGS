@@ -1,4 +1,4 @@
-/* Reservas | Reserves - Styles */
+/* Contratar | Hire - Styles */
 
 .hire .header {
     position: relative;
@@ -41,4 +41,10 @@
 
 .hire .action-button:hover {
     color: white;
+}
+
+.hire .glowing-register input[type="checkbox"],
+.dog-mtn input[type="checkbox"],
+.dog-size input[type="checkbox"] {
+  display: none;
 }
