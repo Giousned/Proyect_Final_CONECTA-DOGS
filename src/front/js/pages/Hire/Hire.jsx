@@ -24,10 +24,9 @@ const Hire = () => {
 
     return (
         <div className="hire">
-            <div className="reserves">
-                <div className="header">
-                    <h1 className="text-center p-4">CONTRATAR CUIDADOR</h1>
-                </div>
+
+            <div className="header">
+                <h1 className="text-center p-4">CONTRATAR CUIDADOR</h1>
             </div>
 
             <div className="container my-4">
@@ -178,7 +177,7 @@ const Hire = () => {
                         <textarea className="form-control" id="MensajeACuidador" rows="3"></textarea>
                     </div>
 
-                    <div className="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <div className="d-grid gap-2 d-md-flex justify-content-md-center">
                         <button type="button" className="action-button shadow animate blue">Enviar</button>
                         <Link to="/more-About" className="action-button shadow animate red">Ir Atrás</Link>
                     </div>

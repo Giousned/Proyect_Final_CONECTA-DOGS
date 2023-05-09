@@ -111,6 +111,14 @@ const NavBar = () => {
                       <hr className="dropdown-divider" />
                     </li>
                     <li className="nav-item">
+                      <Link to="/caregivers-list" className="dropdown-item">
+                        <i class="fas fa-search-location"></i> Buscar Cuidadores
+                      </Link>
+                    </li>
+                    <li>
+                      <hr className="dropdown-divider" />
+                    </li>
+                    <li className="nav-item">
                       <Link
                         to="/public-profile"
                         className="dropdown-item"
