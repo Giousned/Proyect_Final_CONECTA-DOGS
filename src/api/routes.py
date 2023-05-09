@@ -472,7 +472,10 @@ def config_services():
         # Rellenar la tabla de la DB, con el registro de Usuario
         config_response = create_service()
 
-        return jsonify(config_response), 200
+        if config_response["code"] != 200:
+            return jsonify(config_response)
+
+        return jsonify(config_response)
 
     except Exception as error:
         print(error)

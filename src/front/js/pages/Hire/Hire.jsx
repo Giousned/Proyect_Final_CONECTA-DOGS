@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import MyDog from "../UserProfile/components/MyDog.jsx";
-import DogCardInformation from "../UserProfile/components/DogCardInformation.jsx";
+
+import { POST_Book } from "../../services/BOOKFetchs.js";
+
+import useUserInput from "../../hooks/useUserInput.js";
 import useAuthContext from "../../store/AuthContext.js";
+import useToastsContext from "../../store/ToastsContext.js";
 
 {/* import { Link, animateScroll as scroll } from "react-scroll"; */ }
 {/* import "./hire.js"; */ }
@@ -11,6 +14,20 @@ import "./HireStyles.css";
 const Hire = () => {
 
     const { storeAuth, actionsAuth } = useAuthContext();
+    const { userInput, handleUserInput, handleUserCheck } = useUserInput("");
+    const { storeToast, actionsToast } = useToastsContext();
+
+
+    const handleContratarServicio = (e) => {
+        e.preventDefaulft();
+
+        // POST_Book(userInput)
+        //     .then((data) => {
+        //         actionsToast.handleShownToast(data);
+        //     })
+
+    }
+
 
     const [activeTab, setActiveTab] = useState("");
 
@@ -37,10 +54,15 @@ const Hire = () => {
                     <div className="row g-2">
                         <div className="col-md">
                             <div className="form-floating">
-                                <div className="glowing-register m-2">
-                                    <input type="radio" id="noche"
-                                        name="radioService" value="AlojamientoNoche" />
+                                <div className={"glowing-register m-2" + ((userInput.bookService == "alojamientoNoche") ? " activeGlow" : "")}>
                                     <label htmlFor="noche">Alojamiento de Noche</label>
+
+                                    <input type="radio" id="noche"
+                                        name="bookService" value="alojamientoNoche"
+                                        onChange={handleUserInput}
+                                        checked={userInput.bookService == "alojamientoNoche"} 
+                                    />
+
                                     <p className="fst-italic justify-content-center pt-2">
                                         Alojamiento para tu perro en casa del cuidador seleccionado incluyendo la noche.
                                         No olvides entregar su comida, premios, cama, cartilla veterinaria y su juguete favorito.
@@ -50,10 +72,15 @@ const Hire = () => {
                         </div>
                         <div className="col-md">
                             <div className="form-floating">
-                                <div className="glowing-register m-2">
-                                    <input type="radio" id="paseo"
-                                        name="radioService" value="Paseo" />
+                                <div className={"glowing-register m-2" + ((userInput.bookService == "paseo") ? " activeGlow" : "")}>
                                     <label htmlFor="paseo">Paseo</label>
+
+                                    <input type="radio" id="paseo"
+                                        name="bookService" value="paseo"
+                                        onChange={handleUserInput}
+                                        checked={userInput.bookService == "paseo"}
+                                    />
+
                                     <p className="fst-italic justify-content-center pt-2">
                                         60 minutos de paseo para tu perro. La recogida y entrega será en tu casa. ¡No olvides la correa!
                                     </p>
@@ -62,9 +89,12 @@ const Hire = () => {
                         </div>
                         <div className="col-md">
                             <div className="form-floating">
-                                <div className="glowing-register m-2">
+                                <div className={"glowing-register m-2" + ((userInput.bookService == "guarderiaDia") ? " activeGlow" : "")}>
                                     <input type="radio" id="dia"
-                                        name="radioService" value="GuarderiaDia" />
+                                        name="bookService" value="guarderiaDia"
+                                        onChange={handleUserInput}
+                                        checked={userInput.bookService == "guarderiaDia"}
+                                    />
                                     <label htmlFor="dia">Guarderia de Día</label>
                                     <p className="fst-italic justify-content-center pt-2">
                                         Deja a tu perro durante el día en casa de un cuidador de Gudog un máximo de 10 horas.
@@ -76,109 +106,109 @@ const Hire = () => {
                     {/* CALENDARIO */}
                     <div className="d-flex">
                         <div className="col-6 me-2">
-                            <label htmlFor="fechaReserva" className="form-label">
+                            <label htmlFor="fechaRecogida" className="form-label">
                                 ENTREGA:
                             </label>
                             <br />
-                            <input className="form-control" type="date" id="fechaReserva"
-                                aria-describedby="fecha-nacimiento-perro"
-                                name="fechaReserva"
-                                value="fechaReserva"
+                            <input className="form-control" type="date" id="fechaRecogida"
+                                aria-describedby="fecha-reserva-perro"
+                                name="fechaRecogida"
+                                value={userInput.fechaRecogida}
+                                onChange={handleUserInput}
                                 required />
                             <br />
-                            <label for="appt">Elige una hora: &nbsp;</label>
-                            <input type="time" id="appt" name="appt"
-                                min="07:00" max="23:00" required />
-                            <small>&nbsp;Elige una hora entre las 7:00 y las 23:00</small>
+                            <label for="hora-recogida">Elige una hora: &nbsp;</label>
+                            <input type="time" id="hora-recogida" name="horaRecogida"
+                                // min="07:00" max="23:00"
+                                value={userInput.horaRecogida}
+                                onChange={handleUserInput}
+                                required />
+                            <small>&nbsp;Elige una hora para la recogida</small>      {/* entre las 7:00 y las 23:00 */}
                         </div>
 
                         <div className="col-6 ms-2">
-                            <label htmlFor="fechaReserva" className="form-label">
+                            <label htmlFor="fechaEntrega" className="form-label">
                                 RECOGIDA:
                             </label>
                             <br />
-                            <input className="form-control" type="date" id="fechaReserva"
+                            <input className="form-control" type="date" id="fechaEntrega"
                                 aria-describedby="fecha-nacimiento-perro"
-                                name="fechaReserva"
-                                value="fechaReserva"
+                                name="fechaEntrega"
+                                value={userInput.fechaEntrega}
+                                onChange={handleUserInput}
                                 required />
                             <br />
-                            <label for="appt">Elige una hora: &nbsp;</label>
-                            <input type="time" id="appt" name="appt"
-                                min="07:00" max="23:00" required />
-                            <small>&nbsp;Elige una hora entre las 7:00 y las 23:00</small>
+                            <label for="hora-entrega">Elige una hora: &nbsp;</label>
+                            <input type="time" id="hora-entrega" name="horaEntrega"
+                                // min="07:00" max="23:00"
+                                value={userInput.horaEntrega}
+                                onChange={handleUserInput}
+                                required />
+                            <small>&nbsp;Elige una hora para la recogida</small>
 
                         </div>
                     </div>
                     {/* TUS PERROS */}
                     <h3 className="mt-4 pt-4">Tus Perros</h3>
                     <p className="lead">
-                        Tu Perro Aquí (No me funciona traerme el componente con .map)
+                        Tus Perro:
                         <br />
-                        Selecciona el perro para el que quieres contratar este servicio:
+                        Selecciona el/los perro(s) para el que quieres contratar este servicio:
                     </p>
 
                     <div className="container d-flex">
-                        <div className="col-md">
-                            <div className="form-floating">
-                                <div className="glowing-register m-2">
-                                    <input type="checkbox" id="perro1"
-                                        name="perro" value="perro1" />
-                                    <label htmlFor="perro1">
-                                        <img src="https://cdn.pixabay.com/photo/2022/03/30/11/12/dog-7101015_960_720.jpg"
-                                            className="img-fluid" />
-                                    </label>
-                                    <p className="text-center">Perro 1</p>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div className="col-md">
-                            <div className="form-floating">
-                                <div className="glowing-register m-2">
-                                    <input type="checkbox" id="perro2"
-                                        name="perro" value="perro2" />
-                                    <label htmlFor="perro2">
-                                        <img src="https://cdn.pixabay.com/photo/2019/12/31/23/20/puppy-4732766_960_720.jpg"
-                                            className="img-fluid" />
-                                    </label>
-                                    <p className="text-center">Perro 2</p>
-                                </div>
-                            </div>
-                        </div>
+                        {(storeAuth.userLog.user.dogs.length != 0)
+                            ? storeAuth.userLog.user.dogs.map((dogInfo, index) => {
+                                return (
+                            <div className="col-md" key={index}>
+                                <div className="form-floating">
+                                    <div className={"glowing-register m-2" + ((userInput[`perro${dogInfo.id}`] == true) ? " activeGlow" : "")}>
 
-                        <div className="col-md">
-                            <div className="form-floating">
-                                <div className="glowing-register m-2">
-                                    <input type="checkbox" id="perro3"
-                                        name="perro" value="perro3" />
-                                    <label htmlFor="perro3">
-                                        <img src="https://cdn.pixabay.com/photo/2016/02/25/10/31/puppy-1221791_960_720.jpg"
-                                            className="img-fluid" />
-                                    </label>
-                                    <p className="text-center">Perro 3</p>
+                                        <label htmlFor={`perro${dogInfo.id}`}>
+                                            <img src={(dogInfo.dogPhoto) ? dogInfo.dogPhoto : "https://cdn.pixabay.com/photo/2022/03/30/11/12/dog-7101015_960_720.jpg"} alt="Checkbox imagen perrito" className="img-fluid" />
+                                        </label>
+
+                                        <input type="checkbox"
+                                            name={`perro${dogInfo.id}`}
+                                            id={`perro${dogInfo.id}`}
+                                            value={userInput[`perro${dogInfo.id}`]}
+                                            onChange={handleUserCheck}
+                                            checked={userInput[`perro${dogInfo.id}`]}
+                                        />
+
+                                        <p className="text-center">{dogInfo.dogName}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div>);
+                            })
+                            : null
+                        }
+
                     </div>
-
 
                     {/* TU TELEFONO */}
                     <h3 className="mt-4 pt-4">Tu Teléfono</h3>
                     <p className="lead">
-                        666 123 456
+                        {(storeAuth.userLog.user) ? storeAuth.userLog.user.phone : null}
                     </p>
                     {/* MENSAJE */}
                     <h3 className="mt-4 pt-4">Mensaje</h3>
                     <div className="mb-3">
-                        <label for="MensajeACuidador" className="form-label">
+                        <label htmlFor="mensajeACuidador" className="form-label">
                             Comparte más información sobre tu perro con <b>SANDRA M.</b>
                         </label>
-                        <textarea className="form-control" id="MensajeACuidador" rows="3"></textarea>
+                        <textarea className="form-control" 
+                        id="mensajeACuidador"
+                        name="mensajeACuidador"
+                        value={(userInput.mensajeACuidador) ? userInput.mensajeACuidador : ""}
+                        onChange={handleUserInput}
+                        rows="3">
+                        </textarea>
                     </div>
 
                     <div className="d-grid gap-2 d-md-flex justify-content-md-center">
-                        <button type="button" className="action-button shadow animate blue">Enviar</button>
+                        <button type="button" className="action-button shadow animate blue" onClick={handleContratarServicio}>Enviar</button>
                         <Link to="/more-About" className="action-button shadow animate red">Ir Atrás</Link>
                     </div>
 
@@ -196,3 +226,33 @@ const Hire = () => {
 }
 
 export default Hire;
+
+
+// <div className="col-md">
+// <div className="form-floating">
+//     <div className="glowing-register m-2">
+//         <input type="checkbox" id="perro2"
+//             name="perro" value="perro2" />
+//         <label htmlFor="perro2">
+//             <img src="https://cdn.pixabay.com/photo/2019/12/31/23/20/puppy-4732766_960_720.jpg"
+//                 className="img-fluid" />
+//         </label>
+//         <p className="text-center">Perro 2</p>
+//     </div>
+// </div>
+// </div>
+
+// <div className="col-md">
+// <div className="form-floating">
+//     <div className="glowing-register m-2">
+//         <input type="checkbox" id="perro3"
+//             name="perro" value="perro3" />
+//         <label htmlFor="perro3">
+//             <img src="https://cdn.pixabay.com/photo/2016/02/25/10/31/puppy-1221791_960_720.jpg"
+//                 className="img-fluid" />
+//         </label>
+//         <p className="text-center">Perro 3</p>
+//     </div>
+// </div>
+// </div>
+// </div>
