@@ -82,6 +82,23 @@ def get_users():
     # return response, 200
 
 
+def get_carers():
+
+    try:
+        
+        # Obtener usuarios de la base de datos
+        query = db.select(User).order_by(User.id)
+        users = db.session.execute(query).scalars()
+
+        users_carers_list = [user.serialize() for user in users if len(user.tariffs) != 0 ]
+
+        return {"code": 200, "msg": "Usuarios existentes obtenidos", "users_carers": users_carers_list}
+
+    except Exception as error:
+        print(error)
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
+
+
 def get_user(id):
 
     try:

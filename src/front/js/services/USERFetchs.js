@@ -38,6 +38,25 @@ export const GET_All_Users = () => {
 };
 
 
+export const GET_Carers = () => {
+  return (fetch(`${RUTABACK}/api/carers`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(resp => {
+        console.log(resp.ok); // will be true if the response is successfull
+        return resp.json(); // (returns promise) will try to parse the result as json as return a promise that you can .then for results
+    })
+    .then(data => {
+      console.log(data); //this will print on the console the exact object received from the server
+      return data;
+    })
+    .catch(error => {console.log(error);}));  //Error handling
+};
+
+
 export const UPDATE_User = (newObj, user_id) => {
 
     // const token = sessionStorage.getItem("jwt-token");
