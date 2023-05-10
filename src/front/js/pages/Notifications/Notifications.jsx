@@ -42,12 +42,18 @@ const Notifications = () => {
             ¡Tienes una nueva reserva!
           </div>
 
-          <div class="alert alert-primary" role="alert">
-            ¡Tienes una nueva reserva aceptada!
+          <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>¡Tienes una nueva reserva aceptada!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
 
           <div class="alert alert-danger" role="alert">
-            A simple danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+            Tu reserva ha sido cancelada <a href="#" class="alert-link">haz clic aquí</a>. Para ver más detalles.
+          </div>
+
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
 
         </div>
