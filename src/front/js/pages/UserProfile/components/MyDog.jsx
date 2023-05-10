@@ -26,7 +26,7 @@ const MyDog = () => {
       {/* <div className="avatar-dog my-3"></div> */}
 
       <ul className="nav nav-tabs" id="myDogsInfoTab" role="tablist">
-        {(storeAuth.userLog.user.dogs.length != 0)
+        {storeAuth.userLog.user.dogs
           ? storeAuth.userLog.user.dogs.map((dogInfo, index) => {
               return (
                 <li className="nav-item" role="presentation" key={index}>
@@ -84,7 +84,7 @@ const MyDog = () => {
         </li>
       </ul>
       <div className="tab-content" id="myDogsInfoTabContent">
-        {(storeAuth.userLog.user.dogs.length != 0)
+        {storeAuth.userLog.user.dogs
             ? storeAuth.userLog.user.dogs.map((dogInfo, index) => {
               return(
                 <div

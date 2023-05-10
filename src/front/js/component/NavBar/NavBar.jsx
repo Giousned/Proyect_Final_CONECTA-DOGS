@@ -43,7 +43,7 @@ const NavBar = () => {
                   </Link>
                 ) : null}
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 {storeAuth.userLog.token ? (
                   <Link
                     to="/"
@@ -57,7 +57,7 @@ const NavBar = () => {
                     LOGIN
                   </Link>
                 )}
-              </li>
+              </li> */}
               <li className="nav-item">
                 <button
                   type="button"
@@ -80,9 +80,9 @@ const NavBar = () => {
                 </a>
 
                 {storeAuth.userLog.token ? (
-                  <ul className="dropdown-menu custom-ul">
+                  <ul className="dropdown-menu custom-ul ps-2">
                     <li>
-                    <h5 className="ps-2">Bienvenid@: {store.userInput.name}</h5>
+                    <h5> {store.userInput.name + " " + store.userInput.lastName}</h5>
                       <Link to="/user-profile" className="dropdown-item">
                         <i className="far fa-user pe-2"></i> Ver Perfil
                       </Link>
