@@ -39,10 +39,14 @@ export const GET_All_Users = () => {
 
 
 export const GET_Carers = () => {
+
+  const token = sessionStorage.getItem("jwt-token");
+
   return (fetch(`${RUTABACK}/api/carers`, {
       method: "GET",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + token,                 // ⬅⬅⬅ authorization token
       }
     })
     .then(resp => {
@@ -59,14 +63,14 @@ export const GET_Carers = () => {
 
 export const UPDATE_User = (newObj, user_id) => {
 
-    // const token = sessionStorage.getItem("jwt-token");
+    const token = sessionStorage.getItem("jwt-token");
 
     return (fetch(`${RUTABACK}/api/users/${user_id}`, {
         method: "PUT",
         body: JSON.stringify(newObj),
         headers: {
-          "Content-Type": "application/json"
-          //     Authorization: "Bearer " + token,                 // ⬅⬅⬅ authorization token
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + token,                 // ⬅⬅⬅ authorization token
         }
     })
     .then(resp => {
@@ -84,13 +88,13 @@ export const UPDATE_User = (newObj, user_id) => {
 
 export const DELETE_User = (user_id) => {                        // token
 
-    // const token = sessionStorage.getItem("jwt-token");
+    const token = sessionStorage.getItem("jwt-token");
 
     return (fetch(`${RUTABACK}/api/users/${user_id}`, {
         method: "DELETE",
         headers: {
-          "Content-Type": "application/json"
-        //     Authorization: "Bearer " + token,                 // ⬅⬅⬅ authorization token
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + token,                 // ⬅⬅⬅ authorization token
       }
       })
       .then(resp => {

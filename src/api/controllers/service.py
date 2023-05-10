@@ -16,9 +16,9 @@ def create_service():
         # Crear los servicios en la base de datos
         initial_services = [
         {
-            "image": "https://cdn.pixabay.com/photo/2017/01/17/16/45/night-1987408_960_720.png",
-            "title": "Alojamiento",
-            "description": "¿Buscas a alguien para cuidar a tu perro durante la noche? Elije a uno de nuestros cuidadores para que cuide a tu mascota en su casa cuando te vayas.",
+            "image": "https://cdn.pixabay.com/photo/2017/01/17/16/46/sun-1987414_960_720.png",
+            "title": "Guardería de Día",
+            "description": "Deja a tu perro con un cuidador hasta un máximo de 10 horas al día. De esta manera puedes relajarte en tu trabajo, o cuando estás fuera de casa la mayor parte del día.",
         },
         {
             "image": "https://cdn.pixabay.com/photo/2016/03/31/21/38/canines-1296551_960_720.png",
@@ -26,10 +26,11 @@ def create_service():
             "description": "¿No puedes pasear a tu perro tanto como te gustaría? Encuentra un paseador que pueda sacarlo tanto tiempo y tan lejos como sea necesario.",
         },
         {
-            "image": "https://cdn.pixabay.com/photo/2017/01/17/16/46/sun-1987414_960_720.png",
-            "title": "Guardería de Día",
-            "description": "Deja a tu perro con un cuidador hasta un máximo de 10 horas al día. De esta manera puedes relajarte en tu trabajo, o cuando estás fuera de casa la mayor parte del día.",
-        }]
+            "image": "https://cdn.pixabay.com/photo/2017/01/17/16/45/night-1987408_960_720.png",
+            "title": "Alojamiento Nocturno",
+            "description": "¿Buscas a alguien para cuidar a tu perro durante la noche? Elije a uno de nuestros cuidadores para que cuide a tu mascota en su casa cuando te vayas.",
+        }
+        ]
 
         for service in initial_services:
             new_service = Services(

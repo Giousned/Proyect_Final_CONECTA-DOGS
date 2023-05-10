@@ -19,7 +19,7 @@ class User(db.Model):
     aboutMe = db.Column(db.String(300), unique=False, nullable=True)
     birthdate = db.Column(db.String(20), unique=False, nullable=False)
     is_active = db.Column(db.Boolean, unique=False, nullable=False)
-    userPhoto = db.Column(db.String(500), unique=True, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
+    userPhoto = db.Column(db.String(500), unique=False, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
     # latitude = db.Column(db.String(40), unique=False, nullable=False)
     # longitude = db.Column(db.String(40), unique=False, nullable=False)
 
@@ -60,7 +60,7 @@ class Dog(db.Model):
     breed = db.Column(db.String(50), unique=False, nullable=False)
     dogBirth = db.Column(db.String(20), unique=False, nullable=False)
     dogSex = db.Column(db.String(20), unique=False, nullable=False)
-    dogSize = db.Column(db.String(20), unique=False, nullable=True)
+    dogSize = db.Column(db.String(20), unique=False, nullable=False)
     neutered = db.Column(db.Boolean, unique=False, nullable=False)
     socialCats = db.Column(db.Boolean, unique=False, nullable=False)
     socialKids = db.Column(db.Boolean, unique=False, nullable=False)
@@ -99,7 +99,7 @@ class Dog(db.Model):
 
 
 class Services(db.Model):
-    __tablename__ = "Services"                                # id = 1 PARA nurseryDay // Alojamiento        id = 2 PARA walk // Paseo       id = 3 PARA nurseryNight // Guardería de Día
+    __tablename__ = "Services"                                # id = 1 PARA nurseryDay // Guardería de Día         id = 2 PARA walk // Paseo       id = 3 PARA nurseryNight // Alojamiento Nocturno
     id = db.Column(db.Integer, primary_key=True)
     image = db.Column(db.String(350), unique=True, nullable=False)
     title = db.Column(db.String(35), unique=True, nullable=False)
@@ -121,7 +121,6 @@ class Services(db.Model):
 
 class Tariffs(db.Model):
     __tablename__ = "Tariffs"
-    # id: Mapped[int] = db.mapped_column(primary_key=True)
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer, unique=False, nullable=False)
 
@@ -188,15 +187,3 @@ class Books(db.Model):
             "tariff": self.tariff.serialize(),
             "dogs": [dog.serialize() for dog in self.dogs]
         }
-
-
-
-
-
-
-
-
-#     daily_food_rations = db.Column(db.String, unique=False, nullable=False)
-#     meal_times = db.Column(db.String, unique=False, nullable=False)
-#     schedule_walks = db.Column(db.String, unique=False, nullable=False)
-#     caretaker_comments = db.Column(db.String, unique=False, nullable=False)
