@@ -12,30 +12,36 @@ const CaregiverInfo = () => {
         </div>
       </div>
 
-      <div className="container my-4">
-        <div className=" bg-body-tertiary p-4 rounded-3">
+      <div className="container border border-primary shadow my-4">
+        <div className="p-4">
           <h3 className="text-body-emphasis text-center pb-4">
-            Contacta con: <b>María</b>
+            Contacta con: <b>Belinda</b>
           </h3>
-          <img
-            src="https://cdn.pixabay.com/photo/2018/01/28/06/21/doberman-3112892_1280.jpg"
-            className="img-fluid rounded-start"
-            width={170}
-            alt="..."
-          />
+          <div className="row">
+            <div className="col-12 col-md-6">
+              <img
+                src="https://cdn-3.expansion.mx/dims4/default/5e9d62b/2147483647/strip/true/crop/1080x1350+0+0/resize/1200x1500!/format/webp/quality/60/?url=https%3A%2F%2Fcdn-3.expansion.mx%2F3b%2Ff4%2F5df51d984f718eee1cfd09eecf87%2Fbelinda-se-inyecta-los-labios.jpeg"
+                className="img-fluid rounded-start"
+                width={300}
+                alt="..."
+              />
+            </div>
+            <div className="col-12 col-md-6">
+              <h4 className="text-body-emphasis pt-4">Provincia</h4>
+              <p>
+                <i className="fas fa-map-marker-alt"></i> Madrid
+              </p>
 
-          <h3 className="text-body-emphasis pt-4">PROVINCIA</h3>
-          <p>
-            <i className="fas fa-map-marker-alt"></i> Madrid
-          </p>
+              <h4 className="text-body-emphasis pt-4">Sobre Belinda</h4>
+              <p>
+                Aquí va el texto del campo: <b>"SOBRE MI"</b>
+              </p>
 
-          <h3 className="text-body-emphasis pt-4">SOBRE María</h3>
-          <p>
-            Aquí va el texto del campo: <b>"SOBRE MI"</b>
-          </p>
+              <h4 className="text-body-emphasis pt-4">Servicios y Tarifas:</h4>
+              <p>Servicios y Tarifas:</p>
+            </div>
+          </div>
 
-          <h3 className="text-body-emphasis pt-4">SERVICIOS Y TARIFAS</h3>
-          <p>Servicios y Tarifas:</p>
 
           <div className="d-grid gap-2 d-md-flex justify-content-md-center">
             <Link

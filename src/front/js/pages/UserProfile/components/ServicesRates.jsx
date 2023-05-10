@@ -41,9 +41,8 @@ const ServicesRates = () => {
                 className="custom-icon"
                 alt="Guardería de Día"
               />
-              Guardería Diurna
-              <br />
-              (Alojamiento de día)
+              <h4>Guardería Diurna</h4>
+              <h4>(Alojamiento de día)</h4>
             </label>
             <input
               type="checkbox"
@@ -73,9 +72,8 @@ const ServicesRates = () => {
                 className="custom-icon"
                 alt="Guardería de Día"
               />
-              Paseo
-              <br />
-              (Por horas)
+              <h4>Paseo</h4>
+              <h4>(Por horas)</h4>
             </label>
             <input
               type="checkbox"
@@ -105,9 +103,8 @@ const ServicesRates = () => {
                 className="custom-icon"
                 alt="Guardería de Día"
               />
-              Guardería Nocturna
-              <br />
-              (Alojamiento de noche)
+              <h4>Guardería Nocturna</h4>
+              <h4>(Alojamiento de noche)</h4>
             </label>
             <input
               type="checkbox"
@@ -132,26 +129,34 @@ const ServicesRates = () => {
         </div>
       </div>
 
-      <h3 className="my-4">Preferencias de Cobro ¿?</h3>
-      <input
-        type="checkbox"
-        className="form-check-input"
-        name="transferencia"
-        id="transferencia"
-      />
-      <label className="form-check-label px-2 mb-4" htmlFor="transferencia">
-        Transferencia
-      </label>
 
-      <input
-        type="checkbox"
-        className="form-check-input"
-        name="PayPal"
-        id="PayPal"
-      />
-      <label className="form-check-label px-2 mb-4" htmlFor="PayPal">
-        PayPal
-      </label>
+      <h3 className="my-4">Preferencias de Pago/Cobro</h3>
+      <div className="container">
+        <div className="row">
+
+          <div className="col-12 col-md me-2">
+            <label className="form-check-label" htmlFor="tarjeta">
+              <img
+                src="https://cdn.pixabay.com/photo/2013/03/02/01/25/american-express-89024_960_720.jpg"
+                className="custom-icon"
+                alt="Tarjeta" />
+              <h4>Tarjeta</h4>
+            </label>
+            <input type="checkbox" className="form-check-input" name="tarjeta" id="tarjeta" />
+          </div>
+
+          <div className="col-12 col-md me-2">
+            <label className="form-check-label" htmlFor="paypal">
+              <img
+                src="https://cdn.pixabay.com/photo/2015/05/26/09/37/paypal-784404_960_720.png"
+                className="custom-icon"
+                alt="Paypal" />
+              <h4>Paypal</h4>
+            </label>
+            <input type="checkbox" className="form-check-input" name="paypal" id="paypal" />
+          </div>
+        </div>
+      </div>
     </>
   );
 };

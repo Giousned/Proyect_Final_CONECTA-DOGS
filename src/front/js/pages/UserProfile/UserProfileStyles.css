@@ -3,7 +3,7 @@
 .user-profile .header {
   position: relative;
   width: 100%;
-  height: 18rem;
+  height: 10rem;
   border-bottom: 3px solid #fff;
   background-color: black;
   background-position: center;
@@ -13,30 +13,23 @@
 
 .user-profile .avatar-user {
   z-index: 1;
+  width: 20%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
-  margin: auto;
-  margin-top: -170px;
-  width: 15rem;
-  height: 15rem;
-  border-radius: 100%;
+  /* margin-top: -170px; */
   border: 4px solid rgba(255, 255, 255, 1);
-  /* background: url("https://cdn.pixabay.com/photo/2021/01/19/10/17/man-5930748_960_720.jpg"); */
-  background-size: cover;
-  background-position: center;
 }
 
 .user-profile .avatar-dog {
   z-index: 1;
+  width: 40%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
-  margin: auto;
-  margin-top: -80px;
-  width: 15rem;
-  height: 15rem;
-  border-radius: 100%;
   border: 4px solid rgba(255, 255, 255, 1);
-  /* background: url("https://cdn.pixabay.com/photo/2019/11/18/00/38/dog-4633734_960_720.jpg"); */
-  background-size: cover;
-  background-position: center;
 }
 
 .user-profile .tituloperfil h1 {
@@ -82,7 +75,6 @@
 
 .custom-icon {
   /* width: 5rem; */
-  height: 5rem;
-  border-radius: 30%;
+  height: 10rem;
   padding: 10px;
 }
