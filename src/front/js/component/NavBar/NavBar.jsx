@@ -1,20 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  Button,
-  Element,
-  Events,
-  animateScroll as scroll,
-  scrollSpy,
-  scroller,
-} from "react-scroll";
 
 import useAuthContext from "../../store/AuthContext";
+import useAppContext from "../../store/AppContext.js";
 import Logo from "../../../img/conectadogs-logo-white.png";
 import "../NavBar/NavBarStyles.css";
 
 const NavBar = () => {
   const { storeAuth, actionsAuth } = useAuthContext();
+
+  const { store, actions } = useAppContext();
 
   return (
     <>
@@ -85,8 +80,9 @@ const NavBar = () => {
                 </a>
 
                 {storeAuth.userLog.token ? (
-                  <ul className="dropdown-menu">
+                  <ul className="dropdown-menu custom-ul">
                     <li>
+                    <h5 className="ps-2">Bienvenid@: {store.userInput.name}</h5>
                       <Link to="/user-profile" className="dropdown-item">
                         <i className="far fa-user pe-2"></i> Ver Perfil
                       </Link>
