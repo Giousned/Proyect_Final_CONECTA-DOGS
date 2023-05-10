@@ -24,7 +24,7 @@ const UserInformation = () => {
                     onChange={actions.handleUserInput} /> */}
             </label>
             <div className="mb-2">
-            <CloudinaryUpload idName="user" setEstado={actions.setUserPhoto} />
+            <CloudinaryUpload idName="0UserInfo" setEstado={actions.setUserPhoto} />
             </div>
 
             <PersonalInformation disable={true} />

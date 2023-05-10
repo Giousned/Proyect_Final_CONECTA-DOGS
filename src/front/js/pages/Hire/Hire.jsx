@@ -7,9 +7,8 @@ import useUserInput from "../../hooks/useUserInput.js";
 import useAuthContext from "../../store/AuthContext.js";
 import useToastsContext from "../../store/ToastsContext.js";
 
-{/* import { Link, animateScroll as scroll } from "react-scroll"; */ }
-{/* import "./hire.js"; */ }
 import "./HireStyles.css";
+
 
 const Hire = () => {
 
@@ -158,7 +157,7 @@ const Hire = () => {
 
                     <div className="container d-flex">
 
-                        {(storeAuth.userLog.user.dogs.length != 0)
+                        {storeAuth.userLog.user.dogs
                             ? storeAuth.userLog.user.dogs.map((dogInfo, index) => {
                                 return (
                                     
@@ -168,7 +167,7 @@ const Hire = () => {
                                     <div className={"glowing-register m-2" + ((userInput[`perro${dogInfo.id}`] == true) ? " activeGlow" : "")}>
 
                                         <label htmlFor={`perro${dogInfo.id}`}>
-                                            <img src={(dogInfo.dogPhoto) ? dogInfo.dogPhoto : "https://cdn.pixabay.com/photo/2022/03/30/11/12/dog-7101015_960_720.jpg"} alt="Checkbox imagen perrito" className="img-fluid" />
+                                            <img src={(dogInfo.dogPhoto) ? dogInfo.dogPhoto : "https://cdn.pixabay.com/photo/2019/02/02/17/12/animation-3970998_960_720.png"} alt="Checkbox imagen perrito" className="img-fluid" />
                                         </label>
 
                                         <input type="checkbox"
@@ -241,20 +240,5 @@ export default Hire;
 //         </label>
 //         <p className="text-center">Perro 2</p>
 //     </div>
-// </div>
-// </div>
-
-// <div className="col-md">
-// <div className="form-floating">
-//     <div className="glowing-register m-2">
-//         <input type="checkbox" id="perro3"
-//             name="perro" value="perro3" />
-//         <label htmlFor="perro3">
-//             <img src="https://cdn.pixabay.com/photo/2016/02/25/10/31/puppy-1221791_960_720.jpg"
-//                 className="img-fluid" />
-//         </label>
-//         <p className="text-center">Perro 3</p>
-//     </div>
-// </div>
 // </div>
 // </div>
