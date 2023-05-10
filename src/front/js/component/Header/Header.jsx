@@ -12,7 +12,6 @@ const Header = () => {
 
   const { store, actions } = useAppContext();
 
-
   return (
     <div>
       {storeAuth.userLog.token
@@ -21,8 +20,8 @@ const Header = () => {
             <h1 className="mb-4">Conecta-Dogs</h1>
             <h3>Conectamos Cuidadores con Propietarios de Perros</h3>
             <div className="p-2 text-light">
-              <h1>Bienvenid@: {store.userInput.name}</h1>
-              <p>Es un placer tenerte aquí de vuelta.</p>
+              {/* <h1>Bienvenid@: {store.userInput.name}</h1>
+              <p>Es un placer tenerte aquí de vuelta.</p> */}
             </div>
           </div>
         </header>
