@@ -46,8 +46,6 @@ const UserProfile = () => {
                                         value={(store.userInput.aboutMe) ? store.userInput.aboutMe : ""}
                                         onChange={actions.handleUserInput}>
                                     </textarea>
-                                    {/* Breve descripción sobre mí... 🤗 ❤️
-                                    Puedo editar ya todos los campos ❤️ 🤗 */}
                                 </div>
 
 
