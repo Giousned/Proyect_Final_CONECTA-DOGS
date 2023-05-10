@@ -16,8 +16,6 @@ import ReserveInformation from "./pages/Reserves/ReserveInformation.jsx";
 import Notifications from "./pages/Notifications/Notifications.jsx";
 import CaregiversList from "./pages/Caregivers/CaregiversList.jsx";
 import CaregiverInfo from "./pages/Caregivers/CaregiverInfo.jsx";
-import PublicProfile from "./pages/PublicProfile/PublicProfile.jsx";
-import MoreAbout from "./pages/MoreAbout.jsx";
 import Hire from "./pages/Hire/Hire.jsx";
 import Alert from "./component/Alerts/Alert.jsx";
 import Footer from "./component/Footer/Footer.jsx";
@@ -48,9 +46,7 @@ const Layout = () => {
                 <Route element={<UserProfile />} path="/user-profile" />
                 <Route element={<Notifications />} path="/notifications" />
                 <Route element={<CaregiversList />} path="/caregivers-list" />
-                <Route element={<CaregiverInfo />} path="/caregiver-info" />
-                <Route element={<PublicProfile />} path="/public-profile" />
-                <Route element={<MoreAbout />} path="/more-about" />
+                <Route element={<CaregiverInfo />} path="/caregiver-info/:id" />
                 <Route element={<Hire />} path="/hire-caregiver" />
                 <Route element={<Reserves />} path="/reserves" />
                 <Route element={<ReserveInformation />} path="/reserve-information" />

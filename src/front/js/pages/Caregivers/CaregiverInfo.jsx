@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import useAppContext from "../../store/AppContext.js";
-import { GET_Carers } from "../../services/USERFetchs.js"
+import { Link, useParams } from "react-router-dom";
+import { GET_User } from "../../services/USERFetchs.js"
 import "./CaregiversStyles.css";
 
-const CaregiverInfo = ({ img, name, lastName, province, aboutMe, id }) => {
+const CaregiverInfo = () => {
 
-  const { store, actions } = useAppContext();
+  const params = useParams();
 
-  const [activeTab, setActiveTab] = useState('home');
-
-  const handleTabClick = (tabId) => {
-    setActiveTab(tabId);
-  };
-
+  const [dogsitter, setDogsitter] = useState({});
+  useEffect(() => {
+    GET_User(params.id)
+      .then((data) => {
+        // console.log(data.user)
+        setDogsitter(data.user)
+      })
+  }, [])
 
   return (
     <>
@@ -26,12 +27,12 @@ const CaregiverInfo = ({ img, name, lastName, province, aboutMe, id }) => {
       <div className="container border border-primary shadow my-4">
         <div className="p-4">
           <h3 className="text-body-emphasis text-center pb-4">
-            Contacta con: <b>{name} {lastName}</b>
+            Contacta con: <b>{dogsitter.name}</b>
           </h3>
           <div className="row">
             <div className="col-12 col-md-6">
               <img
-                src={img}
+                src={dogsitter.userPhoto}
                 className="img-fluid rounded-start"
                 width={300}
                 alt="..."
@@ -40,12 +41,12 @@ const CaregiverInfo = ({ img, name, lastName, province, aboutMe, id }) => {
             <div className="col-12 col-md-6">
               <h4 className="text-body-emphasis pt-4">Provincia</h4>
               <p>
-                <i className="fas fa-map-marker-alt"></i> {(province)}
+                <i className="fas fa-map-marker-alt"></i> {(dogsitter.province)}
               </p>
 
-              <h4 className="text-body-emphasis pt-4">Sobre {name}</h4>
+              <h4 className="text-body-emphasis pt-4">Sobre {dogsitter.name}</h4>
               <p>
-                {(aboutMe) ? aboutMe : ""}
+                {(dogsitter.aboutMe) ? dogsitter.aboutMe : ""}
 
               </p>
 

@@ -21,9 +21,8 @@ const CaregiverCard = ({ img, name, province, aboutMe, id }) => {
               </p>
               <div className="justify-content-md-end">
                 <Link
-                  to="/caregiver-info"
-                  className="action-button shadow animate blue"
-                >
+                  to={`/caregiver-info/${id}`}
+                  className="action-button shadow animate blue">
                   Ver más información
                 </Link>
               </div>
