@@ -1,9 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
+import { Link, useParams } from "react-router-dom";
+import { GET_User } from "../../services/USERFetchs.js"
 import "./CaregiversStyles.css";
 
 const CaregiverInfo = () => {
+
+  const params = useParams();
+
+  const [dogsitter, setDogsitter] = useState({});
+  useEffect(() => {
+    GET_User(params.id)
+      .then((data) => {
+        // console.log(data.user)
+        setDogsitter(data.user)
+      })
+  }, [])
+
   return (
     <>
       <div className="caregivers">
@@ -15,12 +27,12 @@ const CaregiverInfo = () => {
       <div className="container border border-primary shadow my-4">
         <div className="p-4">
           <h3 className="text-body-emphasis text-center pb-4">
-            Contacta con: <b>Belinda</b>
+            Contacta con: <b>{dogsitter.name}</b>
           </h3>
           <div className="row">
             <div className="col-12 col-md-6">
               <img
-                src="https://cdn-3.expansion.mx/dims4/default/5e9d62b/2147483647/strip/true/crop/1080x1350+0+0/resize/1200x1500!/format/webp/quality/60/?url=https%3A%2F%2Fcdn-3.expansion.mx%2F3b%2Ff4%2F5df51d984f718eee1cfd09eecf87%2Fbelinda-se-inyecta-los-labios.jpeg"
+                src={dogsitter.userPhoto}
                 className="img-fluid rounded-start"
                 width={300}
                 alt="..."
@@ -29,12 +41,13 @@ const CaregiverInfo = () => {
             <div className="col-12 col-md-6">
               <h4 className="text-body-emphasis pt-4">Provincia</h4>
               <p>
-                <i className="fas fa-map-marker-alt"></i> Madrid
+                <i className="fas fa-map-marker-alt"></i> {(dogsitter.province)}
               </p>
 
-              <h4 className="text-body-emphasis pt-4">Sobre Belinda</h4>
+              <h4 className="text-body-emphasis pt-4">Sobre {dogsitter.name}</h4>
               <p>
-                Aquí va el texto del campo: <b>"SOBRE MI"</b>
+                {(dogsitter.aboutMe) ? dogsitter.aboutMe : ""}
+
               </p>
 
               <h4 className="text-body-emphasis pt-4">Servicios y Tarifas:</h4>
