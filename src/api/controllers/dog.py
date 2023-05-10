@@ -14,7 +14,7 @@ def create_dog(body):
             return {"code": 400, "msg": "¡Información recibida en el Back insuficiente, falta información!"}
 
         sub_token = get_jwt_identity()
-        user_id = sub_token["id"]       
+        user_id = sub_token["id"]
 
         # Crear un nuevo perro en la base de datos
         new_dog = Dog(

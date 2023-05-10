@@ -30,7 +30,7 @@ const DogInformationRegister = () => {
                 <label htmlFor="foto-perro" className="form-label">
                     Foto del perro
                 </label>
-                <CloudinaryUpload idName="dogRegister" setEstado={actions.setDogPhoto} />
+                <CloudinaryUpload idName="0DogReg" setEstado={actions.setDogPhoto} />
 
                 {/* <input className="form-control" type="file" id="foto-perro"
                     name="dogPhoto" value={userInput.dogPhoto}
