@@ -68,7 +68,7 @@ class Dog(db.Model):
     microchip = db.Column(db.BigInteger, unique=True, nullable=False)
     dogActivity = db.Column(db.String(20), unique=False, nullable=True)
     observations = db.Column(db.String(500), unique=False, nullable=True)
-    dogPhoto = db.Column(db.String(500), unique=True, nullable=True)         # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
+    dogPhoto = db.Column(db.String(500), unique=False, nullable=True)         # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
 
     user_id = db.Column(db.Integer, db.ForeignKey("User.id"))
 
