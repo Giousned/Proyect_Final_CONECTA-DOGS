@@ -27,7 +27,11 @@ const UserProfile = () => {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <img className="avatar-user" src={(store.userInput.userPhoto) ? store.userInput.userPhoto : "https://cdn.pixabay.com/photo/2021/01/19/10/17/man-5930748_960_720.jpg"} alt="Avatar de mi perfil"  />
+                        <img className="avatar-user center-block" src={(store.userInput.userPhoto)
+                            ?
+                            store.userInput.userPhoto
+                            :
+                            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"} alt="Avatar de mi perfil" />
 
                         <div className="tituloperfil text-center">
                             <h2 className="text-dark">{store.userInput.name} {store.userInput.lastName}</h2>

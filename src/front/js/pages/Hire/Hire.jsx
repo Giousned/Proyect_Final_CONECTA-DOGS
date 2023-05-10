@@ -153,7 +153,7 @@ const Hire = () => {
                     <p className="lead">
                         Tus Perro:
                         <br />
-                        Selecciona el/los perro(s) para el que quieres contratar este servicio:
+                        Selecciona el/los perro(s) para los que quieres contratar este servicio:
                     </p>
 
                     <div className="container d-flex">
@@ -161,7 +161,9 @@ const Hire = () => {
                         {(storeAuth.userLog.user.dogs.length != 0)
                             ? storeAuth.userLog.user.dogs.map((dogInfo, index) => {
                                 return (
+                                    
                             <div className="col-md" key={index}>
+                                
                                 <div className="form-floating">
                                     <div className={"glowing-register m-2" + ((userInput[`perro${dogInfo.id}`] == true) ? " activeGlow" : "")}>
 
@@ -177,7 +179,7 @@ const Hire = () => {
                                             checked={userInput[`perro${dogInfo.id}`]}
                                         />
 
-                                        <p className="text-center">{dogInfo.dogName}</p>
+                                        <h3 className="text-center mt-4">{dogInfo.dogName}</h3>
                                     </div>
                                 </div>
                             </div>);
@@ -209,7 +211,7 @@ const Hire = () => {
 
                     <div className="d-grid gap-2 d-md-flex justify-content-md-center">
                         <button type="button" className="action-button shadow animate blue" onClick={handleContratarServicio}>Enviar</button>
-                        <Link to="/more-About" className="action-button shadow animate red">Ir Atrás</Link>
+                        <Link to="/caregiver-info" className="action-button shadow animate red">Ir Atrás</Link>
                     </div>
 
                     <Link to="#navbar" className="simplescrollup__button simplescrollup__button--hide"
