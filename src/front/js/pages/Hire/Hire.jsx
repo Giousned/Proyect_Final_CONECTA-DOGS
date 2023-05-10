@@ -46,7 +46,7 @@ const Hire = () => {
             </div>
 
             <div className="container my-4">
-                <div className=" bg-body-tertiary p-4 rounded-3">
+                <div className="bg-body-tertiary p-4 rounded-3">
                     <h3 className="text-body-emphasis text-center pb-4">Contacta con: Sandra M</h3>
                     {/* SERVICIO */}
                     <h4>Selecciona el servicio:</h4>
@@ -161,7 +161,7 @@ const Hire = () => {
                             ? storeAuth.userLog.user.dogs.map((dogInfo, index) => {
                                 return (
                                     
-                            <div className="col-md" key={index}>
+                            <div className="col-4" key={index}>
                                 
                                 <div className="form-floating">
                                     <div className={"glowing-register m-2" + ((userInput[`perro${dogInfo.id}`] == true) ? " activeGlow" : "")}>
