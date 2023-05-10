@@ -28,10 +28,10 @@ def create_dog(body):
             socialCats = bool(body["socialCats"]),
             socialKids = bool(body["socialKids"]),
             socialDogs = bool(body["socialDogs"]),
-            dogActivity = body["dogActivity"],
+            dogActivity = body.get("dogActivity", None),
             microchip = int(body["microchip"]),
-            dogPhoto = body["dogPhoto"],
-            observations = body["observations"])
+            dogPhoto = body.get("dogPhoto", None),
+            observations = body.get("observations", None))
         
 
         db.session.add(new_dog)
@@ -95,10 +95,10 @@ def update_dog(body, id):
         socialCats = bool(body["socialCats"])
         socialKids = bool(body["socialKids"])
         socialDogs = bool(body["socialDogs"])
-        dog.dogActivity = body["dogActivity"]
+        dog.dogActivity = body.get("dogActivity", None)
+        dog.observations = body.get("observations", None)
+        dog.dogPhoto = body.get("dogPhoto", None)
         # dog.microchip = int(body["microchip"])        # ESTA DISABLED PARA CAMBIAR EN EL FRONT
-        dog.observations = body["observations"]
-        dog.dogPhoto = body["dogPhoto"]
 
 
         db.session.commit()
