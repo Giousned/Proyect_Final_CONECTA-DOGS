@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CaregiverCard from "./CaregiverCard.jsx";
+import { GET_Carers } from "../../services/USERFetchs.js"
 import "./CaregiversStyles.css";
 
 
 const CaregiversList = () => {
+
+    const [dogsitters, setDogsitters] = useState([]);
+    useEffect(() => {
+        GET_Carers()
+            .then((data) => {
+                console.log(data)
+                setDogsitters(data)
+            })
+    }, [])
 
     return (
         <>
@@ -24,26 +34,47 @@ const CaregiversList = () => {
                 </div>
                 {/* LISTA DE CUIDADORES */}
                 <div className="col-12 col-md-6 caregivers-scroll">
-                    <CaregiverCard
+
+                    {dogsitters.map((carer) => {
+                        console.log(carer.name);
+                        return (
+                        <CaregiverCard
+                            img={carer.photo ? carer.photo 
+                                : 
+                                "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"}
+                            name={carer.name}
+                            lastName={carer.lastName}
+                            province={carer.province}
+                            aboutMe={carer.aboutMe}
+                            id={carer.id}
+                        />
+                        );
+                    })}
+
+
+
+
+
+                    {/* <CaregiverCard
                         imgSrc="https://cdn-3.expansion.mx/dims4/default/5e9d62b/2147483647/strip/true/crop/1080x1350+0+0/resize/1200x1500!/format/webp/quality/60/?url=https%3A%2F%2Fcdn-3.expansion.mx%2F3b%2Ff4%2F5df51d984f718eee1cfd09eecf87%2Fbelinda-se-inyecta-los-labios.jpeg"
                         title="Belinda"
                         description="Hola. Llevo 20 años teniendo perros y soy miembro de la Fundación Amigos del Perro."
-                        province= "Madrid"
-                    />
+                        province="Madrid"
+                    /> */}
 
-                    <CaregiverCard
+                    {/* <CaregiverCard
                         imgSrc="https://cloudfront-us-east-1.images.arcpublishing.com/lanacionpy/J6VMOF2QJ5AIHNX7O57K3UHHSQ.jpg"
                         title="Benito"
                         description="¡Hola! Me llaman Bad Bunny, soy una persona joven que se declara amante de los animales."
                         province= "Benidorm"
-                    />
+                    /> */}
 
-                    <CaregiverCard
+                    {/* <CaregiverCard
                         imgSrc="https://i.pinimg.com/originals/d9/c0/90/d9c090ed153a9c290b607c5b1b541c7b.jpg"
                         title="Juan Luis"
                         description="Cuidamos a tu perro con cariño en un piso confortable . Somos una familia amante de los perros, listos para cuidarlos y mimarlos."
                         province= "Sevilla"
-                    />
+                    /> */}
                 </div>
             </div>
         </>
