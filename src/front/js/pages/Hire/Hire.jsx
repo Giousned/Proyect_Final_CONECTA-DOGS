@@ -16,11 +16,26 @@ const Hire = () => {
     const { userInput, handleUserInput, handleUserCheck } = useUserInput("");
     const { storeToast, actionsToast } = useToastsContext();
 
-
+    // carerID y price HARCODEADOS CUANDO ESTE BIEN LAS VISTAS COGED DE AHI LOS DATOS 
     const handleContratarServicio = (e) => {
         e.preventDefaulft();
 
-        // POST_Book(userInput)
+        const newArrayBooks = []
+        const newObjBooks = { books: newArrayBooks}
+    
+        if ( userInput.bookService == "guarderiaDia" ) {
+          newArrayBooks.push({carerId: 1, serviceId: 1, price: 15})
+        }
+    
+        if ( userInput.bookService == "paseo" ) {
+          newArrayBooks.push({carerId: 1, serviceId: 2, price: 10})
+        }
+    
+        if ( userInput.bookService == "alojamientoNoche" ) {
+          newArrayBooks.push({carerId: 1, serviceId: 3, price: 5})
+        }
+
+        // POST_Book(newObjBooks)
         //     .then((data) => {
         //         actionsToast.handleShownToast(data);
         //     })
@@ -51,6 +66,41 @@ const Hire = () => {
                     {/* SERVICIO */}
                     <h4>Selecciona el servicio:</h4>
                     <div className="row g-2">
+
+                        <div className="col-md">
+                            <div className="form-floating">
+                                <div className={"glowing-register m-2" + ((userInput.bookService == "guarderiaDia") ? " activeGlow" : "")}>
+                                    <input type="radio" id="dia"
+                                        name="bookService" value="guarderiaDia"
+                                        onChange={handleUserInput}
+                                        checked={userInput.bookService == "guarderiaDia"}
+                                    />
+                                    <label htmlFor="dia">Guarderia de Día</label>
+                                    <p className="fst-italic justify-content-center pt-2">
+                                        Deja a tu perro durante el día en casa de un cuidador de Gudog un máximo de 10 horas.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-md">
+                            <div className="form-floating">
+                                <div className={"glowing-register m-2" + ((userInput.bookService == "paseo") ? " activeGlow" : "")}>
+                                    <label htmlFor="paseo">Paseo</label>
+
+                                    <input type="radio" id="paseo"
+                                        name="bookService" value="paseo"
+                                        onChange={handleUserInput}
+                                        checked={userInput.bookService == "paseo"}
+                                    />
+
+                                    <p className="fst-italic justify-content-center pt-2">
+                                        60 minutos de paseo para tu perro. La recogida y entrega será en tu casa. ¡No olvides la correa!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
                         <div className="col-md">
                             <div className="form-floating">
                                 <div className={"glowing-register m-2" + ((userInput.bookService == "alojamientoNoche") ? " activeGlow" : "")}>
@@ -69,38 +119,7 @@ const Hire = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md">
-                            <div className="form-floating">
-                                <div className={"glowing-register m-2" + ((userInput.bookService == "paseo") ? " activeGlow" : "")}>
-                                    <label htmlFor="paseo">Paseo</label>
 
-                                    <input type="radio" id="paseo"
-                                        name="bookService" value="paseo"
-                                        onChange={handleUserInput}
-                                        checked={userInput.bookService == "paseo"}
-                                    />
-
-                                    <p className="fst-italic justify-content-center pt-2">
-                                        60 minutos de paseo para tu perro. La recogida y entrega será en tu casa. ¡No olvides la correa!
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md">
-                            <div className="form-floating">
-                                <div className={"glowing-register m-2" + ((userInput.bookService == "guarderiaDia") ? " activeGlow" : "")}>
-                                    <input type="radio" id="dia"
-                                        name="bookService" value="guarderiaDia"
-                                        onChange={handleUserInput}
-                                        checked={userInput.bookService == "guarderiaDia"}
-                                    />
-                                    <label htmlFor="dia">Guarderia de Día</label>
-                                    <p className="fst-italic justify-content-center pt-2">
-                                        Deja a tu perro durante el día en casa de un cuidador de Gudog un máximo de 10 horas.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     {/* CALENDARIO */}
                     <div className="d-flex">
