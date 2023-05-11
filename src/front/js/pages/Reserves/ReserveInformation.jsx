@@ -91,8 +91,8 @@ const ReserveInformation = () => {
       <Link
         to="#navbar"
         className="simplescrollup__button simplescrollup__button--hide"
-        spy={true}
-        smooth={true}
+        spy="true"
+        smooth="true"
         duration={800}
       >
         <h2>

@@ -95,7 +95,7 @@ def get_carers():
 
         users_carers_list = [user.serialize() for user in users if len(user.tariffs) != 0 ]
 
-        users_carers_list_without_me = [user for user in users_carers_list if user.id != user_id ]
+        users_carers_list_without_me = [user for user in users_carers_list if user["id"] != user_id ]
 
         return {"code": 200, "msg": "Usuarios existentes obtenidos", "users_carers": users_carers_list_without_me}
 
@@ -103,7 +103,7 @@ def get_carers():
         print(error)
         return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
 
-# users_carers_list = list(filter(lambda user.serialize(): len(user.tariffs) != 0, users_carers_list))
+# users_carers_list = list(filter(lambda user.serialize(): len(user.tariffs) != 0, users_carers_list))      # OTRA FORMA DE HACER UN FILTER
 
 
 def get_user(id):
@@ -162,7 +162,7 @@ def update_user(body, id):
         user.country = body["country"]
         user.birthdate = body["birthdate"]
         user.aboutMe = body.get("aboutMe", None)
-        user.userPhoto = body.get("userPhoto", None)
+        user.userPhoto = body.get("userPhoto", "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png")
         user.is_active = True
 
         # latitude = int(body["latitude"])
