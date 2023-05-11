@@ -63,8 +63,13 @@ const Blog = () => {
         </div>
       </section>
 
-      <Link to="#navbar" className="simplescrollup__button simplescrollup__button--hide"
-        spy={true} smooth={true} duration={800}>
+      <Link
+        to="#navbar"
+        className="simplescrollup__button simplescrollup__button--hide"
+        spy="true"
+        smooth="true"
+        duration={800}
+      >
         <h2>
           <i className="fas fa-arrow-circle-up"></i>
         </h2>

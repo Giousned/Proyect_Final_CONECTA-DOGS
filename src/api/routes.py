@@ -56,6 +56,7 @@ def users():
         return jsonify(users_response), users_response["code"]
 
 @api.route("/carers", methods=["GET"])
+@jwt_required()
 def carers():
 
     try:
