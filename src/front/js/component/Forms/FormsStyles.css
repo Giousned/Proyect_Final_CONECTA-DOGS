@@ -67,6 +67,10 @@
   display: none;
 }
 
+.services-rates-checkbox input[type="checkbox"] {
+  display: none;
+}
+
 .dog-mtn label {
   display: flex;
   padding: 0.7rem;
