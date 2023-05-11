@@ -17,7 +17,7 @@ import Notifications from "./pages/Notifications/Notifications.jsx";
 import CaregiversList from "./pages/Caregivers/CaregiversList.jsx";
 import CaregiverInfo from "./pages/Caregivers/CaregiverInfo.jsx";
 import Hire from "./pages/Hire/Hire.jsx";
-import Alert from "./component/Alerts/Alert.jsx";
+import Alert from "./component/Alert/Alert.jsx";
 import Footer from "./component/Footer/Footer.jsx";
 
 //import contexts
