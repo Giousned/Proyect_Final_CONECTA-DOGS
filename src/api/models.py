@@ -138,6 +138,8 @@ class Tariffs(db.Model):
 
     def serialize(self):
         return {
+            "user_id": self.user_id,
+            "service_id": self.service_id,
             "id": self.id,
             "price": self.price,
             "service": self.service.serialize(),
@@ -159,9 +161,8 @@ class Books(db.Model):
     date = db.Column(db.String, unique=False, nullable=False)
     hourPick = db.Column(db.String, unique=False, nullable=False)
     hourDeliver = db.Column(db.String, unique=False, nullable=False)
-    dogsAcepted = db.Column(db.Integer, unique=False, nullable=False)
-    dogIdAcepted = db.Column(db.Integer, unique=False, nullable=False)
     acepted = db.Column(db.Boolean, unique=False, nullable=False, default=False)
+    # dogsAcepted = db.Column(db.Integer, unique=False, nullable=False)
 
     user_from_id = db.Column(db.Integer, db.ForeignKey("User.id"))
     tarif_id = db.Column(db.Integer, db.ForeignKey("Tariffs.id"))
@@ -179,11 +180,10 @@ class Books(db.Model):
             "date": self.date,
             "hourPick": self.hourPick,
             "hourDeliver": self.hourDeliver,
-            "dogsAcepted": self.dogsAcepted,
-            "dogIdAcepted": self.dogIdAcepted,
             "user_from_id": self.user_from_id,
             "tarif_id": self.tarif_id,
             "acepted": self.acepted,
             "tariff": self.tariff.serialize(),
             "dogs": [dog.serialize() for dog in self.dogs]
+            # "dogsAcepted": self.dogsAcepted,
         }

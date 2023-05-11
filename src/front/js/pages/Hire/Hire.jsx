@@ -36,21 +36,6 @@ const Hire = () => {
   const handleContratarServicio = (e) => {
     e.preventDefaulft();
 
-    const newArrayBooks = [];
-    const newObjBooks = { books: newArrayBooks };
-
-    if (userInput.bookService == "guarderiaDia") {
-      newArrayBooks.push({ carerId: 1, serviceId: 1, price: 15 });
-    }
-
-    if (userInput.bookService == "paseo") {
-      newArrayBooks.push({ carerId: 1, serviceId: 2, price: 10 });
-    }
-
-    if (userInput.bookService == "alojamientoNoche") {
-      newArrayBooks.push({ carerId: 1, serviceId: 3, price: 5 });
-    }
-
     // POST_Book(newObjBooks)
     //     .then((data) => {
     //         actionsToast.handleShownToast(data);
@@ -165,6 +150,7 @@ const Hire = () => {
               </div>
             </div>
           </div>
+
           {/* CALENDARIO */}
           <div className="d-flex">
             <div className="col-6 me-2">
@@ -226,6 +212,8 @@ const Hire = () => {
               <small>&nbsp;Elige una hora para la recogida</small>
             </div>
           </div>
+
+
           {/* TUS PERROS */}
           <h3 className="mt-4 pt-4">Tus Perros</h3>
           <p className="lead">
@@ -338,6 +326,22 @@ const Hire = () => {
 };
 
 export default Hire;
+
+
+// const newArrayBooks = [];
+// const newObjBooks = { books: newArrayBooks };
+
+// if (userInput.bookService == "guarderiaDia") {
+//   newArrayBooks.push({ carerId: 1, serviceId: 1, price: 15 });
+// }
+
+// if (userInput.bookService == "paseo") {
+//   newArrayBooks.push({ carerId: 1, serviceId: 2, price: 10 });
+// }
+
+// if (userInput.bookService == "alojamientoNoche") {
+//   newArrayBooks.push({ carerId: 1, serviceId: 3, price: 5 });
+// }
 
 // <div className="col-md">
 // <div className="form-floating">

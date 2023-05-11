@@ -136,7 +136,7 @@ export const AppProvider = ({ children }) => {
       });
 
 
-    userInput["userPhoto"] = dogPhoto;
+    userInput["userPhoto"] = userPhoto;
 
     UPDATE_User(userInput, storeAuth.userLog.user.id)
       .then((data) => {
