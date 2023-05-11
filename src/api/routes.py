@@ -12,6 +12,7 @@ from api.controllers.dog import create_dog, get_dogs, get_dog, update_dog, delet
 from api.controllers.service import create_service, get_services, get_service, update_service, delete_service
 from api.controllers.tarif import create_tariff, get_tariffs, get_tariff, update_tariff, delete_tariff
 from api.controllers.book import create_book, get_books, get_book, update_book, delete_book, acepted_book
+from api.controllers.install import install_examples
 
 
 
@@ -464,65 +465,23 @@ def protected():
 
 
 
-# # RUTA PARA CREAR LOS 3 SERVICIOS + USUARIOS/PERROS/TARIFAS EN LA BASE DE DATOS INICIAL CADA VEZ
-# @api.route("/install-services-users-dogs-tarifs", methods=["GET"])
-# def config_services():
+# RUTA PARA CREAR LOS 3 SERVICIOS + USUARIOS/PERROS/TARIFAS EN LA BASE DE DATOS INICIAL CADA VEZ
+@api.route("/install-services-users-dogs-tarifs", methods=["GET"])
+def config_services_examples():
 
-#     try:
+    try:
 
-#         # Rellenar la tabla de la DB, con el registro de Todo
-#         config_response = create_service()
-#         if config_response["code"] != 200:
-#             return jsonify(config_response)
+        # Rellenar la tabla de la DB, con el registro de Todo
+        install_response = install_examples()
 
-#         body = {"email": "dog@gmail.com", "password": "test", "name": "Luis", "lastName": "Sanchez", "address": "Calle China", "province": "Valencia", "postalCode": 30007, "phone": 602457444, "country": "Spain", "birthdate": "2002-02-02"}
-#         user1_response = create_user(body)
-#         if user1_response["code"] != 200:
-#             return jsonify(user1_response)
+        if install_response["code"] != 200:
+            return jsonify(install_response)
 
-#         body = {"email": "asd@gmail.com", "password": "test", "name": "Juan", "lastName": "Garcia", "address": "Calle Madrid", "province": "Cuenca", "postalCode": 50005, "phone": 658789451, "country": "Spain", "birthdate": "2001-01-01"}
-#         user2_response = create_user(body)
-#         if user2_response["code"] != 200:
-#             return jsonify(user2_response)
+        return jsonify(install_response)
 
-#         body = {"email": "test@gmail.com", "password": "test", "name": "Pepe", "lastName": "Alcaraz", "address": "Calle Mayor", "province": "Gerona", "postalCode": 70007, "phone": 652145236, "country": "Spain", "birthdate": "2003-03-03"}
-#         user3_response = create_user(body)
-#         if user3_response["code"] != 200:
-#             return jsonify(user3_response)
-
-
-#         body = {"dogName": "Thor", "breed": "Callejero", "dogBirth": "1995-12-21", "dogSex": "Macho", "dogSize": "Pequeño", "neutered": True, "socialCats": False, "socialKids": False, "socialDogs": True, "dogActivity": "Baja", "microchip": 4587111454, "observations": "El mejor amigo del gato"}
-#         dog1_response = create_dog(body)
-#         if dog1_response["code"] != 200:
-#             return jsonify(dog1_response)
-
-#         body = {"dogName": "Perry", "breed": "Golden", "dogBirth": "1991-04-04", "dogSex": "Macho", "dogSize": "Mediano", "neutered": True, "socialCats": False, "socialKids": False, "socialDogs": True, "dogActivity": "Media", "microchip": 1654485541, "observations": "El mejor amigo del hombre"}
-#         dog2_response = create_dog(body)
-#         if dog2_response["code"] != 200:
-#             return jsonify(dog2_response)
-
-#         body = {"dogName": "Thor", "breed": "Husky", "dogBirth": "1985-02-15", "dogSex": "Hembra", "dogSize": "Grande", "neutered": True, "socialCats": False, "socialKids": False, "socialDogs": True, "dogActivity": "Alta", "microchip": 989745131, "observations": "El peor perro del mundo"}
-#         dog3_response = create_dog(body)
-#         if dog3_response["code"] != 200:
-#             return jsonify(dog3_response)
-
-
-#         body = {"services": [ {"serviceActive": True, "serviceId": 2, "price": 15}, {"serviceActive": True, "serviceId": 3, "price": 35}, {"serviceActive": False, "serviceId": 1, "price": 20}]}
-#         tarif1_response = create_tariff(body)
-#         if tarif1_response["code"] != 200:
-#             return jsonify(tarif1_response)
-
-#         body = {"services": [ {"serviceActive": False, "serviceId": 2, "price": 15}, {"serviceActive": True, "serviceId": 3, "price": 40}, {"serviceActive": True, "serviceId": 1, "price": 20}]}
-#         tarif2_response = create_tariff(body)
-#         if tarif2_response["code"] != 200:
-#             return jsonify(tarif2_response)
-
-
-#         return jsonify({"code": 200, "msg": "¡Usuarios, Perros y Tarifas de prueba + Servicios creados correctamente!"})
-
-#     except Exception as error:
-#         print(error)
-#         return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
+    except Exception as error:
+        print(error)
+        return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
 
 
 # RUTA PARA CREAR LOS 3 SERVICIOS EN LA BASE DE DATOS INICIAL CADA VEZ
