@@ -49,21 +49,17 @@ const CaregiverInfo = () => {
 
               <h4 className="text-body-emphasis pt-4">Servicios y Tarifas:</h4>
               <p>Servicios y Tarifas:</p>
+              {/* <p>{service_id}</p>
+              <p>{price}</p> */}
             </div>
           </div>
 
           <div className="d-grid gap-2 d-md-flex justify-content-md-center">
-            <Link
-              to="/hire-caregiver"
-              className="action-button shadow animate blue"
-            >
-              Contratar
-            </Link>
-            <Link
-              to="/caregivers-list"
-              className="action-button shadow animate red"
-            >
+            <Link to="/caregivers-list" className="action-button shadow animate red">
               Ir Atrás
+            </Link>
+            <Link to="/hire-caregiver" className="action-button shadow animate blue">
+              Contratar
             </Link>
           </div>
 

@@ -13,13 +13,13 @@ import "./HireStyles.css";
 
 
 
-const Hire = () => {
+const Hire = (id) => {
 
   const { storeAuth, actionsAuth } = useAuthContext();
   const { userInput, handleUserInput, handleUserCheck } = useUserInput("");
   const { storeToast, actionsToast } = useToastsContext();
 
-  const [ carer, setCarer ] = useState("");
+  const [carer, setCarer] = useState("");
 
   // const params = useParams();
 
@@ -226,46 +226,45 @@ const Hire = () => {
           <div className="container d-flex">
             {storeAuth.userLog.user.dogs
               ? storeAuth.userLog.user.dogs.map((dogInfo, index) => {
-                  return (
-                    <div className="col-md" key={index}>
-                      <div className="form-floating">
-                        <div
-                          className={
-                            "glowing-register m-2" +
-                            (userInput[`perro${dogInfo.id}`] == true
-                              ? " activeGlow"
-                              : "")
-                          }
-                        >
-                          <label htmlFor={`perro${dogInfo.id}`}>
-                            <img
-                              src={
-                                dogInfo.dogPhoto
-                                  ? dogInfo.dogPhoto
-                                  : "https://cdn.pixabay.com/photo/2019/02/02/17/12/animation-3970998_960_720.png"
-                              }
-                              alt="Checkbox imagen perrito"
-                              className="img-fluid"
-                            />
-                          </label>
-
-                          <input
-                            type="checkbox"
-                            name={`perro${dogInfo.id}`}
-                            id={`perro${dogInfo.id}`}
-                            value={userInput[`perro${dogInfo.id}`]}
-                            onChange={handleUserCheck}
-                            checked={userInput[`perro${dogInfo.id}`]}
+                return (
+                  <div className="col-12 col-md-4" key={index}>
+                    <div className="form-floating">
+                      <div
+                        className={
+                          "glowing-register m-2" +
+                          (userInput[`perro${dogInfo.id}`] == true
+                            ? " activeGlow"
+                            : "")
+                        }
+                      >
+                        <label htmlFor={`perro${dogInfo.id}`}>
+                          <img
+                            src={
+                              dogInfo.dogPhoto
+                                ? dogInfo.dogPhoto
+                                : "https://cdn.pixabay.com/photo/2019/02/02/17/12/animation-3970998_960_720.png"
+                            }
+                            alt="Checkbox imagen perrito"
+                            className="img-fluid"
                           />
+                        </label>
 
-                          <h3 className="text-center mt-4">
-                            {dogInfo.dogName}
-                          </h3>
-                        </div>
+                        <input type="checkbox"
+                          name={`perro${dogInfo.id}`}
+                          id={`perro${dogInfo.id}`}
+                          value={userInput[`perro${dogInfo.id}`]}
+                          onChange={handleUserCheck}
+                          checked={userInput[`perro${dogInfo.id}`]}
+                        />
+
+                        <h3 className="text-center mt-4">
+                          {dogInfo.dogName}
+                        </h3>
                       </div>
                     </div>
-                  );
-                })
+                  </div>
+                );
+              })
               : null}
           </div>
 
@@ -280,45 +279,23 @@ const Hire = () => {
             <label htmlFor="mensajeACuidador" className="form-label">
               Comparte más información sobre tu perro con <b>SANDRA M.</b>
             </label>
-            <textarea
-              className="form-control"
-              id="mensajeACuidador"
-              name="mensajeACuidador"
+            <textarea className="form-control" id="mensajeACuidador" name="mensajeACuidador"
               value={
                 userInput.mensajeACuidador ? userInput.mensajeACuidador : ""
               }
-              onChange={handleUserInput}
-              rows="3"
-            ></textarea>
+              onChange={handleUserInput} rows="3"></textarea>
           </div>
 
           <div className="d-grid gap-2 d-md-flex justify-content-md-center">
-            <button
-              type="button"
-              className="action-button shadow animate blue"
-              onClick={handleContratarServicio}
-            >
-              Enviar
-            </button>
-            <Link
-              to="/caregiver-info"
-              className="action-button shadow animate red"
-            >
+            <Link to={`/caregiver-info/${id}`} className="action-button shadow animate red">
               Ir Atrás
             </Link>
+            <button type="button" className="action-button shadow animate blue"
+              onClick={handleContratarServicio}>
+              Enviar
+            </button>
           </div>
 
-          <Link
-            to="#navbar"
-            className="simplescrollup__button simplescrollup__button--hide"
-            spy="true"
-            smooth="true"
-            duration={800}
-          >
-            <h2>
-              <i className="fas fa-arrow-circle-up"></i>
-            </h2>
-          </Link>
         </div>
       </div>
     </div>

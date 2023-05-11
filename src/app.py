@@ -32,7 +32,7 @@ db_url = os.getenv("DATABASE_URL")
 # else:
 
 # AQUI USO SQLITE
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///test.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////tmp/test.db"
     # app.config['SQLALCHEMY_CHARSET'] = 'utf8mb4'
     # mysql://user:pass@localhost/db?charset=utf8
     # sqlite:////tmp/test.db        # ORIGINAL CON EL BOILERPLATE
