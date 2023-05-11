@@ -32,17 +32,17 @@ const ServicesRates = () => {
                 />
             </div> */}
 
-      <div className="container">
+      <div className="container services-rates-checkbox">
         <div className="row">
-          <div className="col-12 col-md me-2">
-            <label className="form-check-label" htmlFor="guarderia-diurna">
+          <div className={"col-12 col-md me-2 glowing-register" + ((store.userInput.nurseryDay == true) ? " activeGlow" : "")}>
+            <label className="form-check-label d-block mb-2" htmlFor="guarderia-diurna">
               <img
                 src="https://cdn.pixabay.com/photo/2017/01/17/16/46/sun-1987414_960_720.png"
                 className="custom-icon"
                 alt="Guardería de Día"
               />
-              <h4>Guardería Diurna</h4>
-              <h4>(Alojamiento de día)</h4>
+              <h5>Guardería Diurna</h5>
+              <h5>(Alojamiento de día)</h5>
             </label>
             <input
               type="checkbox"
@@ -65,15 +65,15 @@ const ServicesRates = () => {
             />
           </div>
 
-          <div className="col-12 col-md me-2">
-            <label className="form-check-label" htmlFor="paseo">
+          <div className={"col-12 col-md me-2 glowing-register" + ((store.userInput.walk == true) ? " activeGlow" : "")}>
+            <label className="form-check-label d-block mb-2" htmlFor="paseo">
               <img
                 src="https://cdn.pixabay.com/photo/2016/03/31/21/38/canines-1296551_960_720.png"
                 className="custom-icon"
                 alt="Guardería de Día"
               />
-              <h4>Paseo</h4>
-              <h4>(Por horas)</h4>
+              <h5>Paseo</h5>
+              <h5>(Por horas)</h5>
             </label>
             <input
               type="checkbox"
@@ -96,15 +96,15 @@ const ServicesRates = () => {
             />
           </div>
 
-          <div className="col-12 col-md me-2">
-            <label className="form-check-label" htmlFor="guarderia-nocturna">
+          <div className={"col-12 col-md me-2 glowing-register" + ((store.userInput.nurseryNight == true) ? " activeGlow" : "")}>
+            <label className="form-check-label d-block mb-2" htmlFor="guarderia-nocturna">
               <img
                 src="https://cdn.pixabay.com/photo/2017/01/17/16/45/night-1987408_960_720.png"
                 className="custom-icon"
                 alt="Guardería de Día"
               />
-              <h4>Guardería Nocturna</h4>
-              <h4>(Alojamiento de noche)</h4>
+              <h5>Guardería Nocturna</h5>
+              <h5>(Alojamiento de noche)</h5>
             </label>
             <input
               type="checkbox"
