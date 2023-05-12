@@ -4,6 +4,7 @@ import { GET_User } from "../../services/USERFetchs.js";
 import "./CaregiversStyles.css";
 
 const CaregiverInfo = () => {
+
   const params = useParams();
 
   const [dogsitter, setDogsitter] = useState({});
@@ -48,7 +49,23 @@ const CaregiverInfo = () => {
               <p>{dogsitter.aboutMe ? dogsitter.aboutMe : ""}</p>
 
               <h4 className="text-body-emphasis pt-4">Servicios y Tarifas:</h4>
-              <p>Servicios y Tarifas:</p>
+              {dogsitter.tariffs
+                ? dogsitter.tariffs.map((tarifa, index) => {
+
+                  return (
+                    <div key={index}>
+                      <div className="d-flex justify-content-evenly">
+                        <p>Servicio: {tarifa.service.title}</p>
+                        <p>Tarifa: {tarifa.price}</p>
+                      </div>
+
+                    </div>
+                  );
+
+                })
+              
+                : null
+              }
             </div>
           </div>
 
