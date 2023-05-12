@@ -97,10 +97,14 @@ const Hire = () => {
                             onChange={handleUserInput}
                             checked={userInput.tariffId == tarif.service_id}
                           />
+
                           <label htmlFor={tarif.service.title + tarif.id}>
                             {tarif.service.title}
                           </label>
-                          <p className="fst-italic justify-content-center pt-2">
+
+                          <div className="d-flex justify-content-center mt-2"> <p className="me-2">Precio del servicio:</p> <b>{tarif.price} €</b> </div>
+
+                          <p className="fst-italic justify-content-center">
                             {tarif.service.description}
                           </p>
                         </div>
@@ -111,9 +115,9 @@ const Hire = () => {
               </div>
 
               {/* CALENDARIO */}
-              <div className="d-flex">
+              <div className="d-flex mt-2">
                 <div className="col-6 me-2">
-                  <label htmlFor="fechaEntrega" className="form-label">
+                  <label htmlFor="fechaEntrega" className="form-label fw-bold text-decoration-underline">
                     ENTREGA:
                   </label>
                   <br />
@@ -143,7 +147,7 @@ const Hire = () => {
                 </div>
 
                 <div className="col-6 ms-2">
-                  <label htmlFor="fechaRecogida" className="form-label">
+                  <label htmlFor="fechaRecogida" className="form-label fw-bold text-decoration-underline">
                     RECOGIDA:
                   </label>
                   <br />
