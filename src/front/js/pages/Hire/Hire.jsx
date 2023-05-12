@@ -19,18 +19,19 @@ const Hire = () => {
   const { userInput, handleUserInput, handleUserCheck } = useUserInput("");
   const { storeToast, actionsToast } = useToastsContext();
 
-  const [ carer, setCarer ] = useState("");
+  const [dogsitter, setDogsitter] = useState({});
 
-  // const params = useParams();
+  const params = useParams();
 
-  // useEffect(() => {
-  //   GET_User(params.id)
-  //     .then((data) => {
-  //       setCarer(data);
-  //       actionsToast.handleShownToast(data);
-  //     })
+  useEffect(() => {
 
-  // },[])
+    GET_User(params.id)
+      .then((data) => {
+        setDogsitter(data);
+        actionsToast.handleShownToast(data);
+      })
+
+  },[])
 
   // carerID y price HARCODEADOS CUANDO ESTE BIEN LAS VISTAS COGED DE AHI LOS DATOS
   const handleContratarServicio = (e) => {
@@ -61,17 +62,20 @@ const Hire = () => {
       <div className="container my-4">
         <div className=" bg-body-tertiary p-4 rounded-3">
           <h3 className="text-body-emphasis text-center pb-4">
-            Contacta con: Sandra M
+            Contacta con: <b>{dogsitter.name}</b>
           </h3>
           {/* SERVICIO */}
-          <h4>Selecciona el servicio:</h4>
+          <h4>Selecciona el servicio deseado dentro de mis servicios disponibles:</h4>
           <div className="row g-2">
-            <div className="col-md">
+
+            {dogsitter.tariffs.map((tarif, index) => {
+              return (
+                <div className="col-md" key={index}>
               <div className="form-floating">
                 <div
                   className={
                     "glowing-register m-2" +
-                    (userInput.bookService == "guarderiaDia"
+                    (userInput.bookService == tarif.input_name
                       ? " activeGlow"
                       : "")
                   }
@@ -80,75 +84,23 @@ const Hire = () => {
                     type="radio"
                     id="dia"
                     name="bookService"
-                    value="guarderiaDia"
+                    value={tarif.input_name}
                     onChange={handleUserInput}
-                    checked={userInput.bookService == "guarderiaDia"}
+                    checked={userInput.bookService == tarif.input_name}
                   />
-                  <label htmlFor="dia">Guarderia de Día</label>
+                  <label htmlFor="dia">{tarif.title}</label>
                   <p className="fst-italic justify-content-center pt-2">
-                    Deja a tu perro durante el día en casa de un cuidador de
-                    Gudog un máximo de 10 horas.
+                    {tarif.description}
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="col-md">
-              <div className="form-floating">
-                <div
-                  className={
-                    "glowing-register m-2" +
-                    (userInput.bookService == "paseo" ? " activeGlow" : "")
-                  }
-                >
-                  <label htmlFor="paseo">Paseo</label>
+              );
+            })}
 
-                  <input
-                    type="radio"
-                    id="paseo"
-                    name="bookService"
-                    value="paseo"
-                    onChange={handleUserInput}
-                    checked={userInput.bookService == "paseo"}
-                  />
+            
 
-                  <p className="fst-italic justify-content-center pt-2">
-                    60 minutos de paseo para tu perro. La recogida y entrega
-                    será en tu casa. ¡No olvides la correa!
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md">
-              <div className="form-floating">
-                <div
-                  className={
-                    "glowing-register m-2" +
-                    (userInput.bookService == "alojamientoNoche"
-                      ? " activeGlow"
-                      : "")
-                  }
-                >
-                  <label htmlFor="noche">Alojamiento de Noche</label>
-
-                  <input
-                    type="radio"
-                    id="noche"
-                    name="bookService"
-                    value="alojamientoNoche"
-                    onChange={handleUserInput}
-                    checked={userInput.bookService == "alojamientoNoche"}
-                  />
-
-                  <p className="fst-italic justify-content-center pt-2">
-                    Alojamiento para tu perro en casa del cuidador seleccionado
-                    incluyendo la noche. No olvides entregar su comida, premios,
-                    cama, cartilla veterinaria y su juguete favorito.
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* CALENDARIO */}
@@ -278,7 +230,7 @@ const Hire = () => {
           <h3 className="mt-4 pt-4">Mensaje</h3>
           <div className="mb-3">
             <label htmlFor="mensajeACuidador" className="form-label">
-              Comparte más información sobre tu perro con <b>SANDRA M.</b>
+              Comparte más información sobre tu perro con <b>{dogsitter.name}</b>
             </label>
             <textarea
               className="form-control"
