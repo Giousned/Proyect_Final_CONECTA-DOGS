@@ -33,6 +33,7 @@ def create_user(body):
             phone = int(body["phone"]),
             country = body["country"], 
             birthdate = body["birthdate"],
+            userPhoto = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
             is_active = True)
 
             # latitude = int(body["latitude"]),
@@ -151,6 +152,9 @@ def update_user(body, id):
 
         if "password" in claves_user:
             user.password = body["password"]
+
+        if "userPhoto" in claves_user:
+            user.userPhoto = body["userPhoto"]
  
         # user.email = body["email"]        # ESTA DISABLED PARA CAMBIAR EN EL FRONT
         user.name = body["name"]
@@ -162,7 +166,6 @@ def update_user(body, id):
         user.country = body["country"]
         user.birthdate = body["birthdate"]
         user.aboutMe = body.get("aboutMe", None)
-        user.userPhoto = body.get("userPhoto", "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png")
         user.is_active = True
 
         # latitude = int(body["latitude"])

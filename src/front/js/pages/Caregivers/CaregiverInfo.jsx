@@ -54,8 +54,11 @@ const CaregiverInfo = () => {
 
                   return (
                     <div key={index}>
-                      <p>Servicios: {tarifa.service.title}</p>
-                      <p>Tarifas: {tarifa.price}</p>
+                      <div className="d-flex justify-content-evenly">
+                        <p>Servicio: {tarifa.service.title}</p>
+                        <p>Tarifa: {tarifa.price}</p>
+                      </div>
+
                     </div>
                   );
 
@@ -63,7 +66,6 @@ const CaregiverInfo = () => {
               
                 : null
               }
-              <p>Servicios y Tarifas: {dogsitter.tariffs}</p>
             </div>
           </div>
 

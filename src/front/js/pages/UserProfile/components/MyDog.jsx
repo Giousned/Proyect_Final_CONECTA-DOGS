@@ -104,7 +104,7 @@ const MyDog = () => {
 
                   <div className="d-flex justify-content-center fs-2 fw-bold"> PERFIL DE MI PERRO </div>
 
-                  <img className="avatar-dog my-3" src={(dogInfo.dogPhoto) ? dogInfo.dogPhoto : "https://cdn.pixabay.com/photo/2019/02/02/17/12/animation-3970998_960_720.png"} alt="Foto de mi perrito" />
+                  <img className="avatar-dog my-3" src={dogInfo.dogPhoto} alt="Foto de mi perrito" />
                   
                   <div className="container mt-4">
                     <DogInformation dogInfo={dogInfo} />

@@ -96,3 +96,10 @@ const ReserveInformationUser = () => {
 }
 
 export default ReserveInformationUser;
+
+
+// CAMBIAR FA-SUN
+{/* <i class="fas fa-moon"></i>
+<i class="fas fa-walking"></i>
+<i class="fa-solid fa-dog"></i>
+<i class="fas fa-tree"></i> */}
