@@ -26,7 +26,7 @@ const MyDog = () => {
       {/* <div className="avatar-dog my-3"></div> */}
 
       <ul className="nav nav-tabs" id="myDogsInfoTab" role="tablist">
-        {(storeAuth.userLog.user.dogs.length != 0)
+        {storeAuth.userLog.user.dogs
           ? storeAuth.userLog.user.dogs.map((dogInfo, index) => {
               return (
                 <li className="nav-item" role="presentation" key={index}>
@@ -84,7 +84,7 @@ const MyDog = () => {
         </li>
       </ul>
       <div className="tab-content" id="myDogsInfoTabContent">
-        {(storeAuth.userLog.user.dogs.length != 0)
+        {storeAuth.userLog.user.dogs
             ? storeAuth.userLog.user.dogs.map((dogInfo, index) => {
               return(
                 <div
@@ -104,7 +104,7 @@ const MyDog = () => {
 
                   <div className="d-flex justify-content-center fs-2 fw-bold"> PERFIL DE MI PERRO </div>
 
-                  <img className="avatar-dog my-3" src={(dogInfo.dogPhoto) ? dogInfo.dogPhoto : "https://cdn.pixabay.com/photo/2019/11/18/00/38/dog-4633734_960_720.jpg"} alt="Foto de mi perrito" />
+                  <img className="avatar-dog my-3" src={(dogInfo.dogPhoto) ? dogInfo.dogPhoto : "https://cdn.pixabay.com/photo/2019/02/02/17/12/animation-3970998_960_720.png"} alt="Foto de mi perrito" />
                   
                   <div className="container mt-4">
                     <DogInformation dogInfo={dogInfo} />

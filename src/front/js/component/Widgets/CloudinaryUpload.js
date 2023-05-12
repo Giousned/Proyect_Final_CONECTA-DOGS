@@ -32,8 +32,8 @@ const CloudinaryUpload = (props) => {
   }, [])
 
     return (
-      <button id={`upload_widget_${props.idName}`} className="cloudinary-button w-50">
-        Upload Photo
+      <button id={`upload_widget_${props.idName}`} className="cloudinary-button w-20">
+        Actualizar Foto
       </button>
     );
 }

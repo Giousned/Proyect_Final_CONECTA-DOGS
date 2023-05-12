@@ -82,6 +82,7 @@ export const AppProvider = ({ children }) => {
       .then((data) => {
         actionsToast.handleShownToast(data);
         actionsAuth.handleUpdateUser();
+        setDogPhoto("");
       });
   };
 
@@ -94,6 +95,7 @@ export const AppProvider = ({ children }) => {
       .then((data) => {
         actionsToast.handleShownToast(data);
         actionsAuth.handleUpdateUser();
+        setDogPhoto("");
       });
   };
 
@@ -110,23 +112,23 @@ export const AppProvider = ({ children }) => {
   const handleUpdate = (e) => {
     e.preventDefault();
 
-    const newarrayTarrif = []
-    const newObjTarrifs = { services: newarrayTarrif}
+    const newArrayTarrif = []
+    const newObjTarrifs = { services: newArrayTarrif}
 
     if ( userInput.nurseryDay ) {
-      newarrayTarrif.push({serviceActive: true, serviceId: 1, price: userInput.priceNurseryDay})
+      newArrayTarrif.push({serviceActive: true, serviceId: 1, price: userInput.priceNurseryDay})
     }
-    else newarrayTarrif.push({serviceActive: false, serviceId: 1, price: 0})
+    else newArrayTarrif.push({serviceActive: false, serviceId: 1, price: 0})
 
     if ( userInput.walk ) {
-      newarrayTarrif.push({serviceActive: true, serviceId: 2, price: userInput.priceWalk})
+      newArrayTarrif.push({serviceActive: true, serviceId: 2, price: userInput.priceWalk})
     }
-    else newarrayTarrif.push({serviceActive: false, serviceId: 2, price: 0})
+    else newArrayTarrif.push({serviceActive: false, serviceId: 2, price: 0})
 
     if ( userInput.nurseryNight ) {
-      newarrayTarrif.push({serviceActive: true, serviceId: 3, price: userInput.priceNurseryNight})
+      newArrayTarrif.push({serviceActive: true, serviceId: 3, price: userInput.priceNurseryNight})
     }
-    else newarrayTarrif.push({serviceActive: false, serviceId: 3, price: 0})
+    else newArrayTarrif.push({serviceActive: false, serviceId: 3, price: 0})
     
     POST_Tariff(newObjTarrifs)
       .then((data) => {
@@ -134,7 +136,7 @@ export const AppProvider = ({ children }) => {
       });
 
 
-    userInput["userPhoto"] = dogPhoto;
+    userInput["userPhoto"] = userPhoto;
 
     UPDATE_User(userInput, storeAuth.userLog.user.id)
       .then((data) => {

@@ -1,185 +1,322 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import MyDog from "../UserProfile/components/MyDog.jsx";
-import DogCardInformation from "../UserProfile/components/DogCardInformation.jsx";
-import useAuthContext from "../../store/AuthContext.js";
 
-{/* import { Link, animateScroll as scroll } from "react-scroll"; */ }
-{/* import "./hire.js"; */ }
+import { Link, useParams } from "react-router-dom";
+
+import { POST_Book } from "../../services/BOOKFetchs.js";
+import { GET_User } from "../../services/USERFetchs.js";
+
+import useUserInput from "../../hooks/useUserInput.js";
+import useAuthContext from "../../store/AuthContext.js";
+import useToastsContext from "../../store/ToastsContext.js";
+
 import "./HireStyles.css";
 
 const Hire = () => {
+  const { storeAuth, actionsAuth } = useAuthContext();
+  const { userInput, handleUserInput, handleUserCheck } = useUserInput("");
+  const { storeToast, actionsToast } = useToastsContext();
 
-    const { storeAuth, actionsAuth } = useAuthContext();
+  const [dogsitter, setDogsitter] = useState({});
 
-    const [activeTab, setActiveTab] = useState("");
+  const params = useParams();
 
-    useEffect(() => {
-        setActiveTab("");
-    }, [storeAuth.userLog.user])
+  useEffect(() => {
+    GET_User(params.id).then((data) => {
+      setDogsitter(data.user);
+      actionsToast.handleShownToast(data);
+    });
+  }, []);
 
-    const handleTabClick = (tabId) => {
-        setActiveTab(tabId);
-    };
+  // MANDO EL ID DE LA TARIFA DIRECTAMENTE PARA LUEGO BUSCARLA EN EL BACK MAS FACIL Y UNA CLAVE DOGS DONDE DENTRO VA CADA NOMBRE DEL PERRO + SU ID
+  const handleContratarServicio = (e) => {
+    e.preventDefault();
 
-    return (
+    const newArrayDog = []
+    
+    for (let dog in userInput) {
+      
+      if (userInput[dog] === true) {
+        
+        let newDogs = {dogName: "", id: ""}
+        
+        let str = dog
+        let arraySplit = str.split('-');
+
+        newDogs.dogName = arraySplit[0]
+        newDogs.id = arraySplit[1]
+
+        newArrayDog.push(newDogs)
+      }
+
+    }
+
+    userInput.dogs = newArrayDog
+
+    POST_Book(userInput)
+        .then((data) => {
+            actionsToast.handleShownToast(data);
+        })
+  };
+
+  return (
+    <>
+      {dogsitter.tariffs ? (
         <div className="hire">
-            <div className="reserves">
-                <div className="header">
-                    <h1 className="text-center p-4">CONTRATAR CUIDADOR</h1>
+          <div className="header">
+            <h1 className="text-center p-4">CONTRATAR CUIDADOR</h1>
+          </div>
+
+          <div className="container my-4">
+            <div className=" bg-body-tertiary p-4 rounded-3">
+              <h3 className="text-body-emphasis text-center pb-4">
+                Contacta con: <b>{dogsitter.name}</b>
+              </h3>
+              {/* SERVICIO */}
+              <h4>
+                Selecciona el servicio deseado dentro de mis servicios
+                disponibles:
+              </h4>
+              <div className="row g-2">
+                {dogsitter.tariffs.map((tarif, index) => {
+                  return (
+                    <div className="col-md" key={index}>
+                      <div className="form-floating">
+                        <div
+                          className={
+                            "glowing-register m-2" +
+                            (userInput.tariffId == tarif.service_id
+                              ? " activeGlow"
+                              : "")
+                          }
+                        >
+                          <input
+                            type="radio"
+                            id={tarif.service.title + tarif.id}
+                            name="tariffId"
+                            value={tarif.service_id}
+                            onChange={handleUserInput}
+                            checked={userInput.tariffId == tarif.service_id}
+                          />
+
+                          <label htmlFor={tarif.service.title + tarif.id}>
+                            {tarif.service.title}
+                          </label>
+
+                          <div className="d-flex justify-content-center mt-2"> <p className="me-2">Precio del servicio:</p> <b>{tarif.price} €</b> </div>
+
+                          <p className="fst-italic justify-content-center">
+                            {tarif.service.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* CALENDARIO */}
+              <div className="d-flex mt-2">
+                <div className="col-6 me-2">
+                  <label htmlFor="fechaEntrega" className="form-label fw-bold text-decoration-underline">
+                    ENTREGA:
+                  </label>
+                  <br />
+                  <input
+                    className="form-control"
+                    type="date"
+                    id="fechaEntrega"
+                    aria-describedby="fecha-entrega-perro"
+                    name="fechaEntrega"
+                    value={userInput.fechaEntrega}
+                    onChange={handleUserInput}
+                    required
+                  />
+                  <br />
+                  <label htmlFor="hora-entrega">Elige una hora: &nbsp;</label>
+                  <input
+                    type="time"
+                    id="hora-entrega"
+                    name="horaEntrega"
+                    // min="07:00" max="23:00"
+                    value={userInput.horaEntrega}
+                    onChange={handleUserInput}
+                    required
+                  />
+                  <small>&nbsp;Elige una hora para la entrega</small>{" "}
+                  {/* entre las 7:00 y las 23:00 */}
                 </div>
-            </div>
 
-            <div className="container my-4">
-                <div className=" bg-body-tertiary rounded-3">
-                    <h3 className="text-body-emphasis text-center pb-4">Contacta con: Sandra M</h3>
-                    {/* SERVICIO */}
-                    <h4>Selecciona el servicio:</h4>
-                    <div className="row g-2">
-                        <div className="col-md">
-                            <div className="form-floating">
-                                <div className="glowing-register m-2">
-                                    <input type="radio" id="noche"
-                                        name="radioService" value="AlojamientoNoche" />
-                                    <label htmlFor="noche">Alojamiento de Noche</label>
-                                    <p className="fst-italic justify-content-center pt-2">
-                                        Alojamiento para tu perro en casa del cuidador seleccionado incluyendo la noche.
-                                        No olvides entregar su comida, premios, cama, cartilla veterinaria y su juguete favorito.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md">
-                            <div className="form-floating">
-                                <div className="glowing-register m-2">
-                                    <input type="radio" id="paseo"
-                                        name="radioService" value="Paseo" />
-                                    <label htmlFor="paseo">Paseo</label>
-                                    <p className="fst-italic justify-content-center pt-2">
-                                        60 minutos de paseo para tu perro. La recogida y entrega será en tu casa. ¡No olvides la correa!
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md">
-                            <div className="form-floating">
-                                <div className="glowing-register m-2">
-                                    <input type="radio" id="dia"
-                                        name="radioService" value="GuarderiaDia" />
-                                    <label htmlFor="dia">Guarderia de Día</label>
-                                    <p className="fst-italic justify-content-center pt-2">
-                                        Deja a tu perro durante el día en casa de un cuidador de Gudog un máximo de 10 horas.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {/* CALENDARIO */}
-                    <div className="d-flex">
-                        <div className="col-6 me-2">
-                            <label htmlFor="fechaReserva" className="form-label">
-                                ENTREGA:
-                            </label>
-                            <br />
-                            <input className="form-control" type="date" id="fechaReserva"
-                                aria-describedby="fecha-nacimiento-perro"
-                                name="fechaReserva"
-                                value="fechaReserva"
-                                required />
-                            <br />
-                            <label for="appt">Elige una hora: &nbsp;</label>
-                            <input type="time" id="appt" name="appt"
-                                min="07:00" max="23:00" required />
-                            <small>&nbsp;Elige una hora entre las 7:00 y las 23:00</small>
-                        </div>
-
-                        <div className="col-6 ms-2">
-                            <label htmlFor="fechaReserva" className="form-label">
-                                RECOGIDA:
-                            </label>
-                            <br />
-                            <input className="form-control" type="date" id="fechaReserva"
-                                aria-describedby="fecha-nacimiento-perro"
-                                name="fechaReserva"
-                                value="fechaReserva"
-                                required />
-                            <br />
-                            <label for="appt">Elige una hora: &nbsp;</label>
-                            <input type="time" id="appt" name="appt"
-                                min="07:00" max="23:00" required />
-                            <small>&nbsp;Elige una hora entre las 7:00 y las 23:00</small>
-
-                        </div>
-                    </div>
-                    {/* TUS PERROS */}
-                    <h3 className="mt-4 pt-4">Tus Perros</h3>
-                    <p className="lead">
-                        Tu Perro Aquí (No me funciona traerme el componente con .map)
-                        <br />
-                        Selecciona el perro para el que quieres contratar este servicio:
-                    </p>
-
-                    <div className="container d-flex">
-                        <div className="col-md">
-                            <div className="form-floating">
-                                <div className="glowing-register m-2">
-                                    <input type="radio" id="perro1"
-                                        name="perro" value="perro1" />
-                                    <label htmlFor="perro1">
-                                        <img src="https://cdn.pixabay.com/photo/2022/03/30/11/12/dog-7101015_960_720.jpg"
-                                            className="img-fluid w-50" />
-                                    </label>
-                                    <p className="text-center">Perro 1</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-md">
-                            <div className="form-floating">
-                                <div className="glowing-register m-2">
-                                    <input type="radio" id="perro2"
-                                        name="perro" value="perro2" />
-                                    <label htmlFor="perro2">
-                                        <img src="https://cdn.pixabay.com/photo/2017/10/02/21/56/dog-2810484_960_720.jpg"
-                                            className="img-fluid w-50" />
-                                    </label>
-                                    <p className="text-center">Perro 2</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    {/* TU TELEFONO */}
-                    <h3 className="mt-4 pt-4">Tu Teléfono</h3>
-                    <p className="lead">
-                        666 123 456
-                    </p>
-                    {/* MENSAJE */}
-                    <h3 className="mt-4 pt-4">Mensaje</h3>
-                    <div className="mb-3">
-                        <label for="MensajeACuidador" className="form-label">
-                            Comparte más información sobre tu perro con <b>SANDRA M.</b>
-                        </label>
-                        <textarea className="form-control" id="MensajeACuidador" rows="3"></textarea>
-                    </div>
-
-                    <div className="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <button type="button" className="action-button shadow animate blue">Enviar</button>
-                        <Link to="/more-About" className="action-button shadow animate red">Ir Atrás</Link>
-                    </div>
-
-                    <Link to="#navbar" className="simplescrollup__button simplescrollup__button--hide"
-                        spy={true} smooth={true} duration={800}>
-                        <h2>
-                            <i className="fas fa-arrow-circle-up"></i>
-                        </h2>
-                    </Link>
-
+                <div className="col-6 ms-2">
+                  <label htmlFor="fechaRecogida" className="form-label fw-bold text-decoration-underline">
+                    RECOGIDA:
+                  </label>
+                  <br />
+                  <input
+                    className="form-control"
+                    type="date"
+                    id="fechaRecogida"
+                    aria-describedby="fecha-recogida-perro"
+                    name="fechaRecogida"
+                    value={userInput.fechaRecogida}
+                    onChange={handleUserInput}
+                    required
+                  />
+                  <br />
+                  <label htmlFor="hora-recogida">Elige una hora: &nbsp;</label>
+                  <input
+                    type="time"
+                    id="hora-recogida"
+                    name="horaRecogida"
+                    // min="07:00" max="23:00"
+                    value={userInput.horaRecogida}
+                    onChange={handleUserInput}
+                    required
+                  />
+                  <small>&nbsp;Elige una hora para la recogida</small>
                 </div>
+              </div>
+
+              {/* TUS PERROS */}
+              <h3 className="mt-4 pt-4">Tus Perros</h3>
+              <p className="lead">
+                Tus Perro:
+                <br />
+                Selecciona el/los perro(s) para los que quieres contratar este
+                servicio:
+              </p>
+
+              <div className="container d-flex">
+                {storeAuth.userLog.user.dogs
+                  ? storeAuth.userLog.user.dogs.map((dogInfo, index) => {
+                      return (
+                        <div className="col-md" key={index}>
+                          <div className="form-floating">
+                            <div
+                              className={
+                                "glowing-register m-2" +
+                                (userInput[`${dogInfo.dogName}-${dogInfo.id}`] == true
+                                  ? " activeGlow"
+                                  : "")
+                              }
+                            >
+                              <label htmlFor={dogInfo.id}>
+                                <img
+                                  src={
+                                    dogInfo.dogPhoto
+                                      ? dogInfo.dogPhoto
+                                      : "https://cdn.pixabay.com/photo/2019/02/02/17/12/animation-3970998_960_720.png"
+                                  }
+                                  alt="Checkbox imagen perrito"
+                                  className="img-fluid"
+                                />
+                              </label>
+
+                              <input
+                                type="checkbox"
+                                name={`${dogInfo.dogName}-${dogInfo.id}`}
+                                id={dogInfo.id}
+                                value={userInput[`${dogInfo.dogName}-${dogInfo.id}`]}
+                                onChange={handleUserCheck}
+                                checked={userInput[`${dogInfo.dogName}-${dogInfo.id}`]}
+                              />
+
+                              <h3 className="text-center mt-4">
+                                {dogInfo.dogName}
+                              </h3>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })
+                  : null}
+              </div>
+
+              {/* TU TELEFONO */}
+              <h3 className="mt-4 pt-4">Tu Teléfono</h3>
+              <p className="lead">
+                {storeAuth.userLog.user ? storeAuth.userLog.user.phone : null}
+              </p>
+              {/* MENSAJE */}
+              <h3 className="mt-4 pt-4">Mensaje</h3>
+              <div className="mb-3">
+                <label htmlFor="mensajeACuidador" className="form-label">
+                  Comparte más información sobre tu perro con{" "}
+                  <b>{dogsitter.name}</b>
+                </label>
+                <textarea
+                  className="form-control"
+                  id="mensajeACuidador"
+                  name="mensajeACuidador"
+                  value={
+                    userInput.mensajeACuidador ? userInput.mensajeACuidador : ""
+                  }
+                  onChange={handleUserInput}
+                  rows="3"
+                ></textarea>
+              </div>
+
+              <div className="d-grid gap-2 d-md-flex justify-content-md-center">
+                <button
+                  type="button"
+                  className="action-button shadow animate blue"
+                  onClick={handleContratarServicio}
+                >
+                  Enviar
+                </button>
+                <Link
+                  to={"/caregiver-info/" + dogsitter.id}
+                  className="action-button shadow animate red"
+                >
+                  Ir Atrás
+                </Link>
+              </div>
+
+              <Link
+                to="#navbar"
+                className="simplescrollup__button simplescrollup__button--hide"
+                spy="true"
+                smooth="true"
+                duration={800}
+              >
+                <h2>
+                  <i className="fas fa-arrow-circle-up"></i>
+                </h2>
+              </Link>
             </div>
+          </div>
         </div>
-    );
-}
+      ) : null}
+    </>
+  );
+};
 
 export default Hire;
+
+// const newArrayBooks = [];
+// const newObjBooks = { books: newArrayBooks };
+
+// if (userInput.tariffId == "guarderiaDia") {
+//   newArrayBooks.push({ carerId: 1, serviceId: 1, price: 15 });
+// }
+
+// if (userInput.tariffId == "paseo") {
+//   newArrayBooks.push({ carerId: 1, serviceId: 2, price: 10 });
+// }
+
+// if (userInput.tariffId == "alojamientoNoche") {
+//   newArrayBooks.push({ carerId: 1, serviceId: 3, price: 5 });
+// }
+
+// <div className="col-md">
+// <div className="form-floating">
+//     <div className="glowing-register m-2">
+//         <input type="checkbox" id="perro2"
+//             name="perro" value="perro2" />
+//         <label htmlFor="perro2">
+//             <img src="https://cdn.pixabay.com/photo/2019/12/31/23/20/puppy-4732766_960_720.jpg"
+//                 className="img-fluid" />
+//         </label>
+//         <p className="text-center">Perro 2</p>
+//     </div>
+// </div>
+// </div>

@@ -7,11 +7,12 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from api.utils import generate_sitemap, APIException
 from api.models import User, Services, Tariffs, Dog, Books                                       # from models import Person
-from api.controllers.user import create_user, get_users, get_user, update_user, delete_user, update_me_user
+from api.controllers.user import create_user, get_users, get_user, get_carers, update_user, delete_user, update_me_user
 from api.controllers.dog import create_dog, get_dogs, get_dog, update_dog, delete_dog
 from api.controllers.service import create_service, get_services, get_service, update_service, delete_service
 from api.controllers.tarif import create_tariff, get_tariffs, get_tariff, update_tariff, delete_tariff
 from api.controllers.book import create_book, get_books, get_book, update_book, delete_book, acepted_book
+from api.controllers.install import install_examples
 
 
 
@@ -50,6 +51,24 @@ def users():
             return jsonify(users_response)
 
         return jsonify(users_response["users"])
+
+    except Exception as error:
+        print(error)
+        return jsonify(users_response), users_response["code"]
+
+@api.route("/carers", methods=["GET"])
+@jwt_required()
+def carers():
+
+    try:
+
+         # Obtener info de las tablas de la DB
+        users_response = get_carers()
+
+        if users_response["code"] != 200:
+            return jsonify(users_response)
+
+        return jsonify(users_response["users_carers"])
 
     except Exception as error:
         print(error)
@@ -108,7 +127,7 @@ def signup_dog():
 def dogs():
 
     try:
-        
+
         # Obtener info de las tablas de la DB
         dogs_response = get_dogs()
 
@@ -126,7 +145,7 @@ def dogs():
 def dogs_id(id):
 
     try:
-        
+
         # Obtener, actualizar y borrar info de las tablas de la DB
         if request.method == "PUT":
             body = request.json
@@ -379,7 +398,7 @@ def get_me_user():
         user_response = update_me_user()
 
         return jsonify(user_response)
-        
+
     except Exception as error:
         print(error)
         return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
@@ -415,7 +434,7 @@ def create_token():
             return jsonify({"code": 200, "msg": "Inicio de sesión correcto", "token": access_token, "user": user.serialize() })
         else:
             return jsonify({"msg": "Error en el email o en la contraseña"}), 401
-        
+
     except Exception as error:
         print(error)
         return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
@@ -446,16 +465,38 @@ def protected():
 
 
 
+# RUTA PARA CREAR LOS 3 SERVICIOS + USUARIOS/PERROS/TARIFAS EN LA BASE DE DATOS INICIAL CADA VEZ
+@api.route("/install-services-users-dogs-tarifs", methods=["GET"])
+def config_services_examples():
+
+    try:
+
+        # Rellenar la tabla de la DB, con el registro de Todo
+        install_response = install_examples()
+
+        if install_response["code"] != 200:
+            return jsonify(install_response)
+
+        return jsonify(install_response)
+
+    except Exception as error:
+        print(error)
+        return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
+
+
 # RUTA PARA CREAR LOS 3 SERVICIOS EN LA BASE DE DATOS INICIAL CADA VEZ
 @api.route("/config-install", methods=["GET"])
 def config_services():
 
     try:
 
-        # Rellenar la tabla de la DB, con el registro de Usuario
+        # Rellenar la tabla de la DB, con el registro de los Servicios
         config_response = create_service()
 
-        return jsonify(config_response), 200
+        if config_response["code"] != 200:
+            return jsonify(config_response)
+
+        return jsonify(config_response)
 
     except Exception as error:
         print(error)

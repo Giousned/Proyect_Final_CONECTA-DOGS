@@ -10,26 +10,27 @@ def create_service():
         service_list = [service.serialize() for service in services]
 
         if len(service_list) != 0:
-            return {"code": 403, "msg": "Servicios ya están creados"}
+            return {"code": 403, "msg": "Los servicios ya existen en la Base de Datos"}
 
 
         # Crear los servicios en la base de datos
         initial_services = [
         {
-            "image": "https://cdn.pixabay.com/photo/2017/01/17/16/45/night-1987408_960_720.png",
-            "title": "Alojamiento",
-            "description": "¿Buscas a alguien para cuidar a tu perro durante la noche? Elije a uno de nuestros cuidadores para que cuide a tu mascota en su casa cuando te vayas.",
+            "image": "https://cdn.pixabay.com/photo/2017/01/17/16/46/sun-1987414_960_720.png",
+            "title": "Guardería de Día",
+            "description": "Deja a tu perro durante el día, en casa de un cuidador de Gudog, hasta un máximo de 10 horas al día. De esta manera puedes relajarte en tu trabajo, o cuando estás fuera de casa la mayor parte del día.",
         },
         {
             "image": "https://cdn.pixabay.com/photo/2016/03/31/21/38/canines-1296551_960_720.png",
             "title": "Paseo",
-            "description": "¿No puedes pasear a tu perro tanto como te gustaría? Encuentra un paseador que pueda sacarlo tanto tiempo y tan lejos como sea necesario.",
+            "description": "¿No puedes pasear a tu perro tanto como te gustaría? Encuentra un paseador que pueda sacarlo tanto tiempo y tan lejos como sea necesario. 60 minutos de paseo para tu perro. La recogida y entrega será en tu casa. ¡No olvides la correa!",
         },
         {
-            "image": "https://cdn.pixabay.com/photo/2017/01/17/16/46/sun-1987414_960_720.png",
-            "title": "Guardería de Día",
-            "description": "Deja a tu perro con un cuidador hasta un máximo de 10 horas al día. De esta manera puedes relajarte en tu trabajo, o cuando estás fuera de casa la mayor parte del día.",
-        }]
+            "image": "https://cdn.pixabay.com/photo/2017/01/17/16/45/night-1987408_960_720.png",
+            "title": "Alojamiento Nocturno",
+            "description": "¿Buscas a alguien para cuidar de tu perro durante la noche? Elije a uno de nuestros cuidadores para que cuide a tu mascota en su casa cuando te vayas. No olvides entregar su comida, premios, cama, cartilla veterinaria y su juguete favorito.",
+        }
+        ]
 
         for service in initial_services:
             new_service = Services(

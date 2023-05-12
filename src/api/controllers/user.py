@@ -82,6 +82,30 @@ def get_users():
     # return response, 200
 
 
+def get_carers():
+
+    try:
+
+        sub_token = get_jwt_identity()
+        user_id = sub_token["id"]
+        
+        # Obtener usuarios de la base de datos
+        query = db.select(User).order_by(User.id)
+        users = db.session.execute(query).scalars()
+
+        users_carers_list = [user.serialize() for user in users if len(user.tariffs) != 0 ]
+
+        users_carers_list_without_me = [user for user in users_carers_list if user["id"] != user_id ]
+
+        return {"code": 200, "msg": "Usuarios existentes obtenidos", "users_carers": users_carers_list_without_me}
+
+    except Exception as error:
+        print(error)
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
+
+# users_carers_list = list(filter(lambda user.serialize(): len(user.tariffs) != 0, users_carers_list))      # OTRA FORMA DE HACER UN FILTER
+
+
 def get_user(id):
 
     try:
@@ -128,17 +152,17 @@ def update_user(body, id):
         if "password" in claves_user:
             user.password = body["password"]
  
+        # user.email = body["email"]        # ESTA DISABLED PARA CAMBIAR EN EL FRONT
         user.name = body["name"]
         user.lastName = body["lastName"]
-        # user.email = body["email"]        # ESTA DISABLED PARA CAMBIAR EN EL FRONT
         user.address = body["address"]
         user.province = body["province"]
         user.postalCode = int(body["postalCode"])
         user.phone = int(body["phone"])
         user.country = body["country"]
         user.birthdate = body["birthdate"]
-        user.aboutMe = body["aboutMe"]
-        user.userPhoto = body["userPhoto"]
+        user.aboutMe = body.get("aboutMe", None)
+        user.userPhoto = body.get("userPhoto", "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png")
         user.is_active = True
 
         # latitude = int(body["latitude"])

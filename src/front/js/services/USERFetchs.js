@@ -38,16 +38,39 @@ export const GET_All_Users = () => {
 };
 
 
+export const GET_Carers = () => {
+
+  const token = sessionStorage.getItem("jwt-token");
+
+  return (fetch(`${RUTABACK}/api/carers`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + token,                 // ⬅⬅⬅ authorization token
+      }
+    })
+    .then(resp => {
+        console.log(resp.ok); // will be true if the response is successfull
+        return resp.json(); // (returns promise) will try to parse the result as json as return a promise that you can .then for results
+    })
+    .then(data => {
+      console.log(data); //this will print on the console the exact object received from the server
+      return data;
+    })
+    .catch(error => {console.log(error);}));  //Error handling
+};
+
+
 export const UPDATE_User = (newObj, user_id) => {
 
-    // const token = sessionStorage.getItem("jwt-token");
+    const token = sessionStorage.getItem("jwt-token");
 
     return (fetch(`${RUTABACK}/api/users/${user_id}`, {
         method: "PUT",
         body: JSON.stringify(newObj),
         headers: {
-          "Content-Type": "application/json"
-          //     Authorization: "Bearer " + token,                 // ⬅⬅⬅ authorization token
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + token,                 // ⬅⬅⬅ authorization token
         }
     })
     .then(resp => {
@@ -65,13 +88,13 @@ export const UPDATE_User = (newObj, user_id) => {
 
 export const DELETE_User = (user_id) => {                        // token
 
-    // const token = sessionStorage.getItem("jwt-token");
+    const token = sessionStorage.getItem("jwt-token");
 
     return (fetch(`${RUTABACK}/api/users/${user_id}`, {
         method: "DELETE",
         headers: {
-          "Content-Type": "application/json"
-        //     Authorization: "Bearer " + token,                 // ⬅⬅⬅ authorization token
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + token,                 // ⬅⬅⬅ authorization token
       }
       })
       .then(resp => {

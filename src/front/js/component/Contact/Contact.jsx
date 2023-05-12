@@ -1,8 +1,14 @@
 import React from "react";
-import "../Contact/ContactStyles.css";
+
+import useUserInput from "../../hooks/useUserInput.js";
+
 import Logo from "../../../img/conectadogs-logo.black.png";
+import "../Contact/ContactStyles.css";
 
 const Contact = () => {
+
+  const { userInput, handleUserInput, handleUserCheck } = useUserInput("");
+
   return (
     <>
       {/* <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -41,6 +47,9 @@ const Contact = () => {
                   type="text"
                   tabIndex="1"
                   required
+                  name="nombreContacto"
+                  value={userInput.nombreContacto}
+                  onChange={handleUserInput}
                   autoFocus
                 />
               </fieldset>
@@ -49,6 +58,9 @@ const Contact = () => {
                   placeholder="Correo Electrónico"
                   type="email"
                   tabIndex="2"
+                  name="emailContacto"
+                  value={userInput.emailContacto}
+                  onChange={handleUserInput}
                   required
                 />
               </fieldset>
@@ -56,6 +68,9 @@ const Contact = () => {
                 <textarea
                   placeholder="Escriba su mensaje aquí...."
                   tabIndex="5"
+                  name="mensajeContacto"
+                  value={userInput.mensajeContacto}
+                  onChange={handleUserInput}
                   required
                 ></textarea>
               </fieldset>

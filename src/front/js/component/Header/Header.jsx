@@ -12,7 +12,6 @@ const Header = () => {
 
   const { store, actions } = useAppContext();
 
-
   return (
     <div>
       {storeAuth.userLog.token
@@ -20,9 +19,9 @@ const Header = () => {
           <div className="container text-white-custom text-shadow text-center">
             <h1 className="mb-4">Conecta-Dogs</h1>
             <h3>Conectamos Cuidadores con Propietarios de Perros</h3>
-            <div className="p-2 text-primary bg-dark rounded">
-              <h2>Bienvenid@: {store.userInput.name}</h2>
-              <p>Es un placer tenerte aquí de vuelta.</p>
+            <div className="p-2 text-light">
+              {/* <h1>Bienvenid@: {store.userInput.name}</h1>
+              <p>Es un placer tenerte aquí de vuelta.</p> */}
             </div>
           </div>
         </header>
@@ -31,12 +30,12 @@ const Header = () => {
             <h1 className="mb-4">Conecta-Dogs</h1>
             <h3>Conectamos Cuidadores con Propietarios de Perros</h3>
             <br />
-            <Link to="/log-in-form" className="button-home">
+            {/* <Link to="/log-in-form" className="button-home">
               <span className="text">Iniciar Sesión</span>
-            </Link>
-            <Link to="/sign-up-form" className="button-home">
+            </Link> */}
+            {/* <Link to="/sign-up-form" className="button-home">
               <span className="text">Registrarse</span>
-            </Link>
+            </Link> */}
           </div>
         </header>
       }

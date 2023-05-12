@@ -19,13 +19,14 @@ class User(db.Model):
     aboutMe = db.Column(db.String(300), unique=False, nullable=True)
     birthdate = db.Column(db.String(20), unique=False, nullable=False)
     is_active = db.Column(db.Boolean, unique=False, nullable=False)
-    userPhoto = db.Column(db.String(500), unique=True, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
+    userPhoto = db.Column(db.String(500), unique=False, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
     # latitude = db.Column(db.String(40), unique=False, nullable=False)
     # longitude = db.Column(db.String(40), unique=False, nullable=False)
 
     dogs = db.relationship("Dog", back_populates="user")
 
-    tariffs = db.relationship("Tariffs", back_populates="user")
+    tariffs = db.relationship("Tariffs", back_populates="user_to")
+    book_from = db.relationship("Books", back_populates="user_from")
 
 
     def __repr__(self):
@@ -52,6 +53,22 @@ class User(db.Model):
         # ¡¡¡¡DO NOT serialize the password, its a security breach!!!
         }
 
+    def serialize_books(self):
+        return {
+            "id": self.id,
+            "email": self.email,
+            "name": self.name,
+            "lastName": self.lastName,
+            "address": self.address,
+            "province": self.province,
+            "postalCode": self.postalCode,
+            "phone": self.phone,
+            "country": self.country,
+            "birthdate": self.birthdate,
+            "aboutMe": self.aboutMe,
+            "userPhoto": self.userPhoto,
+        }
+
 
 class Dog(db.Model):
     __tablename__ = "Dog"
@@ -60,7 +77,7 @@ class Dog(db.Model):
     breed = db.Column(db.String(50), unique=False, nullable=False)
     dogBirth = db.Column(db.String(20), unique=False, nullable=False)
     dogSex = db.Column(db.String(20), unique=False, nullable=False)
-    dogSize = db.Column(db.String(20), unique=False, nullable=True)
+    dogSize = db.Column(db.String(20), unique=False, nullable=False)
     neutered = db.Column(db.Boolean, unique=False, nullable=False)
     socialCats = db.Column(db.Boolean, unique=False, nullable=False)
     socialKids = db.Column(db.Boolean, unique=False, nullable=False)
@@ -68,7 +85,7 @@ class Dog(db.Model):
     microchip = db.Column(db.BigInteger, unique=True, nullable=False)
     dogActivity = db.Column(db.String(20), unique=False, nullable=True)
     observations = db.Column(db.String(500), unique=False, nullable=True)
-    dogPhoto = db.Column(db.String(500), unique=True, nullable=True)         # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
+    dogPhoto = db.Column(db.String(500), unique=False, nullable=True)         # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
 
     user_id = db.Column(db.Integer, db.ForeignKey("User.id"))
 
@@ -76,7 +93,7 @@ class Dog(db.Model):
 
 
     def __repr__(self):
-        return f'<Dog {self.name}>'
+        return f'<Dog {self.dogName}>'
 
     def serialize(self):
         return {
@@ -99,10 +116,10 @@ class Dog(db.Model):
 
 
 class Services(db.Model):
-    __tablename__ = "Services"                                # id = 1 PARA nurseryDay // Alojamiento        id = 2 PARA walk // Paseo       id = 3 PARA nurseryNight // Guardería de Día
+    __tablename__ = "Services"                                # id = 1 PARA nurseryDay // Guardería de Día         id = 2 PARA walk // Paseo       id = 3 PARA nurseryNight // Alojamiento Nocturno
     id = db.Column(db.Integer, primary_key=True)
     image = db.Column(db.String(350), unique=True, nullable=False)
-    title = db.Column(db.String(35), unique=True, nullable=False)
+    title = db.Column(db.String(40), unique=True, nullable=False)
     description = db.Column(db.String(500), unique=True, nullable=False)
 
     tariff = db.relationship("Tariffs", back_populates="service")
@@ -121,7 +138,6 @@ class Services(db.Model):
 
 class Tariffs(db.Model):
     __tablename__ = "Tariffs"
-    # id: Mapped[int] = db.mapped_column(primary_key=True)
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer, unique=False, nullable=False)
 
@@ -129,7 +145,7 @@ class Tariffs(db.Model):
     service_id = db.Column(db.Integer, db.ForeignKey("Services.id"))
 
     service = db.relationship("Services", back_populates="tariff")
-    user = db.relationship("User", back_populates="tariffs")
+    user_to = db.relationship("User", back_populates="tariffs")
 
     book = db.relationship("Books", back_populates="tariff")
 
@@ -139,9 +155,18 @@ class Tariffs(db.Model):
 
     def serialize(self):
         return {
+            "user_id": self.user_id,
+            "service_id": self.service_id,
             "id": self.id,
             "price": self.price,
             "service": self.service.serialize(),
+        }
+    
+    def serialize_books(self):
+        return {
+            "id": self.id,
+            "price": self.price,
+            "user_to": self.user_to.serialize_books()
         }
 
 
@@ -157,17 +182,18 @@ books_dogs = db.Table(
 class Books(db.Model):
     __tablename__ = "Books"
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.String, unique=False, nullable=False)
-    hourPick = db.Column(db.String, unique=False, nullable=False)
-    hourDeliver = db.Column(db.String, unique=False, nullable=False)
-    dogsAcepted = db.Column(db.Integer, unique=False, nullable=False)
-    dogIdAcepted = db.Column(db.Integer, unique=False, nullable=False)
+    fechaEntrega = db.Column(db.String, unique=False, nullable=False)
+    fechaRecogida = db.Column(db.String, unique=False, nullable=False)
+    horaEntrega = db.Column(db.String, unique=False, nullable=False)
+    horaRecogida = db.Column(db.String, unique=False, nullable=False)
+    mensajeACuidador = db.Column(db.String(500), unique=False, nullable=True)
     acepted = db.Column(db.Boolean, unique=False, nullable=False, default=False)
 
     user_from_id = db.Column(db.Integer, db.ForeignKey("User.id"))
     tarif_id = db.Column(db.Integer, db.ForeignKey("Tariffs.id"))
 
     tariff = db.relationship("Tariffs", back_populates="book")
+    user_from = db.relationship("User", back_populates="book_from")
     dogs = db.relationship("Dog", secondary=books_dogs, backref=db.backref("Books"))
     
 
@@ -177,26 +203,13 @@ class Books(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "date": self.date,
-            "hourPick": self.hourPick,
-            "hourDeliver": self.hourDeliver,
-            "dogsAcepted": self.dogsAcepted,
-            "dogIdAcepted": self.dogIdAcepted,
-            "user_from_id": self.user_from_id,
-            "tarif_id": self.tarif_id,
+            "fechaEntrega": self.fechaEntrega,
+            "fechaRecogida": self.fechaRecogida,
+            "horaEntrega": self.horaEntrega,
+            "horaRecogida": self.horaRecogida,
+            "mensajeACuidador": self.mensajeACuidador,
             "acepted": self.acepted,
-            "tariff": self.tariff.serialize(),
+            "tariff": self.tariff.serialize_books(),
+            "user_from": self.user_from.serialize_books(),
             "dogs": [dog.serialize() for dog in self.dogs]
         }
-
-
-
-
-
-
-
-
-#     daily_food_rations = db.Column(db.String, unique=False, nullable=False)
-#     meal_times = db.Column(db.String, unique=False, nullable=False)
-#     schedule_walks = db.Column(db.String, unique=False, nullable=False)
-#     caretaker_comments = db.Column(db.String, unique=False, nullable=False)

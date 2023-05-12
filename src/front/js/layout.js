@@ -14,11 +14,11 @@ import UserProfile from "./pages/UserProfile/UserProfile.jsx";
 import Reserves from "./pages/Reserves/Reserves.jsx";
 import ReserveInformation from "./pages/Reserves/ReserveInformation.jsx";
 import Notifications from "./pages/Notifications/Notifications.jsx";
-import Footer from "./component/Footer/Footer.jsx";
-import PublicProfile from "./pages/PublicProfile/PublicProfile.jsx";
-import MoreAbout from "./pages/MoreAbout.jsx";
+import CaregiversList from "./pages/Caregivers/CaregiversList.jsx";
+import CaregiverInfo from "./pages/Caregivers/CaregiverInfo.jsx";
 import Hire from "./pages/Hire/Hire.jsx";
-import Alert from "./component/Alerts/Alert.jsx";
+import Alert from "./component/Alert/Alert.jsx";
+import Footer from "./component/Footer/Footer.jsx";
 
 //import contexts
 import { AuthProvider } from "./store/AuthContext.js";
@@ -45,9 +45,9 @@ const Layout = () => {
                 <Route element={<SignUpForm />} path="/sign-up-form" />
                 <Route element={<UserProfile />} path="/user-profile" />
                 <Route element={<Notifications />} path="/notifications" />
-                <Route element={<PublicProfile />} path="/public-profile" />
-                <Route element={<MoreAbout />} path="/more-about" />
-                <Route element={<Hire />} path="/hire-caregiver" />
+                <Route element={<CaregiversList />} path="/caregivers-list" />
+                <Route element={<CaregiverInfo />} path="/caregiver-info/:id" />
+                <Route element={<Hire />} path="/hire-caregiver/:id" />
                 <Route element={<Reserves />} path="/reserves" />
                 <Route element={<ReserveInformation />} path="/reserve-information" />
                 <Route element={<h1>Not found!</h1>} />
