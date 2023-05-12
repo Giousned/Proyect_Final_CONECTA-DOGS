@@ -8,15 +8,15 @@ def create_book(body):
 
         claves_book = body.keys()
 
-        if not "bookDate" in claves_book or not "hourPick" in claves_book or not "hourDeliver" in claves_book or not "tarifId" in claves_book or not "dogIdAcepted" in claves_book:
+        if not "tariffId" in claves_book or not "fechaEntrega" in claves_book or not "fechaRecogida" in claves_book or not "horaEntrega" in claves_book or not "horaRecogida" in claves_book or not "dogs" in claves_book:
             return {"code": 400, "msg": "¡Información recibida en el Back insuficiente, falta información!"}
 
         sub_token = get_jwt_identity()
         user_id = sub_token["id"]
 
-        tariff = db.get_or_404(Tariffs, id)
+        tariff = db.get_or_404(Tariffs, body["tariffId"])
 
-        carer_id = book["carerId"]
+        # carer_id = tariff["user_id"]
         dogs_list = []
 
         # query = db.select(Tariffs).filter_by(user_id=carer_id, service_id=service_id)
@@ -29,12 +29,14 @@ def create_book(body):
 
         # Crear una nueva reserva en la base de datos
         new_book = Book(
-            date = body["bookDate"],
-            hourPick = body["hourPick"],
-            hourDeliver = body["hourDeliver"],
+            fechaEntrega = body["fechaEntrega"],
+            fechaRecogida = body["fechaRecogida"],
+            horaEntrega = body["horaEntrega"],
+            horaRecogida = body["horaRecogida"],
             user_from_id = user_id,
-            tarif_id = book["tarifId"],
+            tarif_id = tariff,
             dogs = dogs_list,
+            mensajeACuidador = body.get("mensajeACuidador", None),
             acepted = False)
             # dogsAcepted = int(body["dogsAcepted"]),
 
@@ -89,11 +91,14 @@ def update_book(body, id):
         # Obtener usuario de la base de datos
         book = db.get_or_404(Books, id)
 
-        book.date = body["bookDate"]
-        book.hourPick = body["hourPick"]
-        book.hourDeliver = body["hourDeliver"]
-        book.dogsAcepted = int(body["dogsAcepted"])
-        book.dogIdAcepted = int(body["dogIdAcepted"])
+        book.fechaEntrega = body["fechaEntrega"]
+        book.fechaRecogida = body["fechaRecogida"]
+        book.horaEntrega = body["horaEntrega"]
+        book.horaRecogida = body["horaRecogida"]
+        # book.user_from_id = user_id
+        # book.tarif_id = tariff
+        # book.dogs = dogs_list
+        book.mensajeACuidador = body.get("mensajeACuidador", None)
         book.acepted = False
 
 

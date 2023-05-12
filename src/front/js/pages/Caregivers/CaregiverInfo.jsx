@@ -7,11 +7,11 @@ const CaregiverInfo = () => {
   const params = useParams();
 
   const [dogsitter, setDogsitter] = useState({});
+
   useEffect(() => {
-    GET_User(params.id).then((data) => {
-      // console.log(data.user)
-      setDogsitter(data.user);
-    });
+
+    GET_User(params.id).then((data) => {setDogsitter(data.user);});
+
   }, []);
 
   return (
@@ -54,7 +54,7 @@ const CaregiverInfo = () => {
 
           <div className="d-grid gap-2 d-md-flex justify-content-md-center">
             <Link
-              to="/hire-caregiver"
+              to={"/hire-caregiver/" + dogsitter.id}
               className="action-button shadow animate blue"
             >
               Contratar
