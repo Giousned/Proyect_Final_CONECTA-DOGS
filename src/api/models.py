@@ -25,7 +25,8 @@ class User(db.Model):
 
     dogs = db.relationship("Dog", back_populates="user")
 
-    tariffs = db.relationship("Tariffs", back_populates="user")
+    tariffs = db.relationship("Tariffs", back_populates="user_to")
+    book_from = db.relationship("Books", back_populates="user_from")
 
 
     def __repr__(self):
@@ -52,6 +53,22 @@ class User(db.Model):
         # ¡¡¡¡DO NOT serialize the password, its a security breach!!!
         }
 
+    def serialize_books(self):
+        return {
+            "id": self.id,
+            "email": self.email,
+            "name": self.name,
+            "lastName": self.lastName,
+            "address": self.address,
+            "province": self.province,
+            "postalCode": self.postalCode,
+            "phone": self.phone,
+            "country": self.country,
+            "birthdate": self.birthdate,
+            "aboutMe": self.aboutMe,
+            "userPhoto": self.userPhoto,
+        }
+
 
 class Dog(db.Model):
     __tablename__ = "Dog"
@@ -76,7 +93,7 @@ class Dog(db.Model):
 
 
     def __repr__(self):
-        return f'<Dog {self.name}>'
+        return f'<Dog {self.dogName}>'
 
     def serialize(self):
         return {
@@ -128,7 +145,7 @@ class Tariffs(db.Model):
     service_id = db.Column(db.Integer, db.ForeignKey("Services.id"))
 
     service = db.relationship("Services", back_populates="tariff")
-    user = db.relationship("User", back_populates="tariffs")
+    user_to = db.relationship("User", back_populates="tariffs")
 
     book = db.relationship("Books", back_populates="tariff")
 
@@ -143,6 +160,13 @@ class Tariffs(db.Model):
             "id": self.id,
             "price": self.price,
             "service": self.service.serialize(),
+        }
+    
+    def serialize_books(self):
+        return {
+            "id": self.id,
+            "price": self.price,
+            "user_to": self.user_to.serialize_books()
         }
 
 
@@ -164,12 +188,12 @@ class Books(db.Model):
     horaRecogida = db.Column(db.String, unique=False, nullable=False)
     mensajeACuidador = db.Column(db.String(500), unique=False, nullable=True)
     acepted = db.Column(db.Boolean, unique=False, nullable=False, default=False)
-    # dogsAcepted = db.Column(db.Integer, unique=False, nullable=False)
 
     user_from_id = db.Column(db.Integer, db.ForeignKey("User.id"))
     tarif_id = db.Column(db.Integer, db.ForeignKey("Tariffs.id"))
 
     tariff = db.relationship("Tariffs", back_populates="book")
+    user_from = db.relationship("User", back_populates="book_from")
     dogs = db.relationship("Dog", secondary=books_dogs, backref=db.backref("Books"))
     
 
@@ -179,13 +203,13 @@ class Books(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "date": self.date,
-            "hourPick": self.hourPick,
-            "hourDeliver": self.hourDeliver,
-            "user_from_id": self.user_from_id,
-            "tarif_id": self.tarif_id,
+            "fechaEntrega": self.fechaEntrega,
+            "fechaRecogida": self.fechaRecogida,
+            "horaEntrega": self.horaEntrega,
+            "horaRecogida": self.horaRecogida,
+            "mensajeACuidador": self.mensajeACuidador,
             "acepted": self.acepted,
-            "tariff": self.tariff.serialize(),
+            "tariff": self.tariff.serialize_books(),
+            "user_from": self.user_from.serialize_books(),
             "dogs": [dog.serialize() for dog in self.dogs]
-            # "dogsAcepted": self.dogsAcepted,
         }
