@@ -23,7 +23,7 @@ const ReserveInformationUser = () => {
   
       GET_Book(params.id).then((data) => {setBookInfo(data.book);});
   
-    }, []);
+    }, [storeAuth.userLog]);
 
     const handleAceptarReserva = (e) => {
         e.preventDefault();

@@ -4,6 +4,7 @@ import { GET_User } from "../../services/USERFetchs.js";
 import "./CaregiversStyles.css";
 
 const CaregiverInfo = () => {
+
   const params = useParams();
 
   const [dogsitter, setDogsitter] = useState({});
@@ -48,7 +49,21 @@ const CaregiverInfo = () => {
               <p>{dogsitter.aboutMe ? dogsitter.aboutMe : ""}</p>
 
               <h4 className="text-body-emphasis pt-4">Servicios y Tarifas:</h4>
-              <p>Servicios y Tarifas:</p>
+              {dogsitter.tariffs
+                ? dogsitter.tariffs.map((tarifa, index) => {
+
+                  return (
+                    <div key={index}>
+                      <p>Servicios: {tarifa.service.title}</p>
+                      <p>Tarifas: {tarifa.price}</p>
+                    </div>
+                  );
+
+                })
+              
+                : null
+              }
+              <p>Servicios y Tarifas: {dogsitter.tariffs}</p>
             </div>
           </div>
 

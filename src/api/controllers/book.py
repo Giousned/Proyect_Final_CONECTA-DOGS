@@ -35,7 +35,7 @@ def create_book(body):
             tarif_id = tariff.id,
             dogs = dogs_list,
             mensajeACuidador = body.get("mensajeACuidador", None),
-            acepted = False)
+            status = "Pendiente")
 
         db.session.add(new_book)
         db.session.commit()
@@ -95,7 +95,6 @@ def update_book(body, id):
         # book.tarif_id = tariff
         # book.dogs = dogs_list
         book.mensajeACuidador = body.get("mensajeACuidador", None)
-        book.acepted = False
 
 
         db.session.commit()
