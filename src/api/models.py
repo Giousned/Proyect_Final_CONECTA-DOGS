@@ -103,7 +103,6 @@ class Services(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     image = db.Column(db.String(350), unique=True, nullable=False)
     title = db.Column(db.String(40), unique=True, nullable=False)
-    input_name = db.Column(db.String(30), unique=True, nullable=False)
     description = db.Column(db.String(500), unique=True, nullable=False)
 
     tariff = db.relationship("Tariffs", back_populates="service")
@@ -116,7 +115,6 @@ class Services(db.Model):
             "id": self.id,
             "image": self.image,
             "title": self.title,
-            "input_name": self.input_name,
             "description": self.description,
         }
 
