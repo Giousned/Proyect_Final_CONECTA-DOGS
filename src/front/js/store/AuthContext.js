@@ -51,6 +51,7 @@ export const AuthProvider = ({ children }) => {
     GET_Token()
       .then((data) => {
         setUserLog({token: data.token, user: data.user});
+        console.log(data.token)
         actionsToast.handleShownToast(data);
       });
 

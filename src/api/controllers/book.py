@@ -1,4 +1,4 @@
-from api.models import db, Books, Tariffs
+from api.models import db, Dog, Books, Tariffs
 from flask_jwt_extended import get_jwt_identity
 
 
@@ -19,27 +19,24 @@ def create_book(body):
         # carer_id = tariff["user_id"]
         dogs_list = []
 
-        # query = db.select(Tariffs).filter_by(user_id=carer_id, service_id=service_id)
-        # tarif = db.session.execute(query).scalars().first()
-
-        for dog in book["dogs"]:
-            query = db.select(Dogs).filter_by(id=dog["id"])
+        for dog in body["dogs"]:
+            query = db.select(Dog).filter_by(id=dog["id"])
             dog = db.session.execute(query).scalars().first()
             dogs_list.append(dog)
 
+        # print("3",dogs_list)
+
         # Crear una nueva reserva en la base de datos
-        new_book = Book(
+        new_book = Books(
             fechaEntrega = body["fechaEntrega"],
             fechaRecogida = body["fechaRecogida"],
             horaEntrega = body["horaEntrega"],
             horaRecogida = body["horaRecogida"],
             user_from_id = user_id,
-            tarif_id = tariff,
+            tarif_id = tariff.id,
             dogs = dogs_list,
             mensajeACuidador = body.get("mensajeACuidador", None),
             acepted = False)
-            # dogsAcepted = int(body["dogsAcepted"]),
-
 
         db.session.add(new_book)
         db.session.commit()
