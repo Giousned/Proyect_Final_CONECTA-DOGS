@@ -1,10 +1,13 @@
 import React from "react";
-// import { Link, animateScroll as scroll } from "react-scroll";
+
 import { Link } from "react-router-dom";
+
+
 import ReserveInformationDog from "./ReserveInformationDog.jsx";
 import ReserveInformationUser from "./ReserveInformationUser.jsx";
 
 const ReserveInformation = () => {
+
   return (
     <>
       <div className="reserves">
@@ -54,7 +57,7 @@ const ReserveInformation = () => {
             id="pills-user"
             role="tabpanel"
             aria-labelledby="reserveInformationUser"
-            tabindex="0"
+            tabIndex="0"
           >
             <ReserveInformationUser />
           </div>
@@ -63,21 +66,13 @@ const ReserveInformation = () => {
             id="pills-dog"
             role="tabpanel"
             aria-labelledby="reserveInformationDog"
-            tabindex="0"
+            tabIndex="0"
           >
             <ReserveInformationDog />
           </div>
         </div>
       </div>
 
-      <div className="d-grid gap-2 d-md-flex justify-content-md-center p-2">
-        <button type="button" className="action-button shadow animate blue">
-          Aceptar Reserva
-        </button>
-        <button type="button" className="action-button shadow animate red">
-          Rechazar Reserva
-        </button>
-      </div>
 
       <div className="p-4">
         <Link

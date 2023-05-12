@@ -1,4 +1,4 @@
-from api.models import db, Dog, User, Tariffs, Services
+from api.models import db, Dog, User, Tariffs, Services, Books
 from api.controllers.service import create_service
 from flask_jwt_extended import get_jwt_identity
 
@@ -131,23 +131,35 @@ def install_examples():
             user_id = 2,
             service_id = 2)
         
-        db.session.add(new_tarif1)                
-
+        db.session.add(new_tarif1)
 
         new_tarif2 = Tariffs(
             price = 35,
             user_id = 2,
             service_id = 3)
 
-        db.session.add(new_tarif2)                
-        
+        db.session.add(new_tarif2)
 
         new_tarif3 = Tariffs(
             price = 25,
             user_id = 1,
             service_id = 1)
 
-        db.session.add(new_tarif3)                
+        db.session.add(new_tarif3)
+
+        # CREANDO RESERVA
+        # new_book1 = Books(
+        #     fechaEntrega = "2023-04-10",
+        #     fechaRecogida = "2023-04-10",
+        #     horaEntrega = "22:00",
+        #     horaRecogida = "23:00",
+        #     user_from_id = 1,
+        #     tarif_id = 2,
+        #     dogs = [<Dog Thor>],
+        #     mensajeACuidador = "Esto es una prueba de una reserva",
+        #     acepted = False)
+
+        # db.session.add(new_book1)
         
 
         db.session.commit()
