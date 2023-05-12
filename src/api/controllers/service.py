@@ -39,6 +39,7 @@ def create_service():
             new_service = Services(
                 image = service["image"],
                 title = service["title"], 
+                input_name = service["input_name"],
                 description = service["description"], 
             )
             db.session.add(new_service)

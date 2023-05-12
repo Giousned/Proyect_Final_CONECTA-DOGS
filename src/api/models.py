@@ -102,7 +102,8 @@ class Services(db.Model):
     __tablename__ = "Services"                                # id = 1 PARA nurseryDay // Guardería de Día         id = 2 PARA walk // Paseo       id = 3 PARA nurseryNight // Alojamiento Nocturno
     id = db.Column(db.Integer, primary_key=True)
     image = db.Column(db.String(350), unique=True, nullable=False)
-    title = db.Column(db.String(35), unique=True, nullable=False)
+    title = db.Column(db.String(40), unique=True, nullable=False)
+    input_name = db.Column(db.String(30), unique=True, nullable=False)
     description = db.Column(db.String(500), unique=True, nullable=False)
 
     tariff = db.relationship("Tariffs", back_populates="service")
@@ -115,6 +116,7 @@ class Services(db.Model):
             "id": self.id,
             "image": self.image,
             "title": self.title,
+            "input_name": self.input_name,
             "description": self.description,
         }
 
@@ -158,9 +160,11 @@ books_dogs = db.Table(
 class Books(db.Model):
     __tablename__ = "Books"
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.String, unique=False, nullable=False)
-    hourPick = db.Column(db.String, unique=False, nullable=False)
-    hourDeliver = db.Column(db.String, unique=False, nullable=False)
+    fechaEntrega = db.Column(db.String, unique=False, nullable=False)
+    fechaRecogida = db.Column(db.String, unique=False, nullable=False)
+    horaEntrega = db.Column(db.String, unique=False, nullable=False)
+    horaRecogida = db.Column(db.String, unique=False, nullable=False)
+    mensajeACuidador = db.Column(db.String(500), unique=False, nullable=True)
     acepted = db.Column(db.Boolean, unique=False, nullable=False, default=False)
     # dogsAcepted = db.Column(db.Integer, unique=False, nullable=False)
 
