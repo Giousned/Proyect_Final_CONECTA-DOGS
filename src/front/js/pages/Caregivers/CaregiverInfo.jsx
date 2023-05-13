@@ -4,15 +4,14 @@ import { GET_User } from "../../services/USERFetchs.js";
 import "./CaregiversStyles.css";
 
 const CaregiverInfo = () => {
-
   const params = useParams();
 
   const [dogsitter, setDogsitter] = useState({});
 
   useEffect(() => {
-
-    GET_User(params.id).then((data) => {setDogsitter(data.user);});
-
+    GET_User(params.id).then((data) => {
+      setDogsitter(data.user);
+    });
   }, []);
 
   return (
@@ -51,21 +50,24 @@ const CaregiverInfo = () => {
               <h4 className="text-body-emphasis pt-4">Servicios y Tarifas:</h4>
               {dogsitter.tariffs
                 ? dogsitter.tariffs.map((tarifa, index) => {
-
-                  return (
-                    <div key={index}>
-                      <div className="d-flex justify-content-evenly">
-                        <p>Servicio: {tarifa.service.title}</p>
-                        <p>Tarifa: {tarifa.price}</p>
+                    return (
+                      <div key={index}>
+                        <div className="row d-flex">
+                          <p className="col-6">
+                            Servicio: <b>{tarifa.service.title}</b>
+                          </p>
+                          <p className="col-6">
+                            Tarifa:{" "}
+                            <b>
+                              {tarifa.price}{" "}
+                              <i className="fa-solid fa-euro-sign"></i>
+                            </b>
+                          </p>
+                        </div>
                       </div>
-
-                    </div>
-                  );
-
-                })
-              
-                : null
-              }
+                    );
+                  })
+                : null}
             </div>
           </div>
 

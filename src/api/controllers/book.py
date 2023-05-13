@@ -14,16 +14,15 @@ def create_book(body):
         sub_token = get_jwt_identity()
         user_id = sub_token["id"]
 
-        tariff = db.get_or_404(Tariffs, body["tariffId"])
+        tariff = db.get_or_404(Tariffs, int(body["tariffId"]))
 
         dogs_list = []
+
 
         for dog in body["dogs"]:
             query = db.select(Dog).filter_by(id=dog["id"])
             dog = db.session.execute(query).scalars().first()
             dogs_list.append(dog)
-
-        # print("3",dogs_list)
 
         # Crear una nueva reserva en la base de datos
         new_book = Books(
@@ -35,7 +34,7 @@ def create_book(body):
             tarif_id = tariff.id,
             dogs = dogs_list,
             mensajeACuidador = body.get("mensajeACuidador", None),
-            status = "Pendiente")
+            status= "Pendiente")
 
         db.session.add(new_book)
         db.session.commit()

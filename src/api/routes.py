@@ -316,7 +316,7 @@ def signup_book():
         if book_response["code"] != 200:
             return jsonify(book_response)
 
-        return jsonify(book_response), 200
+        return jsonify(book_response)
 
     except Exception as error:
         print(error)
