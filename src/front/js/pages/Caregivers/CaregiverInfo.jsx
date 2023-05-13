@@ -9,9 +9,9 @@ const CaregiverInfo = () => {
   const [dogsitter, setDogsitter] = useState({});
 
   useEffect(() => {
-
-    GET_User(params.id).then((data) => {setDogsitter(data.user);});
-
+    GET_User(params.id).then((data) => {
+      setDogsitter(data.user);
+    });
   }, []);
 
   return (
@@ -48,7 +48,26 @@ const CaregiverInfo = () => {
               <p>{dogsitter.aboutMe ? dogsitter.aboutMe : ""}</p>
 
               <h4 className="text-body-emphasis pt-4">Servicios y Tarifas:</h4>
-              <p>Servicios y Tarifas:</p>
+              {dogsitter.tariffs
+                ? dogsitter.tariffs.map((tarifa, index) => {
+                    return (
+                      <div key={index}>
+                        <div className="row d-flex">
+                          <p className="col-6">
+                            Servicio: <b>{tarifa.service.title}</b>
+                          </p>
+                          <p className="col-6">
+                            Tarifa:{" "}
+                            <b>
+                              {tarifa.price}{" "}
+                              <i className="fa-solid fa-euro-sign"></i>
+                            </b>
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })
+                : null}
             </div>
           </div>
 

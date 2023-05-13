@@ -110,6 +110,30 @@ export const GET_Confirm_Book = (book_id) => {
 };
 
 
+export const GET_Deny_Book = (book_id) => { 
+
+  const token = sessionStorage.getItem("jwt-token");
+
+  return (fetch(`${RUTABACK}/api/rejected-book/${book_id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + token,                 // ⬅⬅⬅ authorization token
+    }
+    })
+    .then(resp => {
+        console.log(resp.status); // the status code = 200 or code = 400 etc.
+        return resp.json(); // (returns promise) will try to parse the result as json as return a promise that you can .then for results
+    })
+    .then(data => {
+        //here is were your code should start after the fetch finishes
+        console.log(data); //this will print on the console the exact object received from the server
+        return data;
+      })
+    .catch(error => {console.log(error);}));  //Error handling
+};
+
+
 
 export const POST_Book = (nuevaReserva) => {
 
@@ -125,7 +149,7 @@ export const POST_Book = (nuevaReserva) => {
       })
       .then((resp) => {
         console.log(resp.ok); // will be true if the response is successfull
-        return resp; //(returns promise) will try to parse the result as json as return a promise that you can .then for results
+        return resp.json(); //(returns promise) will try to parse the result as json as return a promise that you can .then for results
       })
       .then((data) => {
         //here is were your code should start after the fetch finishes

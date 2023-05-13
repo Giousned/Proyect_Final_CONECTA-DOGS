@@ -83,3 +83,8 @@ url, options = cloudinary_url("olympic_flag", width=100, height=150, crop="fill"
 En .env
 DATABASE_URL= mysql://root:root@localhost:3306/project       
               postgresql://pmg:pmg@postgres/pmg_test?client_encoding=utf8
+
+
+# GOOGLE MAPS API KEY
+
+AIzaSyB3UA-jwJRX-cRE0oZjYuAc43a-2GxWQCA

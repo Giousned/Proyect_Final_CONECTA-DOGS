@@ -34,7 +34,7 @@ const ServicesRates = () => {
 
       <div className="container services-rates-checkbox">
         <div className="row">
-          <div className={"col-12 col-md me-2 glowing-register" + ((store.userInput.nurseryDay == true) ? " activeGlow" : "")}>
+          <div className={"col-12 col-md me-2 glowing-register-rates" + ((store.userInput.nurseryDay == true) ? " activeGlowRates" : "")}>
             <label className="form-check-label d-block mb-2" htmlFor="guarderia-diurna">
               <img
                 src="https://cdn.pixabay.com/photo/2017/01/17/16/46/sun-1987414_960_720.png"
@@ -65,7 +65,7 @@ const ServicesRates = () => {
             />
           </div>
 
-          <div className={"col-12 col-md me-2 glowing-register" + ((store.userInput.walk == true) ? " activeGlow" : "")}>
+          <div className={"col-12 col-md me-2 glowing-register-rates" + ((store.userInput.walk == true) ? " activeGlowRates" : "")}>
             <label className="form-check-label d-block mb-2" htmlFor="paseo">
               <img
                 src="https://cdn.pixabay.com/photo/2016/03/31/21/38/canines-1296551_960_720.png"
@@ -96,7 +96,7 @@ const ServicesRates = () => {
             />
           </div>
 
-          <div className={"col-12 col-md me-2 glowing-register" + ((store.userInput.nurseryNight == true) ? " activeGlow" : "")}>
+          <div className={"col-12 col-md me-2 glowing-register-rates" + ((store.userInput.nurseryNight == true) ? " activeGlowRates" : "")}>
             <label className="form-check-label d-block mb-2" htmlFor="guarderia-nocturna">
               <img
                 src="https://cdn.pixabay.com/photo/2017/01/17/16/45/night-1987408_960_720.png"

@@ -11,7 +11,7 @@ from api.controllers.user import create_user, get_users, get_user, get_carers, u
 from api.controllers.dog import create_dog, get_dogs, get_dog, update_dog, delete_dog
 from api.controllers.service import create_service, get_services, get_service, update_service, delete_service
 from api.controllers.tarif import create_tariff, get_tariffs, get_tariff, update_tariff, delete_tariff
-from api.controllers.book import create_book, get_books, get_book, update_book, delete_book, acepted_book
+from api.controllers.book import create_book, get_books, get_book, update_book, delete_book, acepted_book, rejected_book
 from api.controllers.install import install_examples
 
 
@@ -316,7 +316,7 @@ def signup_book():
         if book_response["code"] != 200:
             return jsonify(book_response)
 
-        return jsonify(book_response), 200
+        return jsonify(book_response)
 
     except Exception as error:
         print(error)
@@ -374,6 +374,24 @@ def confirm_book(id):
 
         # Obtener info de las tablas de la DB
         books_response = acepted_book(id)
+
+        if books_response["code"] != 200:
+            return jsonify(books_response)
+
+        return jsonify(books_response["books"])
+
+    except Exception as error:
+        print(error)
+        return jsonify(books_response), books_response["code"]
+
+
+@api.route("/rejected-book/<int:id>", methods=["GET"])
+def deny_book(id):
+
+    try:
+
+        # Obtener info de las tablas de la DB
+        books_response = rejected_book(id)
 
         if books_response["code"] != 200:
             return jsonify(books_response)
@@ -466,7 +484,7 @@ def protected():
 
 
 # RUTA PARA CREAR LOS 3 SERVICIOS + USUARIOS/PERROS/TARIFAS EN LA BASE DE DATOS INICIAL CADA VEZ
-@api.route("/install-services-users-dogs-tarifs", methods=["GET"])
+@api.route("/install-services-users-dogs-books-tarifs", methods=["GET"])
 def config_services_examples():
 
     try:

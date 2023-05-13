@@ -14,17 +14,15 @@ def create_book(body):
         sub_token = get_jwt_identity()
         user_id = sub_token["id"]
 
-        tariff = db.get_or_404(Tariffs, body["tariffId"])
+        tariff = db.get_or_404(Tariffs, int(body["tariffId"]))
 
-        # carer_id = tariff["user_id"]
         dogs_list = []
+
 
         for dog in body["dogs"]:
             query = db.select(Dog).filter_by(id=dog["id"])
             dog = db.session.execute(query).scalars().first()
             dogs_list.append(dog)
-
-        # print("3",dogs_list)
 
         # Crear una nueva reserva en la base de datos
         new_book = Books(
@@ -36,7 +34,7 @@ def create_book(body):
             tarif_id = tariff.id,
             dogs = dogs_list,
             mensajeACuidador = body.get("mensajeACuidador", None),
-            acepted = False)
+            status= "Pendiente")
 
         db.session.add(new_book)
         db.session.commit()
@@ -52,7 +50,7 @@ def get_books():
 
     try:
     
-        # Obtener usuarios de la base de datos
+        # Obtener reservas de la base de datos
         query = db.select(Books).order_by(Books.id)
         books = db.session.execute(query).scalars()
         
@@ -70,7 +68,7 @@ def get_book(id):
 
     try:
     
-        # Obtener usuario de la base de datos
+        # Obtener reserva de la base de datos
         book = db.get_or_404(Books, id)
         # book = db.session.execute(db.select(book).filter_by(id)).scalars().one()
         
@@ -85,7 +83,7 @@ def update_book(body, id):
 
     try:
     
-        # Obtener usuario de la base de datos
+        # Obtener reserva de la base de datos
         book = db.get_or_404(Books, id)
 
         book.fechaEntrega = body["fechaEntrega"]
@@ -96,7 +94,6 @@ def update_book(body, id):
         # book.tarif_id = tariff
         # book.dogs = dogs_list
         book.mensajeACuidador = body.get("mensajeACuidador", None)
-        book.acepted = False
 
 
         db.session.commit()
@@ -112,15 +109,34 @@ def acepted_book(id):
 
     try:
     
-        # Obtener usuario de la base de datos
+        # Obtener reserva de la base de datos
         book = db.get_or_404(Books, id)
 
-        book.acepted = True
+        book.status = "Aceptada"
 
 
         db.session.commit()
 
         return {"code": 200, "msg": "¡Reserva aceptada por el cuidador!", "book": book.serialize()}
+
+    except Exception as error:
+        print(error)
+        return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
+
+
+def rejected_book(id):
+
+    try:
+    
+        # Obtener reserva de la base de datos
+        book = db.get_or_404(Books, id)
+
+        book.status = "Rechazada"
+
+
+        db.session.commit()
+
+        return {"code": 200, "msg": "¡Reserva rechazada por el cuidador!", "book": book.serialize()}
 
     except Exception as error:
         print(error)
