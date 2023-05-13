@@ -484,7 +484,7 @@ def protected():
 
 
 # RUTA PARA CREAR LOS 3 SERVICIOS + USUARIOS/PERROS/TARIFAS EN LA BASE DE DATOS INICIAL CADA VEZ
-@api.route("/install-services-users-dogs-tarifs", methods=["GET"])
+@api.route("/install-services-users-dogs-books-tarifs", methods=["GET"])
 def config_services_examples():
 
     try:

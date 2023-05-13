@@ -214,7 +214,7 @@ def install_examples():
         db.session.commit()
             
 
-        return {"code": 200, "msg": "¡Usuarios, Perros, Tarifas y Reservas de prueba + Servicios creados correctamente!"}
+        return {"code": 200, "msg": "¡Usuarios, Perros, Tarifas, Reservas (+) Servicios, de inicio/prueba, creados correctamente!"}
 
     except Exception as error:
         print(error)
