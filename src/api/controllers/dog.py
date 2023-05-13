@@ -30,7 +30,7 @@ def create_dog(body):
             socialDogs = bool(body["socialDogs"]),
             dogActivity = body.get("dogActivity", None),
             microchip = int(body["microchip"]),
-            dogPhoto = body.get("dogPhoto", None),
+            dogPhoto = body.get("dogPhoto", "https://cdn.pixabay.com/photo/2019/02/02/17/12/animation-3970998_960_720.png"),
             observations = body.get("observations", None))
         
 
@@ -86,6 +86,11 @@ def update_dog(body, id):
         # Obtener usuario de la base de datos
         dog = db.get_or_404(Dog, id)
 
+        claves_dog = body.keys()
+
+        if "dogPhoto" in claves_dog:
+            dog.dogPhoto = body["dogPhoto"]
+
         dog.dogName = body["dogName"]
         dog.dogBirth = body["dogBirth"]
         dog.breed = body["breed"]
@@ -97,7 +102,6 @@ def update_dog(body, id):
         socialDogs = bool(body["socialDogs"])
         dog.dogActivity = body.get("dogActivity", None)
         dog.observations = body.get("observations", None)
-        dog.dogPhoto = body.get("dogPhoto", None)
         # dog.microchip = int(body["microchip"])        # ESTA DISABLED PARA CAMBIAR EN EL FRONT
 
 

@@ -84,7 +84,7 @@ const Hire = () => {
                         <div
                           className={
                             "glowing-register m-2" +
-                            (userInput.tariffId == tarif.service_id
+                            (userInput.tariffId == tarif.id
                               ? " activeGlow"
                               : "")
                           }
@@ -93,9 +93,9 @@ const Hire = () => {
                             type="radio"
                             id={tarif.service.title + tarif.id}
                             name="tariffId"
-                            value={tarif.service_id}
+                            value={tarif.id}
                             onChange={handleUserInput}
-                            checked={userInput.tariffId == tarif.service_id}
+                            checked={userInput.tariffId == tarif.id}
                           />
 
                           <label htmlFor={tarif.service.title + tarif.id}>

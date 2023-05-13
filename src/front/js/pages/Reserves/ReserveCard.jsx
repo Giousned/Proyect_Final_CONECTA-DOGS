@@ -1,17 +1,29 @@
 import React from "react";
+
 import { Link } from "react-router-dom";
 
+import useAuthContext from "../../store/AuthContext.js";
+
+
 const ReserveCard = () => {
+
+  const { storeAuth, actionsAuth } = useAuthContext();
+
+
   return (
     <>
       <div className="wrapper" id="app">
-        <div className="card-form">
+        {storeAuth.userLog.user.book_from
+          ? storeAuth.userLog.user.book_from.map((book, index) => {
+
+            return(
+              <div className="card-form" key={index}>
           <div className="card-list">
             <div className="card-item -front">
               <div className="card-item__side">
 
                 <img
-                  src="https://cdn.pixabay.com/photo/2022/03/30/11/12/dog-7101015_960_720.jpg"
+                  src={book.dogs[0].dogPhoto}
                   className="card-item__bg"
                 />
 
@@ -20,23 +32,22 @@ const ReserveCard = () => {
           </div>
           <div className="card-form__inner text-center">
             <h5 className="card-title">
-              <i className="fa-solid fa-dog"></i> Pelusa
+              <i className="fa-solid fa-dog"></i> {book.dogs[0].dogName}
             </h5>
             <h6 className="m-2 p-2">
-              <i className="fas fa-sun fa-xl"></i> Guardería de día
-              <i className="fas fa-user fa-xl ps-4"></i> Propietario: Luis
+              <i className="fas fa-sun fa-xl"></i> {book.tariff.service.title}
+              <i className="fas fa-user fa-xl ps-4"></i> Propietario: {book.user_from.name}
             </h6>
             <h6 className="m-2 p-2">
-              <i className="fas fa-money-check-alt fa-xl ps-4"></i> Monto
-              a pagar: 20<i className="fas fa-euro-sign"></i>
+              <i className="fas fa-money-check-alt fa-xl ps-4"></i> Monto a pagar: <b>{book.tariff.price}</b> <i className="fas fa-euro-sign"></i>
             </h6>
             <p className="card-text m-2">
               <small className="text-muted">
-                Día de la reserva: 17-05-2023
+                Día de la reserva: {book.fechaRecogida}
               </small>
             </p>
 
-            <Link to="/reserve-information" className="nav-link">
+            <Link to={"/reserve-information/" + book.id} className="nav-link">
               <button className="action-button shadow animate blue">
                 Ver más información
               </button>
@@ -44,6 +55,13 @@ const ReserveCard = () => {
 
           </div>
         </div>
+
+            );
+
+          })
+          : null
+        }
+        
       </div>
     </>
   );

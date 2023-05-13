@@ -40,22 +40,21 @@ const CaregiversList = () => {
         <div className="col-12 col-md-6 caregivers-scroll">
           {dogsitters
             ? dogsitters.map((carer, index) => {
-              return (
-                <CaregiverCard
-                  img={
-                    carer.photo
-                      ? carer.photo
-                      : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                  }
-                  name={carer.name}
-                  lastName={carer.lastName}
-                  province={carer.province}
-                  aboutMe={carer.aboutMe}
-                  id={carer.id}
-                  key={index}
-                />
-              );
-            })
+                return (
+                  <CaregiverCard
+                    img={
+                      carer.userPhoto
+                        ? carer.userPhoto
+                        : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                    }
+                    name={carer.name}
+                    lastName={carer.lastName}
+                    province={carer.province}
+                    aboutMe={carer.aboutMe}
+                    id={carer.id}
+                    key={index}
+                  />
+              );})
             : null
           }
         </div>

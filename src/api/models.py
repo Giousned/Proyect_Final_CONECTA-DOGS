@@ -50,6 +50,7 @@ class User(db.Model):
             # "longitude": self.longitude,
             "dogs": [dog.serialize() for dog in self.dogs],
             "tariffs": [tariff.serialize() for tariff in self.tariffs],
+            "book_from": [book.serialize() for book in self.book_from]
         # ¡¡¡¡DO NOT serialize the password, its a security breach!!!
         }
 
@@ -135,6 +136,12 @@ class Services(db.Model):
             "description": self.description,
         }
 
+    def serialize_books(self):
+        return {
+            "title": self.title,
+            "description": self.description,
+        }
+
 
 class Tariffs(db.Model):
     __tablename__ = "Tariffs"
@@ -155,9 +162,8 @@ class Tariffs(db.Model):
 
     def serialize(self):
         return {
-            "user_id": self.user_id,
-            "service_id": self.service_id,
             "id": self.id,
+            "user_id": self.user_id,
             "price": self.price,
             "service": self.service.serialize(),
         }
@@ -166,7 +172,8 @@ class Tariffs(db.Model):
         return {
             "id": self.id,
             "price": self.price,
-            "user_to": self.user_to.serialize_books()
+            "user_to": self.user_to.serialize_books(),
+            "service": self.service.serialize_books()
         }
 
 
@@ -187,7 +194,7 @@ class Books(db.Model):
     horaEntrega = db.Column(db.String, unique=False, nullable=False)
     horaRecogida = db.Column(db.String, unique=False, nullable=False)
     mensajeACuidador = db.Column(db.String(500), unique=False, nullable=True)
-    acepted = db.Column(db.Boolean, unique=False, nullable=False, default=False)
+    status = db.Column(db.String(20), unique=False, nullable=False, default="Pendiente")
 
     user_from_id = db.Column(db.Integer, db.ForeignKey("User.id"))
     tarif_id = db.Column(db.Integer, db.ForeignKey("Tariffs.id"))
@@ -208,7 +215,7 @@ class Books(db.Model):
             "horaEntrega": self.horaEntrega,
             "horaRecogida": self.horaRecogida,
             "mensajeACuidador": self.mensajeACuidador,
-            "acepted": self.acepted,
+            "status": self.status,
             "tariff": self.tariff.serialize_books(),
             "user_from": self.user_from.serialize_books(),
             "dogs": [dog.serialize() for dog in self.dogs]
