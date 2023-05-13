@@ -30,7 +30,7 @@ def create_dog(body):
             socialDogs = bool(body["socialDogs"]),
             dogActivity = body.get("dogActivity", None),
             microchip = int(body["microchip"]),
-            dogPhoto = body.get("dogPhoto", "https://cdn.pixabay.com/photo/2019/02/02/17/12/animation-3970998_960_720.png"),
+            dogPhoto = body.get("dogPhoto", "https://cdn.pixabay.com/photo/2019/02/02/17/12/animation-3970998_960_720.png"),        # "https://img.freepik.com/vector-premium/avatar-perros-lindos-retrato-cabeza-perrito-adorable-hocico-cachorro-pura-raza-labrador-cara-cachorros-felices-lengua-fuera-ilustracion-vector-plano-hocico-mascotas-encantador-aislado-sobre-fondo-blanco_633472-124.jpg?w=2000"
             observations = body.get("observations", None))
         
 

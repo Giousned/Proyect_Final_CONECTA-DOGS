@@ -1,6 +1,8 @@
 import React from "react";
 import { createContext, useContext, useState, useEffect } from "react";
 
+import { Navigate, useNavigate } from "react-router-dom";
+
 import { POST_Login, GET_Token } from "../services/LOGINFetchs.js";
 import { UPDATE_Me_User } from "../services/USERFetchs.js";
 
@@ -11,10 +13,13 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   
-  const [userLog, setUserLog] = useState({ token: "", user: "" });
-  
   const { userInput, handleUserInput, handleUserCheck } = useUserInput();
   const { storeToast, actionsToast } = useToastsContext();
+
+  const [userLog, setUserLog] = useState({ token: "", user: "" });
+
+  const navigate = useNavigate();
+
 
   const handleUpdateUser = () => {
 
@@ -46,7 +51,15 @@ export const AuthProvider = ({ children }) => {
   // Y SETEO EL ESTADO DE INICIO DE USUARIOLOG
   useEffect(() => {
 
-    if (!sessionStorage.getItem("jwt-token")) return
+    if (!sessionStorage.getItem("jwt-token")) {
+
+      navigate("/");
+      actionsToast.handleShownToast({ code: 401, msg: "¡El token ha expirado, se le ha redirigido a la página de inicio!" });
+      
+      return;
+    }
+    
+
 
     GET_Token()
       .then((data) => {

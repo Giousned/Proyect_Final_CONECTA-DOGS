@@ -316,7 +316,7 @@ def signup_book():
         if book_response["code"] != 200:
             return jsonify(book_response)
 
-        return jsonify(book_response), 200
+        return jsonify(book_response)
 
     except Exception as error:
         print(error)
@@ -484,7 +484,7 @@ def protected():
 
 
 # RUTA PARA CREAR LOS 3 SERVICIOS + USUARIOS/PERROS/TARIFAS EN LA BASE DE DATOS INICIAL CADA VEZ
-@api.route("/install-services-users-dogs-tarifs", methods=["GET"])
+@api.route("/install-services-users-dogs-books-tarifs", methods=["GET"])
 def config_services_examples():
 
     try:

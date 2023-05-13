@@ -78,3 +78,34 @@
   height: 10rem;
   padding: 10px;
 }
+
+.glowing-register-rates input[type="radio"] {
+  display: none;
+}
+
+.glowing-register-rates label {
+  display: flex;
+  padding: 1rem;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  border: 2px solid #000;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s,
+    box-shadow 0.3s;
+}
+
+.glowing-register label:hover,
+.glowing-register:has(input:checked) label {
+  border-color: red;
+  box-shadow: 0 0 10px red, 0 0 20px red,
+    0 0 30px red;
+}
+
+.activeGlowRates label {
+  border-color: red;
+  box-shadow: 0 0 10px red, 0 0 20px red,
+    0 0 30px red;
+}
