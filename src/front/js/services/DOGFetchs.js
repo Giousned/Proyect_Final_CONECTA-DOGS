@@ -102,7 +102,7 @@ export const POST_Dog = (nuevoPerro) => {
       })
       .then((resp) => {
         console.log(resp.ok); // will be true if the response is successfull
-        return resp; //(returns promise) will try to parse the result as json as return a promise that you can .then for results
+        return resp.json(); //(returns promise) will try to parse the result as json as return a promise that you can .then for results
       })
       .then((data) => {
         //here is were your code should start after the fetch finishes

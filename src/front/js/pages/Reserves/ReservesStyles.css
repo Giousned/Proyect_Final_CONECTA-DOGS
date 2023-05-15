@@ -196,3 +196,12 @@
     margin-bottom: -120px;
   }
 }
+
+
+/* IMAGEN DE LOS PERRITOS EN LAS VISTAS DETALLADAS */
+
+.imagen-perrito-informacion-reserva {
+  width: 450px;
+  height: 450px;
+  /* loading: lazy; ???? */
+}

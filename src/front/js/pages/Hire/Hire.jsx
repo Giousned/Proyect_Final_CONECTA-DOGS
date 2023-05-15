@@ -50,11 +50,11 @@ const Hire = () => {
 
     }
 
-    userInput.dogs = newArrayDog
+    userInput.dogs = newArrayDog;
 
     POST_Book(userInput)
         .then((data) => {
-            actionsToast.handleShownToast(data);
+          actionsToast.handleShownToast(data);
         })
   };
 

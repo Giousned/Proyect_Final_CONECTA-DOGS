@@ -26,7 +26,10 @@ const ReserveInformationDog = () => {
 
                     return (
                         <div className="col-md justify-content-center border border-primary-subtle m-2 p-2 shadow" key={index} >
-                <h3 className="display-6 fw-bold text-body-emphasis lh-1 mb-3">
+
+                            <div className="d-flex justify-content-center align-items-center">
+                                <div>
+                                <h3 className="display-6 fw-bold text-body-emphasis lh-1 mb-3">
                     {dog.dogName}
                 </h3>
                 <p className="lead">
@@ -60,8 +63,16 @@ const ReserveInformationDog = () => {
                     Sociable con niños: <b><i className=""></i> {(dog.socialKids == true) ? "Sí" : "No"}</b>
                 </p>
 
-                <img src={dog.dogPhoto}
-                    className="d-block mx-lg-auto img-fluid" alt="" width="700" height="500" loading="lazy" />
+                                </div>
+
+                                <div className="d-flex mx-auto ">
+                                <img src={dog.dogPhoto}
+                    className="d-block mx-lg-auto img-fluid imagen-perrito-informacion-reserva" alt="foto-de-mi-perrito" />
+
+                                </div>
+
+                            </div>
+
             </div >
                     );
 

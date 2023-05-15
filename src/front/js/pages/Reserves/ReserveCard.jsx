@@ -23,7 +23,7 @@ const ReserveCard = () => {
               <div className="card-item__side">
 
                 <img
-                  src={book.dogs[0].dogPhoto}
+                  src={(book.dogs.length > 1) ? "https://thumbs.dreamstime.com/b/el-perro-lindo-cr%C3%ADa-la-cara-plana-asombrosa-del-vector-126694606.jpg" : book.dogs[0].dogPhoto}
                   className="card-item__bg"
                 />
 
@@ -32,7 +32,7 @@ const ReserveCard = () => {
           </div>
           <div className="card-form__inner text-center">
             <h5 className="card-title">
-              <i className="fa-solid fa-dog"></i> {book.dogs[0].dogName}
+              <i className="fa-solid fa-dog"></i> {(book.dogs.length > 1) ? "Varios Perros" : book.dogs[0].dogName} {(book.dogs.length > 1) ? <i className="fa-solid fa-paw"></i> : null}
             </h5>
             <h6 className="m-2 p-2">
               <i className="fas fa-sun fa-xl"></i> {book.tariff.service.title}
