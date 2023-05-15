@@ -10,7 +10,7 @@
 		"start": "webpack-dev-server --config webpack.dev.js --port 3000",
 		"build": "webpack --config webpack.prod.js",
 		"prepare": "pip install flask && pip install flask_admin && pip install flask_cors && pip install flask_jwt_extended && pip install flask_migrate && pip install flask_sqlalchemy && pip install flask_swagger",
-		"server": "npm install && npm run build && python src/app.py"
+		"server": "npm install -y && npm run build && python src/app.py"
 	},
 	"author": {
 		"name": "Alejandro Sanchez",
