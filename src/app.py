@@ -36,8 +36,8 @@ else:
     # sqlite:////tmp/test.db        # ORIGINAL CON EL BOILERPLATE
     # sqlite:///test.db         # Tener archivo al que poder acceder
 
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-MIGRATE = Migrate(app, db, compare_type = True)
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# MIGRATE = Migrate(app, db, compare_type = True)
 db.init_app(app)
 # AQUI SE CREAN LAS TABLAS A PARTIR DE SQLITE, Y SE GENERA UNA CARPETA TMP Y UN ARCHIVO TEST.DB, DONDE DENTRO ESTA LA DB CON LAS TABLAS Y ES COMPARTIDA 
 with app.app_context():
