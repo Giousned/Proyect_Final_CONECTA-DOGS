@@ -13,6 +13,8 @@ from api.controllers.service import create_service, get_services, get_service, u
 from api.controllers.tarif import create_tariff, get_tariffs, get_tariff, update_tariff, delete_tariff
 from api.controllers.book import create_book, get_books, get_book, update_book, delete_book, acepted_book, rejected_book
 from api.controllers.install import install_examples
+from api.controllers.email import send_contact_email, send_carer_email
+
 
 
 
@@ -475,16 +477,8 @@ def protected():
     return jsonify({ "code": 200, "msg": "Inicio de sesión correcto", "token": access_token, "user": user.serialize() }), 200
 
 
-# return jsonify({"id": user.id, "email": user.email }), 200
-# HARCODEANDO PRUEBA FACIL DE EMAIL
-# if email != "test" or password != "test":
-#     return jsonify({"msg": "Bad email or password"}), 401
-
-
-
-
 # RUTA PARA CREAR LOS 3 SERVICIOS + USUARIOS/PERROS/TARIFAS EN LA BASE DE DATOS INICIAL CADA VEZ
-@api.route("/install-services-users-dogs-books-tarifs", methods=["GET"])
+@api.route("/install", methods=["GET"])
 def config_services_examples():
 
     try:
@@ -502,19 +496,62 @@ def config_services_examples():
         return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
 
 
-# RUTA PARA CREAR LOS 3 SERVICIOS EN LA BASE DE DATOS INICIAL CADA VEZ
-@api.route("/config-install", methods=["GET"])
-def config_services():
+# # RUTA PARA CREAR LOS 3 SERVICIOS EN LA BASE DE DATOS INICIAL CADA VEZ
+# @api.route("/config-install", methods=["GET"])
+# def config_services():
+
+#     try:
+
+#         # Rellenar la tabla de la DB, con el registro de los Servicios
+#         config_response = create_service()
+
+#         if config_response["code"] != 200:
+#             return jsonify(config_response)
+
+#         return jsonify(config_response)
+
+#     except Exception as error:
+#         print(error)
+#         return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
+
+
+
+
+# RUTA PARA ENVIAR EMAILS DE CONTACTO AL CORREO ELECTRONICO DE NUESTRA WEB
+@api.route("/emails/contact", methods=["POST"])
+def post_contact_email():
 
     try:
 
-        # Rellenar la tabla de la DB, con el registro de los Servicios
-        config_response = create_service()
+        body = request.json
 
-        if config_response["code"] != 200:
-            return jsonify(config_response)
+        email_response = send_contact_email(body)
 
-        return jsonify(config_response)
+        if email_response["code"] != 200:
+            return jsonify(email_response)
+
+        return jsonify(email_response)
+
+    except Exception as error:
+        print(error)
+        return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
+
+
+# RUTA PARA ENVIAR EMAILS A LOS CUIDADORES A LA HORA DE HACER RESERVAS
+@api.route("/emails/carer/<int:id>", methods=["POST"])
+def post_carers_email(id):
+
+    try:
+
+        body = request.json
+
+        # Rellenar la tabla de la DB, con el registro de Todo
+        email_carer_response = send_carer_email(body, id)
+
+        if email_carer_response["code"] != 200:
+            return jsonify(email_carer_response)
+
+        return jsonify(email_carer_response)
 
     except Exception as error:
         print(error)
@@ -532,3 +569,8 @@ def config_services():
 #     }
 
 #     return jsonify(response_body), 200
+
+# return jsonify({"id": user.id, "email": user.email }), 200
+# HARCODEANDO PRUEBA FACIL DE EMAIL
+# if email != "test" or password != "test":
+#     return jsonify({"msg": "Bad email or password"}), 401
