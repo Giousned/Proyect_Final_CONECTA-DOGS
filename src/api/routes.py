@@ -484,7 +484,7 @@ def protected():
 
 
 # RUTA PARA CREAR LOS 3 SERVICIOS + USUARIOS/PERROS/TARIFAS EN LA BASE DE DATOS INICIAL CADA VEZ
-@api.route("/install-services-users-dogs-books-tarifs", methods=["GET"])
+@api.route("/install", methods=["GET"])
 def config_services_examples():
 
     try:
@@ -502,23 +502,23 @@ def config_services_examples():
         return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
 
 
-# RUTA PARA CREAR LOS 3 SERVICIOS EN LA BASE DE DATOS INICIAL CADA VEZ
-@api.route("/config-install", methods=["GET"])
-def config_services():
+# # RUTA PARA CREAR LOS 3 SERVICIOS EN LA BASE DE DATOS INICIAL CADA VEZ
+# @api.route("/config-install", methods=["GET"])
+# def config_services():
 
-    try:
+#     try:
 
-        # Rellenar la tabla de la DB, con el registro de los Servicios
-        config_response = create_service()
+#         # Rellenar la tabla de la DB, con el registro de los Servicios
+#         config_response = create_service()
 
-        if config_response["code"] != 200:
-            return jsonify(config_response)
+#         if config_response["code"] != 200:
+#             return jsonify(config_response)
 
-        return jsonify(config_response)
+#         return jsonify(config_response)
 
-    except Exception as error:
-        print(error)
-        return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
+#     except Exception as error:
+#         print(error)
+#         return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
 
 
 

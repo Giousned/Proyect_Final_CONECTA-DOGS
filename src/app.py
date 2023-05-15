@@ -2,7 +2,8 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
-from flask import Flask, request, jsonify, url_for, send_from_directory
+from flask import Flask, request, jsonify, url_for, send_from_directory, render_template
+from flask_basicauth import BasicAuth
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import jwt_required, get_jwt_identity
@@ -22,6 +23,17 @@ ENV = os.getenv("FLASK_ENV")
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..','public')
 app = Flask(__name__)
 app.url_map.strict_slashes = False
+
+
+# set admin username and password
+app.config['BASIC_AUTH_USERNAME'] = os.getenv("BASIC_AUTH_USER")
+app.config['BASIC_AUTH_PASSWORD'] = os.getenv("BASIC_AUTH_PASS")
+
+# add flask-basicauth to flask app
+basic_auth = BasicAuth(app)
+
+# PARA PROTEGER TODA LA WEB
+# app.config['BASIC_AUTH_FORCE'] = True
 
 
 # Database Configuration
@@ -72,6 +84,14 @@ def sitemap():
     return send_from_directory(static_file_dir, 'index.html')
 
 
+# # PROTEGIENDO SOLO UNA RUTA
+# @app.route('/admin')
+# @basic_auth.required
+# def secret_view():
+#     return setup_admin(app)
+#     return render_template('index.html')
+
+
 ###################################################################
 # any other endpoint will try to serve it like a static file
 @app.route('/<path:path>', methods=['GET'])
@@ -81,8 +101,6 @@ def serve_any_other_file(path):
     response = send_from_directory(static_file_dir, path)
     response.cache_control.max_age = 0 # avoid cache memory
     return response
-
-
 
 
 
