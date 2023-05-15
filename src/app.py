@@ -31,6 +31,7 @@ app.config['BASIC_AUTH_PASSWORD'] = os.getenv("BASIC_AUTH_PASS")
 # add flask-basicauth to flask app
 basic_auth = BasicAuth(app)
 
+app.config['BASIC_AUTH_FORCE'] = True
 
 # Database Configuration
 db_url = os.getenv("DATABASE_URL")
