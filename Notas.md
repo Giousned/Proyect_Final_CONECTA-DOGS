@@ -88,3 +88,7 @@ DATABASE_URL= mysql://root:root@localhost:3306/project
 # GOOGLE MAPS API KEY
 
 AIzaSyB3UA-jwJRX-cRE0oZjYuAc43a-2GxWQCA
+
+
+
+pip install psycopg2
