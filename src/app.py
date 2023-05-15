@@ -83,6 +83,13 @@ def sitemap():
     return send_from_directory(static_file_dir, 'index.html')
 
 
+# # PROTEGIENDO SOLO UNA RUTA
+# @app.route('/secret')
+# @basic_auth.required
+# def secret_view():
+#     return render_template('index.html')
+
+
 ###################################################################
 # any other endpoint will try to serve it like a static file
 @app.route('/<path:path>', methods=['GET'])
