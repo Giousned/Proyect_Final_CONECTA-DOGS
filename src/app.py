@@ -27,10 +27,10 @@ app.url_map.strict_slashes = False
 # Database Configuration
 db_url = os.getenv("DATABASE_URL")
 # COMENTO ESTAS LINEAS PARA USAR SQLITE
-if db_url is not None:
-    app.config['SQLALCHEMY_DATABASE_URI'] = db_url.replace("postgres://", "postgresql://")
-else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////test.db"
+# if db_url is not None:
+#     app.config['SQLALCHEMY_DATABASE_URI'] = db_url.replace("postgres://", "postgresql://")
+# else:
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////test.db"
     # app.config['SQLALCHEMY_CHARSET'] = 'utf8mb4'
     # mysql://user:pass@localhost/db?charset=utf8
     # sqlite:////tmp/test.db        # ORIGINAL CON EL BOILERPLATE

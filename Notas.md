@@ -91,4 +91,4 @@ AIzaSyB3UA-jwJRX-cRE0oZjYuAc43a-2GxWQCA
 
 
 
-pip install psycopg2
+pip install psycopg2 && pip install mysqlclient
