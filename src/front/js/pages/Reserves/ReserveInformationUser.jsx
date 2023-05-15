@@ -1,17 +1,14 @@
 import React from "react";
-
 import { useState, useEffect } from "react";
-
 import { useParams } from "react-router-dom";
-
 import {
   GET_Book,
   GET_Confirm_Book,
   GET_Deny_Book,
 } from "../../services/BOOKFetchs.js";
-
 import useToastsContext from "../../store/ToastsContext.js";
 import useAuthContext from "../../store/AuthContext.js";
+
 
 const ReserveInformationUser = () => {
   const { storeToast, actionsToast } = useToastsContext();
@@ -52,7 +49,12 @@ const ReserveInformationUser = () => {
           <p className="lead">
             Servicio solicitado:{" "}
             <b>
-              <i className={`fas ${(bookInfo.tariff.service.title == "Guardería de Día") ? "fa-sun" : (bookInfo.tariff.service.title == "Paseo") ? "fa-walking" : "fa-moon" }`}></i> {bookInfo.tariff.service.title}
+              <i className={`fas ${(bookInfo.tariff.service.title == "Guardería de Día") ? "fa-sun"
+                :
+                (bookInfo.tariff.service.title == "Paseo")
+                  ?
+                  "fa-walking" : "fa-moon"}`}></i>
+              {bookInfo.tariff.service.title}
             </b>
           </p>
           <p className="lead">
@@ -98,19 +100,13 @@ const ReserveInformationUser = () => {
       ) : null}
 
       <div className="d-grid gap-2 d-md-flex justify-content-md-center p-2">
-        <button
-          type="submit"
-          className="action-button shadow animate blue"
-          onClick={handleAceptarReserva}
-        >
-          Aceptar Reserva
-        </button>
-        <button
-          type="submit"
-          className="action-button shadow animate red"
-          onClick={handleRechazarReserva}
-        >
+        <button type="submit" className="action-button shadow animate red"
+          onClick={handleRechazarReserva}>
           Rechazar Reserva
+        </button>
+        <button type="submit" className="action-button shadow animate blue"
+          onClick={handleAceptarReserva}>
+          Aceptar Reserva
         </button>
       </div>
     </>
@@ -121,7 +117,7 @@ export default ReserveInformationUser;
 
 // CAMBIAR FA-SUN
 {
-/*
-<i className="fa-solid fa-dog"></i>
-<i className="fas fa-tree"></i> */
+  /*
+  <i className="fa-solid fa-dog"></i>
+  <i className="fas fa-tree"></i> */
 }
