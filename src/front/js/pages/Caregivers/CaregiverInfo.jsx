@@ -29,12 +29,8 @@ const CaregiverInfo = () => {
           </h3>
           <div className="row">
             <div className="col-12 col-md-6">
-              <img
-                src={dogsitter.userPhoto}
-                className="img-fluid rounded-start"
-                width={300}
-                alt="..."
-              />
+              <img src={dogsitter.userPhoto} className="img-fluid rounded-start"
+                width={300} alt="..." />
             </div>
             <div className="col-12 col-md-6">
               <h4 className="text-body-emphasis pt-4">Provincia</h4>
@@ -43,60 +39,39 @@ const CaregiverInfo = () => {
               </p>
 
               <h4 className="text-body-emphasis pt-4">
-                Sobre {dogsitter.name}
+                Sobre {dogsitter.name} ...
               </h4>
               <p>{dogsitter.aboutMe ? dogsitter.aboutMe : ""}</p>
 
               <h4 className="text-body-emphasis pt-4">Servicios y Tarifas:</h4>
               {dogsitter.tariffs
                 ? dogsitter.tariffs.map((tarifa, index) => {
-                    return (
-                      <div key={index}>
-                        <div className="row d-flex">
-                          <p className="col-6">
-                            Servicio: <b>{tarifa.service.title}</b>
-                          </p>
-                          <p className="col-6">
-                            Tarifa:{" "}
-                            <b>
-                              {tarifa.price}{" "}
-                              <i className="fa-solid fa-euro-sign"></i>
-                            </b>
-                          </p>
-                        </div>
+                  return (
+                    <div key={index}>
+                      <div className="row d-flex">
+                        <p className="col-6">
+                          Servicio: <b>{tarifa.service.title}</b>
+                        </p>
+                        <p className="col-6">
+                          Tarifa:{" "}
+                          <b>{tarifa.price}{" "}
+                            <i className="fa-solid fa-euro-sign"></i>
+                          </b>
+                        </p>
                       </div>
-                    );
-                  })
+                    </div>
+                  );
+                })
                 : null}
             </div>
           </div>
 
           <div className="d-grid gap-2 d-md-flex justify-content-md-center">
-            <Link
-              to={"/hire-caregiver/" + dogsitter.id}
-              className="action-button shadow animate blue"
-            >
+            <Link to={"/hire-caregiver/" + dogsitter.id}
+              className="action-button shadow animate blue">
               Contratar
             </Link>
-            <Link
-              to="/caregivers-list"
-              className="action-button shadow animate red"
-            >
-              Ir Atrás
-            </Link>
           </div>
-
-          <Link
-            to="#navbar"
-            className="simplescrollup__button simplescrollup__button--hide"
-            spy="true"
-            smooth="true"
-            duration={800}
-          >
-            <h2>
-              <i className="fas fa-arrow-circle-up"></i>
-            </h2>
-          </Link>
         </div>
       </div>
     </>
