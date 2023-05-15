@@ -28,15 +28,15 @@
 
 .glowing-register label:hover,
 .glowing-register:has(input:checked) label {
-  border-color: currentColor;
-  box-shadow: 0 0 10px currentColor, 0 0 20px currentColor,
-    0 0 30px currentColor;
+  border-color: #3f51b5;
+  box-shadow: 0 0 10px #3f51b5, 0 0 20px #3f51b5,
+    0 0 30px #3f51b5;
 }
 
 .activeGlow label {
-  border-color: currentColor;
-  box-shadow: 0 0 10px currentColor, 0 0 20px currentColor,
-    0 0 30px currentColor;
+  border-color: #3f51b5;
+  box-shadow: 0 0 10px #3f51b5, 0 0 20px #3f51b5,
+    0 0 30px #3f51b5;
 }
 
 .dog-size label {
@@ -58,9 +58,9 @@
 
 .dog-size label:hover,
 .dog-size:has(input:checked) label {
-  border-color: currentColor;
-  box-shadow: 0 0 10px currentColor, 0 0 20px currentColor,
-    0 0 30px currentColor;
+  border-color: #3f51b5;
+  box-shadow: 0 0 10px #3f51b5, 0 0 20px #3f51b5,
+    0 0 30px #3f51b5;
 }
 
 .dog-mtn input[type="checkbox"] {
@@ -89,13 +89,13 @@
 
 .dog-mtn label:hover,
 .dog-mtn:has(input:checked) label {
-  border-color: currentColor;
-  box-shadow: 0 0 10px currentColor, 0 0 20px currentColor,
-    0 0 30px currentColor;
+  border-color: #3f51b5;
+  box-shadow: 0 0 10px #3f51b5, 0 0 20px #3f51b5,
+    0 0 30px #3f51b5;
 }
 
 
-.boton-registro-perro{
+.boton-registro-perro {
   display: flex;
   justify-content: center;
   width: 50%;

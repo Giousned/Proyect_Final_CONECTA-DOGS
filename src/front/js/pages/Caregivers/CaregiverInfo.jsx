@@ -43,7 +43,7 @@ const CaregiverInfo = () => {
               </p>
 
               <h4 className="text-body-emphasis pt-4">
-                Sobre {dogsitter.name}
+                Sobre {dogsitter.name} ...
               </h4>
               <p>{dogsitter.aboutMe ? dogsitter.aboutMe : ""}</p>
 

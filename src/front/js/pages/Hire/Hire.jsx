@@ -79,7 +79,7 @@ const Hire = () => {
               <div className="row g-2">
                 {dogsitter.tariffs.map((tarif, index) => {
                   return (
-                    <div className="col-md" key={index}>
+                    <div className="col-12 col-md-4" key={index}>
                       <div className="form-floating">
                         <div
                           className={
@@ -189,7 +189,7 @@ const Hire = () => {
                 {storeAuth.userLog.user.dogs
                   ? storeAuth.userLog.user.dogs.map((dogInfo, index) => {
                       return (
-                        <div className="col-md" key={index}>
+                        <div className="col-12 col-md-4" key={index}>
                           <div className="form-floating">
                             <div
                               className={
