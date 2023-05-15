@@ -19,7 +19,7 @@ from api.commands import setup_commands
 
 
 ENV = os.getenv("FLASK_ENV")
-static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
+static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..','public')
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
@@ -66,12 +66,12 @@ app.register_blueprint(api, url_prefix='/api')
 def handle_invalid_usage(error):
     return jsonify(error.to_dict()), error.status_code
 
-# # generate sitemap with all your endpoints
-# @app.route('/')
-# def sitemap():
-#     if ENV == "development":
-#         return generate_sitemap(app)
-#     return send_from_directory(static_file_dir, 'index.html')
+# generate sitemap with all your endpoints
+@app.route('/')
+def sitemap():
+    # if ENV == "development":
+    #     return generate_sitemap(app)
+    return send_from_directory(static_file_dir, 'index.html')
 
 
 ###################################################################
