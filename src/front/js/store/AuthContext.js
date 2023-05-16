@@ -1,7 +1,7 @@
 import React from "react";
 import { createContext, useContext, useState, useEffect } from "react";
 
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { POST_Login, GET_Token } from "../services/LOGINFetchs.js";
 import { UPDATE_Me_User } from "../services/USERFetchs.js";

@@ -37,7 +37,7 @@ const NavBar = () => {
               </li>
               <li className="nav-item">
                 <button type="button" className="btn text-light me-2"
-                  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  data-bs-toggle="modal" data-bs-target="#contactEmailModal">
                   CONTACTO
                 </button>
               </li>

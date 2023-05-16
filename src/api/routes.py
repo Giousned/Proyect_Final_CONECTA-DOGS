@@ -6,7 +6,7 @@ from api.models import db
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from api.utils import generate_sitemap, APIException
-from api.models import User, Services, Tariffs, Dog, Books                                       # from models import Person
+from api.models import User, Services, Tariffs, Dog, Books
 from api.controllers.user import create_user, get_users, get_user, get_carers, update_user, delete_user, update_me_user
 from api.controllers.dog import create_dog, get_dogs, get_dog, update_dog, delete_dog
 from api.controllers.service import create_service, get_services, get_service, update_service, delete_service
