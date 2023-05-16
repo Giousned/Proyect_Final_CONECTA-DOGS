@@ -52,8 +52,7 @@ const NavBar = () => {
                     <li>
                       <h5> {store.userInput.name + " " + store.userInput.lastName}</h5>
                       <Link to="/user-profile" className="dropdown-item">
-                        <i className="far fa-user pe-2"></i> 
-                        Ver Perfil
+                        <i className="far fa-user pe-2"></i> Ver Perfil
                       </Link>
                     </li>
                     <li>
@@ -61,8 +60,7 @@ const NavBar = () => {
                     </li>
                     <li>
                       <Link to="/notifications" data-notifications="4" className="dropdown-item">
-                        <i className="far fa-comment-alt pe-2"></i>{" "}
-                        Notificaciones
+                        <i className="far fa-comment-alt pe-2"></i>{" "} Notificaciones
                       </Link>
                     </li>
                     <li>
@@ -70,8 +68,7 @@ const NavBar = () => {
                     </li>
                     <li>
                       <Link to="/reserves" className="dropdown-item">
-                        <i className="far fa-bell pe-2"></i> 
-                        Reservas
+                        <i className="far fa-bell pe-2"></i> Reservas
                       </Link>
                     </li>
                     <li>
@@ -79,8 +76,7 @@ const NavBar = () => {
                     </li>
                     <li className="nav-item">
                       <Link to="/caregivers-list" className="dropdown-item">
-                        <i className="fas fa-search-location"></i> 
-                        Buscar Cuidadores
+                        <i className="fas fa-search-location"></i> Buscar Cuidadores
                       </Link>
                     </li>
                     <li>
@@ -88,8 +84,7 @@ const NavBar = () => {
                     </li>
                     <li>
                       <Link to="/" className="dropdown-item" onClick={actionsAuth.handleLogOut}>
-                        <i className="fas fa-sign-out-alt pe-2"></i> 
-                        Cerrar Sesión
+                        <i className="fas fa-sign-out-alt pe-2"></i> Cerrar Sesión
                       </Link>
                     </li>
                   </ul>
@@ -97,8 +92,7 @@ const NavBar = () => {
                   <ul className="dropdown-menu">
                     <li>
                       <Link to="/log-in-form" className="dropdown-item">
-                        <i className="far fa-comment-alt pe-2"></i> Iniciar
-                        Sesión
+                        <i className="far fa-comment-alt pe-2"></i> Iniciar Sesión
                       </Link>
                     </li>
 

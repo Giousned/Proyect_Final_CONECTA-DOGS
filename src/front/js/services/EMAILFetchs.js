@@ -19,6 +19,7 @@ export const POST_Email_Contact = async (newObjEmail) => {
 
 export const POST_Email_Contact_Users = async (newObjEmail, id) => {
   // Retrieve token form sessionStorage
+
   const token = sessionStorage.getItem("jwt-token");
 
   const resp = await fetch(`${RUTABACK}/api/emails-contact/${id}`, {
@@ -34,3 +35,4 @@ export const POST_Email_Contact_Users = async (newObjEmail, id) => {
 
   return data;
 };
+

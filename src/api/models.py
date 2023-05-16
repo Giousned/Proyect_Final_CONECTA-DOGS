@@ -20,6 +20,7 @@ class User(db.Model):
     birthdate = db.Column(db.String(20), unique=False, nullable=False)
     is_active = db.Column(db.Boolean, unique=False, nullable=False)
     userPhoto = db.Column(db.String(500), unique=False, nullable=False)     # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
+
     
     # temporalToken = db.Column(db.String(500), unique=False, nullable=False)
     # dateToken = db.Column(db.Date, unique=False, nullable=False)

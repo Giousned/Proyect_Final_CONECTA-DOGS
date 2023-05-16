@@ -32,13 +32,13 @@ const Hire = () => {
     e.preventDefault();
 
     const newArrayDog = []
-    
+
     for (let dog in userInput) {
-      
+
       if (userInput[dog] === true) {
-        
-        let newDogs = {dogName: "", id: ""}
-        
+
+        let newDogs = { dogName: "", id: "" }
+
         let str = dog
         let arraySplit = str.split('-');
 
@@ -53,9 +53,9 @@ const Hire = () => {
     userInput.dogs = newArrayDog;
 
     POST_Book(userInput)
-        .then((data) => {
-          actionsToast.handleShownToast(data);
-        })
+      .then((data) => {
+        actionsToast.handleShownToast(data);
+      })
   };
 
   return (
@@ -79,7 +79,7 @@ const Hire = () => {
               <div className="row g-2">
                 {dogsitter.tariffs.map((tarif, index) => {
                   return (
-                    <div className="col-md" key={index}>
+                    <div className="col-12 col-md-4" key={index}>
                       <div className="form-floating">
                         <div
                           className={
@@ -185,46 +185,46 @@ const Hire = () => {
               <div className="container d-flex">
                 {storeAuth.userLog.user.dogs
                   ? storeAuth.userLog.user.dogs.map((dogInfo, index) => {
-                      return (
-                        <div className="col-md" key={index}>
-                          <div className="form-floating">
-                            <div
-                              className={
-                                "glowing-register m-2" +
-                                (userInput[`${dogInfo.dogName}-${dogInfo.id}`] == true
-                                  ? " activeGlow"
-                                  : "")
-                              }
-                            >
-                              <label htmlFor={dogInfo.id}>
-                                <img
-                                  src={
-                                    dogInfo.dogPhoto
-                                      ? dogInfo.dogPhoto
-                                      : "https://cdn.pixabay.com/photo/2019/02/02/17/12/animation-3970998_960_720.png"
-                                  }
-                                  alt="Checkbox imagen perrito"
-                                  className="img-fluid"
-                                />
-                              </label>
-
-                              <input
-                                type="checkbox"
-                                name={`${dogInfo.dogName}-${dogInfo.id}`}
-                                id={dogInfo.id}
-                                value={userInput[`${dogInfo.dogName}-${dogInfo.id}`]}
-                                onChange={handleUserCheck}
-                                checked={userInput[`${dogInfo.dogName}-${dogInfo.id}`]}
+                    return (
+                      <div className="col-12 col-md-4" key={index}>
+                        <div className="form-floating">
+                          <div
+                            className={
+                              "glowing-register m-2" +
+                              (userInput[`${dogInfo.dogName}-${dogInfo.id}`] == true
+                                ? " activeGlow"
+                                : "")
+                            }
+                          >
+                            <label htmlFor={dogInfo.id}>
+                              <img
+                                src={
+                                  dogInfo.dogPhoto
+                                    ? dogInfo.dogPhoto
+                                    : "https://cdn.pixabay.com/photo/2019/02/02/17/12/animation-3970998_960_720.png"
+                                }
+                                alt="Checkbox imagen perrito"
+                                className="img-fluid"
                               />
+                            </label>
 
-                              <h3 className="text-center mt-4">
-                                {dogInfo.dogName}
-                              </h3>
-                            </div>
+                            <input
+                              type="checkbox"
+                              name={`${dogInfo.dogName}-${dogInfo.id}`}
+                              id={dogInfo.id}
+                              value={userInput[`${dogInfo.dogName}-${dogInfo.id}`]}
+                              onChange={handleUserCheck}
+                              checked={userInput[`${dogInfo.dogName}-${dogInfo.id}`]}
+                            />
+
+                            <h3 className="text-center mt-4">
+                              {dogInfo.dogName}
+                            </h3>
                           </div>
                         </div>
-                      );
-                    })
+                      </div>
+                    );
+                  })
                   : null}
               </div>
 
@@ -253,19 +253,13 @@ const Hire = () => {
               </div>
 
               <div className="d-grid gap-2 d-md-flex justify-content-md-center">
-                <button
-                  type="button"
-                  className="action-button shadow animate blue"
-                  onClick={handleContratarServicio}
-                >
-                  Enviar
-                </button>
-                <Link
-                  to={"/caregiver-info/" + dogsitter.id}
-                  className="action-button shadow animate red"
-                >
+                <Link to={"/caregiver-info/" + dogsitter.id} className="action-button shadow animate red">
                   Ir Atrás
                 </Link>
+                <button type="button" className="action-button shadow animate blue"
+                  onClick={handleContratarServicio}>
+                  Enviar
+                </button>
               </div>
 
               <Link

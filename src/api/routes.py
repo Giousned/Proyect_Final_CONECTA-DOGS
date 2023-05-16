@@ -17,6 +17,7 @@ from api.controllers.email import send_contact_email, send_carer_email
 
 
 
+
 api = Blueprint('api', __name__)
 
 
@@ -495,6 +496,7 @@ def config_services_examples():
         return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
 
 
+
 # RUTA PARA ENVIAR EMAILS DE CONTACTO AL CORREO ELECTRONICO DE NUESTRA WEB
 @api.route("/emails-contact", methods=["POST"])
 def post_contact_email():
@@ -573,3 +575,8 @@ def post_carers_email(id):
 #     }
 
 #     return jsonify(response_body), 200
+
+# return jsonify({"id": user.id, "email": user.email }), 200
+# HARCODEANDO PRUEBA FACIL DE EMAIL
+# if email != "test" or password != "test":
+#     return jsonify({"msg": "Bad email or password"}), 401

@@ -1,8 +1,10 @@
+
 from api.models import db, User
 from smtplib import SMTP_SSL
 from flask_jwt_extended import get_jwt_identity
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+
 
 
 def send_contact_email(body):
@@ -39,11 +41,12 @@ def send_contact_email(body):
 
         return {"code": 200, "msg": "¡Email de contacto enviado correctamente!"}
 
+
     except Exception as error:
         print(error)
         return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
-
-
+      
+      
 
 def send_carer_email(body, id):
 
@@ -94,4 +97,3 @@ def send_carer_email(body, id):
     except Exception as error:
         print(error)
         return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
-

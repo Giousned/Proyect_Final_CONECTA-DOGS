@@ -15,7 +15,6 @@ const Contact = () => {
 
   const [ vista, setVista ] = useState("")
 
-
   const handleSubmitSendEmail = (e) => {
     e.preventDefault();
 
@@ -110,4 +109,6 @@ const Contact = () => {
 
 export default Contact;
 
+
 // $('#contactEmailModal').modal('hide');
+

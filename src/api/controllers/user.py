@@ -1,6 +1,8 @@
 from api.models import db, User
 from flask_jwt_extended import create_access_token, get_jwt_identity
 from api.checks.checks_user import check_user
+import random
+import datetime
 
 
 # import requests
@@ -35,6 +37,10 @@ def create_user(body):
             birthdate = body["birthdate"],
             userPhoto = "https://static.vecteezy.com/system/resources/previews/005/544/718/large_2x/profile-icon-design-free-vector.jpg",
             is_active = True)
+
+            # access_token = create_access_token(identity=new_user.serialize_register())
+            # temporalToken = create_access_token(identity=random.randint(0, 1))
+            # dateTaoken = datetime.date()
 
             # latitude = int(body["latitude"]),
             # longitude = body["longitude"], 
