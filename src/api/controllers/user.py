@@ -33,7 +33,7 @@ def create_user(body):
             phone = int(body["phone"]),
             country = body["country"], 
             birthdate = body["birthdate"],
-            userPhoto = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+            userPhoto = "https://static.vecteezy.com/system/resources/previews/005/544/718/large_2x/profile-icon-design-free-vector.jpg",
             is_active = True)
 
             # latitude = int(body["latitude"]),
