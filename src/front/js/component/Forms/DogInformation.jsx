@@ -1,7 +1,4 @@
-import React, { useEffect } from "react";
-
-// import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
+import React from "react";
 
 import ModalDelete from "../Modals/ModalDelete.jsx";
 
@@ -32,9 +29,6 @@ const DogInformation = (props) => {
                     Foto del perro:
                 </label>
                 <CloudinaryUpload idName={props.dogInfo.dogName+props.dogInfo.id} setEstado={actions.setDogPhoto} />
-                {/* <input className="form-control" type="file" id={`foto-perro${props.dogInfo.id}`}
-                    name="dogPhoto" value={userInput.dogPhoto}
-                    onChange={handleUserInput} /> */}
 
                 <div className="input-group">
                     <div className="col me-2">
@@ -235,8 +229,6 @@ const DogInformation = (props) => {
                         id={`microchip${props.dogInfo.id}`} aria-describedby="micro-chip"
                         name="microchip"
                         value={userInput.microchip}
-                        // placeholder="Microchip del perro"
-                        // onChange={handleUserInput}
                         disabled />
                 </div>
 
@@ -279,17 +271,6 @@ const DogInformation = (props) => {
 }
 
 export default DogInformation;
-
-
-{/* <DatePicker
-id={`cumple-perro${props.dogInfo.id}`} className="text-center form-control"
-placeholderText="04-2023"
-name="dogBirth"
-selected={userInput.Date}
-onChange={handleUserSelectDate}
-dateFormat="MM/yyyy"
-showMonthYearPicker
-/> */}
 
 
 // Checkbox.propTypes = {

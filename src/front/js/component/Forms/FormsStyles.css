@@ -28,15 +28,15 @@
 
 .glowing-register label:hover,
 .glowing-register:has(input:checked) label {
-  border-color: #3f51b5;
-  box-shadow: 0 0 10px #3f51b5, 0 0 20px #3f51b5,
-    0 0 30px #3f51b5;
+  border-color: #3F51B5;
+  box-shadow: 0 0 10px #3F51B5, 0 0 20px #3F51B5,
+    0 0 30px #3F51B5;
 }
 
 .activeGlow label {
-  border-color: #3f51b5;
-  box-shadow: 0 0 10px #3f51b5, 0 0 20px #3f51b5,
-    0 0 30px #3f51b5;
+  border-color: #3F51B5;
+  box-shadow: 0 0 10px #3F51B5, 0 0 20px #3F51B5,
+    0 0 30px #3F51B5;
 }
 
 .dog-size label {
@@ -58,9 +58,9 @@
 
 .dog-size label:hover,
 .dog-size:has(input:checked) label {
-  border-color: #3f51b5;
-  box-shadow: 0 0 10px #3f51b5, 0 0 20px #3f51b5,
-    0 0 30px #3f51b5;
+  border-color: #3F51B5;
+  box-shadow: 0 0 10px #3F51B5, 0 0 20px #3F51B5,
+    0 0 30px #3F51B5;
 }
 
 .dog-mtn input[type="checkbox"] {
@@ -89,9 +89,9 @@
 
 .dog-mtn label:hover,
 .dog-mtn:has(input:checked) label {
-  border-color: #3f51b5;
-  box-shadow: 0 0 10px #3f51b5, 0 0 20px #3f51b5,
-    0 0 30px #3f51b5;
+  border-color: #3F51B5;
+  box-shadow: 0 0 10px #3F51B5, 0 0 20px #3F51B5,
+    0 0 30px #3F51B5;
 }
 
 

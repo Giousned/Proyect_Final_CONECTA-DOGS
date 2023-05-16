@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+
 import { GET_Carers } from "../../services/USERFetchs.js";
 import CaregiverCard from "./CaregiverCard.jsx";
 import "./CaregiversStyles.css";
@@ -62,26 +62,3 @@ const CaregiversList = () => {
 };
 
 export default CaregiversList;
-
-
-
-{/* <CaregiverCard
-              imgSrc="https://cdn-3.expansion.mx/dims4/default/5e9d62b/2147483647/strip/true/crop/1080x1350+0+0/resize/1200x1500!/format/webp/quality/60/?url=https%3A%2F%2Fcdn-3.expansion.mx%2F3b%2Ff4%2F5df51d984f718eee1cfd09eecf87%2Fbelinda-se-inyecta-los-labios.jpeg"
-              title="Belinda"
-              description="Hola. Llevo 20 años teniendo perros y soy miembro de la Fundación Amigos del Perro."
-              province="Madrid"
-          /> */}
-
-{/* <CaregiverCard
-              imgSrc="https://cloudfront-us-east-1.images.arcpublishing.com/lanacionpy/J6VMOF2QJ5AIHNX7O57K3UHHSQ.jpg"
-              title="Benito"
-              description="¡Hola! Me llaman Bad Bunny, soy una persona joven que se declara amante de los animales."
-              province= "Benidorm"
-          /> */}
-
-{/* <CaregiverCard
-              imgSrc="https://i.pinimg.com/originals/d9/c0/90/d9c090ed153a9c290b607c5b1b541c7b.jpg"
-              title="Juan Luis"
-              description="Cuidamos a tu perro con cariño en un piso confortable . Somos una familia amante de los perros, listos para cuidarlos y mimarlos."
-              province= "Sevilla"
-          /> */}

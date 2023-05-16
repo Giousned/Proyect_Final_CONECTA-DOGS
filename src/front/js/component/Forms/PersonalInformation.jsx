@@ -1,6 +1,7 @@
 import React from "react";
 
 import useAppContext from "../../store/AppContext.js";
+
 import "./FormsStyles.css";
 
 
@@ -236,41 +237,3 @@ const PersonalInformation = (props) => {
 }
 
 export default PersonalInformation;
-
-
-
-{/* <div className="my-3">
-    <h5>¿Cómo quieres registrarte?</h5>
-    <p>Elige una opción</p>
-    <div className="row g-2">
-        <div className="col-md">
-            <div className="form-floating">
-                <div className={"glowing-register" + ((userInput.radioOwnerCarer == "owner") ? " activeGlow" : "")}>
-                    <input type="radio" id="owner"
-                        name="radioOwnerCarer" value="owner"
-                        onChange={actions.handleUserInput}
-                        checked={userInput.radioOwnerCarer == "owner"} />
-                    <label htmlFor="owner">Propietario</label>
-                </div>
-            </div>
-        </div>
-        <div className="col-md">
-            <div className="form-floating">
-                <div className={"glowing-register" + ((userInput.radioOwnerCarer == "carer") ? " activeGlow" : "")}>
-                    <input type="radio" id="carer"
-                        name="radioOwnerCarer" value="carer"
-                        onChange={actions.handleUserInput}
-                        checked={userInput.radioOwnerCarer == "carer"} />
-                    <label htmlFor="carer">Cuidador</label>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> */}
-
-
-// Checkbox.propTypes = {
-// value: PropTypes.bool,
-// actions.handleClick: PropTypes.func,
-// label: PropTypes.string,
-// };

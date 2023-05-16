@@ -1,7 +1,7 @@
 import React from "react";
 import { createContext, useContext, useState, useEffect } from "react";
 
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { POST_Login, GET_Token } from "../services/LOGINFetchs.js";
 import { UPDATE_Me_User } from "../services/USERFetchs.js";
@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }) => {
     if (!sessionStorage.getItem("jwt-token")) {
 
       navigate("/");
-      actionsToast.handleShownToast({ code: 401, msg: "¡El token ha expirado, se le ha redirigido a la página de inicio!" });
+      actionsToast.handleShownToast({ code: 401, msg: "¡El token ha expirado o no existe, se le ha redirigido a la página de inicio!" });
       
       return;
     }

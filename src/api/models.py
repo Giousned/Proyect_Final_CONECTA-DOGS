@@ -19,13 +19,15 @@ class User(db.Model):
     aboutMe = db.Column(db.String(300), unique=False, nullable=True)
     birthdate = db.Column(db.String(20), unique=False, nullable=False)
     is_active = db.Column(db.Boolean, unique=False, nullable=False)
-    userPhoto = db.Column(db.String(500), unique=False, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
+    userPhoto = db.Column(db.String(500), unique=False, nullable=False)     # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
+
     
     # temporalToken = db.Column(db.String(500), unique=False, nullable=False)
     # dateToken = db.Column(db.Date, unique=False, nullable=False)
 
     # latitude = db.Column(db.String(40), unique=False, nullable=False)
     # longitude = db.Column(db.String(40), unique=False, nullable=False)
+
 
     dogs = db.relationship("Dog", back_populates="user")
 
@@ -99,7 +101,7 @@ class Dog(db.Model):
     microchip = db.Column(db.BigInteger, unique=True, nullable=False)
     dogActivity = db.Column(db.String(20), unique=False, nullable=True)
     observations = db.Column(db.String(500), unique=False, nullable=True)
-    dogPhoto = db.Column(db.String(500), unique=False, nullable=True)         # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
+    dogPhoto = db.Column(db.String(500), unique=False, nullable=False)         # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
 
     user_id = db.Column(db.Integer, db.ForeignKey("User.id"))
 
@@ -202,10 +204,10 @@ books_dogs = db.Table(
 class Books(db.Model):
     __tablename__ = "Books"
     id = db.Column(db.Integer, primary_key=True)
-    fechaEntrega = db.Column(db.String, unique=False, nullable=False)
-    fechaRecogida = db.Column(db.String, unique=False, nullable=False)
-    horaEntrega = db.Column(db.String, unique=False, nullable=False)
-    horaRecogida = db.Column(db.String, unique=False, nullable=False)
+    fechaEntrega = db.Column(db.String(50), unique=False, nullable=False)
+    fechaRecogida = db.Column(db.String(50), unique=False, nullable=False)
+    horaEntrega = db.Column(db.String(50), unique=False, nullable=False)
+    horaRecogida = db.Column(db.String(50), unique=False, nullable=False)
     mensajeACuidador = db.Column(db.String(500), unique=False, nullable=True)
     status = db.Column(db.String(20), unique=False, nullable=False, default="Pendiente")
 

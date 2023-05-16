@@ -1,8 +1,11 @@
 import React from "react";
-import { Link, animateScroll as scroll } from "react-scroll";
+
+import { Link } from "react-router-dom";
+
+import BlogPost from "./BlogPost.jsx";
 
 import "../Blog/BlogStyles.css";
-import BlogPost from "./BlogPost.jsx";
+
 
 const blogPosts = [
   {

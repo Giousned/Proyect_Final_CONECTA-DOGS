@@ -6,7 +6,7 @@ from api.models import db
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from api.utils import generate_sitemap, APIException
-from api.models import User, Services, Tariffs, Dog, Books                                       # from models import Person
+from api.models import User, Services, Tariffs, Dog, Books
 from api.controllers.user import create_user, get_users, get_user, get_carers, update_user, delete_user, update_me_user
 from api.controllers.dog import create_dog, get_dogs, get_dog, update_dog, delete_dog
 from api.controllers.service import create_service, get_services, get_service, update_service, delete_service
@@ -246,7 +246,7 @@ def signup_tariff():
 
         body = request.json
 
-        # Rellenar la tabla de la DB, con el registro de 1 Servicio nuevo por parte de los "cuidadores"
+        # Rellenar la tabla de la DB, con el registro de 1 Tarifa nueva por parte de los "cuidadores"
         tariff_response = create_tariff(body)
         if tariff_response["code"] != 200:
             return jsonify(tariff_response)
@@ -496,30 +496,9 @@ def config_services_examples():
         return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
 
 
-# # RUTA PARA CREAR LOS 3 SERVICIOS EN LA BASE DE DATOS INICIAL CADA VEZ
-# @api.route("/config-install", methods=["GET"])
-# def config_services():
-
-#     try:
-
-#         # Rellenar la tabla de la DB, con el registro de los Servicios
-#         config_response = create_service()
-
-#         if config_response["code"] != 200:
-#             return jsonify(config_response)
-
-#         return jsonify(config_response)
-
-#     except Exception as error:
-#         print(error)
-#         return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
-
-
-
 
 # RUTA PARA ENVIAR EMAILS DE CONTACTO AL CORREO ELECTRONICO DE NUESTRA WEB
-@api.route("/emails/contact", methods=["POST"])
-# @jwt_required()
+@api.route("/emails-contact", methods=["POST"])
 def post_contact_email():
 
     try:
@@ -539,8 +518,8 @@ def post_contact_email():
 
 
 # RUTA PARA ENVIAR EMAILS A LOS CUIDADORES A LA HORA DE HACER RESERVAS
-@api.route("/emails/carer/<int:id>", methods=["POST"])
-# @jwt_required()
+@api.route("/emails-contact/<int:id>", methods=["POST"])
+@jwt_required()
 def post_carers_email(id):
 
     try:
@@ -560,6 +539,31 @@ def post_carers_email(id):
         return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
 
 
+
+
+
+# return jsonify({"id": user.id, "email": user.email }), 200
+# HARCODEANDO PRUEBA FACIL DE EMAIL
+# if email != "test" or password != "test":
+#     return jsonify({"msg": "Bad email or password"}), 401
+
+# # RUTA PARA CREAR LOS 3 SERVICIOS EN LA BASE DE DATOS INICIAL CADA VEZ
+# @api.route("/config-install", methods=["GET"])
+# def config_services():
+
+#     try:
+
+#         # Rellenar la tabla de la DB, con el registro de los Servicios
+#         config_response = create_service()
+
+#         if config_response["code"] != 200:
+#             return jsonify(config_response)
+
+#         return jsonify(config_response)
+
+#     except Exception as error:
+#         print(error)
+#         return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
 
 
 # EJEMPLO DE PRUEBA

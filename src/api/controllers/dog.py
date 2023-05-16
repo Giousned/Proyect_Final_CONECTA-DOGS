@@ -50,7 +50,7 @@ def get_dogs():
 
     try:
     
-        # Obtener usuarios de la base de datos
+        # Obtener perros de la base de datos
         query = db.select(Dog).order_by(Dog.id)
         dogs = db.session.execute(query).scalars()
         
@@ -68,7 +68,7 @@ def get_dog(id):
 
     try:
     
-        # Obtener usuario de la base de datos
+        # Obtener perro de la base de datos
         dog = db.get_or_404(Dog, id)
         # dog = db.session.execute(db.select(dog).filter_by(id)).scalars().one()
         
@@ -83,7 +83,7 @@ def update_dog(body, id):
 
     try:
     
-        # Obtener usuario de la base de datos
+        # Obtener perro de la base de datos
         dog = db.get_or_404(Dog, id)
 
         claves_dog = body.keys()
@@ -118,7 +118,7 @@ def delete_dog(id):
 
     try:
     
-        # Obtener usuarios de la base de datos
+        # Obtener perros de la base de datos
         dog = db.get_or_404(Dog, id)
 
         db.session.delete(dog)

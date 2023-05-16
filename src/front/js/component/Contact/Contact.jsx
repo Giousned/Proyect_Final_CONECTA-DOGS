@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import useUserInput from "../../hooks/useUserInput.js";
 import useToastsContext from "../../store/ToastsContext.js";
@@ -10,26 +10,27 @@ import "../Contact/ContactStyles.css";
 
 const Contact = () => {
 
-  const { userInput, handleUserInput, handleUserCheck } = useUserInput("");
+  const { userInput, handleUserInput } = useUserInput("");
   const { storeToast, actionsToast } = useToastsContext();
 
+  const [ vista, setVista ] = useState("")
 
   const handleSubmitSendEmail = (e) => {
     e.preventDefault();
 
     POST_Email_Contact(userInput)
       .then((data) => {
-        console.log(data)
         actionsToast.handleShownToast(data);
-      })
+        setVista("hide")
+      });
 
   }
 
   return (
     <>
       <div
-        className="modal fade"
-        id="exampleModal"
+        className={`modal fade ${vista}`}
+        id="contactEmailModal"
         tabIndex="-1"
         aria-labelledby="contactForm"
         aria-hidden="true"
@@ -48,7 +49,7 @@ const Contact = () => {
               ></button>
             </div>
 
-            <form id="contact" className="contact" action="" method="post">
+            <form id="contact" className="contact">
               <h3>Formulario de Contacto</h3>
               <h4>
                 Póngase en contacto con nosotros hoy mismo y le responderemos en
@@ -91,9 +92,7 @@ const Contact = () => {
                 <div className="container text-center m-3">
                   <button
                     type="submit"
-                    name="submit"
                     className="action-button shadow animate blue"
-                    data-submit="...Sending"
                     onClick={handleSubmitSendEmail}
                   >
                     Enviar
@@ -111,7 +110,5 @@ const Contact = () => {
 export default Contact;
 
 
+// $('#contactEmailModal').modal('hide');
 
-{/* <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      CONTACTO
-  </button> */}

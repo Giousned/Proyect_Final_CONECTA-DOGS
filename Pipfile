@@ -20,7 +20,8 @@ flask-admin = "*"
 typing-extensions = "*"
 flask-jwt-extended = "*"
 flask-basicauth = "*"
-flask-mail = "*"
+pymysql = "*"
+
 
 [requires]
 python_version = "3.10"

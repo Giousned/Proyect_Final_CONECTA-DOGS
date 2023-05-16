@@ -138,9 +138,3 @@ const MyDog = () => {
 export default MyDog;
 
 
-
-{
-  /* <DogCardInformation
-image="https://img.freepik.com/fotos-premium/perrito-lindo-pequeno-posando-alegre-aislado-gris_155003-42660.jpg"
-/> */
-}

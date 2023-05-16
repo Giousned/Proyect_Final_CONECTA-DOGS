@@ -5,7 +5,7 @@ from flask_jwt_extended import get_jwt_identity
 def install_examples():
     try:
 
-        # Rellenar la tabla de la DB, con el registro de Todo
+        # Rellenar la tabla de la DB, con algunos registros de prueba/inicio de Todo
 
         # CREANDO SERVICIOS
         config_response = create_service()

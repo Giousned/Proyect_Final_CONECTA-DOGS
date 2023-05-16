@@ -8,7 +8,9 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "webpack-dev-server --config webpack.dev.js --port 3000",
-		"build": "webpack --config webpack.prod.js"
+		"build": "webpack --config webpack.prod.js",
+		"prepare": "pip install flask && pip install flask_admin && pip install flask_cors && pip install flask_jwt_extended && pip install flask_migrate && pip install flask_sqlalchemy && pip install flask_swagger && pip install pymysql && pip install Flask-BasicAuth",
+		"server": "python src/app.py"
 	},
 	"author": {
 		"name": "Alejandro Sanchez",
@@ -75,9 +77,7 @@
 	"dependencies": {
 		"prop-types": "^15.6.1",
 		"react": "^16.8.4",
-		"react-datepicker": "^4.11.0",
 		"react-dom": "^16.8.4",
-		"react-hot-toast": "^2.4.1",
 		"react-polyfills": "0.0.1",
 		"react-router-dom": "^6.3.0",
 		"react-scroll": "^1.8.9",
