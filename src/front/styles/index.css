@@ -29,7 +29,6 @@ h1 {
   border-radius: 3px;
   color: white;
   text-decoration: none;
-  /* width: 20rem; */
 }
 
 .blue {
@@ -100,11 +99,7 @@ h1 {
   content: attr(data-notifications);
   background: #3f51b5;
   border-radius: 50px;
-  /* display: inline-block; */
   padding: 0.3em;
   margin: 0.3em;
   color: #f2f2f2;
-  /* position: absolute; */
-  /* right: -5px; */
-  /* top: -20px; */
 }
