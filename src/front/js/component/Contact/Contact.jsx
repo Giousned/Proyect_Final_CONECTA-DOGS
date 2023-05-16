@@ -1,6 +1,9 @@
 import React from "react";
 
 import useUserInput from "../../hooks/useUserInput.js";
+import useToastsContext from "../../store/ToastsContext.js";
+
+import { POST_Email_Contact } from "../../services/EMAILFetchs.js";
 
 import Logo from "../../../img/conectadogs-logo.black.png";
 import "../Contact/ContactStyles.css";
@@ -8,12 +11,22 @@ import "../Contact/ContactStyles.css";
 const Contact = () => {
 
   const { userInput, handleUserInput, handleUserCheck } = useUserInput("");
+  const { storeToast, actionsToast } = useToastsContext();
+
+
+  const handleSubmitSendEmail = (e) => {
+    e.preventDefault();
+
+    POST_Email_Contact(userInput)
+      .then((data) => {
+        console.log(data)
+        actionsToast.handleShownToast(data);
+      })
+
+  }
 
   return (
     <>
-      {/* <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                CONTACTO
-            </button> */}
       <div
         className="modal fade"
         id="exampleModal"
@@ -81,6 +94,7 @@ const Contact = () => {
                     name="submit"
                     className="action-button shadow animate blue"
                     data-submit="...Sending"
+                    onClick={handleSubmitSendEmail}
                   >
                     Enviar
                   </button>
@@ -95,3 +109,9 @@ const Contact = () => {
 };
 
 export default Contact;
+
+
+
+{/* <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      CONTACTO
+  </button> */}
