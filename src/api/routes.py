@@ -476,14 +476,6 @@ def protected():
     return jsonify({ "code": 200, "msg": "Inicio de sesión correcto", "token": access_token, "user": user.serialize() }), 200
 
 
-# return jsonify({"id": user.id, "email": user.email }), 200
-# HARCODEANDO PRUEBA FACIL DE EMAIL
-# if email != "test" or password != "test":
-#     return jsonify({"msg": "Bad email or password"}), 401
-
-
-
-
 # RUTA PARA CREAR LOS 3 SERVICIOS + USUARIOS/PERROS/TARIFAS EN LA BASE DE DATOS INICIAL CADA VEZ
 @api.route("/install", methods=["GET"])
 def config_services_examples():
@@ -501,25 +493,6 @@ def config_services_examples():
     except Exception as error:
         print(error)
         return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
-
-
-# # RUTA PARA CREAR LOS 3 SERVICIOS EN LA BASE DE DATOS INICIAL CADA VEZ
-# @api.route("/config-install", methods=["GET"])
-# def config_services():
-
-#     try:
-
-#         # Rellenar la tabla de la DB, con el registro de los Servicios
-#         config_response = create_service()
-
-#         if config_response["code"] != 200:
-#             return jsonify(config_response)
-
-#         return jsonify(config_response)
-
-#     except Exception as error:
-#         print(error)
-#         return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
 
 
 # RUTA PARA ENVIAR EMAILS DE CONTACTO AL CORREO ELECTRONICO DE NUESTRA WEB
@@ -565,6 +538,30 @@ def post_carers_email(id):
 
 
 
+
+
+# return jsonify({"id": user.id, "email": user.email }), 200
+# HARCODEANDO PRUEBA FACIL DE EMAIL
+# if email != "test" or password != "test":
+#     return jsonify({"msg": "Bad email or password"}), 401
+
+# # RUTA PARA CREAR LOS 3 SERVICIOS EN LA BASE DE DATOS INICIAL CADA VEZ
+# @api.route("/config-install", methods=["GET"])
+# def config_services():
+
+#     try:
+
+#         # Rellenar la tabla de la DB, con el registro de los Servicios
+#         config_response = create_service()
+
+#         if config_response["code"] != 200:
+#             return jsonify(config_response)
+
+#         return jsonify(config_response)
+
+#     except Exception as error:
+#         print(error)
+#         return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
 
 
 # EJEMPLO DE PRUEBA
