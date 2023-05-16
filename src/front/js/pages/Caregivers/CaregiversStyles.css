@@ -22,4 +22,5 @@
 
 .caregivers-scroll {
     overflow-y: scroll;
+    height: 650px;
 }
