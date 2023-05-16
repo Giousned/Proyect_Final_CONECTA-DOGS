@@ -1,7 +1,7 @@
 import smtplib
+from flask_jwt_extended import get_jwt_identity
 
 # from api.models import db
-# from flask_jwt_extended import get_jwt_identity
 
 
 def send_contact_email(body):
@@ -10,11 +10,15 @@ def send_contact_email(body):
 
         claves_email = body.keys()
 
-        # body["email"]
-        # body["asunto"]
+        # sub_token = get_jwt_identity()
+        # user_id = sub_token["id"]
+
+        # body["emailContacto"]
+        # body["nombreContacto"]
+
+        print(body)
     
-        # Enviar emails de contacto
- 
+        # ENVIAR EMAIL DE CONTACTO
         # creates SMTP session
         s = smtplib.SMTP('smtp.gmail.com', 587)
         
@@ -28,20 +32,22 @@ def send_contact_email(body):
         message = body["mensajeContacto"]
         
         # sending the mail
-        s.sendmail("sender_email_id", "receiver_email_id", message)
+        s.sendmail(body["emailContacto"], "conectadogs.gns@gmail.com", message)             # s.sendmail("sender_email_id", "receiver_email_id", message)
 
-        subject = "Formulario de Contacto"
-        body = body["mensajeContacto"]
-        sender = "sender@gmail.com"
-        recipients = ["recipient1@gmail.com", "recipient2@gmail.com"]
-        password = "password"
+        # OTRA FORMA
+        # subject = "Formulario de Contacto"
+        # body = body["mensajeContacto"]
+        # sender = "sender@gmail.com"
+        # recipients = ["recipient1@gmail.com", "recipient2@gmail.com"]
+        # password = "password"
 
-        send_email(subject, body, sender, recipients, password)
+        # send_email(subject, body, sender, recipients, password)
         
+
+
         # terminating the session
         s.quit()
         
-
 
         return {"code": 200, "msg": "Email de contacto enviado correctamente"}
 
@@ -55,6 +61,9 @@ def send_carer_email(body, id):
     try:
         
         claves_email = body.keys()
+
+        sub_token = get_jwt_identity()
+        user_id = sub_token["id"]
 
         # Enviar emails a los cuidadores
 

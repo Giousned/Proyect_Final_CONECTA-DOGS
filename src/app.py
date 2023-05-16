@@ -31,7 +31,7 @@ app.config['BASIC_AUTH_PASSWORD'] = os.getenv("BASIC_AUTH_PASS")
 # add flask-basicauth to flask app
 basic_auth = BasicAuth(app)
 
-app.config['BASIC_AUTH_FORCE'] = True
+# app.config['BASIC_AUTH_FORCE'] = True
 
 # Database Configuration
 db_url = os.getenv("DATABASE_URL")
@@ -62,7 +62,7 @@ jwt = JWTManager(app)                                       # SE PONE EN ENV PAR
 CORS(app)
 
 # add the admin
-setup_admin(app)
+# setup_admin(app)
 
 # add the admin
 setup_commands(app)
@@ -83,8 +83,15 @@ def sitemap():
     return send_from_directory(static_file_dir, 'index.html')
 
 
+# PROTEGIENDO SOLO UNA RUTA
+@app.route('/admin/')
+@basic_auth.required
+def secret_view():
+    setup_admin(app)
+
+
 # # PROTEGIENDO SOLO UNA RUTA
-# @app.route('/secret')
+# @app.route('/admin')
 # @basic_auth.required
 # def secret_view():
 #     return render_template('index.html')
