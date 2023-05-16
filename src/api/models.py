@@ -189,10 +189,10 @@ books_dogs = db.Table(
 class Books(db.Model):
     __tablename__ = "Books"
     id = db.Column(db.Integer, primary_key=True)
-    fechaEntrega = db.Column(db.String, unique=False, nullable=False)
-    fechaRecogida = db.Column(db.String, unique=False, nullable=False)
-    horaEntrega = db.Column(db.String, unique=False, nullable=False)
-    horaRecogida = db.Column(db.String, unique=False, nullable=False)
+    fechaEntrega = db.Column(db.String(50), unique=False, nullable=False)
+    fechaRecogida = db.Column(db.String(50), unique=False, nullable=False)
+    horaEntrega = db.Column(db.String(50), unique=False, nullable=False)
+    horaRecogida = db.Column(db.String(50), unique=False, nullable=False)
     mensajeACuidador = db.Column(db.String(500), unique=False, nullable=True)
     status = db.Column(db.String(20), unique=False, nullable=False, default="Pendiente")
 

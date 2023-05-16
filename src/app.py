@@ -25,15 +25,15 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 
-# set admin username and password
-app.config['BASIC_AUTH_USERNAME'] = os.getenv("BASIC_AUTH_USER")
-app.config['BASIC_AUTH_PASSWORD'] = os.getenv("BASIC_AUTH_PASS")
+# # set admin username and password
+# app.config['BASIC_AUTH_USERNAME'] = os.getenv("BASIC_AUTH_USER")
+# app.config['BASIC_AUTH_PASSWORD'] = os.getenv("BASIC_AUTH_PASS")
 
-# add flask-basicauth to flask app
-basic_auth = BasicAuth(app)
+# # add flask-basicauth to flask app
+# basic_auth = BasicAuth(app)
 
-# PARA PROTEGER TODA LA WEB
-# app.config['BASIC_AUTH_FORCE'] = True
+# # PARA PROTEGER TODA LA WEB
+# # app.config['BASIC_AUTH_FORCE'] = True
 
 
 # Database Configuration
@@ -42,7 +42,7 @@ db_url = os.getenv("DATABASE_URL")
 # if db_url is not None:
 #     app.config['SQLALCHEMY_DATABASE_URI'] = db_url.replace("postgres://", "postgresql://")
 # else:
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///test.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = db_url
     # app.config['SQLALCHEMY_CHARSET'] = 'utf8mb4'
     # mysql://user:pass@localhost/db?charset=utf8
     # sqlite:////tmp/test.db        # ORIGINAL CON EL BOILERPLATE
