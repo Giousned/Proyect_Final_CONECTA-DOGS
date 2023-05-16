@@ -18,20 +18,19 @@ from api.commands import setup_commands
 
 
 
-
 ENV = os.getenv("FLASK_ENV")
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
-# set admin username and password
-app.config['BASIC_AUTH_USERNAME'] = os.getenv("BASIC_AUTH_USER")
-app.config['BASIC_AUTH_PASSWORD'] = os.getenv("BASIC_AUTH_PASS")
+# # set admin username and password
+# app.config['BASIC_AUTH_USERNAME'] = os.getenv("BASIC_AUTH_USER")
+# app.config['BASIC_AUTH_PASSWORD'] = os.getenv("BASIC_AUTH_PASS")
 
-# add flask-basicauth to flask app
-basic_auth = BasicAuth(app)
+# # add flask-basicauth to flask app
+# basic_auth = BasicAuth(app)
 
-# app.config['BASIC_AUTH_FORCE'] = True
+# # app.config['BASIC_AUTH_FORCE'] = True
 
 # Database Configuration
 db_url = os.getenv("DATABASE_URL")
@@ -62,7 +61,7 @@ jwt = JWTManager(app)                                       # SE PONE EN ENV PAR
 CORS(app)
 
 # add the admin
-# setup_admin(app)
+setup_admin(app)
 
 # add the admin
 setup_commands(app)
@@ -83,17 +82,12 @@ def sitemap():
     return send_from_directory(static_file_dir, 'index.html')
 
 
-# PROTEGIENDO SOLO UNA RUTA
-@app.route('/admin/')
-@basic_auth.required
-def secret_view():
-    setup_admin(app)
-
-
 # # PROTEGIENDO SOLO UNA RUTA
-# @app.route('/admin')
+# @app.route('/admin/')
 # @basic_auth.required
 # def secret_view():
+#     setup_admin(app)
+
 #     return render_template('index.html')
 
 
