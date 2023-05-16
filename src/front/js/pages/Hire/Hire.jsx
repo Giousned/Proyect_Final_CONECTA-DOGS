@@ -137,13 +137,11 @@ const Hire = () => {
                     type="time"
                     id="hora-entrega"
                     name="horaEntrega"
-                    // min="07:00" max="23:00"
                     value={userInput.horaEntrega}
                     onChange={handleUserInput}
                     required
                   />
                   <small>&nbsp;Elige una hora para la entrega</small>{" "}
-                  {/* entre las 7:00 y las 23:00 */}
                 </div>
 
                 <div className="col-6 ms-2">
@@ -167,7 +165,6 @@ const Hire = () => {
                     type="time"
                     id="hora-recogida"
                     name="horaRecogida"
-                    // min="07:00" max="23:00"
                     value={userInput.horaRecogida}
                     onChange={handleUserInput}
                     required
@@ -292,31 +289,3 @@ const Hire = () => {
 
 export default Hire;
 
-// const newArrayBooks = [];
-// const newObjBooks = { books: newArrayBooks };
-
-// if (userInput.tariffId == "guarderiaDia") {
-//   newArrayBooks.push({ carerId: 1, serviceId: 1, price: 15 });
-// }
-
-// if (userInput.tariffId == "paseo") {
-//   newArrayBooks.push({ carerId: 1, serviceId: 2, price: 10 });
-// }
-
-// if (userInput.tariffId == "alojamientoNoche") {
-//   newArrayBooks.push({ carerId: 1, serviceId: 3, price: 5 });
-// }
-
-// <div className="col-md">
-// <div className="form-floating">
-//     <div className="glowing-register m-2">
-//         <input type="checkbox" id="perro2"
-//             name="perro" value="perro2" />
-//         <label htmlFor="perro2">
-//             <img src="https://cdn.pixabay.com/photo/2019/12/31/23/20/puppy-4732766_960_720.jpg"
-//                 className="img-fluid" />
-//         </label>
-//         <p className="text-center">Perro 2</p>
-//     </div>
-// </div>
-// </div>

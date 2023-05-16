@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import useAuthContext from "../../store/AuthContext";
 import useAppContext from "../../store/AppContext.js";
+
 import Logo from "../../../img/conectadogs-logo-white.png";
 import "../NavBar/NavBarStyles.css";
 
@@ -34,21 +35,6 @@ const NavBar = () => {
                   </Link>
                 ) : null}
               </li>
-              {/* <li className="nav-item">
-                {storeAuth.userLog.token ? (
-                  <Link
-                    to="/"
-                    className="nav-link"
-                    onClick={actionsAuth.handleLogOut}
-                  >
-                    LOGOUT
-                  </Link>
-                ) : (
-                  <Link to="/log-in-form" className="nav-link">
-                    LOGIN
-                  </Link>
-                )}
-              </li> */}
               <li className="nav-item">
                 <button type="button" className="btn text-light me-2"
                   data-bs-toggle="modal" data-bs-target="#exampleModal">

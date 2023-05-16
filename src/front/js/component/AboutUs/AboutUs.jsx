@@ -1,9 +1,11 @@
 import React from "react";
 
-import "../AboutUs/AboutUsStyles.css";
 import AboutUsSection from "./AboutUsSection.jsx";
 import AboutUsItem from "./AboutUsItem.jsx";
 import Benefits from "./Benefits.jsx";
+
+import "../AboutUs/AboutUsStyles.css";
+
 
 const AboutUs = () => {
     return (

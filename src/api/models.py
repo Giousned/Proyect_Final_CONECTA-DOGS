@@ -20,8 +20,13 @@ class User(db.Model):
     birthdate = db.Column(db.String(20), unique=False, nullable=False)
     is_active = db.Column(db.Boolean, unique=False, nullable=False)
     userPhoto = db.Column(db.String(500), unique=False, nullable=True)     # USAR API CLOUDINARY, HACER LLAMADA Y GUARDARSE LA URL DEVUELTA QUE ES LO QUE SE SUBE A LA BASE DE DATOS
+    
+    # temporalToken = db.Column(db.String(500), unique=False, nullable=False)
+    # dateToken = db.Column(db.Date, unique=False, nullable=False)
+
     # latitude = db.Column(db.String(40), unique=False, nullable=False)
     # longitude = db.Column(db.String(40), unique=False, nullable=False)
+
 
     dogs = db.relationship("Dog", back_populates="user")
 
@@ -69,6 +74,15 @@ class User(db.Model):
             "aboutMe": self.aboutMe,
             "userPhoto": self.userPhoto,
         }
+
+    # def serialize_register(self):
+    #     return {
+    #         "id": self.id,
+    #         "email": self.email,
+    #         "name": self.name,
+    #         "temporalToken": self.temporalToken,
+    #         "dateToken": self.dateToken,
+    #     }
 
 
 class Dog(db.Model):

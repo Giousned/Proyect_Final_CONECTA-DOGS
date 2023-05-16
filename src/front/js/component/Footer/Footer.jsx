@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "../Footer/FooterStyles.css";
 import Logo from "../../../img/conectadogs-logo-white.png";
 
+import "../Footer/FooterStyles.css";
+
 const Footer = () => {
+  
   return (
     <section className="contact bg-dark py-4">
       <footer className="bg-dark text-center text-lg-start text-white">

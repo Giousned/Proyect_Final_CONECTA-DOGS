@@ -1,6 +1,8 @@
 import React from "react";
-import "../Services/ServicesStyles.css";
+
 import ServiceCard from "./ServiceCard.jsx";
+
+import "../Services/ServicesStyles.css";
 
 const Services = () => {
     return (

@@ -7,13 +7,11 @@ import "../Contact/ContactStyles.css";
 
 const Contact = () => {
 
-  const { userInput, handleUserInput, handleUserCheck } = useUserInput("");
+  const { userInput, handleUserInput } = useUserInput("");
 
   return (
     <>
-      {/* <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                CONTACTO
-            </button> */}
+     
       <div
         className="modal fade"
         id="exampleModal"
@@ -95,3 +93,8 @@ const Contact = () => {
 };
 
 export default Contact;
+
+
+ {/* <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                CONTACTO
+            </button> */}

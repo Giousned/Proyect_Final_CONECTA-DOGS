@@ -1,8 +1,5 @@
 import React from "react";
 
-// import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
-
 import useAppContext from "../../store/AppContext.js";
 import useUserInput from "../../hooks/useUserInput.js";
 
@@ -31,10 +28,6 @@ const DogInformationRegister = () => {
                     Foto del perro
                 </label>
                 <CloudinaryUpload idName="0DogReg" setEstado={actions.setDogPhoto} />
-
-                {/* <input className="form-control" type="file" id="foto-perro"
-                    name="dogPhoto" value={userInput.dogPhoto}
-                    onChange={handleUserInput} /> */}
 
                 <div className="input-group">
                     <div className="col me-2">
@@ -70,15 +63,6 @@ const DogInformationRegister = () => {
                             value={userInput.dogBirth}
                             onChange={handleUserInput}
                             required />
-                        {/* <DatePicker
-                            id="cumple-perro" className="text-center form-control"
-                            placeholderText="04-2023"
-                            name="dogBirth"
-                            selected={userInput.Date}
-                            onChange={handleUserSelectDate}
-                            dateFormat="MM/yyyy"
-                            showMonthYearPicker
-                        /> */}
                     </div>
 
                     <div className="col ms-2">

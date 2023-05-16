@@ -1,6 +1,6 @@
 import React from "react";
 
-const ServiceCard = ({ imgSrc, title, description, btnText }) => {
+const ServiceCard = ({ imgSrc, title, description }) => {
     return (
         <div className="col-12 col-md-4">
             <section className="mx-auto my-5 custom-card">
@@ -22,7 +22,3 @@ const ServiceCard = ({ imgSrc, title, description, btnText }) => {
 
 export default ServiceCard;
 
-
-{/* <a href="#" className="btn btn-primary">
-{btnText}
-</a> */}

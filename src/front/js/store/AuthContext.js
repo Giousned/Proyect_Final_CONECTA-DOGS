@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }) => {
     if (!sessionStorage.getItem("jwt-token")) {
 
       navigate("/");
-      actionsToast.handleShownToast({ code: 401, msg: "¡El token ha expirado, se le ha redirigido a la página de inicio!" });
+      actionsToast.handleShownToast({ code: 401, msg: "¡El token ha expirado o no existe, se le ha redirigido a la página de inicio!" });
       
       return;
     }

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
+
 import { Link, useParams } from "react-router-dom";
+
 import { GET_User } from "../../services/USERFetchs.js";
+
 import "./CaregiversStyles.css";
 
 const CaregiverInfo = () => {

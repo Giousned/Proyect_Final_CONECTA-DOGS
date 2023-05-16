@@ -74,13 +74,11 @@ def get_users():
     # all_users = User.query.all()
     # # planet_serialized = [planet.serialize() for planet in all_planets] array comprehension
     # user_serialized = list(map(lambda user: user.serialize(), all_users))
-    # response = {
     #     "result": {
     #         "planets": planet_serialized,
-    #         "user": user_serialized
-    #     }
-    # }
-    # return response, 200
+    #         "user": user_serialized }
+
+
 
 
 def get_carers():
@@ -204,21 +202,4 @@ def delete_user(id):
 
 
 
-
-
 # selected_member = [member for member in users if member["id"] == id]
-# try:       
-#         new_member = {     
-#         "id": member.get("id",self._generateId()),
-#         "first_name": member["first_name"],
-#         "last_name": self.last_name,
-#         "age": member["age"],
-#         "lucky_numbers": member["lucky_numbers"]
-#         }
-
-#         self._members.append(new_member)
-
-#         return {"code": 200, "mensaje": "Todo ha ido bien", "members": self._members}
-
-#     except:
-#         return {"code": 500}  

@@ -13,6 +13,7 @@ from api.controllers.service import create_service, get_services, get_service, u
 from api.controllers.tarif import create_tariff, get_tariffs, get_tariff, update_tariff, delete_tariff
 from api.controllers.book import create_book, get_books, get_book, update_book, delete_book, acepted_book, rejected_book
 from api.controllers.install import install_examples
+from api.controllers.email import send_contact_email, send_carer_email
 
 
 
@@ -244,7 +245,7 @@ def signup_tariff():
 
         body = request.json
 
-        # Rellenar la tabla de la DB, con el registro de 1 Servicio nuevo por parte de los "cuidadores"
+        # Rellenar la tabla de la DB, con el registro de 1 Tarifa nueva por parte de los "cuidadores"
         tariff_response = create_tariff(body)
         if tariff_response["code"] != 200:
             return jsonify(tariff_response)
@@ -519,6 +520,49 @@ def config_services_examples():
 #     except Exception as error:
 #         print(error)
 #         return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
+
+
+# RUTA PARA ENVIAR EMAILS DE CONTACTO AL CORREO ELECTRONICO DE NUESTRA WEB
+@api.route("/emails-contact", methods=["POST"])
+def post_contact_email():
+
+    try:
+
+        body = request.json
+
+        email_response = send_contact_email(body)
+
+        if email_response["code"] != 200:
+            return jsonify(email_response)
+
+        return jsonify(email_response)
+
+    except Exception as error:
+        print(error)
+        return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
+
+
+# RUTA PARA ENVIAR EMAILS A LOS CUIDADORES A LA HORA DE HACER RESERVAS
+@api.route("/emails-contact/<int:id>", methods=["POST"])
+@jwt_required()
+def post_carers_email(id):
+
+    try:
+
+        body = request.json
+
+        # Rellenar la tabla de la DB, con el registro de Todo
+        email_carer_response = send_carer_email(body, id)
+
+        if email_carer_response["code"] != 200:
+            return jsonify(email_carer_response)
+
+        return jsonify(email_carer_response)
+
+    except Exception as error:
+        print(error)
+        return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
+
 
 
 

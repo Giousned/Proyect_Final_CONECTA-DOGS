@@ -2,19 +2,9 @@ import React from "react";
 
 import useAppContext from "../../../store/AppContext.js";
 
-import ServiceCard from "../../../component/Services/ServiceCard.jsx";
 
 const ServicesRates = () => {
   const { store, actions } = useAppContext();
-
-  const handleNumDogsChange = (event) => {
-    const numDogs = Number(event.target.value);
-    if (numDogs >= 11) {
-      alert("Número máximo de perros admitidos por cuidador es de 10");
-      return;
-    }
-    actions.handleUserInput(event);
-  };
 
   return (
     <>
@@ -22,15 +12,6 @@ const ServicesRates = () => {
         Si quieres convertirte en cuidador activa los servicios y tarifas que
         ofreces
       </h3>
-
-      {/* <div className="container py-4">
-                <h5 className="mb-4">El usuario admite: {userInput.numDogs} perro/s</h5>
-                <label htmlFor="numDogs">Elige el número de perros que puedes admitir en tu casa:</label>
-                <input type="number" id="numDogs" min="0" max="10"
-                    name="numDogs" value={userInput.numDogs}
-                    onChange={handleNumDogsChange}
-                />
-            </div> */}
 
       <div className="container services-rates-checkbox">
         <div className="row">

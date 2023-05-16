@@ -119,9 +119,6 @@ const ReserveInformationUser = () => {
 
 export default ReserveInformationUser;
 
-// CAMBIAR FA-SUN
-{
-/*
+{/* CAMBIAR FA-SUN
 <i className="fa-solid fa-dog"></i>
-<i className="fas fa-tree"></i> */
-}
+<i className="fas fa-tree"></i> */}
