@@ -1,8 +1,8 @@
-# import smtplib
+from api.models import db, User
 from smtplib import SMTP_SSL
 from flask_jwt_extended import get_jwt_identity
-
-# from api.models import db
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 
 def send_contact_email(body):
@@ -11,44 +11,37 @@ def send_contact_email(body):
 
         claves_email = body.keys()
 
+        msg = MIMEMultipart()
 
-        # sub_token = get_jwt_identity()
-        # user_id = sub_token["id"]
+        msg['From'] = 'conectadogs.gns@gmail.com'
+        msg['To'] = 'conectadogs.gns@gmail.com'
+        msg['Subject'] = 'Formulario de contacto'
 
-        # body["emailContacto"]
-        # body["nombreContacto"]
+        mensajeFront = f'''Nombre de Contacto: {body["nombreContacto"]}, 
+                        \nEmail de Contacto: {body["emailContacto"]}, 
+                        \nMensaje: {body["mensajeContacto"]}.'''
 
-        HOST = "smtp.gmail.com"
-        PORT = 465
 
-        SENDER_EMAIL = "conectadogs.gns@gmail.com"
-        SENDER_PASS = "sqzoaqfiokgcnigx"
-
-        smtp = SMTP_SSL(HOST, PORT)
-
-        # smtp = smtplib.SMTP(HOST, 587)
-        # info = smtp.ehlo()
-        # smtp.starttls()
-        # info = smtp.ehlo()
-
-        smtp.login(SENDER_EMAIL, SENDER_PASS)
-
-        msg = "hellooooooo"
+        msg.attach(MIMEText(mensajeFront, 'plain'))
         
-        # f'''
-        # {body["nombreContacto"]}
-        # {body["emailContacto"]}
-        # {body["mensajeContacto"]}'''
+        MSG = msg.as_string()
 
-        smtp.sendmail(SENDER_EMAIL, SENDER_EMAIL, msg)
-        print("holaaa", body)
+        smtp = SMTP_SSL('smtp.gmail.com', '465')
+        print(smtp)
 
+        smtp.ehlo()
+        smtp.login('conectadogs.gns@gmail.com', 'sqzoaqfiokgcnigx')
 
-        return {"code": 200, "msg": "Email de contacto enviado correctamente"}
+        smtp.sendmail('conectadogs.gns@gmail.com', 'conectadogs.gns@gmail.com', MSG)
+
+        smtp.quit()
+
+        return {"code": 200, "msg": "¡Email de contacto enviado correctamente!"}
 
     except Exception as error:
         print(error)
         return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
+
 
 
 def send_carer_email(body, id):
@@ -60,14 +53,43 @@ def send_carer_email(body, id):
         sub_token = get_jwt_identity()
         user_id = sub_token["id"]
 
+        user_carer = db.get_or_404(User.serialize(), id)
+
+        user_owner = db.get_or_404(User.serialize(), user_id)
+
         # Enviar emails a los cuidadores
+
+        msg = MIMEMultipart()
+
+        msg['From'] = 'conectadogs.gns@gmail.com'
+        msg['To'] = user_carer["email"], user_owner["email"]
+        msg['Subject'] = 'Información importante respecto a la reserva'
+
+        mensajeFront = f'''Nombre de Contacto: {body["nombreContacto"]}, 
+                        \nEmail de Contacto: {body["emailContacto"]}, 
+                        \nMensaje: {body["mensajeContacto"]}.'''
+
+
+        msg.attach(MIMEText(mensajeFront, 'plain'))
+        
+        MSG = msg.as_string()
+
+        smtp = SMTP_SSL('smtp.gmail.com', '465')
+        print(smtp)
+
+        smtp.ehlo()
+        smtp.login('conectadogs.gns@gmail.com', 'sqzoaqfiokgcnigx')
+
+        smtp.sendmail('conectadogs.gns@gmail.com', 'conectadogs.gns@gmail.com', MSG)
+
+        smtp.quit()
 
 
         # Obtener usuario de la base de datos
         user = db.get_or_404(User, id)
 
 
-        return {"code": 200, "msg": "Email de contacto enviado correctamente"}
+        return {"code": 200, "msg": "¡Email de información, de mi reserva, al cuidador enviado correctamente!"}
 
     except Exception as error:
         print(error)
@@ -76,51 +98,28 @@ def send_carer_email(body, id):
 
 
 # # ENVIAR EMAIL DE CONTACTO
-        # # smtp = SMTP_SSL(HOST, PORT)
-        # smtp = smtplib.SMTP(HOST, 587)
-        # info = smtp.ehlo()
-        
-        # smtp.starttls()
+# HOST = "smtp.gmail.com"
+# PORT = 465
 
-        # info = smtp.ehlo()
+# SENDER_EMAIL = "conectadogs.gns@gmail.com"
+# SENDER_PASS = "sqzoaqfiokgcnigx"
 
-        # print(info)
+# smtp = SMTP_SSL(HOST, PORT)
 
-        # smtp.login(SENDER_EMAIL, SENDER_PASS)
+# # smtp = smtplib.SMTP(HOST, 587)
+# # info = smtp.ehlo()
+# # smtp.starttls()
+# # info = smtp.ehlo()
 
-        # msg = f'''
-        # {body["nombreContacto"]}
-        # {body["emailContacto"]}
-        # {body["mensajeContacto"]}''' 
+# smtp.login(SENDER_EMAIL, SENDER_PASS)
 
-        # smtp.sendmail(SENDER_EMAIL, SENDER_EMAIL, msg)
+# msg = "hellooooooo"
 
-        # smtp.quit()      
-#         # creates SMTP session
-#         s = smtplib.SMTP('smtp.gmail.com', 587)
-        
-#         # start TLS for security
-#         s.starttls()
-        
-#         # Authentication
-#         s.login("conectadogs.gns@gmail.com", "sqzoaqfiokgcnigx")              # s.login("sender_email_id", "sender_email_id_password")
-        
-#         # message to be sent
-#         message = body["mensajeContacto"]
-        
-#         # sending the mail
-#         s.sendmail("conectadogs.gns@gmail.com", body["emailContacto"], message)             # s.sendmail("sender_email_id", "receiver_email_id", message)
+# # f'''
+# # {body["nombreContacto"]}
+# # {body["emailContacto"]}
+# # {body["mensajeContacto"]}'''
 
-#         # OTRA FORMA
-#         # subject = "Formulario de Contacto"
-#         # body = body["mensajeContacto"]
-#         # sender = "sender@gmail.com"
-#         # recipients = ["recipient1@gmail.com", "recipient2@gmail.com"]
-#         # password = "password"
+# smtp.sendmail(SENDER_EMAIL, SENDER_EMAIL, msg)
 
-#         # send_email(subject, body, sender, recipients, password)
-        
-
-
-#         # terminating the session
-#         s.quit()
+# smtp.quit()

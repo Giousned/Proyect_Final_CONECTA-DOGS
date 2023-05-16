@@ -15,11 +15,11 @@ const Protected = (props) => {
 
     if (!storeAuth.userLog.token) {
 
+        actionsToast.handleShownToast({ code: 403, msg: "¡No tiene los permisios necesarios, se le redirigirá a la página de inicio!" });
+        
         navigate("/");
 
-        actionsToast.handleShownToast({ code: 403, msg: "¡No tiene los permisios necesarios, se le redirigirá a la página de inicio!" });
-
-        return;
+        return null;
     }
 
     return (props.children);

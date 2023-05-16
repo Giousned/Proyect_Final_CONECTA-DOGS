@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
+import useAuthContext from "../../store/AuthContext.js";
 
 import "./NotificationsStyles.css";
 
 const Notifications = () => {
+
+  const { storeAuth, actionsAuth } = useAuthContext();
+
   return (
     <div className="custom-notifications">
       <div className="container">

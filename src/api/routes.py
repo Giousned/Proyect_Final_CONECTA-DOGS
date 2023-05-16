@@ -518,8 +518,7 @@ def config_services_examples():
 
 
 # RUTA PARA ENVIAR EMAILS DE CONTACTO AL CORREO ELECTRONICO DE NUESTRA WEB
-@api.route("/emails/contact", methods=["POST"])
-# @jwt_required()
+@api.route("/emails-contact", methods=["POST"])
 def post_contact_email():
 
     try:
@@ -539,8 +538,8 @@ def post_contact_email():
 
 
 # RUTA PARA ENVIAR EMAILS A LOS CUIDADORES A LA HORA DE HACER RESERVAS
-@api.route("/emails/carer/<int:id>", methods=["POST"])
-# @jwt_required()
+@api.route("/emails-contact/<int:id>", methods=["POST"])
+@jwt_required()
 def post_carers_email(id):
 
     try:

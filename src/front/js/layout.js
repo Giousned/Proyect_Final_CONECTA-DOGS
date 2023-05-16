@@ -19,6 +19,7 @@ import CaregiverInfo from "./pages/Caregivers/CaregiverInfo.jsx";
 import Hire from "./pages/Hire/Hire.jsx";
 import Alert from "./component/Alert/Alert.jsx";
 import Footer from "./component/Footer/Footer.jsx";
+import Protected from "./component/Protected/Protected.jsx";
 
 //import contexts
 import { AuthProvider } from "./store/AuthContext.js";
@@ -43,13 +44,15 @@ const Layout = () => {
                 <Route element={<Home />} path="/" />
                 <Route element={<LogInForm />} path="/log-in-form" />
                 <Route element={<SignUpForm />} path="/sign-up-form" />
-                <Route element={<UserProfile />} path="/user-profile" />
-                <Route element={<Notifications />} path="/notifications" />
-                <Route element={<CaregiversList />} path="/caregivers-list" />
-                <Route element={<CaregiverInfo />} path="/caregiver-info/:id" />
-                <Route element={<Hire />} path="/hire-caregiver/:id" />
-                <Route element={<Reserves />} path="/reserves" />
-                <Route element={<ReserveInformation />} path="/reserve-information/:id" />
+
+                  <Route element={<Protected><UserProfile /></Protected>} path="/user-profile" />
+                  <Route element={<Notifications />} path="/notifications" />
+                  <Route element={<CaregiversList />} path="/caregivers-list" />
+                  <Route element={<CaregiverInfo />} path="/caregiver-info/:id" />
+                  <Route element={<Hire />} path="/hire-caregiver/:id" />
+                  <Route element={<Reserves />} path="/reserves" />
+                  <Route element={<ReserveInformation />} path="/reserve-information/:id" />
+
                 <Route element={<h1>Not found!</h1>} />
               </Routes>
               <Footer />
