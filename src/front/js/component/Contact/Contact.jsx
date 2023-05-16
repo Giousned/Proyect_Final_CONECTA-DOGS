@@ -23,7 +23,6 @@ const Contact = () => {
       .then((data) => {
         actionsToast.handleShownToast(data);
         setVista("hide")
-        // $('#contactEmailModal').modal('hide');
       });
 
   }
@@ -51,7 +50,7 @@ const Contact = () => {
               ></button>
             </div>
 
-            <form id="contact" className="contact" onSubmit={handleSubmitSendEmail}>
+            <form id="contact" className="contact">
               <h3>Formulario de Contacto</h3>
               <h4>
                 Póngase en contacto con nosotros hoy mismo y le responderemos en
@@ -95,7 +94,7 @@ const Contact = () => {
                   <button
                     type="submit"
                     className="action-button shadow animate blue"
-                    // onClick={handleSubmitSendEmail}
+                    onClick={handleSubmitSendEmail}
                   >
                     Enviar
                   </button>
@@ -111,3 +110,4 @@ const Contact = () => {
 
 export default Contact;
 
+// $('#contactEmailModal').modal('hide');
