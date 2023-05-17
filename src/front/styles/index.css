@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-/* @import url("https://fonts.googleapis.com/css?family=Montserrat"); */
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
 
 
 /* COLOR PRINCIPAL DE LA WEB #3f51b5; */
@@ -11,7 +12,9 @@
 
 body {
   background-color: white;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Kalam', cursive;
+  /* font-family: 'Bebas Neue', sans-serif; */
+  /* font-family: 'Roboto', sans-serif; */
 }
 
 h1 {
@@ -29,7 +32,6 @@ h1 {
   border-radius: 3px;
   color: white;
   text-decoration: none;
-  /* width: 20rem; */
 }
 
 .blue {
@@ -100,11 +102,7 @@ h1 {
   content: attr(data-notifications);
   background: #3f51b5;
   border-radius: 50px;
-  /* display: inline-block; */
   padding: 0.3em;
   margin: 0.3em;
   color: #f2f2f2;
-  /* position: absolute; */
-  /* right: -5px; */
-  /* top: -20px; */
 }

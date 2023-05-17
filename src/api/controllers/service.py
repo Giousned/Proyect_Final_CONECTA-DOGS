@@ -52,7 +52,7 @@ def get_services():
 
     try:
     
-        # Obtener registros de la base de datos
+        # Obtener servicios de la base de datos
         query = db.select(Services).order_by(Services.id)
         services = db.session.execute(query).scalars()
         
@@ -71,7 +71,7 @@ def get_service(id):
 
     try:
     
-        # Obtener registro de la base de datos
+        # Obtener servicio de la base de datos
         service = db.get_or_404(Services, id)
         # service = db.session.execute(db.select(service).filter_by(id)).scalars().one()
         
@@ -86,7 +86,7 @@ def update_service(body, id):
 
     try:
     
-        # Obtener registro de la base de datos
+        # Obtener servicio de la base de datos
         service = db.get_or_404(Services, id)
 
         service.image = body["image"]
@@ -106,7 +106,7 @@ def delete_service(id):
 
     try:
     
-        # Obtener registros de la base de datos
+        # Obtener servicios de la base de datos
         service = db.get_or_404(Services, id)
 
         db.session.delete(service)

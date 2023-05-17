@@ -2,8 +2,6 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
-// import { Demo } from "./pages/demo";
-// import { Signle } from "./pages/Signle";
 
 import Home from "./pages/Home.jsx";
 import NavBar from "./component/NavBar/NavBar.jsx";
@@ -45,13 +43,13 @@ const Layout = () => {
                 <Route element={<LogInForm />} path="/log-in-form" />
                 <Route element={<SignUpForm />} path="/sign-up-form" />
 
-                  <Route element={<Protected><UserProfile /></Protected>} path="/user-profile" />
-                  <Route element={<Notifications />} path="/notifications" />
-                  <Route element={<CaregiversList />} path="/caregivers-list" />
-                  <Route element={<CaregiverInfo />} path="/caregiver-info/:id" />
-                  <Route element={<Hire />} path="/hire-caregiver/:id" />
-                  <Route element={<Reserves />} path="/reserves" />
-                  <Route element={<ReserveInformation />} path="/reserve-information/:id" />
+                <Route element={<Protected><UserProfile /></Protected>} path="/user-profile" />
+                <Route element={<Notifications />} path="/notifications" />
+                <Route element={<CaregiversList />} path="/caregivers-list" />
+                <Route element={<CaregiverInfo />} path="/caregiver-info/:id" />
+                <Route element={<Hire />} path="/hire-caregiver/:id" />
+                <Route element={<Reserves />} path="/reserves" />
+                <Route element={<ReserveInformation />} path="/reserve-information/:id" />
 
                 <Route element={<h1>Not found!</h1>} />
               </Routes>
@@ -66,9 +64,3 @@ const Layout = () => {
 
 export default Layout;
 
-{
-  /*
-  <Route element={<Demo />} path="/demo" />
-  <Route element={<Signle />} path="/Signle/:theid" />
-*/
-}

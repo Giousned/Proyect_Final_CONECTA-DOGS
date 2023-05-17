@@ -7,11 +7,6 @@ def create_tariff(body):
 
     try:
 
-        # claves_tariff = body.keys()
-        # if not "price" in claves_tariff:
-        #     return {"code": 400, "msg": "No one tariff to register"}
-
-
         # Crear una nueva tarifa en la base de datos
         services = body["services"]
 
@@ -61,7 +56,7 @@ def get_tariffs():
 
     try:
     
-        # Obtener registros de la base de datos
+        # Obtener tarifas de la base de datos
         query = db.select(Tariffs).order_by(Tariffs.id)
         tariffs = db.session.execute(query).scalars()
         
@@ -79,7 +74,7 @@ def get_tariff(id):
 
     try:
     
-        # Obtener registro de la base de datos
+        # Obtener tarifa de la base de datos
         tariff = db.get_or_404(Tariffs, id)
         # tariff = db.session.execute(db.select(Tariff).filter_by(id)).scalars().one()
         
@@ -94,7 +89,7 @@ def update_tariff(body, id):
 
     try:
     
-        # Obtener registro de la base de datos
+        # Obtener tarifa de la base de datos
         tariff = db.get_or_404(Tarifs, id)
 
         tarif.price = body["price"]
@@ -113,7 +108,7 @@ def delete_tariff(id):
 
     try:
     
-        # Obtener registros de la base de datos
+        # Obtener tarifas de la base de datos
         tariff = db.get_or_404(Tariffs, id)
 
         db.session.delete(tariff)
@@ -128,3 +123,8 @@ def delete_tariff(id):
         print(error)
         return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
 
+
+
+# claves_tariff = body.keys()
+# if not "price" in claves_tariff:
+#     return {"code": 400, "msg": "No one tariff to register"}

@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-
-import useAuthContext from "../../store/AuthContext.js";
+import React from "react";
 
 import "./NotificationsStyles.css";
 

@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
-from flask import Flask, request, jsonify, url_for, send_from_directory
+from flask import Flask, request, jsonify, url_for, send_from_directory, render_template
 from flask_basicauth import BasicAuth
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import create_access_token
@@ -22,7 +22,7 @@ from email.mime.text import MIMEText
 
 
 ENV = os.getenv("FLASK_ENV")
-static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
+static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..','public')
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
@@ -35,22 +35,31 @@ app.url_map.strict_slashes = False
 
 # # app.config['BASIC_AUTH_FORCE'] = True
 
+# # set admin username and password
+# app.config['BASIC_AUTH_USERNAME'] = os.getenv("BASIC_AUTH_USER")
+# app.config['BASIC_AUTH_PASSWORD'] = os.getenv("BASIC_AUTH_PASS")
+
+# # add flask-basicauth to flask app
+# basic_auth = BasicAuth(app)
+
+# # PARA PROTEGER TODA LA WEB
+# # app.config['BASIC_AUTH_FORCE'] = True
+
+
 # Database Configuration
 db_url = os.getenv("DATABASE_URL")
 # COMENTO ESTAS LINEAS PARA USAR SQLITE
 # if db_url is not None:
 #     app.config['SQLALCHEMY_DATABASE_URI'] = db_url.replace("postgres://", "postgresql://")
 # else:
-
-# AQUI USO SQLITE
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////tmp/test.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = db_url
     # app.config['SQLALCHEMY_CHARSET'] = 'utf8mb4'
     # mysql://user:pass@localhost/db?charset=utf8
     # sqlite:////tmp/test.db        # ORIGINAL CON EL BOILERPLATE
     # sqlite:///test.db         # Tener archivo al que poder acceder
 
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-MIGRATE = Migrate(app, db, compare_type = True)
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# MIGRATE = Migrate(app, db, compare_type = True)
 db.init_app(app)
 # AQUI SE CREAN LAS TABLAS A PARTIR DE SQLITE, Y SE GENERA UNA CARPETA TMP Y UN ARCHIVO TEST.DB, DONDE DENTRO ESTA LA DB CON LAS TABLAS Y ES COMPARTIDA 
 with app.app_context():
@@ -80,17 +89,16 @@ def handle_invalid_usage(error):
 # generate sitemap with all your endpoints
 @app.route('/')
 def sitemap():
-    if ENV == "development":
-        return generate_sitemap(app)
+    # if ENV == "development":
+    #     return generate_sitemap(app)
     return send_from_directory(static_file_dir, 'index.html')
 
 
 # # PROTEGIENDO SOLO UNA RUTA
-# @app.route('/admin/')
+# @app.route('/admin')
 # @basic_auth.required
 # def secret_view():
-#     setup_admin(app)
-
+#     return setup_admin(app)
 #     return render_template('index.html')
 
 
@@ -127,8 +135,6 @@ def send_email():
     smtp.quit()
 
     return jsonify({ 'msg': 'ok '}), 200
-
-
 
 
 # this only runs if `$ python src/main.py` is executed
