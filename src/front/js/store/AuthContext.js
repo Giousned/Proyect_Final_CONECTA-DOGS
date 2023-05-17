@@ -31,8 +31,6 @@ export const AuthProvider = ({ children }) => {
       });
   }
 
-  console.log("11111111111",userLog)
-
   const handleLogIn = (e) => {
     e.preventDefault();
 
@@ -63,7 +61,6 @@ export const AuthProvider = ({ children }) => {
       return;
     }
     
-
 
     GET_Token()
       .then((data) => {

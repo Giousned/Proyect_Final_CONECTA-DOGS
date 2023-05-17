@@ -67,7 +67,7 @@ const NavBar = () => {
                       <hr className="dropdown-divider" />
                     </li>
                     <li>
-                      <Link to={`/reserves/${storeAuth.userLog.user.id}`} className="dropdown-item">
+                      <Link to="/reserves" className="dropdown-item">
                         <i className="far fa-bell pe-2"></i> Reservas
                       </Link>
                     </li>

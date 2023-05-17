@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-import { Link, useParams } from "react-router-dom";
-
-import { GET_User } from "../../services/USERFetchs.js";
+import { Link } from "react-router-dom";
 
 import useAuthContext from "../../store/AuthContext.js";
 
@@ -11,24 +9,12 @@ const ReserveCard = () => {
 
   const { storeAuth, actionsAuth } = useAuthContext();
 
-  // const [reserves, setReserves] = useState({});
-
-  // const params = useParams();
-
-  // useEffect(() => {
-  //   GET_User(params.id)
-  //     .then((data) => {
-  //       setReserves(data.user);
-  //       console.log(data)
-  //     });
-  // }, []);
-
 
   return (
     <>
       <div className="wrapper" id="app">
         {storeAuth?.userLog?.user?.book_from
-          ? storeAuth?.userLog?.user.book_from.map((book, index) => {
+          ? storeAuth?.userLog?.user?.book_from.map((book, index) => {
 
             return(
               <div className="card-form" key={index}>
@@ -78,8 +64,6 @@ const ReserveCard = () => {
 
         {storeAuth?.userLog?.user?.book_to?.length
           ? storeAuth?.userLog?.user?.book_to.map((book, index) => {
-
-            console.log(storeAuth?.userLog?.user)
 
             return(
               <div className="card-form" key={index}>
