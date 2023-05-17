@@ -15,7 +15,6 @@ const CloudinaryUpload = (props) => {
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
-          console.log("Done! Here is the image info: ", result.info);
           props.setEstado(result.info.url);
           actionsToast.handleShownToast({ code: 200, msg: "¡Foto subida a la nube correctamente!" });
         }

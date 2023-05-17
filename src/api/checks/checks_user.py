@@ -1,6 +1,5 @@
 
 def check_user(body):
-    print("holaaaa")
 
     claves_user = body.keys()
 
