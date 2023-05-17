@@ -45,6 +45,8 @@ export const AuthProvider = ({ children }) => {
   const handleLogOut = () => {
     sessionStorage.removeItem("jwt-token");
     setUserLog({ token: "", user: "" });
+    navigate("/");
+    actionsToast.handleShownToast({ code: 403, msg: "¡Cierre de sesión con éxito, fue redirigido a la página de inicio y su token eliminado!" });
   };
 
   // SI EXISTE UN TOKEN ACTIVO, HAGO UNA LLAMADA AL BACK Y BUSCO ESE USUARIO Y DEVUELVO SU TOKEN Y SU INFORMACION NUEVA

@@ -23,4 +23,7 @@
 .caregivers-scroll {
     overflow-y: scroll;
     height: 650px;
+    width: 700px;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(80, 240, 255);
 }

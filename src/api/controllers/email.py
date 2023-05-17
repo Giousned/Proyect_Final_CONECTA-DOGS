@@ -17,8 +17,8 @@ def send_contact_email(body):
 
         msg = MIMEMultipart()
 
-        msg['From'] = 'conectadogs.gns@gmail.com'
-        msg['To'] = 'conectadogs.gns@gmail.com'
+        msg['From'] = os.getenv("SMTP_EMAIL")
+        msg['To'] = os.getenv("SMTP_EMAIL")
         msg['Subject'] = 'Formulario de contacto'
 
         mensajeFront = f'''Nombre de Contacto: {body["nombreContacto"]}, 
@@ -33,9 +33,9 @@ def send_contact_email(body):
         smtp = SMTP_SSL('smtp.gmail.com', '465')
 
         smtp.ehlo()
-        smtp.login('conectadogs.gns@gmail.com', 'sqzoaqfiokgcnigx')
+        smtp.login(os.getenv("SMTP_EMAIL"), os.getenv("SMTP_PASS"))
 
-        smtp.sendmail('conectadogs.gns@gmail.com', 'conectadogs.gns@gmail.com', MSG)
+        smtp.sendmail(os.getenv("SMTP_EMAIL"), os.getenv("SMTP_EMAIL"), MSG)
 
         smtp.quit()
 
@@ -65,7 +65,7 @@ def send_carer_email(body, id):
 
         msg = MIMEMultipart()
 
-        msg['From'] = 'conectadogs.gns@gmail.com'
+        msg['From'] = os.getenv("SMTP_EMAIL")
         msg['To'] = user_carer["email"], user_owner["email"]
         msg['Subject'] = 'Información importante respecto a la reserva'
 
@@ -81,9 +81,9 @@ def send_carer_email(body, id):
         smtp = SMTP_SSL('smtp.gmail.com', '465')
 
         smtp.ehlo()
-        smtp.login('conectadogs.gns@gmail.com', 'sqzoaqfiokgcnigx')
+        smtp.login(os.getenv("SMTP_EMAIL"), os.getenv("SMTP_PASS"))
 
-        smtp.sendmail('conectadogs.gns@gmail.com', 'conectadogs.gns@gmail.com', MSG)
+        smtp.sendmail(os.getenv("SMTP_EMAIL"), os.getenv("SMTP_EMAIL"), MSG)
 
         smtp.quit()
 

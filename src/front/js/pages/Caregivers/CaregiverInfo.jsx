@@ -33,7 +33,7 @@ const CaregiverInfo = () => {
           <div className="row">
             <div className="col-12 col-md-6">
               <img src={dogsitter.userPhoto} className="img-fluid rounded-start"
-                width={300} alt="..." />
+                width={300} alt="Foto de perfil del cuidador" />
             </div>
             <div className="col-12 col-md-6">
               <h4 className="text-body-emphasis pt-4">Provincia</h4>
@@ -42,9 +42,9 @@ const CaregiverInfo = () => {
               </p>
 
               <h4 className="text-body-emphasis pt-4">
-                Sobre {dogsitter.name} ...
+                Sobre {dogsitter.name}...:
               </h4>
-              <p>{dogsitter.aboutMe ? dogsitter.aboutMe : ""}</p>
+              <p>{dogsitter.aboutMe ? dogsitter.aboutMe : "Más información aún no disponible y sin rellenar en su perfil."}</p>
 
               <h4 className="text-body-emphasis pt-4">Servicios y Tarifas:</h4>
               {dogsitter.tariffs
@@ -73,6 +73,12 @@ const CaregiverInfo = () => {
             <Link to={"/hire-caregiver/" + dogsitter.id}
               className="action-button shadow animate blue">
               Contratar
+            </Link>
+            <Link
+              to="/caregivers-list"
+              className="action-button shadow animate red"
+            >
+              Ir Atrás
             </Link>
           </div>
         </div>

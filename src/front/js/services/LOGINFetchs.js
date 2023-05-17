@@ -43,7 +43,5 @@ export const GET_Token = async () => {
 
   const data = await resp.json();
 
-  console.log("This is the data you requested", data);
-
   return data;
 };
