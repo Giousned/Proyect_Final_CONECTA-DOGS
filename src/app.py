@@ -15,6 +15,9 @@ from api.models import db
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
+from smtplib import SMTP_SSL
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 
 
@@ -109,6 +112,29 @@ def serve_any_other_file(path):
     response.cache_control.max_age = 0 # avoid cache memory
     return response
 
+
+@app.route('/mail')
+def send_email():
+
+    msg = MIMEMultipart()
+
+    msg['From'] = 'conectadogs.gns@gmail.com'
+    msg['To'] = 'conectadogs.gns@gmail.com'
+    msg['Subject'] = 'Probando con caracteres raros'
+
+    msg.attach(MIMEText('Esto es un nuevo mensaje de prueba con tildes áéíóú', 'plain'))
+    
+    MSG = msg.as_string()
+
+    smtp = SMTP_SSL('smtp.gmail.com', '465')
+
+    smtp.ehlo()
+    smtp.login('conectadogs.gns@gmail.com', 'sqzoaqfiokgcnigx')
+
+    smtp.sendmail('conectadogs.gns@gmail.com', 'conectadogs.gns@gmail.com', MSG)
+    smtp.quit()
+
+    return jsonify({ 'msg': 'ok '}), 200
 
 
 # this only runs if `$ python src/main.py` is executed

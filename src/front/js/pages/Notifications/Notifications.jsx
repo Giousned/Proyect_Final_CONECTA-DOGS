@@ -3,6 +3,9 @@ import React from "react";
 import "./NotificationsStyles.css";
 
 const Notifications = () => {
+
+  const { storeAuth, actionsAuth } = useAuthContext();
+
   return (
     <div className="custom-notifications">
       <div className="container">

@@ -1,4 +1,3 @@
-
 from api.models import db, User
 from smtplib import SMTP_SSL
 from flask_jwt_extended import get_jwt_identity
@@ -16,6 +15,7 @@ def send_contact_email(body):
         # ENVIAR EMAIL DE CONTACTO
 
         msg = MIMEMultipart()
+
 
         msg['From'] = 'conectadogs.gns@gmail.com'
         msg['To'] = 'conectadogs.gns@gmail.com'
@@ -41,12 +41,12 @@ def send_contact_email(body):
 
         return {"code": 200, "msg": "¡Email de contacto enviado correctamente!"}
 
-
     except Exception as error:
         print(error)
         return {"code": 500, "msg": "¡Error en el servidor, algo fue mal!"}
       
       
+
 
 def send_carer_email(body, id):
 
