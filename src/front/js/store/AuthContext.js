@@ -31,6 +31,8 @@ export const AuthProvider = ({ children }) => {
       });
   }
 
+  console.log("11111111111",userLog)
+
   const handleLogIn = (e) => {
     e.preventDefault();
 

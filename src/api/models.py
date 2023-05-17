@@ -188,6 +188,7 @@ class Tariffs(db.Model):
             "id": self.id,
             "price": self.price,
             "user_to": self.user_to.serialize_books(),
+            "books": [b.serialize_books() for b in self.book],
             "service": self.service.serialize_books()
         }
 
@@ -220,7 +221,7 @@ class Books(db.Model):
     
 
     def __repr__(self):
-        return f'<Book {self.date}>'
+        return f'<Book {self.id}>'
 
     def serialize(self):
         return {
@@ -233,5 +234,11 @@ class Books(db.Model):
             "status": self.status,
             "tariff": self.tariff.serialize_books(),
             "user_from": self.user_from.serialize_books(),
+            "dogs": [dog.serialize() for dog in self.dogs]
+        }
+
+    def serialize_books(self):
+        return {
+            "id": self.id,
             "dogs": [dog.serialize() for dog in self.dogs]
         }

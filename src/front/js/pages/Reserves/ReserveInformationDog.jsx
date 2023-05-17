@@ -28,10 +28,10 @@ const ReserveInformationDog = () => {
                         <div className="col-md justify-content-center border border-primary-subtle m-2 p-2 shadow" key={index} >
 
                             <div className="d-flex justify-content-center align-items-center">
-                                <div>
-                                <h3 className="display-6 fw-bold text-body-emphasis lh-1 mb-3">
+                                <div className="col-6">
+                                <h2 className="display-6 fw-bold text-body-emphasis text-center lh-1 mb-3">
                     {dog.dogName}
-                </h3>
+                </h2>
                 <p className="lead">
                 {dog.observations}
                 </p>
@@ -65,7 +65,7 @@ const ReserveInformationDog = () => {
 
                                 </div>
 
-                                <div className="d-flex mx-auto ">
+                                <div className="d-flex mx-auto col-6">
                                 <img src={dog.dogPhoto}
                     className="d-block mx-lg-auto img-fluid imagen-perrito-informacion-reserva" alt="foto-de-mi-perrito" />
 

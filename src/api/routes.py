@@ -450,8 +450,16 @@ def create_token():
 
         if password == user.password:
             # crea un nuevo token con la info del usuario y us id dentro
-            access_token = create_access_token(identity=user.serialize())
-            return jsonify({"code": 200, "msg": "Inicio de sesión correcto", "token": access_token, "user": user.serialize() })
+            query = db.select(Tariffs).filter_by(user_id=user.id)
+            user_tariffs = db.session.execute(query).scalars()
+
+            serialize_tariffs = [tariff.serialize_books() for tariff in user_tariffs]
+
+            user = user.serialize()
+            user["book_to"] = serialize_tariffs
+
+            access_token = create_access_token(identity=user)
+            return jsonify({"code": 200, "msg": "Inicio de sesión correcto", "token": access_token, "user": user })
         else:
             return jsonify({"msg": "Error en el email o en la contraseña"}), 401
 
@@ -472,9 +480,17 @@ def protected():
     query = db.session.query(User).filter(User.email == current_user["email"])
     user = db.session.execute(query).scalars().one()
 
-    access_token = create_access_token(identity=user.serialize())
+    query = db.select(Tariffs).filter_by(user_id=user.id)
+    user_tariffs = db.session.execute(query).scalars()
 
-    return jsonify({ "code": 200, "msg": "Inicio de sesión correcto", "token": access_token, "user": user.serialize() }), 200
+    serialize_tariffs = [tariff.serialize_books() for tariff in user_tariffs]
+
+    user = user.serialize()
+    user["book_to"] = serialize_tariffs
+
+    access_token = create_access_token(identity=user)
+
+    return jsonify({ "code": 200, "msg": "Inicio de sesión correcto", "token": access_token, "user": user }), 200
 
 
 # RUTA PARA CREAR LOS 3 SERVICIOS + USUARIOS/PERROS/TARIFAS EN LA BASE DE DATOS INICIAL CADA VEZ

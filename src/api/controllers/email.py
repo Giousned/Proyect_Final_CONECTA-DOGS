@@ -57,16 +57,16 @@ def send_carer_email(body, id):
         sub_token = get_jwt_identity()
         user_id = sub_token["id"]
 
-        user_carer = db.get_or_404(User.serialize(), id)
+        user_carer = db.get_or_404(User, id)
 
-        user_owner = db.get_or_404(User.serialize(), user_id)
+        user_owner = db.get_or_404(User, user_id)
 
         # ENVIAR EMAIL A LOS CUIDADORES Y A LOS PROPIETARIOS PARA QUE SEPAN QUE HAN ENVIADO
 
         msg = MIMEMultipart()
 
         msg['From'] = 'conectadogs.gns@gmail.com'
-        msg['To'] = user_carer["email"], user_owner["email"]
+        msg['To'] = [user_carer.email, user_owner.email]
         msg['Subject'] = 'Información importante respecto a la reserva'
 
         mensajeFront = f'''Nombre de Contacto: {body["nombreContacto"]}, 
