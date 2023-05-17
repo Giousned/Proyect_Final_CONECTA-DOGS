@@ -1,3 +1,5 @@
+<center><img src="https://raw.githubusercontent.com/Giousned/Proyect_Final_CONECTA-DOGS/main/public/conectadogs-logo.black.png" /></center>
+
 # WebApp boilerplate with React JS and Flask API
 
 Build web applications using React.js for the front end and python/flask for your backend API.
