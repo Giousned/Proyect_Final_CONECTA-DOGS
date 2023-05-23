@@ -18,6 +18,7 @@ import Hire from "./pages/Hire/Hire.jsx";
 import Alert from "./component/Alert/Alert.jsx";
 import Footer from "./component/Footer/Footer.jsx";
 import Protected from "./component/Protected/Protected.jsx";
+import { Map } from "./pages/map.jsx";
 
 //import contexts
 import { AuthProvider } from "./store/AuthContext.js";
@@ -46,6 +47,7 @@ const Layout = () => {
                 <Route element={<Protected><UserProfile /></Protected>} path="/user-profile" />
                 <Route element={<Notifications />} path="/notifications" />
                 <Route element={<CaregiversList />} path="/caregivers-list" />
+                <Route element={<Map />} path="/map" />
                 <Route element={<CaregiverInfo />} path="/caregiver-info/:id" />
                 <Route element={<Hire />} path="/hire-caregiver/:id" />
                 <Route element={<Reserves />} path="/reserves" />
