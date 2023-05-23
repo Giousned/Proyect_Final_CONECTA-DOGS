@@ -13,7 +13,7 @@ from flask_cors import CORS
 from api.utils import APIException, generate_sitemap
 from api.models import db
 from api.routes import api
-from api.admin import setup_admin
+# from api.admin import setup_admin
 from api.commands import setup_commands
 
 
@@ -69,8 +69,8 @@ jwt = JWTManager(app)                                       # SE PONE EN ENV PAR
 # Allow CORS requests to this API
 CORS(app)
 
-# add the admin
-setup_admin(app)
+# # add the admin
+# setup_admin(app)
 
 # add the admin
 setup_commands(app)

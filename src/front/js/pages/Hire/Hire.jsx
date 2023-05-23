@@ -55,6 +55,7 @@ const Hire = () => {
     POST_Book(userInput)
       .then((data) => {
         actionsToast.handleShownToast(data);
+        actionsAuth.handleUpdateUser();
       })
   };
 

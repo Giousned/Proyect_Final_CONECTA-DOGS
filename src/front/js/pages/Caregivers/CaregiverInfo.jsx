@@ -31,9 +31,9 @@ const CaregiverInfo = () => {
             Contacta con: <b>{dogsitter.name}</b>
           </h3>
           <div className="row">
-            <div className="col-12 col-md-6">
-              <img src={dogsitter.userPhoto} className="img-fluid rounded-start"
-                width={300} alt="Foto de perfil del cuidador" />
+            <div className="col-12 col-md-6 d-flex align-items-center">
+              <img src={dogsitter.userPhoto} className="img-fluid imagen-cuidadores-masInfo rounded-start"
+                alt="Foto de perfil del cuidador" />
             </div>
             <div className="col-12 col-md-6">
               <h4 className="text-body-emphasis pt-4">Provincia</h4>
