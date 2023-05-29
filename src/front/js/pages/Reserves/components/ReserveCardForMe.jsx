@@ -73,7 +73,8 @@ const ReserveCardForMe = () => {
                 </div>
               );
             })
-          : null}
+          : <div className="mx-auto"><p>Sin registros de reservas. No le han realizado ninguna reserva aún. </p></div>
+          }
       </div>
     </>
   );

@@ -61,7 +61,10 @@ const LogInForm = () => {
                     </label>
                   </div>
                   <div className="d-flex justify-content-end">
-                    <a href="#"> ¿Olvidaste tu contraseña?</a>
+                    <div className="btn text-decoration-underline me-2"
+                      data-bs-toggle="modal" data-bs-target="#recoveryPassModal">
+                      ¿Olvidaste tu contraseña?
+                    </div>
                   </div>
 
                   <div className="d-grid m-4 d-md-flex justify-content-md-center">

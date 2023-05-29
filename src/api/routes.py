@@ -13,7 +13,7 @@ from api.controllers.service import create_service, get_services, get_service, u
 from api.controllers.tarif import create_tariff, get_tariffs, get_tariff, update_tariff, delete_tariff
 from api.controllers.book import create_book, get_books, get_book, update_book, delete_book, acepted_book, rejected_book
 from api.controllers.install import install_examples
-from api.controllers.email import send_contact_email, send_carer_email
+from api.controllers.email import send_contact_email, send_recovery_email, send_carer_email
 
 
 
@@ -522,6 +522,26 @@ def post_contact_email():
         body = request.json
 
         email_response = send_contact_email(body)
+
+        if email_response["code"] != 200:
+            return jsonify(email_response)
+
+        return jsonify(email_response)
+
+    except Exception as error:
+        print(error)
+        return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
+
+
+# RUTA PARA ENVIAR EMAILS DE RECUPERACIÓN DE LA CONTRASEÑA AL CORREO ELECTRONICO DEL USUARIO
+@api.route("/emails-recovery", methods=["POST"])
+def post_recovery_email():
+
+    try:
+
+        body = request.json
+
+        email_response = send_recovery_email(body)
 
         if email_response["code"] != 200:
             return jsonify(email_response)

@@ -8,6 +8,7 @@ import NavBar from "./component/NavBar/NavBar.jsx";
 import LogInForm from "../js/component/LogInForm/LogInForm.jsx";
 import SignUpForm from "./pages/SignUp.jsx";
 import Contact from "./component/Contact/Contact.jsx";
+import RecoveryPass from "./component/RecoveryPass/RecoveryPass.jsx";
 import UserProfile from "./pages/UserProfile/UserProfile.jsx";
 import ReservesProfile from "./pages/Reserves/ReservesProfile.jsx";
 import ReserveInformation from "./pages/Reserves/components/ReserveInformation.jsx";
@@ -38,6 +39,7 @@ const Layout = () => {
               <Alert />
               <NavBar />
               <Contact />
+              <RecoveryPass />
               <Routes>
                 <Route element={<Home />} path="/" />
                 <Route element={<LogInForm />} path="/log-in-form" />

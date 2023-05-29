@@ -4,7 +4,7 @@ const NavTabButton = ({ id, label, isActive, onClick }) => {
     return (
         <li className="nav-tabs justify-content-center" role="presentation">
             <button
-                className={`nav-link ${isActive ? 'active' : ''}`}
+                className={`nav-link ${isActive ? 'show active' : ''}`}
                 id={id}
                 data-bs-toggle="tab"
                 data-bs-target={`#${id}-pane`}
