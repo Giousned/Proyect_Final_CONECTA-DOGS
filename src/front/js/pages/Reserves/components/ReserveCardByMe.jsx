@@ -10,7 +10,7 @@ const ReserveCardByMe = () => {
   return (
     <>
       <div className="wrapper" id="app">
-        {storeAuth?.userLog?.user?.book_from
+        {storeAuth?.userLog?.user?.book_from?.length
           ? storeAuth?.userLog?.user?.book_from.map((book, index) => {
               return (
                 <div className="card-form" key={index}>
@@ -72,7 +72,7 @@ const ReserveCardByMe = () => {
                 </div>
               );
             })
-          : null}
+          : <div className="mx-auto"><p>Sin registros de reservas. No ha realizado ninguna reserva aún, empiece a buscar cuidadores y a contratar alguno de sus servicios. </p></div>}
       </div>
     </>
   );
