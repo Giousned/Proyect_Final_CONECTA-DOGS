@@ -23,14 +23,6 @@ static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..'
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
-# # set admin username and password
-# app.config['BASIC_AUTH_USERNAME'] = os.getenv("BASIC_AUTH_USER")
-# app.config['BASIC_AUTH_PASSWORD'] = os.getenv("BASIC_AUTH_PASS")
-
-# # add flask-basicauth to flask app
-# basic_auth = BasicAuth(app)
-
-# # app.config['BASIC_AUTH_FORCE'] = True
 
 # # set admin username and password
 # app.config['BASIC_AUTH_USERNAME'] = os.getenv("BASIC_AUTH_USER")

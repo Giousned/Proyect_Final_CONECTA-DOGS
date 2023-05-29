@@ -490,7 +490,7 @@ def protected():
 
     access_token = create_access_token(identity=user)
 
-    return jsonify({ "code": 200, "msg": "Inicio de sesión correcto", "token": access_token, "user": user }), 200
+    return jsonify({ "code": 200, "msg": "Inicio de sesión correcto", "token": access_token, "user": user })
 
 
 # RUTA PARA CREAR LOS 3 SERVICIOS + USUARIOS/PERROS/TARIFAS EN LA BASE DE DATOS INICIAL CADA VEZ
@@ -558,11 +558,6 @@ def post_carers_email(id):
 
 
 
-# return jsonify({"id": user.id, "email": user.email }), 200
-# HARCODEANDO PRUEBA FACIL DE EMAIL
-# if email != "test" or password != "test":
-#     return jsonify({"msg": "Bad email or password"}), 401
-
 # # RUTA PARA CREAR LOS 3 SERVICIOS EN LA BASE DE DATOS INICIAL CADA VEZ
 # @api.route("/config-install", methods=["GET"])
 # def config_services():
@@ -582,6 +577,15 @@ def post_carers_email(id):
 #         return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
 
 
+
+
+
+# return jsonify({"id": user.id, "email": user.email }), 200
+# HARCODEANDO PRUEBA FACIL DE EMAIL
+# if email != "test" or password != "test":
+#     return jsonify({"msg": "Bad email or password"}), 401
+
+
 # EJEMPLO DE PRUEBA
 # @api.route('/hello', methods=['POST', 'GET'])
 # def handle_hello():
@@ -591,8 +595,3 @@ def post_carers_email(id):
 #     }
 
 #     return jsonify(response_body), 200
-
-# return jsonify({"id": user.id, "email": user.email }), 200
-# HARCODEANDO PRUEBA FACIL DE EMAIL
-# if email != "test" or password != "test":
-#     return jsonify({"msg": "Bad email or password"}), 401
