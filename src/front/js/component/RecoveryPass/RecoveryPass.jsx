@@ -50,9 +50,12 @@ const RecoveryPass = () => {
             </div>
 
             <form id="recovery" className="recovery">
-              <h3>Formulario de Recuperación de la Contraseña</h3>
+              <h3 className="mt-1 mb-5 text-center">Recuperación de la Contraseña</h3>
               <h4>
-                Envíenos un mensaje y se le mandara una contraseña nueva, la cual podrá cambiar luego, desde su perfil, una vez iniciada la sesión.
+                Envíenos un mensaje y se le mandará una contraseña nueva.
+              </h4>
+              <h4 className="mb-5">
+                La cual se deberá cambiar luego desde su perfil, una vez iniciada la sesión.
               </h4>
               <fieldset>
                 <input
