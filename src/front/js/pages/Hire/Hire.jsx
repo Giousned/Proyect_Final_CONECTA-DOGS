@@ -13,12 +13,13 @@ import "./HireStyles.css";
 
 const Hire = () => {
   const { storeAuth, actionsAuth } = useAuthContext();
-  const { userInput, handleUserInput, handleUserCheck } = useUserInput("");
+  const { userInput, handleUserInput, handleUserCheck, resetInput } = useUserInput("");
   const { storeToast, actionsToast } = useToastsContext();
 
   const [dogsitter, setDogsitter] = useState({});
 
   const params = useParams();
+
 
   useEffect(() => {
     GET_User(params.id).then((data) => {
@@ -55,7 +56,8 @@ const Hire = () => {
     POST_Book(userInput)
       .then((data) => {
         actionsToast.handleShownToast(data);
-        actionsAuth.handleUpdateUser();
+
+        if (data.code == 200) actionsAuth.handleUpdateUser();
       })
   };
 
@@ -73,46 +75,80 @@ const Hire = () => {
                 Contacta con: <b>{dogsitter.name}</b>
               </h3>
               {/* SERVICIO */}
-              <h4>
-                Selecciona el servicio deseado dentro de mis servicios
-                disponibles:
-              </h4>
+              {dogsitter?.tariffs?.length == 1
+                ? <h4> Rellena el resto de la información solicitada para este servicio disponible: </h4>
+                : <h4> Selecciona el servicio deseado dentro de mis servicios disponibles: </h4>
+              }
+              
               <div className="row g-2">
-                {dogsitter.tariffs.map((tarif, index) => {
-                  return (
-                    <div className="col-md" key={index}>
-                      <div className="form-floating">
-                        <div
-                          className={
-                            "glowing-register m-2" +
-                            (userInput.tariffId == tarif.id
-                              ? " activeGlow"
-                              : "")
-                          }
-                        >
-                          <input
-                            type="radio"
-                            id={tarif.service.title + tarif.id}
-                            name="tariffId"
-                            value={tarif.id}
-                            onChange={handleUserInput}
-                            checked={userInput.tariffId == tarif.id}
-                          />
+                {dogsitter?.tariffs?.length == 1 
+                  ? dogsitter.tariffs.map((tarif, index) => {
+                    return (
+                      <div className="col-md" key={index}>
+                        <div className="form-floating">
+                          <div
+                            className="glowing-register m-2 activeGlow"
+                          >
+                            <input
+                              type="radio"
+                              id={tarif.service.title + tarif.id}
+                              name="tariffId"
+                              value={tarif.id}
+                              checked={true}    // Aunque no hace nada, creo que no hace falta
+                            />
 
-                          <label htmlFor={tarif.service.title + tarif.id}>
-                            {tarif.service.title}
-                          </label>
+                            {userInput.tariffId == undefined ? resetInput({tariffId: tarif.id}) : null}
 
-                          <div className="d-flex justify-content-center mt-2"> <p className="me-2">Precio del servicio:</p> <b>{tarif.price} €</b> </div>
+                            <label htmlFor={tarif.service.title + tarif.id}>
+                              {tarif.service.title}
+                            </label>
 
-                          <p className="fst-italic justify-content-center">
-                            {tarif.service.description}
-                          </p>
+                            <div className="d-flex justify-content-center mt-2"> <p className="me-2">Precio del servicio:</p> <b>{tarif.price} €</b> </div>
+
+                            <p className="fst-italic justify-content-center">
+                              {tarif.service.description}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })
+                  : dogsitter.tariffs.map((tarif, index) => {
+                      return (
+                        <div className="col-md" key={index}>
+                          <div className="form-floating">
+                            <div
+                              className={
+                                "glowing-register m-2" +
+                                (userInput.tariffId == tarif.id
+                                  ? " activeGlow"
+                                  : "")
+                              }
+                            >
+                              <input
+                                type="radio"
+                                id={tarif.service.title + tarif.id}
+                                name="tariffId"
+                                value={tarif.id}
+                                onChange={handleUserInput}
+                                checked={userInput.tariffId == tarif.id}
+                              />
+
+                              <label htmlFor={tarif.service.title + tarif.id}>
+                                {tarif.service.title}
+                              </label>
+
+                              <div className="d-flex justify-content-center mt-2"> <p className="me-2">Precio del servicio:</p> <b>{tarif.price} €</b> </div>
+
+                              <p className="fst-italic justify-content-center">
+                                {tarif.service.description}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })
+                }
               </div>
 
               {/* CALENDARIO */}

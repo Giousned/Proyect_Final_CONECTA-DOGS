@@ -15,6 +15,7 @@
 #recovery h4 {
     margin: 5px 0 15px;
     font-size: 15px;
+    text-align: justify;
 }
 
 .recovery fieldset {
