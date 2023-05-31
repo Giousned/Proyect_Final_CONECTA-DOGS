@@ -173,7 +173,7 @@ def update_user(body, id):
         if "password" in claves_user:
             user.password = body["password"]
 
-        if "userPhoto" in claves_user:
+        if "userPhoto" in claves_user and body["userPhoto"] != "":
             user.userPhoto = body["userPhoto"]
  
         # user.email = body["email"]        # ESTA DISABLED PARA CAMBIAR EN EL FRONT

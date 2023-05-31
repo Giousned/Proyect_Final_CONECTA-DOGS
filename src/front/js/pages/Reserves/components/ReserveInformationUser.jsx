@@ -1,11 +1,16 @@
 import React from "react";
+
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+
+import { useParams, useNavigate } from "react-router-dom";
+
 import {
   GET_Book,
   GET_Confirm_Book,
   GET_Deny_Book,
+  DELETE_Book,
 } from "../../../services/BOOKFetchs.js";
+
 import useToastsContext from "../../../store/ToastsContext.js";
 import useAuthContext from "../../../store/AuthContext.js";
 
@@ -13,9 +18,10 @@ const ReserveInformationUser = () => {
   const { storeToast, actionsToast } = useToastsContext();
   const { storeAuth, actionsAuth } = useAuthContext();
 
-  const params = useParams();
-
   const [bookInfo, setBookInfo] = useState({});
+
+  const params = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     GET_Book(params.id).then((data) => {
@@ -28,7 +34,8 @@ const ReserveInformationUser = () => {
 
     GET_Confirm_Book(params.id).then((data) => {
       actionsToast.handleShownToast(data);
-      actionsAuth.handleUpdateUser();
+
+      if (data.code == 200) setTimeout(actionsAuth.handleUpdateUser, 1000);
     });
   };
 
@@ -37,13 +44,35 @@ const ReserveInformationUser = () => {
 
     GET_Deny_Book(params.id).then((data) => {
       actionsToast.handleShownToast(data);
-      actionsAuth.handleUpdateUser();
+
+      if (data.code == 200) setTimeout(actionsAuth.handleUpdateUser, 1000);
+    });
+  };
+
+  const handleEliminarReserva = (e) => {
+    e.preventDefault();
+
+    if (bookInfo?.status == "Aceptada") {
+      actionsToast.handleShownToast({
+        code: 403,
+        msg: "¡Reserva ya aceptada por parte del cuidador! ¡No se puede eliminar! ¡Póngase en contacto con el cuidador, por favor!",
+      });
+      return;
+    }
+
+    DELETE_Book(params.id).then((data) => {
+      actionsToast.handleShownToast(data);
+
+      if (data.code == 200) {
+        setTimeout(actionsAuth.handleUpdateUser, 1000);
+        navigate("/reserves");
+      }
     });
   };
 
   return (
     <>
-      {bookInfo.tariff ? (
+      {bookInfo?.tariff ? (
         <div className="col-12 p-4 border border-primary-subtle">
           <p className="lead">
             Servicio solicitado:{" "}
@@ -102,22 +131,34 @@ const ReserveInformationUser = () => {
         </div>
       ) : null}
 
-      <div className="d-grid gap-2 d-md-flex justify-content-md-center p-2">
-        <button
-          type="submit"
-          className="action-button shadow animate red"
-          onClick={handleRechazarReserva}
-        >
-          Rechazar Reserva
-        </button>
-        <button
-          type="submit"
-          className="action-button shadow animate blue"
-          onClick={handleAceptarReserva}
-        >
-          Aceptar Reserva
-        </button>
-      </div>
+      {params.type == "carer" ? (
+        <div className="d-grid gap-2 d-md-flex justify-content-md-center p-2">
+          <button
+            type="submit"
+            className="action-button shadow animate red"
+            onClick={handleRechazarReserva}
+          >
+            Rechazar Reserva
+          </button>
+          <button
+            type="submit"
+            className="action-button shadow animate blue"
+            onClick={handleAceptarReserva}
+          >
+            Aceptar Reserva
+          </button>
+        </div>
+      ) : (
+        <div className="d-grid gap-2 d-md-flex justify-content-md-center p-2">
+          <button
+            type="submit"
+            className="action-button shadow animate red"
+            onClick={handleEliminarReserva}
+          >
+            Eliminar Reserva
+          </button>
+        </div>
+      )}
     </>
   );
 };

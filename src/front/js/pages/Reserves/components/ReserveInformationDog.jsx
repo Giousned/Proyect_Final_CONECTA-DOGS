@@ -19,7 +19,7 @@ const ReserveInformationDog = () => {
 
   return (
     <>
-      {bookInfo.dogs
+      {bookInfo?.dogs
         ? bookInfo.dogs.map((dog, index) => {
             return (
               <div

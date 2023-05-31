@@ -62,7 +62,7 @@ const ReserveCardForMe = () => {
                     </p>
 
                     <Link
-                      to={"/reserve-information/" + book.id}
+                      to={"/reserve-information/carer/" + book.id}
                       className="nav-link"
                     >
                       <button className="action-button shadow animate blue">
