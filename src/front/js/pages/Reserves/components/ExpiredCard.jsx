@@ -5,7 +5,6 @@ const ExpiredCard = () => {
   return (
     <>
       <div className="card card-reserves my-3 mx-auto">
-        <Link to="/" className="nav-link" aria-current="page">
           <div className="row">
             <div className="col-12 col-md-6 py-2">
               <img
@@ -34,7 +33,6 @@ const ExpiredCard = () => {
               </div>
             </div>
           </div>
-        </Link>
       </div>
     </>
   );

@@ -61,7 +61,7 @@ const ReserveCardByMe = () => {
                     </div>
 
                     <Link
-                      to={"/reserve-information/" + book.id}
+                      to={"/reserve-information/owner/" + book.id}
                       className="nav-link"
                     >
                       <button className="action-button shadow animate blue">
