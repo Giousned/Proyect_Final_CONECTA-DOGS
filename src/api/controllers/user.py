@@ -1,4 +1,4 @@
-from api.models import db, User
+from api.models import db, User, Tariffs
 from flask_jwt_extended import create_access_token, get_jwt_identity
 from api.checks.checks_user import check_user
 import random
@@ -118,6 +118,14 @@ def get_user(id):
         # Obtener usuario de la base de datos
         user = db.get_or_404(User, id)
         # user = db.session.execute(db.select(User).filter_by(id)).scalars().one()
+
+        # query = db.select(Tariffs).filter_by(user_id=id)
+        # user_tariffs = db.session.execute(query).scalars()
+
+        # serialize_tariffs = [tariff.serialize_books() for tariff in user_tariffs]
+
+        # user = user.serialize()
+        # user["book_to"] = serialize_tariffs
         
         return {"code": 200, "msg": "Usuario requerido obtenido", "user": user.serialize()}
 
@@ -136,9 +144,17 @@ def update_me_user():
         # Obtener usuario de la base de datos
         user = db.get_or_404(User, user_id)
 
-        access_token = create_access_token(identity=user.serialize())
+        query = db.select(Tariffs).filter_by(user_id=user_id)
+        user_tariffs = db.session.execute(query).scalars()
+
+        serialize_tariffs = [tariff.serialize_books() for tariff in user_tariffs]
+
+        user = user.serialize()
+        user["book_to"] = serialize_tariffs
+
+        access_token = create_access_token(identity=user)
         
-        return {"code": 200, "msg": "¡Usuario actualizado correctamente!", "user": user.serialize(), "token": access_token}
+        return {"code": 200, "msg": "¡Usuario actualizado correctamente!", "user": user, "token": access_token}
 
     except Exception as error:
         print(error)
@@ -157,7 +173,7 @@ def update_user(body, id):
         if "password" in claves_user:
             user.password = body["password"]
 
-        if "userPhoto" in claves_user:
+        if "userPhoto" in claves_user and body["userPhoto"] != "":
             user.userPhoto = body["userPhoto"]
  
         # user.email = body["email"]        # ESTA DISABLED PARA CAMBIAR EN EL FRONT

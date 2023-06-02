@@ -13,7 +13,8 @@ import "./HireStyles.css";
 
 const Hire = () => {
   const { storeAuth, actionsAuth } = useAuthContext();
-  const { userInput, handleUserInput, handleUserCheck } = useUserInput("");
+  const { userInput, handleUserInput, handleUserCheck, resetInput } =
+    useUserInput("");
   const { storeToast, actionsToast } = useToastsContext();
 
   const [dogsitter, setDogsitter] = useState({});
@@ -31,31 +32,29 @@ const Hire = () => {
   const handleContratarServicio = (e) => {
     e.preventDefault();
 
-    const newArrayDog = []
+    const newArrayDog = [];
 
     for (let dog in userInput) {
-
       if (userInput[dog] === true) {
+        let newDogs = { dogName: "", id: "" };
 
-        let newDogs = { dogName: "", id: "" }
+        let str = dog;
+        let arraySplit = str.split("-");
 
-        let str = dog
-        let arraySplit = str.split('-');
+        newDogs.dogName = arraySplit[0];
+        newDogs.id = arraySplit[1];
 
-        newDogs.dogName = arraySplit[0]
-        newDogs.id = arraySplit[1]
-
-        newArrayDog.push(newDogs)
+        newArrayDog.push(newDogs);
       }
-
     }
 
     userInput.dogs = newArrayDog;
 
-    POST_Book(userInput)
-      .then((data) => {
-        actionsToast.handleShownToast(data);
-      })
+    POST_Book(userInput).then((data) => {
+      actionsToast.handleShownToast(data);
+
+      if (data.code == 200) setTimeout(actionsAuth.handleUpdateUser, 1000);
+    });
   };
 
   return (
@@ -72,52 +71,109 @@ const Hire = () => {
                 Contacta con: <b>{dogsitter.name}</b>
               </h3>
               {/* SERVICIO */}
-              <h4>
-                Selecciona el servicio deseado dentro de mis servicios
-                disponibles:
-              </h4>
+              {dogsitter?.tariffs?.length == 1 ? (
+                <h4>
+                  {" "}
+                  Rellena el resto de la información solicitada para este
+                  servicio disponible:{" "}
+                </h4>
+              ) : (
+                <h4>
+                  {" "}
+                  Selecciona el servicio deseado dentro de mis servicios
+                  disponibles:{" "}
+                </h4>
+              )}
+
               <div className="row g-2">
-                {dogsitter.tariffs.map((tarif, index) => {
-                  return (
-                    <div className="col-md" key={index}>
-                      <div className="form-floating">
-                        <div
-                          className={
-                            "glowing-register m-2" +
-                            (userInput.tariffId == tarif.id
-                              ? " activeGlow"
-                              : "")
-                          }
-                        >
-                          <input
-                            type="radio"
-                            id={tarif.service.title + tarif.id}
-                            name="tariffId"
-                            value={tarif.id}
-                            onChange={handleUserInput}
-                            checked={userInput.tariffId == tarif.id}
-                          />
+                {dogsitter?.tariffs?.length == 1
+                  ? dogsitter.tariffs.map((tarif, index) => {
+                      return (
+                        <div className="col-md" key={index}>
+                          <div className="form-floating">
+                            <div className="glowing-register m-2 activeGlow">
+                              <input
+                                type="radio"
+                                id={tarif.service.title + tarif.id}
+                                name="tariffId"
+                                value={tarif.id}
+                                checked={true} // Aunque no hace nada, creo que no hace falta
+                              />
 
-                          <label htmlFor={tarif.service.title + tarif.id}>
-                            {tarif.service.title}
-                          </label>
+                              {userInput.tariffId == undefined
+                                ? resetInput({ tariffId: tarif.id })
+                                : null}
 
-                          <div className="d-flex justify-content-center mt-2"> <p className="me-2">Precio del servicio:</p> <b>{tarif.price} €</b> </div>
+                              <label htmlFor={tarif.service.title + tarif.id}>
+                                {tarif.service.title}
+                              </label>
 
-                          <p className="fst-italic justify-content-center">
-                            {tarif.service.description}
-                          </p>
+                              <div className="d-flex justify-content-center mt-2">
+                                {" "}
+                                <p className="me-2">
+                                  Precio del servicio:
+                                </p>{" "}
+                                <b>{tarif.price} €</b>{" "}
+                              </div>
+
+                              <p className="fst-italic justify-content-center">
+                                {tarif.service.description}
+                              </p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  );
-                })}
+                      );
+                    })
+                  : dogsitter.tariffs.map((tarif, index) => {
+                      return (
+                        <div className="col-md" key={index}>
+                          <div className="form-floating">
+                            <div
+                              className={
+                                "glowing-register m-2" +
+                                (userInput.tariffId == tarif.id
+                                  ? " activeGlow"
+                                  : "")
+                              }
+                            >
+                              <input
+                                type="radio"
+                                id={tarif.service.title + tarif.id}
+                                name="tariffId"
+                                value={tarif.id}
+                                onChange={handleUserInput}
+                                checked={userInput.tariffId == tarif.id}
+                              />
+
+                              <label htmlFor={tarif.service.title + tarif.id}>
+                                {tarif.service.title}
+                              </label>
+
+                              <div className="d-flex justify-content-center mt-2">
+                                {" "}
+                                <p className="me-2">
+                                  Precio del servicio:
+                                </p>{" "}
+                                <b>{tarif.price} €</b>{" "}
+                              </div>
+
+                              <p className="fst-italic justify-content-center">
+                                {tarif.service.description}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
               </div>
 
               {/* CALENDARIO */}
               <div className="d-flex mt-2">
                 <div className="col-6 me-2">
-                  <label htmlFor="fechaEntrega" className="form-label fw-bold text-decoration-underline">
+                  <label
+                    htmlFor="fechaEntrega"
+                    className="form-label fw-bold text-decoration-underline"
+                  >
                     ENTREGA:
                   </label>
                   <br />
@@ -145,7 +201,10 @@ const Hire = () => {
                 </div>
 
                 <div className="col-6 ms-2">
-                  <label htmlFor="fechaRecogida" className="form-label fw-bold text-decoration-underline">
+                  <label
+                    htmlFor="fechaRecogida"
+                    className="form-label fw-bold text-decoration-underline"
+                  >
                     RECOGIDA:
                   </label>
                   <br />
@@ -185,46 +244,52 @@ const Hire = () => {
               <div className="container d-flex">
                 {storeAuth.userLog.user.dogs
                   ? storeAuth.userLog.user.dogs.map((dogInfo, index) => {
-                    return (
-                      <div className="col-md" key={index}>
-                        <div className="form-floating">
-                          <div
-                            className={
-                              "glowing-register m-2" +
-                              (userInput[`${dogInfo.dogName}-${dogInfo.id}`] == true
-                                ? " activeGlow"
-                                : "")
-                            }
-                          >
-                            <label htmlFor={dogInfo.id}>
-                              <img
-                                src={
-                                  dogInfo.dogPhoto
-                                    ? dogInfo.dogPhoto
-                                    : "https://cdn.pixabay.com/photo/2019/02/02/17/12/animation-3970998_960_720.png"
+                      return (
+                        <div className="col-md" key={index}>
+                          <div className="form-floating">
+                            <div
+                              className={
+                                "glowing-register m-2" +
+                                (userInput[
+                                  `${dogInfo.dogName}-${dogInfo.id}`
+                                ] == true
+                                  ? " activeGlow"
+                                  : "")
+                              }
+                            >
+                              <label htmlFor={dogInfo.id}>
+                                <img
+                                  src={
+                                    dogInfo.dogPhoto
+                                      ? dogInfo.dogPhoto
+                                      : "https://cdn.pixabay.com/photo/2019/02/02/17/12/animation-3970998_960_720.png"
+                                  }
+                                  alt="Checkbox imagen perrito"
+                                  className="img-fluid"
+                                />
+                              </label>
+
+                              <input
+                                type="checkbox"
+                                name={`${dogInfo.dogName}-${dogInfo.id}`}
+                                id={dogInfo.id}
+                                value={
+                                  userInput[`${dogInfo.dogName}-${dogInfo.id}`]
                                 }
-                                alt="Checkbox imagen perrito"
-                                className="img-fluid"
+                                onChange={handleUserCheck}
+                                checked={
+                                  userInput[`${dogInfo.dogName}-${dogInfo.id}`]
+                                }
                               />
-                            </label>
 
-                            <input
-                              type="checkbox"
-                              name={`${dogInfo.dogName}-${dogInfo.id}`}
-                              id={dogInfo.id}
-                              value={userInput[`${dogInfo.dogName}-${dogInfo.id}`]}
-                              onChange={handleUserCheck}
-                              checked={userInput[`${dogInfo.dogName}-${dogInfo.id}`]}
-                            />
-
-                            <h3 className="text-center mt-4">
-                              {dogInfo.dogName}
-                            </h3>
+                              <h3 className="text-center mt-4">
+                                {dogInfo.dogName}
+                              </h3>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    );
-                  })
+                      );
+                    })
                   : null}
               </div>
 
@@ -253,11 +318,17 @@ const Hire = () => {
               </div>
 
               <div className="d-grid gap-2 d-md-flex justify-content-md-center">
-                <Link to={"/caregiver-info/" + dogsitter.id} className="action-button shadow animate red">
+                <Link
+                  to={"/caregiver-info/" + dogsitter.id}
+                  className="action-button shadow animate red"
+                >
                   Ir Atrás
                 </Link>
-                <button type="button" className="action-button shadow animate blue"
-                  onClick={handleContratarServicio}>
+                <button
+                  type="button"
+                  className="action-button shadow animate blue"
+                  onClick={handleContratarServicio}
+                >
                   Enviar
                 </button>
               </div>
@@ -282,4 +353,3 @@ const Hire = () => {
 };
 
 export default Hire;
-
