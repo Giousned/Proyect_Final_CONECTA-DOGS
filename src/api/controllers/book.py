@@ -8,7 +8,7 @@ def create_book(body):
 
         claves_book = body.keys()
 
-        if not "tariffId" in claves_book or not "fechaEntrega" in claves_book or not "fechaRecogida" in claves_book or not "horaEntrega" in claves_book or not "horaRecogida" in claves_book or not "dogs" in claves_book:
+        if not "tariffId" in claves_book or len(body["dogs"]) == 0 or not "fechaEntrega" in claves_book or not "fechaRecogida" in claves_book or not "horaEntrega" in claves_book or not "horaRecogida" in claves_book or not "dogs" in claves_book:
             return {"code": 400, "msg": "¡Información recibida en el Back insuficiente, falta información!"}
 
         sub_token = get_jwt_identity()

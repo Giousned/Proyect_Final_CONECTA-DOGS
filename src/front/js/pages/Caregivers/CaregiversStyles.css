@@ -27,3 +27,15 @@
     scrollbar-width: thin;
     scrollbar-color: rgb(80, 240, 255);
 }
+
+.imagen-cuidadores-lista {
+    max-height: 200px;
+    display: flex;
+    margin: auto;
+}
+
+.imagen-cuidadores-masInfo {
+    max-height: 400px;
+    display: flex;
+    margin: auto;
+}

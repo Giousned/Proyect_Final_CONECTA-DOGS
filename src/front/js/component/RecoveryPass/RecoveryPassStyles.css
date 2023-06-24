@@ -1,0 +1,67 @@
+/* Contacto | Contact - Styles */
+
+#recovery {
+    background: #3f51b51c;
+    padding: 2rem;
+}
+
+#recovery h3 {
+    color: #3f51b5;
+    display: block;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+#recovery h4 {
+    margin: 5px 0 15px;
+    font-size: 15px;
+    text-align: justify;
+}
+
+.recovery fieldset {
+    border: medium none !important;
+    margin: 0 0 10px;
+    min-width: 100%;
+    padding: 0;
+    width: 100%;
+}
+
+#recovery input[type="text"],
+#recovery input[type="email"],
+#recovery input[type="tel"],
+#recovery input[type="url"],
+#recovery textarea {
+    width: 100%;
+    border: 1px solid #CCC;
+    background: #FFF;
+    margin: 0 0 5px;
+    padding: 10px;
+}
+
+#recovery textarea {
+    height: 100px;
+    max-width: 100%;
+    resize: none;
+}
+
+#recovery input:focus,
+#recovery textarea:focus {
+    outline: 0;
+    border: 1px solid #999;
+}
+
+::-webkit-input-placeholder {
+    color: #888;
+}
+
+:-moz-placeholder {
+    color: #888;
+}
+
+::-moz-placeholder {
+    color: #888;
+}
+
+:-ms-input-placeholder {
+    color: #888;
+}

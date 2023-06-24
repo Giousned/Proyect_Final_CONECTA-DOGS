@@ -18,7 +18,7 @@ def create_service():
         {
             "image": "https://cdn.pixabay.com/photo/2017/01/17/16/46/sun-1987414_960_720.png",
             "title": "Guardería de Día",
-            "description": "Deja a tu perro durante el día, en casa de un cuidador de Gudog, hasta un máximo de 10 horas al día. De esta manera puedes relajarte en tu trabajo, o cuando estás fuera de casa la mayor parte del día.",
+            "description": "Deja a tu perro durante el día, en casa de un cuidador de ConectaDogs, hasta un máximo de 10 horas al día. De esta manera puedes relajarte en tu trabajo, o cuando estás fuera de casa la mayor parte del día.",
         },
         {
             "image": "https://cdn.pixabay.com/photo/2016/03/31/21/38/canines-1296551_960_720.png",

@@ -13,7 +13,7 @@ from api.controllers.service import create_service, get_services, get_service, u
 from api.controllers.tarif import create_tariff, get_tariffs, get_tariff, update_tariff, delete_tariff
 from api.controllers.book import create_book, get_books, get_book, update_book, delete_book, acepted_book, rejected_book
 from api.controllers.install import install_examples
-from api.controllers.email import send_contact_email, send_carer_email
+from api.controllers.email import send_contact_email, send_recovery_email, send_carer_email
 
 
 
@@ -450,8 +450,16 @@ def create_token():
 
         if password == user.password:
             # crea un nuevo token con la info del usuario y us id dentro
-            access_token = create_access_token(identity=user.serialize())
-            return jsonify({"code": 200, "msg": "Inicio de sesión correcto", "token": access_token, "user": user.serialize() })
+            query = db.select(Tariffs).filter_by(user_id=user.id)
+            user_tariffs = db.session.execute(query).scalars()
+
+            serialize_tariffs = [tariff.serialize_books() for tariff in user_tariffs]
+
+            user = user.serialize()
+            user["book_to"] = serialize_tariffs
+
+            access_token = create_access_token(identity=user)
+            return jsonify({"code": 200, "msg": "Inicio de sesión correcto", "token": access_token, "user": user })
         else:
             return jsonify({"msg": "Error en el email o en la contraseña"}), 401
 
@@ -472,9 +480,17 @@ def protected():
     query = db.session.query(User).filter(User.email == current_user["email"])
     user = db.session.execute(query).scalars().one()
 
-    access_token = create_access_token(identity=user.serialize())
+    query = db.select(Tariffs).filter_by(user_id=user.id)
+    user_tariffs = db.session.execute(query).scalars()
 
-    return jsonify({ "code": 200, "msg": "Inicio de sesión correcto", "token": access_token, "user": user.serialize() }), 200
+    serialize_tariffs = [tariff.serialize_books() for tariff in user_tariffs]
+
+    user = user.serialize()
+    user["book_to"] = serialize_tariffs
+
+    access_token = create_access_token(identity=user)
+
+    return jsonify({ "code": 200, "msg": "Inicio de sesión correcto", "token": access_token, "user": user })
 
 
 # RUTA PARA CREAR LOS 3 SERVICIOS + USUARIOS/PERROS/TARIFAS EN LA BASE DE DATOS INICIAL CADA VEZ
@@ -517,6 +533,26 @@ def post_contact_email():
         return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
 
 
+# RUTA PARA ENVIAR EMAILS DE RECUPERACIÓN DE LA CONTRASEÑA AL CORREO ELECTRONICO DEL USUARIO
+@api.route("/emails-recovery", methods=["POST"])
+def post_recovery_email():
+
+    try:
+
+        body = request.json
+
+        email_response = send_recovery_email(body)
+
+        if email_response["code"] != 200:
+            return jsonify(email_response)
+
+        return jsonify(email_response)
+
+    except Exception as error:
+        print(error)
+        return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
+
+
 # RUTA PARA ENVIAR EMAILS A LOS CUIDADORES A LA HORA DE HACER RESERVAS
 @api.route("/emails-contact/<int:id>", methods=["POST"])
 @jwt_required()
@@ -542,11 +578,6 @@ def post_carers_email(id):
 
 
 
-# return jsonify({"id": user.id, "email": user.email }), 200
-# HARCODEANDO PRUEBA FACIL DE EMAIL
-# if email != "test" or password != "test":
-#     return jsonify({"msg": "Bad email or password"}), 401
-
 # # RUTA PARA CREAR LOS 3 SERVICIOS EN LA BASE DE DATOS INICIAL CADA VEZ
 # @api.route("/config-install", methods=["GET"])
 # def config_services():
@@ -566,6 +597,15 @@ def post_carers_email(id):
 #         return jsonify({"code": 500, "msg": "¡Error en el servidor, algo fue mal!"})
 
 
+
+
+
+# return jsonify({"id": user.id, "email": user.email }), 200
+# HARCODEANDO PRUEBA FACIL DE EMAIL
+# if email != "test" or password != "test":
+#     return jsonify({"msg": "Bad email or password"}), 401
+
+
 # EJEMPLO DE PRUEBA
 # @api.route('/hello', methods=['POST', 'GET'])
 # def handle_hello():
@@ -575,8 +615,3 @@ def post_carers_email(id):
 #     }
 
 #     return jsonify(response_body), 200
-
-# return jsonify({"id": user.id, "email": user.email }), 200
-# HARCODEANDO PRUEBA FACIL DE EMAIL
-# if email != "test" or password != "test":
-#     return jsonify({"msg": "Bad email or password"}), 401

@@ -8,9 +8,10 @@ import NavBar from "./component/NavBar/NavBar.jsx";
 import LogInForm from "../js/component/LogInForm/LogInForm.jsx";
 import SignUpForm from "./pages/SignUp.jsx";
 import Contact from "./component/Contact/Contact.jsx";
+import RecoveryPass from "./component/RecoveryPass/RecoveryPass.jsx";
 import UserProfile from "./pages/UserProfile/UserProfile.jsx";
-import Reserves from "./pages/Reserves/Reserves.jsx";
-import ReserveInformation from "./pages/Reserves/ReserveInformation.jsx";
+import ReservesProfile from "./pages/Reserves/ReservesProfile.jsx";
+import ReserveInformation from "./pages/Reserves/components/ReserveInformation.jsx";
 import Notifications from "./pages/Notifications/Notifications.jsx";
 import CaregiversList from "./pages/Caregivers/CaregiversList.jsx";
 import CaregiverInfo from "./pages/Caregivers/CaregiverInfo.jsx";
@@ -39,6 +40,7 @@ const Layout = () => {
               <Alert />
               <NavBar />
               <Contact />
+              <RecoveryPass />
               <Routes>
                 <Route element={<Home />} path="/" />
                 <Route element={<LogInForm />} path="/log-in-form" />
@@ -50,8 +52,8 @@ const Layout = () => {
                 <Route element={<Map />} path="/map" />
                 <Route element={<CaregiverInfo />} path="/caregiver-info/:id" />
                 <Route element={<Hire />} path="/hire-caregiver/:id" />
-                <Route element={<Reserves />} path="/reserves" />
-                <Route element={<ReserveInformation />} path="/reserve-information/:id" />
+                <Route element={<ReservesProfile />} path="/reserves" />
+                <Route element={<ReserveInformation />} path="/reserve-information/:type/:id" />
 
                 <Route element={<h1>Not found!</h1>} />
               </Routes>

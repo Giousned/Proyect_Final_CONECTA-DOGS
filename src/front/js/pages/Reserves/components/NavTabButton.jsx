@@ -1,8 +1,8 @@
 import React from 'react';
 
-const TabButton = ({ id, label, isActive, onClick }) => {
+const NavTabButton = ({ id, label, isActive, onClick }) => {
     return (
-        <li className="nav-item" role="presentation">
+        <li className="nav-tabs justify-content-center" role="presentation">
             <button
                 className={`nav-link ${isActive ? 'show active' : ''}`}
                 id={id}
@@ -20,4 +20,4 @@ const TabButton = ({ id, label, isActive, onClick }) => {
     );
 };
 
-export default TabButton;
+export default NavTabButton;
